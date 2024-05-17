@@ -9,7 +9,7 @@
   <i>Created as part of the thesis at UTB</i>
 </div>
 
-# 💡 Description of testing  tool
+# 💡 Description of testing tool
 
 This **Black Box** Testing Tool is designed for automating the testing and evaluation of tasks without requiring knowledge of the software's internal structure or implementation details. It offers several key features:
 
