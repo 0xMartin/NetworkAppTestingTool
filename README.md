@@ -18,6 +18,60 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 - **Independence**: The tool operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 
+## What does the tool allow you to test?
+
+* Testing simple __email__ sending applications
+* Testing __clients__ using the unencrypted telnet protocol
+* Testing __servers__ using the unencrypted telnet protocol
+* Testing applications communicating through __REST API__
+* Testing __SOAP web services__
+* Testing __MQTT clients__
+* Testing __web crawlers__
+
+## Supports running test on **localhost** or in **CI/CD** pipeline
+
+Basic CI/CD pipeline configuration with automatic test execution. The repository must contain the NATT.jar file as well as the configuration with the test suites.
+
+```yaml
+image: gradle:alpine
+
+before_script:
+  - GRADLE_USER_HOME="$(pwd)/.gradle"
+  - export GRADLE_USER_HOME
+
+stages:
+  - build
+  - test
+
+build_application:
+  stage: build
+  script:
+    - ./gradlew build
+  artifacts:
+    paths:
+      - app/build/libs/*.jar
+  allow_failure: false
+
+black_box_testing:
+  stage: test
+  script:
+    - java -jar NATT.jar -c test-config.yaml
+  artifacts:
+    paths:
+      - test_report.html
+  dependencies:
+    - build_application
+  allow_failure: false
+```
+
+## Future improvements
+
+* The possibility of defining your own keywords
+* The possibility of launching more than one external applications at one time
+* Add path variable support for REST API testing
+* Add more testing options when testing the web crawler
+* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
+
 ## How to run testing tool
 
 For help, specify the -h or --help argument.
@@ -31,6 +85,30 @@ java -jar NATT.jar -c <path-to-test-config>
 In order to ensure the versatility of our black box testing tool, we've devised a straightforward method for users to convey precisely what tasks they want the tool to undertake. This is achieved through the utilization of YAML-formatted configurations for test sets. These configurations serve as blueprints, enabling the tool to execute tasks reliably and efficiently.
 
 The configuration language of our tool is designed to be intuitive, comprising a set of keywords that users can easily manipulate to tailor their testing requirements. Writing configurations for our tool is akin to crafting configurations for GitLab CI/CD pipelines, ensuring familiarity and ease of use for those experienced with such processes.
+
+## Configuration editor
+
+The testing tool has its own configuration language. The language is written in YAML format. You can write the configuration in your own editor or in the editor available in this repository specifically for this tool. The editor allows for easy configuration writing with code auto-completion and many other features. It is also possible to run tests directly within the editor.
+
+Run configuration editor on Linux:
+
+```bash
+cd config-editor
+
+chmod +x run.sh
+
+./run.sh
+```
+
+Run configuration editor on Windows:
+
+```bash
+cd config-editor
+
+start run.bat
+```
+
+<img src="./doc/editor1.png" alt="Configuration editor">
 
 ## 🧩 Understanding Test Structures
 

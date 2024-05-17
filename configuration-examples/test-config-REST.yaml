@@ -1,0 +1,278 @@
+test_root:
+    max_points: 10.0
+    initial_steps: 
+        # spusti spring rest api server
+        - run_app: "java -jar build/libs/RESTAPIServer-0.0.1-SNAPSHOT.jar"
+        # ceka nez se server spusti (vypis textu: Started RestapiServerApplication in)
+        - create_filter_action:
+            name: "app-std-out"
+            text: "Started RestapiServerApplication in"
+            mode: "contains"
+            case_sensitive: false
+        - wait_until:
+            module_name: "app-std-out"
+            time_out: 30000
+        # cisteni databaze na zacatku
+        - create_rest_tester:
+            name: "module-1"
+            url: "http://localhost:8080/deleteAll"
+            request_type: "DELETE"
+        - module_send:
+            name: "module-1"
+            message: ""
+    test_suites: 
+        - test_suite:
+            name: "Testování vytváření uživatelů"
+            delay: 500
+            initial_steps: 
+                # vytovreni REST testeru pro POST & GET
+                - create_rest_tester:
+                    name: "user-create"
+                    url: "http://localhost:8080/createUser"
+                    request_type: "POST"
+                    content_type: "application/json"
+                - create_rest_tester:
+                    name: "user-get"
+                    url: "http://localhost:8080/getUser"
+                    request_type: "GET"
+            test_cases: 
+                - test_case:
+                    name: "Test vytvoření uživatele"
+                    description: "V tomto testovacím případě bude odeslan požadavek na vytvoření jednoho uživatele. Naslědně v dalším požadavku bude ověřeno, zda tento uživatel byl opravu vytvořen."
+                    steps: 
+                        # odesle request na vytvoreni uzivatele
+                        - module_send:
+                            name: "user-create"
+                            message: '#body={"id": 0, "name": "User1", "email": "test@email.com", "phoneNumber": "+420666555444"}'
+                        # po vytvoreni obdrzi data nove ulozeneho uzivatele a ziska jeho id
+                        - json_get:
+                            to_var: "var-id"
+                            from_var: "user-create-last-msg"
+                            param_name: "id"
+                        # odesle pozadavek na ziskani specifického uzivatele
+                        - module_send:
+                            name: "user-get"
+                            message: "id=$var-id"
+                        # overi zda ulozeny uzivatel odpovida ocekavani
+                        - assert_json: 
+                            var_name: "user-get-last-msg"
+                            expected: '{"id": $var-id, "name": "User1", "email": "test@email.com", "phoneNumber": "+420666555444"}'
+                            exact_mode: false
+                - test_case:
+                    name: "Test vytvoření uživatele s neplatným emailem"
+                    description: "Bude testováno, zda uživatel s neplatným emailem nebude vytvořen."
+                    steps: 
+                        # odesle request na vytvoreni uzivatele
+                        - module_send:
+                            name: "user-create"
+                            message: '#body={"id": 0, "name": "User1", "email": "testemail.com", "phoneNumber": "+420666555444"}'   
+                        # ocekava ze prijata zprava bude obsahovat kod 400 bad request
+                        - assert_string:
+                            var_name: "user-create-last-msg"
+                            expected: "ERROR: 400"
+                            mode: "contains"
+                            case_sensitive: false
+                - test_case:
+                    name: "Test vytvoření uživatele s neplatným telefonem"
+                    description: "Bude testováno, zda uživatel s neplatným telefonním číslem nebude vytvořen."
+                    steps: 
+                        # odesle request na vytvoreni uzivatele
+                        - module_send:
+                            name: "user-create"
+                            message: '#body={"id": 0, "name": "User1", "email": "test@email.com", "phoneNumber": "+44434invalid"}'   
+                        # ocekava ze prijata zprava bude obsahovat kod 400 bad request
+                        - assert_string:
+                            var_name: "user-create-last-msg"
+                            expected: "ERROR: 400"
+                            mode: "contains"
+                            case_sensitive: false
+        - test_suite:
+            name: "Testování aktualizace uživatelů"
+            delay: 500
+            initial_steps: 
+                # vytovreni REST testeru pro PUT & GET
+                - create_rest_tester:
+                    name: "user-edit"
+                    url: "http://localhost:8080/editUser"
+                    request_type: "PUT"
+                    content_type: "application/json"
+                - create_rest_tester:
+                    name: "user-get"
+                    url: "http://localhost:8080/getUser"
+                    request_type: "GET"
+                - create_rest_tester:
+                    name: "user-all"
+                    url: "http://localhost:8080/users"
+                    request_type: "GET"
+            test_cases: 
+                - test_case:
+                    name: "Test aktualizace uživatele"
+                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele uživatele. Naslědně v další požadavku bude ověřeno, zda tento uživatel byl opravdu upraven."
+                    steps: 
+                        # odesle pozadavek na ziskani vsech uzivatelu
+                        - module_send:
+                            name: "user-all"
+                            message: ""
+                        # ziska prvniho uzivatele z listu (index 0)
+                        - json_get:
+                            to_var: "var-user"
+                            from_var: "user-all-last-msg"
+                            param_name: "0"
+                        # ziska jeho id
+                        - json_get:
+                            to_var: "var-id"
+                            from_var: "var-user"
+                            param_name: "id"
+                        # zmeni jeho udeje za jine platne
+                        - module_send:
+                            name: "user-edit"
+                            message: 'id=$var-id;#body={"id": 0, "name": "updated", "email": "updated@email.com", "phoneNumber": "+420777666444"}'
+                        # ziska tohoto uzivatele znovu
+                        - module_send:
+                            name: "user-get"
+                            message: "id=$var-id"
+                        # overi zda pozmeneny uzivatel odpovida ocekavani
+                        - assert_json: 
+                            var_name: "user-get-last-msg"
+                            expected: '{"id": $var-id, "name": "updated", "email": "updated@email.com", "phoneNumber": "+420777666444"}'
+                            exact_mode: false
+                - test_case:
+                    name: "Test aktualizace uživatele s neplatnými údaji 1"
+                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji. Předpokládá se, že tato úprava nebude umožněna."
+                    steps: 
+                        # odesle pozadavek na ziskani vsech uzivatelu
+                        - module_send:
+                            name: "user-all"
+                            message: ""
+                        # ziska prvniho uzivatele z listu (index 0)
+                        - json_get:
+                            to_var: "var-user"
+                            from_var: "user-all-last-msg"
+                            param_name: "0"
+                        # ziska jeho id
+                        - json_get:
+                            to_var: "var-id"
+                            from_var: "var-user"
+                            param_name: "id"
+                        # zmeni jeho udeje za jine neplatne
+                        - module_send:
+                            name: "user-edit"
+                            message: 'id=$var-id;#body={"id": 0, "name": "updated", "email": "updated-email.cz", "phoneNumber": "+420777666444"}'
+                        # ocekava ze prijata zprava bude obsahovat kod 400 bad request
+                        - assert_string:
+                            var_name: "user-edit-last-msg"
+                            expected: "ERROR: 400"
+                            mode: "contains"
+                            case_sensitive: false
+                - test_case:
+                    name: "Test aktualizace uživatele s neplatnými údaji 2"
+                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji. Předpokládá se, že tato úprava nebude umožněna."
+                    steps: 
+                        # odesle pozadavek na ziskani vsech uzivatelu
+                        - module_send:
+                            name: "user-all"
+                            message: ""
+                        # ziska prvniho uzivatele z listu (index 0)
+                        - json_get:
+                            to_var: "var-user"
+                            from_var: "user-all-last-msg"
+                            param_name: "0"
+                        # ziska jeho id
+                        - json_get:
+                            to_var: "var-id"
+                            from_var: "var-user"
+                            param_name: "id"
+                        # zmeni jeho udeje za jine neplatne
+                        - module_send:
+                            name: "user-edit"
+                            message: 'id=$var-id;#body={"id": 0, "name": "", "email": "updated@email.cz", "phoneNumber": "+420777666444"}'
+                        # ocekava ze prijata zprava bude obsahovat kod 400 bad request
+                        - assert_string:
+                            var_name: "user-edit-last-msg"
+                            expected: "ERROR: 400"
+                            mode: "contains"
+                            case_sensitive: false
+        - test_suite:
+            name: "Testování požadavků pro odstranění"
+            delay: 500
+            initial_steps: 
+                # vytovreni REST testeru pro POST & DELETE & GET
+                - create_rest_tester:
+                    name: "user-delete"
+                    url: "http://localhost:8080/deleteUser"
+                    request_type: "DELETE"
+                - create_rest_tester:
+                    name: "user-delete-all"
+                    url: "http://localhost:8080/deleteAll"
+                    request_type: "DELETE"
+                - create_rest_tester:
+                    name: "user-all"
+                    url: "http://localhost:8080/users"
+                    request_type: "GET"
+                - create_rest_tester:
+                    name: "user-get"
+                    url: "http://localhost:8080/getUser"
+                    request_type: "GET"
+                - create_rest_tester:
+                    name: "user-create"
+                    url: "http://localhost:8080/createUser"
+                    request_type: "POST"
+                # vlozi dalsi uzivatele
+                - module_send:
+                    name: "user-create"
+                    message: '#body={"id": 0, "name": "TestUser1", "email": "test1@email.com", "phoneNumber": "+420777666555"}'
+                - module_send:
+                    name: "user-create"
+                    message: '#body={"id": 0, "name": "TestUser2", "email": "test2@email.com", "phoneNumber": "+420777666555"}'
+            test_cases: 
+                - test_case:
+                    name: "Test odstranění jednoho uživatele"
+                    description: "Bude testováno, zda je možné odstranit jednoho uživatele."
+                    steps: 
+                        # odesle pozadavek na ziskani vsech uzivatelu
+                        - module_send:
+                            name: "user-all"
+                            message: ""
+                        # ziska prvniho uzivatele z listu (index 0)
+                        - json_get:
+                            to_var: "var-user"
+                            from_var: "user-all-last-msg"
+                            param_name: "0"
+                        # ziska jeho id
+                        - json_get:
+                            to_var: "var-id"
+                            from_var: "var-user"
+                            param_name: "id"
+                        # odstrani tohoto uzivatele
+                        - module_send:
+                            name: "user-delete"
+                            message: "id=$var-id"
+                        # pokusi se znovu ziskat tohoto uzivatele
+                        - module_send:
+                            name: "user-get"
+                            message: "id=$var-id"
+                        # ocekava chybu 404 not found
+                        - assert_string:
+                            var_name: "user-get-last-msg"
+                            expected: "ERROR: 404"
+                            mode: "contains"
+                            case_sensitive: false
+                - test_case:
+                    name: "Test odstranění všech uživatelů"
+                    description: "Bude testováno, zda je možné odstranit všechny uživatele v databázi."
+                    steps: 
+                        # odstrani vsechny uzivatele
+                        - module_send:
+                            name: "user-delete-all"
+                            message: ""
+                        # ziska vsechny uzivatele
+                        - module_send:
+                            name: "user-all"
+                            message: ""
+                        # v tuto chvili by zde nemel byt zadny
+                        - assert_string:
+                            var_name: "user-all-last-msg"
+                            expected: "[]"
+                            mode: "contains"
+
+

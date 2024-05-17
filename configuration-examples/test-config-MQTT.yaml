@@ -1,0 +1,226 @@
+test_root:
+    max_points: 10.0
+    initial_steps: 
+        # do promena ulozi nazev topic, ktery testovany klient vyuziva jako vstup
+        - set_var:
+            var_name: "in-topic"
+            value: "topic/device1/in"
+        # spusti mqtt broker
+        - create_mqtt_broker:
+            name: "broker-1"
+            port: 1883
+        - wait: 800
+        # vytovri mqtt klienta, ktereho bude vyuzivat pri testovani
+        - create_mqtt_client:
+            name: "client-1"
+            topics: ["topic/device1/out"]
+            broker_url: "tcp://localhost:1883"
+        - wait: 800
+        
+    test_suites: 
+        - test_suite:
+            name: "Testování přijímání zpráv vlhkosti půdy"
+            delay: 900
+            initial_steps:
+                # nastaveni filter akci pouze na zpravy humidity
+                - create_filter_action:
+                    name: "client-1"
+                    text: "humidity;"
+                    mode: "contains"
+                    case_sensitive: false
+            test_cases: 
+                - test_case:
+                    name: "Test automaticky odesílaných zpráv"
+                    description: "V tomto testovacím případě bude testováno, zda v definovaných 10-ti sekundových intervalech přichází automaticky zpráva z naměřenou úrovní vlhkosti půdy."
+                    steps: 
+                        # spusti testovaneho klienta
+                        - run_app_later: 
+                            command: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
+                            delay: 1500
+                        # ceka dokud neprijde prvni zprava zacinajici "humidity;"
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # ceka na dalsi zpravu zacinajici "humidity;", mela prijit po 10 sec
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 11000
+                - test_case:
+                    name: "Test vyžádání odesílání zprávy"
+                    description: "V tomto testovacím případě bude testováno, zda na vyžádání testovaný klient odešle hodnotu vlhkosti půdy."
+                    steps: 
+                        # spusti testovaneho klienta
+                        - run_app_later: 
+                            command: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
+                            delay: 1500
+                        # ceka dokud neprijde prvni zprava zacinajici "humidity;"
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # odesle zpravu pro vyzadani okamziteho zaslani hodnoty vlhkosti
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:get-humidity"
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # v tuto chvili by meli byt v bufferu 2 prijate zpravy
+                        - count_and_store:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                        - assert_equals:
+                            var_name: "var-1"
+                            value: 2
+        - test_suite:
+            name: "Testování řízení závlahy"
+            delay: 900
+            initial_steps:
+                # nastaveni filter akci pouze na zpravy status
+                - create_filter_action:
+                    name: "client-1"
+                    text: "status;"
+                    mode: "contains"
+                    case_sensitive: false
+            test_cases: 
+                - test_case:
+                    name: "Test získaní stavu zavlažování"
+                    description: "Bude ověřováno, zda testovaný klient reaguje na zprávy pro získaní aktuálního stavu zavlažování."
+                    steps: 
+                        # spusti testovaneho klienta
+                        - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
+                        - wait: 1000
+                        # odesle zpravu pro ziskani statusu
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:get-status" 
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # overi status (musi byt neaktivni)
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "status;irrigation_off"
+                            mode: "contains"
+                            case_sensitive: false
+                            result: true
+                - test_case:
+                    name: "Test řízení zavlažování"
+                    description: "Bude ověřováno, zda testovaný klient správně reaguje na zprávy pro řízení zavlažování."
+                    steps: 
+                        # spusti testovaneho klienta
+                        - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
+                        - wait: 1000
+                        # odesle zpravu pro spusteni zavlah
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:start-irrigation" 
+                            delay: 200
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # overi status (musi byt aktivni)
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "status;irrigation_on"
+                            mode: "contains"
+                            case_sensitive: false
+                            result: true
+                        # odesle zpravu pro zastaveni zavlah
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:stop-irrigation" 
+                            delay: 200
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # overi status (musi byt neaktivni)
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "status;irrigation_off"
+                            mode: "contains"
+                            case_sensitive: false
+                            result: true
+                - test_case:
+                    name: "Test automatického zastavení zavlažování"
+                    description: "Bude testováno, zda testovaný klient automaticky zastaví zavlažování po 30 sekundách od poslední přijaté zprávy, pro zahájení zavlažování."
+                    steps: 
+                        # spusti testovaneho klienta
+                        - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
+                        - wait: 1000
+                        # odesle zpravu pro spusteni zavlah
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:start-irrigation" 
+                            delay: 200
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 5000
+                        # overi status (musi byt aktivni)
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "status;irrigation_on"
+                            mode: "contains"
+                            case_sensitive: false
+                            result: true
+                        # ceka na automaticke ukonceni zavlahy po 30 sekundach
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 34000
+                        # overi status (musi byt neaktivni)
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "status;irrigation_off"
+                            mode: "contains"
+                            case_sensitive: false
+                            result: true
+        - test_suite:
+            name: "Testování chybových zpráv"
+            delay: 900
+            initial_steps: 
+                # nastaveni filter akci pouze na zpravy fault
+                - create_filter_action:
+                    name: "client-1"
+                    text: "fault;"
+                    mode: "contains"
+                    case_sensitive: false
+            test_cases: 
+                - test_case:
+                    name: "Test odeslání chybové hlášky čidla"
+                    description: "Bude testováno, zda dojde k automatickému odeslání chybové hlašky při poruše čidla vlhkosti. Parametry pro simulaci v testované aplikaci jsou nastaveny tak, aby k chybě došlo co nejdříve."
+                    steps: 
+                        # spusti se aplikace pro testovani
+                        - run_app_later: 
+                            command: "java -jar app/build/libs/app-all.jar 2493434934 0.98 0.98"
+                            delay: 1500
+                        # ceka na prijeti zpravy s chybou
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 10000
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "fault;HUMIDITY_SENSOR"
+                            mode: "contains"
+                            case_sensitive: false
+                - test_case:
+                    name: "Test odeslání chybové hlášky zalažování"
+                    description: "Bude testováno, zda dojde k automatickému odeslání chybové hlašky při poruše zavlažování. Parametry pro simulaci v testované aplikaci jsou nastaveny tak, aby k chybě došlo co nejdříve."
+                    steps: 
+                        # spusti se aplikace pro testovani
+                        - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.95 0.95"
+                        - wait: 2000
+                        # odesle zpravu pro spusteni zahlahy
+                        - module_send:
+                            name: "client-1"
+                            message: "$in-topic:start-irrigation" 
+                            delay: 200
+                        # ceka na prijeti zpravy s chybou
+                        - wait_until:
+                            module_name: "client-1"
+                            time_out: 10000
+                        - assert_string:
+                            var_name: "client-1-action-msg"
+                            expected: "fault;IRRIGATION_SYSTEM"
+                            mode: "contains"
+                            case_sensitive: false
+
+                        

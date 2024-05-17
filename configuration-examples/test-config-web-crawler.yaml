@@ -1,0 +1,109 @@
+test_root:
+    max_points: 10.0
+    test_suites: 
+        - test_suite:
+            name: "Testování Web crawleru pro hloubku 0"
+            delay: 500
+            initial_steps: []
+            test_cases: 
+                - test_case:
+                    name: "Test utb.cz s hloubkou 0"
+                    description: "Testuje web crawler na webové stránce https://www.utb.cz/en/ s hloubkou prohledávání 0."
+                    steps:
+                        # spusti testovanou aplikaci
+                        - run_app_later: 
+                            command: "java -jar app/build/libs/app-all.jar https://www.utb.cz/en/ 0 0"
+                            delay: 1400
+                        - wait_until:
+                            module_name: "app-std-out"
+                            time_out: 13000
+                        # spusti interni modul web crawleru
+                        - create_web_crawler:
+                            name: "module-1"
+                            start_url: "https://www.utb.cz/en/"
+                            max_depth: 0
+                            analyzer: "word-freq:20"
+                        # overeni shody vystupu pro 20 slov. porovnavaci pravidlo: ";|#;3" => separator=; (shodny podretezec);(tolerance 3%)
+                        - assert_range:
+                            module1_name: "app-std-out"
+                            module2_name: "module-1"
+                            start: 0
+                            count: 20
+                            rule: ";|#;3"
+                - test_case:
+                    name: "Test jlcpcb.com s hloubkou 0"
+                    description: "Testuje web crawler na webové stránce https://jlcpcb.com/ s hloubkou prohledávání 0."
+                    steps:
+                        # spusti testovanou aplikaci
+                        - run_app_later: 
+                            command: "java -jar app/build/libs/app-all.jar https://jlcpcb.com/ 0 0"
+                            delay: 1400
+                        - wait_until:
+                            module_name: "app-std-out"
+                            time_out: 13000
+                        # spusti interni modul web crawleru
+                        - create_web_crawler:
+                            name: "module-1"
+                            start_url: "https://jlcpcb.com/"
+                            max_depth: 0
+                            analyzer: "word-freq:20"
+                        # overeni shody vystupu pro 20 slov. porovnavaci pravidlo: ";|#;3" => separator=; (shodny podretezec);(tolerance 3%)
+                        - assert_range:
+                            module1_name: "app-std-out"
+                            module2_name: "module-1"
+                            start: 0
+                            count: 20
+                            rule: ";|#;3"
+        - test_suite:
+                name: "Testování Web crawleru pro hloubku 1"
+                delay: 500
+                initial_steps: []
+                test_cases: 
+                    - test_case:
+                        name: "Test wokwi.com s hloubkou 1"
+                        description: "Testuje web crawler na webové stránce https://wokwi.com/ s hloubkou prohledávání 1."
+                        steps:
+                            # spusti testovanou aplikaci
+                            - run_app_later: 
+                                command: "java -jar app/build/libs/app-all.jar https://wokwi.com/ 1 0"
+                                delay: 1400
+                            - wait_until:
+                                module_name: "app-std-out"
+                                time_out: 70000
+                            # spusti interni modul web crawleru
+                            - create_web_crawler:
+                                name: "module-1"
+                                start_url: "https://wokwi.com/"
+                                max_depth: 1
+                                analyzer: "word-freq:20"
+                            # overeni shody vystupu pro 20 slov. porovnavaci pravidlo: ";|#;3" => separator=; (shodny podretezec);(tolerance 10%)
+                            - assert_range:
+                                module1_name: "app-std-out"
+                                module2_name: "module-1"
+                                start: 0
+                                count: 20
+                                rule: ";|#;10"
+                    - test_case:
+                        name: "Test jlcpcb.com s hloubkou 1"
+                        description: "Testuje web crawler na webové stránce https://jlcpcb.com/ s hloubkou prohledávání 1."
+                        steps:
+                            # spusti testovanou aplikaci
+                            - run_app_later: 
+                                command: "java -jar app/build/libs/app-all.jar https://jlcpcb.com/ 1 0"
+                                delay: 1400
+                            - wait_until:
+                                module_name: "app-std-out"
+                                time_out: 70000
+                            # spusti interni modul web crawleru
+                            - create_web_crawler:
+                                name: "module-1"
+                                start_url: "https://jlcpcb.com/"
+                                max_depth: 1
+                                analyzer: "word-freq:20"
+                            # overeni shody vystupu pro 20 slov. porovnavaci pravidlo: ";|#;3" => separator=; (shodny podretezec);(tolerance 10%)
+                            - assert_range:
+                                module1_name: "app-std-out"
+                                module2_name: "module-1"
+                                start: 0
+                                count: 20
+                                rule: ";|#;10"
