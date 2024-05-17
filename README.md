@@ -186,7 +186,7 @@ This set encompasses keywords for working with variables, waiting, conditional w
    - `text`: *Type*: string | not required, *Description*: Text that must be included in the message. (default: "")
    - `tag`: *Type*: string | not required, *Description*: Required tag of the message. (default: "")
    - `mode`: *Type*: string | not required, *Description*: Finding mode. There are these modes: "equals", "contains", "startswith", "endswith". (default: equals)
-   - `case_sensitive | not required`: *Type*: boolean, *Description*: Whether the filter should be case sensitive.
+   - `case_sensitive`: *Type*: boolean, *Description*: Whether the filter should be case sensitive.
 4. **`count_and_store` - Counts the number of received messages during a single test case and saves this count into a variable.**
    - `var_name`: *Type*: string, *Description*: Variable to store the count.
    - `module_name`: *Type*: string, *Description*: Module whose received messages will be counted.
@@ -302,7 +302,7 @@ This set includes keywords that enable working with communication modules.
     - `text`: *Type*: string, *Description*: Text to filter on.
     - `tag`: *Type*: string | not required, *Description*: Tag of message. (default: "")
     - `mode`: *Type*: string | not required, *Description*: Filter mode. There are this modes: "equals", "contains", "startswith", "endswith". (default: equals)
-    - `case_sensitive | not required`: *Type*: boolean, *Description*: Whether the filter should be case sensitive. (default: true)
+    - `case_sensitive`: *Type*: boolean, *Description*: Whether the filter should be case sensitive. (default: true)
 12. **`clear_filter_actions` - Removes all action filters for a specific module.**
     - `default`: *Type*: string, *Description*: Name of module.
 
