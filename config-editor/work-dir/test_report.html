@@ -1,0 +1,1241 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Network App Testing Tool</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c43b89d03a7c43dae8bb8f0f078bad1997af6b3b/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/extent-framework/extent-github-cdn/7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa -report standard">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Test report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">May 17, 2024 12:17:48 PM</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('category-view')">
+<a id="nav-category" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-tag"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">Testováníběžnékomunikace</a><a class="dropdown-item" href="#">Testovánídiskuzníchmístností</a><a class="dropdown-item" href="#">Testovánípříkazuprozměnůjména</a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="pass" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Test root initialization</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test root initialization</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:48 PM</td>
+        <td>
+          <b>[Run App]</b> java -jar app/build/libs/app.jar 9999 10
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:51 PM</td>
+        <td>
+          <b>[Wait]</b> 3000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:51 PM</td>
+        <td>
+          <b>[Create Telnet Client]</b> port = 9999, name = "client-1", host = "localhost"<br><font color="green">The module with name 'client-1' is running.</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:51 PM</td>
+        <td>
+          <b>[Create Telnet Client]</b> port = 9999, name = "client-2", host = "localhost"<br><font color="green">The module with name 'client-2' is running.</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:51 PM</td>
+        <td>
+          <b>[Create Telnet Client]</b> port = 9999, name = "client-3", host = "localhost"<br><font color="green">The module with name 'client-3' is running.</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:53 PM</td>
+        <td>
+          <b>[Wait]</b> 2000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:53 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "Klient1"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>Klient1</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:53 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-2", message = "Klient2"<br><font color="green">Message was successfully sent by module <b>'client-2'</b>. Message content: <br><b>Klient2</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:53 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-3", message = "Klient3"<br><font color="green">Message was successfully sent by module <b>'client-3'</b>. Message content: <br><b>Klient3</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:54 PM</td>
+        <td>
+          <b>[Wait]</b> 800
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag="Testováníběžnékomunikace"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test suite 'Testování běžné komunikace' initialization</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test suite 'Testování běžné komunikace' initialization</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testováníběžnékomunikace</span></div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag="Testovánídiskuzníchmístností"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test suite 'Testování diskuzních místností' initialization</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test suite 'Testování diskuzních místností' initialization</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánídiskuzníchmístností</span></div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag="Testovánípříkazuprozměnůjména"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test suite 'Testování příkazu pro změnů jména' initialization</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test suite 'Testování příkazu pro změnů jména' initialization</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánípříkazuprozměnůjména</span></div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="5"
+          author=""
+          tag="Testováníběžnékomunikace"
+          device="">
+          <div class="test-detail">
+            <p class="name">Zaklaní test komunikace 1</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Zaklaní test komunikace 1</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testováníběžnékomunikace</span></div>
+<div class="m-t-10 m-l-5">V tomto testovacím případě bude testováno, zda doručení ostatním klientům probíhá správně. Odesílání zpráv bude probíhat v základní diskuzní místnosti public.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:54 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "Hello, world!"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>Hello, world!</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:55 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:55 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[Klient1] &gt;&gt; Hello, world!", var_name = "client-2-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient1] &gt;&gt; Hello, world!'</b> must contains expected text <b>'[Klient1] >> Hello, world!'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:55 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[Klient1] &gt;&gt; Hello, world!", var_name = "client-3-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient1] &gt;&gt; Hello, world!'</b> must contains expected text <b>'[Klient1] >> Hello, world!'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="6"
+          author=""
+          tag="Testováníběžnékomunikace"
+          device="">
+          <div class="test-detail">
+            <p class="name">Zaklaní test komunikace 2</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Zaklaní test komunikace 2</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testováníběžnékomunikace</span></div>
+<div class="m-t-10 m-l-5">V tomto testovacím případě bude testováno, zda doručení ostatním klientům probíhá správně. Odesílání zpráv bude probíhat v základní diskuzní místnosti public.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:56 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "Testing 123"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>Testing 123</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:56 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-2", message = "12345 - 67890"<br><font color="green">Message was successfully sent by module <b>'client-2'</b>. Message content: <br><b>12345 - 67890</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:56 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-3", message = "This is a test message"<br><font color="green">Message was successfully sent by module <b>'client-3'</b>. Message content: <br><b>This is a test message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Store To Var]</b> mode = "contains", module_name = "client-1", text = "[Klient2]", var_name = "var-1"<br><font color="green">The following value has been stored in a variable named <b>[var-1]</b>: <b>'[Klient2] &gt;&gt; 12345 - 67890'</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "equals", expected = "[Klient2] &gt;&gt; 12345 - 67890", var_name = "var-1"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient2] &gt;&gt; 12345 - 67890'</b> must equals expected text <b>'[Klient2] >> 12345 - 67890'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Store To Var]</b> mode = "contains", module_name = "client-1", text = "[Klient3]", var_name = "var-1"<br><font color="green">The following value has been stored in a variable named <b>[var-1]</b>: <b>'[Klient3] &gt;&gt; This is a test message'</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[Klient3] &gt;&gt; This is a test message", var_name = "var-1"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient3] &gt;&gt; This is a test message'</b> must contains expected text <b>'[Klient3] >> This is a test message'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Store To Var]</b> mode = "contains", module_name = "client-2", text = "[Klient1]", var_name = "var-1"<br><font color="green">The following value has been stored in a variable named <b>[var-1]</b>: <b>'[Klient1] &gt;&gt; Testing 123'</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[Klient1] &gt;&gt; Testing 123", var_name = "var-1"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient1] &gt;&gt; Testing 123'</b> must contains expected text <b>'[Klient1] >> Testing 123'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag="Testováníběžnékomunikace"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test odeslání soukromé zprávy</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test odeslání soukromé zprávy</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testováníběžnékomunikace</span></div>
+<div class="m-t-10 m-l-5">V tomto testovacím případě bude testováno, zda server umožnuje posílání soukromých zpráv. Klient 2 soukromou zprávu odešle klientu 3.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:57 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-2", message = "#sendPrivate Klient3 This is a private message"<br><font color="green">Message was successfully sent by module <b>'client-2'</b>. Message content: <br><b>#sendPrivate Klient3 This is a private message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:58 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:58 PM</td>
+        <td>
+          <b>[Store To Var]</b> mode = "contains", module_name = "client-3", text = "[Klient2]", var_name = "var-1"<br><font color="green">The following value has been stored in a variable named <b>[var-1]</b>: <b>'[Klient2] &gt;&gt; This is a private message'</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:58 PM</td>
+        <td>
+          <b>[Store To Var]</b> mode = "contains", module_name = "client-2", text = "[Klient2]", var_name = "var-2"<br><font color="green">The following value has been stored in a variable named <b>[var-2]</b>: <b>''</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:58 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[Klient2] &gt;&gt; This is a private message", var_name = "var-1"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient2] &gt;&gt; This is a private message'</b> must contains expected text <b>'[Klient2] >> This is a private message'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:58 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", result = false, expected = "[Klient2] &gt;&gt; This is a private message", var_name = "var-2"<br><font color="green">Assertion succeeded. <b>False</b> was expected as the result. Condition: (Value of variable <b>''</b> must contains expected text <b>'[Klient2] >> This is a private message'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="8"
+          author=""
+          tag="Testovánídiskuzníchmístností"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test vstoupení do diskuzní místnosti</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test vstoupení do diskuzní místnosti</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánídiskuzníchmístností</span></div>
+<div class="m-t-10 m-l-5">V rámci tohoto testovacího případu bude ověřena funkčnost příkazů #join a #groups.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:59 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#join MyGroup1"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#join MyGroup1</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:17:59 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-2", message = "#join MyGroup1"<br><font color="green">Message was successfully sent by module <b>'client-2'</b>. Message content: <br><b>#join MyGroup1</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:00 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:00 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#groups"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#groups</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:01 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:01 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "MyGroup1", var_name = "client-1-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[SERVER] groups: public,MyGroup1'</b> must contains expected text <b>'MyGroup1'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:01 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#leave public"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#leave public</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:01 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-2", message = "#leave public"<br><font color="green">Message was successfully sent by module <b>'client-2'</b>. Message content: <br><b>#leave public</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:02 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:02 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#groups"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#groups</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:03 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:03 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", result = false, expected = "public", var_name = "client-1-last-msg"<br><font color="green">Assertion succeeded. <b>False</b> was expected as the result. Condition: (Value of variable <b>'[SERVER] groups: MyGroup1'</b> must contains expected text <b>'public'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="9"
+          author=""
+          tag="Testovánídiskuzníchmístností"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test komunikace v diskuzní místnosti</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test komunikace v diskuzní místnosti</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánídiskuzníchmístností</span></div>
+<div class="m-t-10 m-l-5">Tento testovací případ závisí na výsledku předchozího, kdy se dva klienti připojili k soukromé místnosti MyGroup1. Nyní bude ověřeno, že komunikace probíhá správně a členové, kteří nejsou v této místnosti, zprávu neobdrží.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:04 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "This is private message"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>This is private message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:05 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:05 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "This is private message", var_name = "client-2-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient1] &gt;&gt; This is private message'</b> must contains expected text <b>'This is private message'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:05 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", result = false, expected = "This is private message", var_name = "client-3-last-msg"<br><font color="green">Assertion succeeded. <b>False</b> was expected as the result. Condition: (Value of variable <b>'[Klient2] &gt;&gt; This is a private message'</b> must contains expected text <b>'This is private message'</b>)</font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:05 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-3", message = "#join MyGroup1"<br><font color="green">Message was successfully sent by module <b>'client-3'</b>. Message content: <br><b>#join MyGroup1</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:06 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:06 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "This is private message"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>This is private message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:07 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:07 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "This is private message", var_name = "client-3-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[Klient1] &gt;&gt; This is private message'</b> must contains expected text <b>'This is private message'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="10"
+          author=""
+          tag="Testovánípříkazuprozměnůjména"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test změny jména</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test změny jména</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánípříkazuprozměnůjména</span></div>
+<div class="m-t-10 m-l-5">Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude unikátní v rámci IM serveru.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:08 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#setMyName NoveJmeno1"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#setMyName NoveJmeno1</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:09 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:09 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "This is new message"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>This is new message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:10 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:10 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[NoveJmeno1] &gt;&gt; This is new message", var_name = "client-2-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[NoveJmeno1] &gt;&gt; This is new message'</b> must contains expected text <b>'[NoveJmeno1] >> This is new message'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="11"
+          author=""
+          tag="Testovánípříkazuprozměnůjména"
+          device="">
+          <div class="test-detail">
+            <p class="name">Test změny neunikáního jména</p>
+            <p class="text-sm">
+              <span>12:17:48 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Test změny neunikáního jména</h5>
+<span class='badge badge-success'>05.17.2024 12:17:48</span>
+<span class='badge badge-danger'>05.17.2024 12:17:48</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Testovánípříkazuprozměnůjména</span></div>
+<div class="m-t-10 m-l-5">Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude neunikátní v rámci IM serveru a tak uživateli nebude změněno.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:10 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "#setMyName Klient2"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>#setMyName Klient2</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:11 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:11 PM</td>
+        <td>
+          <b>[Module Send]</b> name = "client-1", message = "This is new message"<br><font color="green">Message was successfully sent by module <b>'client-1'</b>. Message content: <br><b>This is new message</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:12 PM</td>
+        <td>
+          <b>[Wait]</b> 1000
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:12 PM</td>
+        <td>
+          <b>[Assert String]</b> mode = "contains", expected = "[NoveJmeno1] &gt;&gt; This is new message", var_name = "client-2-last-msg"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'[NoveJmeno1] &gt;&gt; This is new message'</b> must contains expected text <b>'[NoveJmeno1] >> This is new message'</b>)</font>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="12"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Result score</p>
+            <p class="text-sm">
+              <span>12:18:13 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Result score</h5>
+<span class='badge badge-success'>05.17.2024 12:18:13</span>
+<span class='badge badge-danger'>05.17.2024 12:18:13</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+</div>
+<div class="m-t-10 m-l-5">This is not a test case. This is an informative page containing the final score of the tested application.</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:13 PM</td>
+        <td>
+          Tested application for test suite 'Testování příkazu pro změnů jména' get 2.86 / 2.86 points
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:13 PM</td>
+        <td>
+          Tested application for test suite 'Testování diskuzních místností' get 2.86 / 2.86 points
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>12:18:13 PM</td>
+        <td>
+          Tested application for test suite 'Testování běžné komunikace' get 4.29 / 4.29 points
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>12:18:13 PM</td>
+        <td>
+          TOTAL SCORE: 10.00 / 10.00 points
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>4</span>
+</span>
+<p class="name">Testováníběžnékomunikace</p>
+<p class="duration text-sm">4 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>Testováníběžnékomunikace</h4>
+<span status="pass" class='badge log pass-bg'>4 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='2' id='2'>Test suite 'Testování běžné komunikace' initialization</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>Zaklaní test komunikace 1</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>Zaklaní test komunikace 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>Test odeslání soukromé zprávy</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>3</span>
+</span>
+<p class="name">Testovánídiskuzníchmístností</p>
+<p class="duration text-sm">3 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>Testovánídiskuzníchmístností</h4>
+<span status="pass" class='badge log pass-bg'>3 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>Test suite 'Testování diskuzních místností' initialization</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>Test vstoupení do diskuzní místnosti</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='9' id='9'>Test komunikace v diskuzní místnosti</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>3</span>
+</span>
+<p class="name">Testovánípříkazuprozměnůjména</p>
+<p class="duration text-sm">3 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>Testovánípříkazuprozměnůjména</h4>
+<span status="pass" class='badge log pass-bg'>3 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>Test suite 'Testování příkazu pro změnů jména' initialization</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='10' id='10'>Test změny jména</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:17:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='11' id='11'>Test změny neunikáního jména</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>May 17, 2024 12:17:48 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>May 17, 2024 12:18:13 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Tests Passed</p>
+<h3>12</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Tests Failed</p>
+<h3>0</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Tests</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'>
+<b>12</b> tests passed
+</small>
+</div>
+<div>
+<small data-tooltip='0%'><b>0</b> tests failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Log events</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='events-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='98%'><b>64</b> events passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>1</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"Test root initialization":0,"Test suite 'Testování běžné komunikace' initialization":0,"Test suite 'Testování diskuzních místností' initialization":0,"Test suite 'Testování příkazu pro změnů jména' initialization":0,"Zaklaní test komunikace 1":0,"Zaklaní test komunikace 2":0,"Test odeslání soukromé zprávy":0,"Test vstoupení do diskuzní místnosti":0,"Test komunikace v diskuzní místnosti":0,"Test změny jména":0,"Test změny neunikáního jména":0,"Result score":0
+};
+</script>
+<div class="row">
+<div class="col-md-4 category-container">
+<div class="card">
+<div class="card-header"><p>Tags</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+<tr>
+<td>Testováníběžnékomunikace</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Testovánídiskuzníchmístností</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Testovánípříkazuprozměnůjména</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 12,
+failParent: 0,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 0,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 0,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+passEvents: 64,
+failEvents: 0,
+warningEvents: 0,
+skipEvents: 0,
+infoEvents: 1
+};
+</script>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@14e9bb345ef7e2ed3a102f271d84e9f0267c88e7/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>
