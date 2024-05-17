@@ -30,7 +30,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 ## Supports running test on **localhost** or in **CI/CD** pipeline
 
-Basic CI/CD pipeline configuration with automatic test execution. The repository must contain the NATT.jar file as well as the configuration with the test suites.
+Basic GitLab CI/CD pipeline configuration with automatic test execution. The repository must contain the NATT.jar file as well as the configuration with the test suites.
 
 ```yaml
 image: gradle:alpine
