@@ -358,6 +358,8 @@ This module **does not support** sending messages using the 'module_send' keywor
 
 # 🧪 Test Configuration Samples
 
+**More examples in this direcotry [configuration-examples](./configuration-examples)**
+
 ## Testing of simple application for email sending
 
 This configuration defines a set of automatic tests to evaluate the functionality of the email client application for sending email. The tests include scenarios related to sending emails. Each test case is designed to simulate different user interactions and verify that the client behaves as expected.
