@@ -28,6 +28,16 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing __MQTT clients__
 * Testing __web crawlers__
 
+## Testing diagrams 
+
+These two diagrams illustrate how application testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The communication is then evaluated for the purpose of testing. It is verified whether the tested application behaves according to defined expectations.
+
+<img src="./doc/diagram_rest.png" alt="Diagram with testing of REST app" >
+
+**The testing tool offers several different modules that can be created and combined as needed for the specific testing requirements.** 
+
+<img src="./doc/diagram_mqtt.png" alt="Diagram with testing of MQTT app" >
+
 ## Supports running test on **localhost** or in **CI/CD** pipeline
 
 Basic GitLab CI/CD pipeline configuration with automatic test execution. The repository must contain the NATT.jar file as well as the configuration with the test suites.
