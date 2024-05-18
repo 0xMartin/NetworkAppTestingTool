@@ -64,14 +64,6 @@ black_box_testing:
   allow_failure: false
 ```
 
-## Future improvements
-
-* The possibility of defining your own keywords
-* The possibility of launching more than one external applications at one time
-* Add path variable support for REST API testing
-* Add more testing options when testing the web crawler
-* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
-
 ## How to run testing tool
 
 For help, specify the -h or --help argument.
@@ -79,6 +71,14 @@ For help, specify the -h or --help argument.
 ```bash
 java -jar NATT.jar -c <path-to-test-config>
 ```
+
+## Future improvements
+
+* The possibility of defining your own keywords
+* The possibility of launching more than one external applications at one time
+* Add path variable support for REST API testing
+* Add more testing options when testing the web crawler
+* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
 
 # 🔧 Configuring of the Testing Tool
 
@@ -108,7 +108,13 @@ cd config-editor
 start run.bat
 ```
 
-<img src="./doc/editor1.png" alt="Configuration editor">
+> Editor layout with output terminal
+
+<img src="./doc/editor_1.png" alt="Configuration editor">
+
+> Editor layout with final test report
+
+<img src="./doc/editor_2.png" alt="Configuration editor">
 
 ## 🧩 Understanding Test Structures
 
