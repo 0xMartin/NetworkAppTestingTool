@@ -137,11 +137,11 @@ Let's dive into the structure of tests in our tool. The image below this text sh
 During testing, you have the flexibility to work with variable contents or with a message buffer containing all messages received during testing. The content of the received message buffer is automatically cleared upon the completion of each test case. Variables are only accessible within the context in which they were created. Therefore, if a variable is created within a test case, it will only be available within that specific test case. There's no need to declare a variable before writing to it; simply input the desired content, and if it doesn't exist, it will be automatically created.
 
 ### Important:
-* **Variable** - Contains arbitrary data into which information is inserted during test execution. These variables are automatically populated by the tool. The variable **'(module-name)-last-msg'** holds the content of the message received last by a given module. The variable **'(module-name)-action-msg'** contains the content of the message that triggered the termination of the 'wait_until' function.
+* **Variable** - Contains arbitrary data into which information is inserted during test execution. These variables are automatically populated by the tool. The variable **'(module-name)-last-msg'** holds the content of the message received last by a given module. The variable **'(module-name)-action-msg'** contains the content of the message that triggered the termination of waiting (**'wait_until'** keyword).
 
-* **Message Buffer** - Contains all messages received during the entire testing duration. Messages are accessible only within the scope of a test case.
+* **Message Buffer** - Contains all messages received during the entire testing process. Messages are accessible only within the scope of a test case.
 
-> **(module-name)** is replaced with the unique name of the module. The name of the module is always defined when it is created
+> **(module-name)** is the unique name of the module. The name of the module is always defined when it is created
 
 # 🔠 Inserting Variables into Strings
 
