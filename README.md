@@ -21,12 +21,12 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 ## What does the tool allow you to test?
 
 * Testing simple __email__ sending applications
-* Testing __clients__ using the unencrypted telnet protocol
-* Testing __servers__ using the unencrypted telnet protocol
+* Testing __clients__ that use the telnet protocol
+* Testing __servers__ that use the telnet protocol
 * Testing applications communicating through __REST API__
 * Testing __SOAP web services__
 * Testing __MQTT clients__
-* Testing __web crawlers__
+* Testing __Web crawlers__
 
 ## Testing diagrams 
 
