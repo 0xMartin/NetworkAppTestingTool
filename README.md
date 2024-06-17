@@ -260,7 +260,7 @@ This set comprises keywords that allow the definition of assertions that must be
    - `module2_name`: *Type*: string, *Description*: Second module involved in the assertion.
    - `start`: *Type*: integer, *Description*: Start index for the range check.
    - `count`: *Type*: integer, *Description*: Number of values to check within the range.
-   - `rule`: *Type*: string, *Description*: Message content comparison rule. Format is: *(message separator)*|*(X)*;*(X)*;... Where is <X> is # (equals), ? (arbitrary), number 0-100 diff tolerance.
+   - `rule`: *Type*: string, *Description*: Message content comparison rule. Format is: *(message separator)*|*(X)*;*(X)*;... Where is <X> is # (equals), ? (arbitrary), number 0-100 diff tolerance. **Example: ",|#;?;15"**
    - `result`: *Type*: boolean | not required, *Description*: It determines the expected outcome of the assertion. (default: true)
 6. **`assert_app_is_running` - Verifies if an external application is currently running.**
    - `default`: *Type*: boolean | not required, *Description*: It determines the expected outcome of the assertion. (default: true)
