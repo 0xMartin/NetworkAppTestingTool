@@ -1,0 +1,64 @@
+test_root:
+    initial_steps: 
+        # create virtual telnet server on port 9999
+        - create_telnet_server:
+            name: "module-1"
+            port: 9999
+        # run tested application. this client connect to the virtual server
+        - run_app: "java -jar app/build/libs/app.jar localhost 9999"
+        - wait: 1000
+    test_suites: 
+        - test_suite:
+            name: "Suite name 1"
+            delay: 500
+            initial_steps: []
+            test_cases: 
+                - test_case:
+                    name: "Case name 1"
+                    description: "Description 1 here"
+                    steps: 
+                        - module_send:
+                            name: "module-1"
+                            message: "55.4+6.6"
+                        - wait: 1000
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "module-1"
+                            index: -1
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "62.0"
+                            mode: "equals"
+                - test_case:
+                    name: "Case name 2"
+                    description: "Description 2 here"
+                    steps:
+                        - module_send:
+                            name: "module-1"
+                            message: "4-4+6-20"
+                        - wait: 1000
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "module-1"
+                            index: 0
+                        - assert_equals:
+                            var_name: "var-1"
+                            value: -14
+                            tolerance: 0
+                - test_case:
+                    name: "Case name 3"
+                    description: "Description 2 here"
+                    steps:
+                        - module_send:
+                            name: "module-1"
+                            message: "-2-4-6"
+                        - wait: 1000
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "module-1"
+                            index: 0
+                        - assert_equals:
+                            var_name: "var-1"
+                            value: 2
+                            tolerance: 0
+                            result: false
