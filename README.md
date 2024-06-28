@@ -108,33 +108,8 @@ The configuration language of our tool is designed to be intuitive, comprising a
 
 ## Configuration editor
 
-The testing tool has its own configuration language. The language is written in YAML format. You can write the configuration in your own editor or in the editor available in this repository specifically for this tool. The editor allows for easy configuration writing with code auto-completion and many other features. It is also possible to run tests directly within the editor.
-
-Run configuration editor on Linux:
-
-```bash
-cd config-editor
-
-chmod +x run.sh
-
-./run.sh
-```
-
-Run configuration editor on Windows:
-
-```bash
-cd config-editor
-
-start run.bat
-```
-
-> Editor layout with output terminal
-
-<img src="./doc/editor_1.png" alt="Configuration editor">
-
-> Editor layout with final test report
-
-<img src="./doc/editor_2.png" alt="Configuration editor">
+For NATT black box testing tool was also created simple "IDE". It allows you to create and edit configurations without the need to write them in YAML. 
+**More about it you can finde [here](./config-editor/README.md).**
 
 ## 🧩 Understanding Test Structures
 
