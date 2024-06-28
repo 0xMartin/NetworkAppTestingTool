@@ -27,6 +27,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing __SOAP web services__
 * Testing __MQTT clients__
 * Testing __Web crawlers__
+* It is possible to __test__ application that can be written __in any language__
 
 ## Helpful links
 
