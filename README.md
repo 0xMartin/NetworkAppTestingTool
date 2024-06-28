@@ -33,7 +33,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
 
-* Configuration editor: [config-editor](./config-editor)
+* **Configuration editor: [config-editor](./config-editor)**
 
 * Test suite configuration for all task types: [configuration-examples](./configuration-examples)
 
