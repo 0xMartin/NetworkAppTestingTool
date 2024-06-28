@@ -18,6 +18,7 @@
             overflow: auto !important;
             color: #eee;
         }
+
         h1,
         h2,
         h3 {
@@ -27,6 +28,7 @@
         hr {
             border: 1px solid #999;
         }
+
         .content-img {
             max-width: 70%;
             display: block;
@@ -86,7 +88,8 @@
             framework, the core of which comes from the Test Root node. This basic element, paramount in any
             configuration, determines the overarching setting for the testing process. All test suites are defined in
             this root element.</p>
-        <p><img class="content-img" src="{{ url_for('get_icon', filename='test_structure.png') }}" alt="Test structure"></p>
+        <p><img class="content-img" src="{{ url_for('get_icon', filename='test_structure.png') }}" alt="Test structure">
+        </p>
         <h1 id="-variables-and-received-messages">📩 Variables and Received Messages</h1>
         <p>During testing, you have the flexibility to work with variable contents or with a message buffer containing
             all messages received during testing. The content of the received message buffer is automatically cleared
@@ -101,7 +104,8 @@
                     execution. These variables are automatically populated by the tool. The variable
                     <strong>&#39;(module-name)-last-msg&#39;</strong> holds the content of the message received last by
                     a given module. The variable <strong>&#39;(module-name)-action-msg&#39;</strong> contains the
-                    content of the message that triggered the termination of the &#39;wait_until&#39; function.</p>
+                    content of the message that triggered the termination of the &#39;wait_until&#39; function.
+                </p>
             </li>
             <li>
                 <p><strong>Message Buffer</strong> - Contains all messages received during the entire testing duration.
@@ -117,14 +121,15 @@
             their values can be directly inserted into any parameter of any keyword in the configuration. However, the
             parameter must be of string type. Simply insert the name of the variable preceded by
             <strong>&#39;$&#39;</strong> into the desired string. For example, in the following manner:
-            <strong>&quot;Text $var1 Text&quot;</strong>. Name of variable is <strong>&quot;var1&quot;</strong>.</p>
+            <strong>&quot;Text $var1 Text&quot;</strong>. Name of variable is <strong>&quot;var1&quot;</strong>.
+        </p>
         <h1 id="-keywords">🔑 Keywords</h1>
-        <p>This section provides a brief description of all the keywords that the tool allows execution of. Due to the
-            extensive scope, only a basic description will be provided here. Detailed descriptions and parameter
-            explanations can be found in the documentation.</p>
+        <p>This section provides a brief description of all the keywords that the tool allows execution of. </p>
         <p>Each keyword has a unique name and a set of parameters that must be configured. A keyword can contain any
             number of parameters. Parameters can be of type string, boolean, double, long, or list. For lists, all
             values must be of the same type. The value of a parameter can also contain additional nested keywords.</p>
+        <p>All keywords are executed synchronously. If any keyword has a parameter of the "delay" type. Its enable a
+            delayed call, then the keyword is executed asynchronously.</p>
         <h2 id="main-keywords">Main Keywords</h2>
         <p>This set comprises all the keywords that directly define the testing structure.</p>
         <ol>
@@ -270,7 +275,8 @@
                     <li><code>str_from</code>: <em>Type</em>: list, <em>Description</em>: String to be replaced in the
                         original text.</li>
                     <li><code>str_to</code>: <em>Type</em>: list, <em>Description</em>: String to replace occurrences of
-                        <code>str_from</code> in the original text.</li>
+                        <code>str_from</code> in the original text.
+                    </li>
                 </ul>
             </li>
             <li><strong><code>write_file</code> - Writes the defined content into a file on the local device.</strong>
@@ -501,8 +507,8 @@
                 <ul>
                     <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Name of the sending module.</li>
                     <li><code>message</code>: <em>Type</em>: string, <em>Description</em>: Message to send.</li>
-                    <li><code>delay</code>: <em>Type</em>: long, <em>Description</em>: Delay with which the message will
-                        be sent.</li>
+                    <li><code>delay | not required</code>: <em>Type</em>: long, <em>Description</em>: How long it will
+                        take to send a message after calling this key word.</li>
                 </ul>
             </li>
             <li><strong><code>create_filter_action</code> - Creates a filter for actions triggered upon message
@@ -536,7 +542,8 @@
         <p>This module is automatically created before the actual testing begins, and it&#39;s not necessary to create
             it manually. It&#39;s not possible to create multiple instances of this module.</p>
         <p>For message sending use <strong>&#39;standard_stream_send&#39;</strong> instead of
-            <strong>&#39;module_send&#39;</strong>.</p>
+            <strong>&#39;module_send&#39;</strong>.
+        </p>
         <p>Messages received by this module are inserted into the message buffer. The tag of each inserted message is
             set to an empty value.</p>
         <h2 id="telnet-client-module">Telnet Client Module</h2>
@@ -555,7 +562,8 @@
             <strong>&quot;client-#&quot;</strong> where <strong>#</strong> represents the client number. The client
             number depends on the order in which they connected to the server. The first connected client will have the
             ID <strong>&quot;client-1&quot;</strong>, the second will have <strong>&quot;client-2&quot;</strong>, and so
-            on.</p>
+            on.
+        </p>
         <h2 id="smtp-email-server-module">SMTP Email Server Module</h2>
         <p>This module <strong>does not support sending</strong> messages using the &#39;module_send&#39; keyword. It
             only starts the email server and accepts emails.</p>
@@ -565,26 +573,30 @@
         <p>For the REST tester module, the message content sent using the &#39;module_send&#39; keyword must
             <strong>have a specific format</strong>. The text sent by this module can contain multiple parameters. For
             this purpose, the text in the message must be in the following format:
-            <code><strong>(name_1)=(value_1);(name_2)=(value_2)</strong></code></p>
+            <code><strong>(name_1)=(value_1);(name_2)=(value_2)</strong></code>
+        </p>
         <p>Where <strong>(name)</strong> is the parameter name to be inserted into the query string. If this
             name starts with the prefix <strong>&#39;#&#39;</strong>, its content will be inserted into the request
             body.
             All responses to requests from the server received by this module are inserted into the message buffer in
             <strong>JSON format</strong>. The tag of each inserted message is set to the <strong>endpoint
-                address</strong> from which the response was received.</p>
+                address</strong> from which the response was received.
+        </p>
         <h2 id="soap-tester-module">SOAP Tester Module</h2>
         <p>For the SOAP tester module, the message content sent using the &#39;module_send&#39; keyword must
             <strong>have a specific format</strong>. The sent request content must be in XML format, and its structure
             must be as required by the tested SOAP web service.
             The request can be entered manually or loaded directly from a prepared file, and the loaded content can be
-            sent using this method. </p>
+            sent using this method.
+        </p>
         <p>All responses to requests from the server received by this module are inserted into the message buffer. Each
             message is converted <strong>from XML to JSON format before insertion</strong>. The tag of each inserted
             message is set to the <strong>endpoint address</strong> from which the response was received.</p>
         <h2 id="mqtt-client-module">MQTT Client Module</h2>
         <p>For the MQTT client module, the message content sent using the &#39;module_send&#39; keyword must
             <strong>have a specific format</strong>. The message must specify the topic and the content of the message.
-            The format is as follows: <code><strong>(topic):(Message)</strong></code></p>
+            The format is as follows: <code><strong>(topic):(Message)</strong></code>
+        </p>
         <p>Messages received by this module are inserted into the message buffer as they were received. The tag of each
             message is set to the value of the <strong>topic</strong> from which the message was received.</p>
         <h2 id="mqtt-broker-module">MQTT Broker Module</h2>

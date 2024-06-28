@@ -205,7 +205,7 @@ var keywordDetails = {
         parameters: [
             { name: 'name', type: 'string', description: 'Name of the sending module.' },
             { name: 'message', type: 'string', description: 'Message to send.' },
-            { name: 'delay', type: 'long', description: 'Delay with which the message will be sent.' }
+            { name: 'delay', type: 'long | not required', description: 'How long it will take to send a message after calling this key word.' }
         ]
     },
     create_filter_action: {
