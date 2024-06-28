@@ -1,4 +1,4 @@
-# NATT keywords
+# 🔑 NATT keywords
 
 **[Go Back](./README.md)**
 
@@ -20,6 +20,7 @@ This set comprises all the keywords that directly define the testing structure.
    - `description`: *Type*: string, *Description*: Description of the test case.
    - `steps`: *Type*: list, *Description*: Steps to execute in the test case.
 
+---
 
 ## Keywords for Controlling External Applications
 
@@ -34,6 +35,8 @@ This set includes keywords that enable working with an external application. It'
    - `default`: *Type*: string, *Description*: Command to reload the application.
 4. **`standard_stream_send` - Sends a message to the running application via standard streaming.**
    - `name`: *Type*: string, *Description*: Message to send through the standard stream.
+
+---
 
 ## General Keywords
 
@@ -79,6 +82,7 @@ This set encompasses keywords for working with variables, waiting, conditional w
     - `module_name`: *Type*: string, *Description*: Module name, its message buffer will be accessed.
     - `index`: *Type*: long, *Description*: Index of the message whose value will be extracted from the buffer into a variable. When the index is negative, it indexes from the back of the buffer. -1 is the last index of the buffer. At the last position is the last received message.
 
+---
 
 ## Keywords for Assertion Definition
 
@@ -120,6 +124,8 @@ This set comprises keywords that allow the definition of assertions that must be
    - `expected`: *Type*: string, *Description*: The expected JSON object in string format for comparison.
    - `exact_mode`: *Type*: string, *Description*: Specifies a comparison mode for JSON objects that requires strict equality between expected and actual JSON. If is false, it only compares parameters that are in expected JSON. (default: false)
    - `result`: *Type*: boolean | not required, *Description*: It determines the expected outcome of the assertion. (default: true)
+
+---
 
 ## Keywords for Working with Modules
 
