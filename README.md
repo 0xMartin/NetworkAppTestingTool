@@ -38,6 +38,14 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 * Simple example project: [project-example](./project-example)
 
+## System Requirements
+
+* **Operating System:** Linux, Windows 7 or later, MacOS 10.12 (Sierra) or later
+
+* **Java Development Kit (JDK):** JDK 17 or later
+
+* **Gradle:** Gradle 8.7 or later
+
 ## Testing diagrams 
 
 These two diagrams illustrate how application testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The communication is then evaluated for the purpose of testing. It is verified whether the tested application behaves according to defined expectations.
