@@ -47,6 +47,20 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 * **Gradle:** Gradle 8.7 or later
 
+## How to build testing tool?
+
+You can use gradle wrapper:
+
+```
+./gradlew build
+```
+
+Or using custom script that builds the tool and deploys it to the configuration editor. Configuration editor require NATT.jar:
+
+```
+./fast_build_and_move_to_editor.sh
+```
+
 ## Testing diagrams 
 
 These two diagrams illustrate how application testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The communication is then evaluated for the purpose of testing. It is verified whether the tested application behaves according to defined expectations.
