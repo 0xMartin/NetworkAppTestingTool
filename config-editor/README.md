@@ -1,4 +1,4 @@
-# NATT Configuration editor
+# 🔧 NATT Configuration editor
 
 **[Go Back](../README.md)**
 
