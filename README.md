@@ -30,11 +30,13 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 ## Helpful links
 
-**Configuration keyword list: [keywords.md](./keywords.md)**
+* **Configuration keyword list: [keywords.md](./keywords.md)**
 
-Test suite configuration for all task types: [configuration-examples](./configuration-examples)
+* Configuration editor: [config-editor](./config-editor)
 
-Simple example project: [project-example](./project-example)
+* Test suite configuration for all task types: [configuration-examples](./configuration-examples)
+
+* Simple example project: [project-example](./project-example)
 
 ## Testing diagrams 
 
