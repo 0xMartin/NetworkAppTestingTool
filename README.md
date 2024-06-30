@@ -5,6 +5,8 @@
     <img alt="UTB FAI Task" src="https://img.shields.io/badge/UTB_FAI-Software-yellow">
     <img alt="Java" src="https://img.shields.io/badge/Java-007396.svg?logo=java&logoColor=white)](https://www.java.com/">
     <img alt="Gradle" src="https://img.shields.io/badge/Gradle-02303A.svg?logo=gradle&logoColor=white)](https://gradle.org/">
+    <img alt="GitHub downloads" src="https://img.shields.io/github/downloads/0xMartin/NetworkAppTestingTool/total">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/0xMartin/NetworkAppTestingTool">
   </div>
   <i>Created as part of the thesis at UTB</i>
 </div>
