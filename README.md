@@ -173,7 +173,7 @@ Each module has its specific behavior and ways in which it needs to be handled. 
 
 Upon receiving a message by any module, its content is appropriately processed and inserted into the message buffer. In all cases, the content of this last received message is also stored in a variable with the following name format: "<module-name>-last-msg". Using this variable can significantly simplify configuration writing in certain cases.
 
-## External Application Launcher
+## External Application Runner
 This module is automatically created before the actual testing begins, and it's not necessary to create it manually. It's not possible to create multiple instances of this module.
 
 For message sending use **'standard_stream_send'** instead of **'module_send'**.
