@@ -20,6 +20,8 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 - **Independence**: The tool operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 
+<img src="./doc/simple-rest.png">
+
 ## What does the tool allow you to test?
 
 * Testing simple __email__ sending applications
