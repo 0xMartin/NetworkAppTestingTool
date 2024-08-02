@@ -20,7 +20,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 - **Independence**: The tool operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 
-<img src="./doc/simple-rest-diagram.png">
+<img src="./doc/simple-rest-diagram-outline.png">
 
 ## What does the tool allow you to test?
 
