@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./doc/natt-icon.png" alt="NATT logo" width="28%">
+  <img src="./doc/natt-icon.png" alt="NATT logo" width="37%">
   <h1>Network Application Testing Tool (NATT)</h1>
   <div>
     <img alt="UTB FAI Task" src="https://img.shields.io/badge/UTB_FAI-Software-yellow">
