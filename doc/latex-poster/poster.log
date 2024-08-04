@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 12:43
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 14:11
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1433,6 +1433,8 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 69.
 LaTeX Info: Redefining \pageref on input line 69.
 LaTeX Info: Redefining \nameref on input line 69.
+
+(./poster.out) (./poster.out)
 \@outlinefile=\write5
 
 \openout5 = poster.out
@@ -1490,37 +1492,41 @@ Package luatex.def Info: imgs/FAI_ico.png  used on input line 69.
 <./imgs/natt-banner-tech.png, id=17, 1044.90375pt x 542.025pt>
 File: ./imgs/natt-banner-tech.png Graphic file (type png)
 <use ./imgs/natt-banner-tech.png>
-Package luatex.def Info: ./imgs/natt-banner-tech.png  used on input line 215.
+Package luatex.def Info: ./imgs/natt-banner-tech.png  used on input line 226.
 (luatex.def)             Requested size: 2535.16632pt x 1315.26091pt.
+<./imgs/rest-diagram.png, id=18, 1421.31pt x 421.575pt>
+File: ./imgs/rest-diagram.png Graphic file (type png)
+<use ./imgs/rest-diagram.png>
+Package luatex.def Info: ./imgs/rest-diagram.png  used on input line 226.
+(luatex.def)             Requested size: 2535.16632pt x 751.98357pt.
+<./imgs/mqtt-diagram.png, id=19, 1421.31pt x 404.51125pt>
+File: ./imgs/mqtt-diagram.png Graphic file (type png)
+<use ./imgs/mqtt-diagram.png>
+Package luatex.def Info: ./imgs/mqtt-diagram.png  used on input line 226.
+(luatex.def)             Requested size: 2535.16632pt x 721.54614pt.
+<./imgs/test-scructure.png, id=20, 1284.8pt x 792.9625pt>
+File: ./imgs/test-scructure.png Graphic file (type png)
+<use ./imgs/test-scructure.png>
+Package luatex.def Info: ./imgs/test-scructure.png  used on input line 226.
+(luatex.def)             Requested size: 2535.16632pt x 1564.72258pt.
+LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 226.
+<./imgs/github-qr.png, id=21, 201.75375pt x 201.75375pt>
+File: ./imgs/github-qr.png Graphic file (type png)
+<use ./imgs/github-qr.png>
+Package luatex.def Info: ./imgs/github-qr.png  used on input line 226.
+(luatex.def)             Requested size: 633.79158pt x 633.80061pt.
 
-
-LaTeX Warning: File `figures/dag.png' not found on input line 215.
-
-
-! Package luatex.def Error: File `figures/dag.png' not found: using draft setti
-ng.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.215 \end{frame}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 215.
-(./poster.bbl)
-Overfull \vbox (40.16985pt too high) detected at line 215
+Overfull \vbox (40.16985pt too high) detected at line 226
  []
 
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
-Package luatex.def Info: imgs/FAI_ico.png  used on input line 215.
+Package luatex.def Info: imgs/FAI_ico.png  used on input line 226.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-<./imgs/FAI_ico.png><./imgs/natt-banner-tech.png>]
+<./imgs/FAI_ico.png><./imgs/natt-banner-tech.png><./imgs/rest-diagram.png><./img
+s/mqtt-diagram.png><./imgs/test-scructure.png><./imgs/github-qr.png>]
 \tf@nav=\write6
 
 \openout6 = poster.nav
@@ -1531,48 +1537,32 @@ Package luatex.def Info: imgs/FAI_ico.png  used on input line 215.
 
 \openout8 = poster.snm
  (./poster.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `poster.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `poster.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `poster.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 )
 
 Here is how much of LuaTeX's memory you used:
- 41032 strings out of 477805
- 244184,1648299 words of node,token memory allocated
- 60357 words of node memory still in use:
-   357 hlist, 44 vlist, 44 rule, 469 disc, 72 local_par, 8 math, 1378 glue, 712 
-kern, 177 penalty, 4464 glyph, 898 attribute, 83 glue_spec, 898 attribute_list, 
-4 write, 160 pdf_literal, 1 pdf_dest, 280 pdf_colorstack, 3 pdf_setmatrix, 3 pdf
-_save, 3 pdf_restore nodes
-   avail lists: 2:439,3:1073,4:987,5:2302,6:225,7:18270,8:24,9:1461,10:24,11:143
-5
- 59776 multiletter control sequences out of 65536+600000
- 99 fonts using 17357847 bytes
- 128i,20n,115p,726b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-LightItalic.ttf
->{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvip
-s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/shar
-e/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texlive/texmf-
-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/share/texlive/texmf-dis
-t/fonts/truetype/typoland/lato/Lato-Bold.ttf></usr/share/texlive/texmf-dist/font
-s/truetype/typoland/lato/Lato-Light.ttf></usr/share/texlive/texmf-dist/fonts/ope
-ntype/impallari/raleway/Raleway-Regular.otf></usr/share/texlive/texmf-dist/fonts
-/opentype/impallari/raleway/Raleway-Bold.otf></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-mi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fon
-ts/type1/public/lm/lmsy10.pfb>
-Output written on poster.pdf (1 page, 256541 bytes).
+ 40945 strings out of 477805
+ 305234,1648299 words of node,token memory allocated
+ 66340 words of node memory still in use:
+   372 hlist, 40 vlist, 39 rule, 547 disc, 71 local_par, 10 math, 1453 glue, 848
+ kern, 205 penalty, 4970 glyph, 955 attribute, 83 glue_spec, 955 attribute_list,
+ 4 write, 152 pdf_literal, 280 pdf_colorstack, 7 pdf_setmatrix, 7 pdf_save, 7 pd
+f_restore nodes
+   avail lists: 2:439,3:1169,4:987,5:2710,6:222,7:20019,8:21,9:1479,10:24,11:166
+9
+ 59711 multiletter control sequences out of 65536+600000
+ 96 fonts using 16259903 bytes
+ 128i,20n,115p,726b,1073s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Bold.ttf></usr/
+share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
+re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
+xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
+e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
+Output written on poster.pdf (1 page, 481564 bytes).
 
-PDF statistics: 102 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 131072)
+PDF statistics: 75 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
+ 3 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

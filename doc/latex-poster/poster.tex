@@ -78,40 +78,40 @@
 
   \begin{block}{1. Motivation}
 
-    The primary motivation for this thesis was to solve the problem associated with the increasing
-     number of students at the faculty and to ease the workload of teachers in evaluating assignments.
-      This work specifically focuses on the programming network applications course, where verifying
-       the functionality of students' solutions often requires additional network resources (servers, clients, ...),
-        making the assessment process time-consuming. Network applications often have varied behaviors
-         and communicate in different ways, which poses a significant challenge in creating a 
-         universal solution that can accommodate all these testing needs.
+    The primary motivation for this thesis was to solve the problem associated with the \textbf{increasing
+    number of students at the faculty} and to ease the workload of teachers in evaluating assignments.
+    This work specifically focuses on the programming network applications course, where verifying
+    the functionality of students' solutions often requires additional network resources (servers, clients, ...),
+    making the assessment process time-consuming. Network applications \textbf{often have varied behaviors
+    and communicate in different ways}, which poses a significant challenge in creating a 
+    universal solution that can accommodate all these testing needs.
 
-    \hspace{2em}Therefore, the goal was to develop a comprehensive and universal solution that would
-     allow the testing of software assignments both locally and within GitLab repositories, without
-      relying on external network resources. This will help students and, more importantly, teachers,
-       as this solution will save them a significant amount of time, allowing them to focus on more
-        important matters at the faculty. This solution is not limited to educational institutions,
-         it can also be used in a wide range of software projects.
+    \hspace{2em}Therefore, the goal was to develop a flexible and universal solution that would
+    allow the testing of software assignments both \textbf{locally and within GitLab repositories}, without
+    relying on external network resources. This will help students and, more importantly, teachers,
+    as this solution will save them a significant amount of time, allowing them to focus on more
+    important matters at the faculty. This solution is not limited to educational institutions,
+    it can also be used in a wide range of software projects.
   
   \end{block}
 
   \begin{block}{2. Conclusion}
 
-    The result of this thesis is a universal black-box testing tool that effectively enables the testing
-     of network applications. This tool, developed in Java and designed to be cross-platform, supports 
-     testing across a wide range of network applications using commonly employed communication protocols.
-      It is easily configurable via YAML, and a straightforward configuration language has been created 
-      to define test scenarios using a basic set of keywords. Additionally, a simple IDE was developed to
-       facilitate the creation and runtime testing of these test scenario configurations.
+    The result of this thesis is a \textbf{universal black-box testing tool} that effectively enables the testing
+    of network applications. This tool, developed in Java and designed to be cross-platform, supports 
+    testing across a wide range of network applications using commonly employed communication protocols.
+    It is easily \textbf{configurable via YAML}, and a straightforward configuration language has been created 
+    to define test scenarios using a basic set of keywords. Additionally, a \textbf{simple IDE} was developed to
+    facilitate the creation and runtime testing of these test scenario configurations.
 
-    \hspace{2em}This thesis includes not only the development of the testing tool (NATT) but also the IDE,
-     comprehensive documentation, example projects and configurations, a new set of assignments for the 
-     network programming course, and GitLab repositories for each assignment.
+    \hspace{2em}This thesis includes not only the the Network application testing tool \textbf{(NATT)} but also the IDE,
+    tool documentation, example projects and configurations, a new set of assignments for the 
+    network programming course, GitLab repositories for each assignment and aditional tools for course.
 
     \begin{figure}
       \centering
         \includegraphics[width=1.0\textwidth]{./imgs/natt-banner-tech.png}
-      \caption{Network Application Testing Tool - supported technologies} 
+      \caption{Network Application Testing Tool (NATT) - supported technologies} 
     \end{figure}
 
   \end{block}
@@ -126,8 +126,8 @@
 
     This Black Box Testing Tool automates the testing and evaluation of software 
     applications without needing internal implementation details. It supports a 
-    wide range of applications, operates independently of external network resources by 
-    creating virtual servers and clients, and offers flexible configuration for 
+    \textbf{wide range} of applications, operates \textbf{independently of external network resources} 
+    by creating virtual servers and clients, and offers flexible configuration for 
     defining new test scenarios.
 
     \heading{What does the tool allow you to test?}
@@ -146,17 +146,25 @@
 
   \begin{block}{4. Principle of the testing tool}
 
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
+    These two diagrams illustrate how application testing is conducted using the \textbf{NATT}
+    black box testing tool. The diagrams show the process of \textbf{how the tool interacts} 
+    with different types of applications. 
+
+    \hspace{2em} On the left side of each diagram, the testing tool communicates with 
+    the tested application through \textbf{virtually created modules (highlighted in blue)}. This 
+    communication is then evaluated to determine if the application meets the defined
+    expectations.
 
     \begin{figure}
       \centering
-        \includegraphics[width=0.3\textwidth]{figures/dag.png}
+        \includegraphics[width=1.0\textwidth]{./imgs/rest-diagram.png}
+      \caption{Testing of REST API application}
+    \end{figure}
 
-      \caption{Another figure caption.}
+    \begin{figure}
+      \centering
+        \includegraphics[width=1.0\textwidth]{./imgs/mqtt-diagram.png}
+      \caption{Testing of MQTT application}
     \end{figure}
 
   \end{block}
@@ -169,42 +177,45 @@
 
   \begin{block}{5. Test scenarios and configuration}
 
-    A different kind of highlighted block.
+    The image below illustrates how test scenarios are defined for this tool. At the 
+    beginning is the Test Root node, which is the \textbf{entry point} for each test 
+    scenario configuration. This root node sets the overall context for the testing 
+    process and encompasses all test suites within it. 
 
-    $$
-    \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
-    $$
+    \hspace{2em} The diagram illustrates the \textbf{context of each test segment} and the 
+    duration for which variables or resources remain active. On the right side, a simplified
+    test scenario configuration is shown, which NATT \textbf{uses to generate} an acyclic graph that 
+    is subsequently executed.
 
-    Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
-    faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
-    felis id vulputate.
+    \begin{figure}
+      \centering
+        \includegraphics[width=1.0\textwidth]{./imgs/test-scructure.png}
+      \caption{Testing structure and configuration}
+    \end{figure}
 
   \end{block}
 
-  \begin{exampleblock}{7. Usage of testing tool}
+  \begin{exampleblock}{6. Usage of testing tool}
 
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
+    \begin{enumerate}
+      \item \textbf{Educational Use:} Automates and standardizes student assignment evaluations in network programming courses.
+      
+      \item \textbf{Professional Use:} Facilitates efficient testing and debugging of network applications in software development.
+      
+      \item \textbf{Programming Competitions:} Provides automated testing and fair evaluation for multiple submissions in competitive programming events.
+   \end{enumerate}
+ 
   \end{exampleblock}
 
-  \begin{block}{7. Configuration editor}
+  \begin{block}{7. NATT IDE}
 
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
-    scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
-
-  \end{block}
-
-  \begin{block}{References}
-
-    \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+    \begin{minipage}{0.7\textwidth}
+      The NATT IDE (Configuration Editor) offers a easy interface for \textbf{creating test configurations}. It includes an \textbf{auto-completion} feature for all keywords, automatically providing required parameters. Users can also \textbf{run tests} directly within the IDE to check their behavior.
+    \end{minipage}
+    \hfill
+    \noindent\begin{minipage}{0.25\textwidth}
+      \includegraphics[width=\textwidth]{./imgs/github-qr.png}
+    \end{minipage}
 
   \end{block}
 
