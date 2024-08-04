@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 14:48
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 20:01
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1519,7 +1519,7 @@ File: ./imgs/github-qr.png Graphic file (type png)
 Package luatex.def Info: ./imgs/github-qr.png  used on input line 226.
 (luatex.def)             Requested size: 633.79158pt x 633.80061pt.
 
-Overfull \vbox (40.16985pt too high) detected at line 226
+Overfull \vbox (40.64757pt too high) detected at line 226
  []
 
 File: imgs/FAI_ico.png Graphic file (type png)
@@ -1547,14 +1547,14 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  40945 strings out of 477805
- 305234,1648299 words of node,token memory allocated
- 66340 words of node memory still in use:
-   372 hlist, 40 vlist, 39 rule, 547 disc, 71 local_par, 10 math, 1453 glue, 848
- kern, 205 penalty, 4970 glyph, 955 attribute, 83 glue_spec, 955 attribute_list,
+ 305244,1648299 words of node,token memory allocated
+ 66349 words of node memory still in use:
+   372 hlist, 40 vlist, 39 rule, 547 disc, 71 local_par, 10 math, 1453 glue, 849
+ kern, 205 penalty, 4970 glyph, 956 attribute, 83 glue_spec, 956 attribute_list,
  4 write, 152 pdf_literal, 280 pdf_colorstack, 7 pdf_setmatrix, 7 pdf_save, 7 pd
 f_restore nodes
-   avail lists: 2:439,3:1169,4:987,5:2710,6:222,7:20019,8:21,9:1479,10:24,11:166
-9
+   avail lists: 1:1,2:441,3:1169,4:987,5:2713,6:222,7:20019,8:21,9:1479,10:24,11
+:1669
  59711 multiletter control sequences out of 65536+600000
  96 fonts using 16259903 bytes
  128i,20n,115p,726b,1073s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1563,7 +1563,7 @@ share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
 re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
 xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
 e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
-Output written on poster.pdf (1 page, 487918 bytes).
+Output written on poster.pdf (1 page, 487300 bytes).
 
 PDF statistics: 75 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
