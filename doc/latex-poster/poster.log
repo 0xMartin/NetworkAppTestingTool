@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 03:08
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  4 AUG 2024 03:10
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1555,13 +1555,13 @@ Package rerunfilecheck Info: Checksums for `poster.out':
 Here is how much of LuaTeX's memory you used:
  41115 strings out of 477805
  305230,1648299 words of node,token memory allocated
- 65385 words of node memory still in use:
-   398 hlist, 46 vlist, 58 rule, 449 disc, 76 local_par, 26 math, 1607 glue, 697
- kern, 197 penalty, 4850 glyph, 976 attribute, 83 glue_spec, 976 attribute_list,
+ 65407 words of node memory still in use:
+   398 hlist, 46 vlist, 58 rule, 451 disc, 76 local_par, 26 math, 1608 glue, 697
+ kern, 197 penalty, 4849 glyph, 976 attribute, 83 glue_spec, 976 attribute_list,
  4 write, 160 pdf_literal, 1 pdf_dest, 278 pdf_colorstack, 2 pdf_setmatrix, 2 pd
 f_save, 2 pdf_restore nodes
-   avail lists: 2:439,3:1124,4:981,5:2257,6:237,7:20169,8:24,9:1632,10:22,11:137
-5
+   avail lists: 2:439,3:1124,4:981,5:2257,6:237,7:20169,8:24,9:1632,10:22,11:138
+1
  59817 multiletter control sequences out of 65536+600000
  105 fonts using 17853991 bytes
  128i,20n,115p,726b,1070s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1578,7 +1578,7 @@ s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 bx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fo
 nts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on poster.pdf (1 page, 149775 bytes).
+Output written on poster.pdf (1 page, 149677 bytes).
 
 PDF statistics: 109 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

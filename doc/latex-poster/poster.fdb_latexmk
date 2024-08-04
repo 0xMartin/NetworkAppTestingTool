@@ -6,7 +6,7 @@
   (generated)
   "poster.bbl"
   "poster.blg"
-["pdflatex"] 1722733702 "poster.tex" "poster.pdf" "poster" 1722733702
+["pdflatex"] 1722733835 "poster.tex" "poster.pdf" "poster" 1722733835
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bold.luc" 1722729988 1514696 d39ff2641de7eace266e7566064c21a5 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bolditalic.luc" 1722729987 1593032 0fee76948c0477352366b65b1dd5e099 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-italic.luc" 1722729989 1586624 d97b9c527737fc87f1a63c6308dd6c8a ""
@@ -366,11 +366,11 @@
   "figures/dag.png" 0 -1 0 ""
   "figures/results_fig.pdf" 0 -1 0 ""
   "imgs/FAI_ico.png" 1722730531 7553 0015d48fa0524853bb4dafc35c2a1b96 ""
-  "poster.aux" 1722733695 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "poster.bbl" 1722733634 224 0c88876528be380fa87e30a1f810603c "bibtex poster"
+  "poster.aux" 1722733823 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "poster.bbl" 1722733822 224 0c88876528be380fa87e30a1f810603c "bibtex poster"
   "poster.nav" 0 -1 0 "pdflatex"
   "poster.out" 0 -1 0 "pdflatex"
-  "poster.tex" 1722733694 8594 5f5c559e0dc3e3c75a17400204152ade ""
+  "poster.tex" 1722733822 8587 093b8b25583a647326934cafcc04ad88 ""
   (generated)
   "poster.aux"
   "poster.log"
