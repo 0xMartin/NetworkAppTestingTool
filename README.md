@@ -27,10 +27,11 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing simple __email__ sending applications
 * Testing __clients__ that use the telnet protocol
 * Testing __servers__ that use the telnet protocol
-* Testing applications communicating through __REST API__
+* Testing applications that use __REST API__
 * Testing __SOAP web services__
 * Testing __MQTT clients__
 * Testing __Web crawlers__
+* Testing the application through the __standard stream__
 * The __tested__ applications can be written __in any language__
 
 ## Helpful links
