@@ -162,7 +162,7 @@ This set includes keywords that enable working with communication modules.
    - `name`: *Type*: string, *Description*: Unique name for the module.
    - `port`: *Type*: integer | not required, *Description*: Port number for the MQTT broker. (default: 1883)
 9.  **`termite_module` - Terminates a running module that is no longer needed.**
-   - `default`: *Type*: string, *Description*: Name of the module to terminate.
+    - `default`: *Type*: string, *Description*: Name of the module to terminate.
 10. **`module_send` - Sends a message using a specific module.**
     - `name`: *Type*: string, *Description*: Name of the sending module.
     - `message`: *Type*: string, *Description*: Message to send.
