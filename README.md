@@ -143,7 +143,7 @@ For NATT black box testing tool was also created simple "IDE". It allows you to 
 
 Let's dive into the structure of tests in our tool. The image below this text shows a diagram of our test framework, the core of which comes from the Test Root node. This basic element, paramount in any configuration, determines the overarching setting for the testing process. All test suites are defined in this root element.
 
-<img src="./doc/test-scructure.png" alt="Test structure">
+<img src="./doc/test-config-struct.png" alt="Test structure">
 
 # 📩 Variables and Received Messages
 
