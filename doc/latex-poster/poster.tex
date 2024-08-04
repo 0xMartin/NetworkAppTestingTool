@@ -78,43 +78,41 @@
 
   \begin{block}{1. Motivation}
 
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
+    The primary motivation for this thesis was to solve the problem associated with the increasing
+     number of students at the faculty and to ease the workload of teachers in evaluating assignments.
+      This work specifically focuses on the programming network applications course, where verifying
+       the functionality of students' solutions often requires additional network resources (servers, clients, ...),
+        making the assessment process time-consuming. Network applications often have varied behaviors
+         and communicate in different ways, which poses a significant challenge in creating a 
+         universal solution that can accommodate all these testing needs.
 
-    \begin{figure}
-      \centering
-                    \includegraphics[width=0.6\textwidth]{figures/results_fig.pdf}
-    \end{figure}
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
-
+    \hspace{2em}Therefore, the goal was to develop a comprehensive and universal solution that would
+     allow the testing of software assignments both locally and within GitLab repositories, without
+      relying on external network resources. This will help students and, more importantly, teachers,
+       as this solution will save them a significant amount of time, allowing them to focus on more
+        important matters at the faculty. This solution is not limited to educational institutions,
+         it can also be used in a wide range of software projects.
+  
   \end{block}
 
   \begin{block}{2. Conclusion}
 
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
+    The result of this thesis is a universal black-box testing tool that effectively enables the testing
+     of network applications. This tool, developed in Java and designed to be cross-platform, supports 
+     testing across a wide range of network applications using commonly employed communication protocols.
+      It is easily configurable via YAML, and a straightforward configuration language has been created 
+      to define test scenarios using a basic set of keywords. Additionally, a simple IDE was developed to
+       facilitate the creation and runtime testing of these test scenario configurations.
 
-    Curabitur eu libero vehicula, cursus est fringilla, luctus est. Morbi
-    consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
-    Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
-    tristique odio convallis ultrices a ac odio.
+    \hspace{2em}This thesis includes not only the development of the testing tool (NATT) but also the IDE,
+     comprehensive documentation, example projects and configurations, a new set of assignments for the 
+     network programming course, and GitLab repositories for each assignment.
 
-    \begin{itemize}
-      \item \textbf{Fusce dapibus tellus} vel tellus semper finibus. In
-        consequat, nibh sed mattis luctus, augue diam fermentum lectus.
-      \item \textbf{In euismod erat metus} non ex. Vestibulum luctus augue in
-        mi condimentum, at sollicitudin lorem viverra.
-      \item \textbf{Suspendisse vulputate} mauris vel placerat consectetur.
-        Mauris semper, purus ac hendrerit molestie, elit mi dignissim odio, in
-        suscipit felis sapien vel ex.
-    \end{itemize}
-
-    Aenean tincidunt risus eros, at gravida lorem sagittis vel. Vestibulum ante
-    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+    \begin{figure}
+      \centering
+        \includegraphics[width=1.0\textwidth]{./imgs/natt-banner-tech.png}
+      \caption{Network Application Testing Tool - supported technologies} 
+    \end{figure}
 
   \end{block}
 
@@ -126,40 +124,27 @@
 
   \begin{alertblock}{3. Main features of testing tool}
 
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
+    This Black Box Testing Tool automates the testing and evaluation of software 
+    applications without needing internal implementation details. It supports a 
+    wide range of applications, operates independently of external network resources by 
+    creating virtual servers and clients, and offers flexible configuration for 
+    defining new test scenarios.
 
+    \heading{What does the tool allow you to test?}
     \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
+      \item Testing simple \textbf{email} sending applications
+      \item Testing \textbf{clients} that use the telnet protocol
+      \item Testing \textbf{servers} that use the telnet protocol
+      \item Testing applications that use \textbf{REST API}
+      \item Testing \textbf{SOAP web services}
+      \item Testing \textbf{MQTT clients}
+      \item Testing \textbf{Web crawlers}
+      \item Testing the application through the \textbf{standard stream}
     \end{enumerate}
 
   \end{alertblock}
 
-  \begin{exampleblock}{4. Usage of testing tool}
-
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
-  \end{exampleblock}
-
-  \begin{block}{5. Principle of the testing tool}
+  \begin{block}{4. Principle of the testing tool}
 
     Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
     vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
@@ -182,7 +167,7 @@
 
 \begin{column}{\colwidth}
 
-  \begin{block}{6. Test scenarios and configuration}
+  \begin{block}{5. Test scenarios and configuration}
 
     A different kind of highlighted block.
 
@@ -194,52 +179,25 @@
     faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
     felis id vulputate.
 
-    \heading{A heading inside a block}
-
-    Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
-    nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
-    dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
-    congue sed. Maecenas ut dolor quis arcu auctor porttitor.
-
-    \heading{Another heading inside a block}
-
-    Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
-    Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
-    sagittis egestas. Duis eget leo euismod nunc viverra imperdiet nec id
-    justo.
-
   \end{block}
+
+  \begin{exampleblock}{7. Usage of testing tool}
+
+    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
+    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
+    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
+    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
+    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
+    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
+    commodo in metus.
+
+  \end{exampleblock}
 
   \begin{block}{7. Configuration editor}
 
     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
     inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
     scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
-
-    \begin{table}
-      \centering
-      \begin{tabular}{l r r c}
-        \toprule
-        \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
-        \midrule
-        Foo & 13.37 & 384,394 & $\alpha$ \\
-        Bar & 2.17 & 1,392 & $\beta$ \\
-        Baz & 3.14 & 83,742 & $\delta$ \\
-        Qux & 7.59 & 974 & $\gamma$ \\
-        \bottomrule
-      \end{tabular}
-      \caption{A table caption.}
-    \end{table}
-
-    Donec quis posuere ligula. Nunc feugiat elit a mi malesuada consequat. Sed
-    imperdiet augue ac nibh aliquet tristique. Aenean eu tortor vulputate,
-    eleifend lorem in, dictum urna. Proin auctor ante in augue tincidunt
-    tempor. Proin pellentesque vulputate odio, ac gravida nulla posuere
-    efficitur. Aenean at velit vel dolor blandit molestie. Mauris laoreet
-    commodo quam, non luctus nibh ullamcorper in. Class aptent taciti sociosqu
-    ad litora torquent per conubia nostra, per inceptos himenaeos.
-
-
 
   \end{block}
 
