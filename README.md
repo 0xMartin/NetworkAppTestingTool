@@ -34,9 +34,15 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing the application through the __standard stream__
 * The __tested__ applications can be written __in any language__
 
+## Now available as extension in Visual Studio Code!
+
+---
+
 ## Helpful links
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
+
+* **VS Code extension:** ...
 
 * **Configuration editor: [config-editor](./config-editor)**
 
@@ -65,6 +71,8 @@ Or using custom script that builds the tool and deploys it to the configuration 
 ```
 ./fast_build_and_move_to_editor.sh
 ```
+
+---
 
 ## Testing diagrams 
 
@@ -128,15 +136,29 @@ java -jar NATT.jar -c <path-to-test-config>
 * Add more testing options when testing the web crawler
 * Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
 
+---
+
 # 🔧 Configuring of the Testing Tool
 
 In order to ensure the versatility of our black box testing tool, we've devised a straightforward method for users to convey precisely what tasks they want the tool to undertake. This is achieved through the utilization of YAML-formatted configurations for test sets. These configurations serve as blueprints, enabling the tool to execute tasks reliably and efficiently.
 
 The configuration language of our tool is designed to be intuitive, comprising a set of keywords that users can easily manipulate to tailor their testing requirements. Writing configurations for our tool is akin to crafting configurations for GitLab CI/CD pipelines, ensuring familiarity and ease of use for those experienced with such processes.
 
+## VS Code extension for NATT 
+
+To further streamline the process of creating and managing your test configurations, we offer a Visual Studio Code (VS Code) extension. This extension provides a robust environment with features such as syntax highlighting, code completion, and snippet support specifically for test-config*.yaml files.
+
+**Key Features:**
+* **Running Tests:** Running the test directly in the VS code environment.
+* **Code Completion:** Intelligent suggestions are provided as you type, helping to speed up the writing process and reduce errors.
+* **Snippets:** Predefined snippets are available to quickly insert common configuration patterns and structures.
+* **Integrated Commands:** Easily initialize your test environment with commands directly accessible within the VS Code command palette.
+
+<img src="./doc/vscode_extension_2.png">
+
 ## Configuration editor
 
-For NATT black box testing tool was also created simple "IDE". It allows you to create and edit configurations without the need to write them in YAML. 
+For NATT black box testing tool was also created simple "IDE". It allows you easily create, edit and test your configurations. 
 **More about it you can finde [here](./config-editor/README.md).**
 
 ## 🧩 Understanding Test Structures
@@ -167,6 +189,8 @@ This section provides a brief description of all the keywords that the tool allo
 All keywords are executed synchronously. If any keyword has a parameter of the "delay" type. Its enable a delayed call, then the keyword is executed asynchronously.
 
 **Description for all keywords you can find here [keywords.md](./keywords.md)**
+
+---
 
 # 📦 Working with Communication Modules
 
@@ -217,6 +241,8 @@ Messages received by this module are inserted into the message buffer as they we
 
 ## MQTT Broker Module
 This module **does not support** sending messages using the 'module_send' keyword. The module simply starts an MQTT broker and facilitates its operation. The module does not allow receiving incoming communication either. It acts solely as a mediator for MQTT communication between clients connected to it.
+
+---
 
 # 🧪 Test Configuration Samples
 

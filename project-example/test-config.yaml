@@ -62,7 +62,3 @@ test_root:
                             value: 2
                             tolerance: 0
                             result: false
-                - test_case:
-                    name: "Case name"
-                    description: "Description here"
-                    steps: []
