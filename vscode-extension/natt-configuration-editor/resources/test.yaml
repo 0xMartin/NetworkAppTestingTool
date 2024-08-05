@@ -1,0 +1,20 @@
+test_root:
+  max_points: 10.0
+  initial_steps:
+    - run_app: "java -jar app.jar"
+  test_suites:
+    - test_suite:
+        name: "Suite name 1"
+        delay: 500
+        initial_steps: []
+        test_cases:
+          - test_case:
+              name: "Case name 1"
+              description: "Description 1 here"
+              steps:
+                - standard_stream_send: "Message to send"
+          - test_case:
+              name: "Case name 2"
+              description: "Description 2 here"
+              steps:
+                - standard_stream_send: "Message to send"
