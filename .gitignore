@@ -1,0 +1,8 @@
+vscode-extension/natt-configuration-editor/node_modules/
+
+.gradle/
+build/
+
+.vscode/
+
+
