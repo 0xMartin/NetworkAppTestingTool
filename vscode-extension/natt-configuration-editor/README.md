@@ -1,71 +1,63 @@
-# natt-configuration-editor README
+# NATT Configuration Editor
 
-This is the README for your extension "natt-configuration-editor". After writing up a brief description, we recommend including the following sections.
+The **NATT Configuration Editor** is a Visual Studio Code extension developed as part of a project at **[TBU FAI](https://www.utb.cz/en/)**. This extension facilitates the creation, editing, and execution of test configuration using the **Network Application Testing Tool (NATT)**. The tool allows users to perform black box testing on various types of software applications.
 
-## Features
+## 📜 Network Application Testing Tool (NATT)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+NATT was created as part of a thesis at TBU FAI. It is a black box testing tool designed for automating the testing and evaluation of tasks. The tool's key features include:
 
-For example if there is an image subfolder under your extension project workspace:
+- **🌐 Universality:** Supports testing various types of software applications regardless of their implementation details.
+- **🔍 Separation:** Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
+- **🔌 Independence:** Operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
+- **🛠️ Flexibility:** Users can easily define new test sets using specific keywords in the configuration.
 
-\!\[feature X\]\(images/feature-x.png\)
+### 🔍 What Does the Tool Allow You to Test?
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Simple **email** sending applications
+- **Clients** that use the **Telnet protocol**
+- **Servers** that use the **Telnet protocol**
+- Applications that use **REST API**
+- **SOAP** web services
+- **MQTT** clients
+- **Web crawlers**
+- Applications through the **standard stream**
 
-## Requirements
+The tested applications can be written in any language.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+> For more information about **NATT**, visit the [NATT GitHub repository](https://github.com/0xMartin/NetworkAppTestingTool).
 
-## Extension Settings
+## 🌟 Features of the NATT Configuration Editor
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+- **📝 Intuitive Configuration Editor:** Easily create and modify test configurations with syntax highlighting and autocomplete.
+- **🧪 Execute Tests:** Directly execute and manage tests from within the extension, streamlining your workflow and providing immediate feedback.
+- **📊 Test Report Viewer:** View detailed test reports within VS Code, allowing you to analyze results without leaving your development environment.
+- **💡 Code Snippets:** Quickly insert common test configuration snippets to speed up the writing process.
 
-For example:
+## 🔧 Commands
 
-This extension contributes the following settings:
+The extension provides several commands to facilitate testing:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- **🛠️ NATT Init:** Initializes the NATT testing structure by copying necessary configuration and JAR files into your project directory.
+- **🚀 NATT Run:** Executes the test configuration using the NATT tool.
+- **🛑 NATT Stop:** Stops the currently running test process.
+- **📝 NATT Show Report:** Opens and displays the test report.
+- **✅ NATT Validate:** Validates the configuration file for syntax errors.
 
-## Known Issues
+## 📸 Screenshots
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+The primary side bar contains the main control panel for the extension, with buttons for "Initialize," "Run Test," "Stop Test," and "Validate." The lower section includes a list of keywords used in the NATT configuration.
 
-## Release Notes
+<img alt="NATT Extension 1" src="./doc/vscode_extension_1.png" width="50%" />
 
-Users appreciate release notes as you update your extension.
+The VS Code editor showing the configuration file on the left and the test results report on the right. Users can see the outcome of their software tests in the detailed report.
 
-### 1.0.0
+<img alt="NATT Extension 2" src="./doc/vscode_extension_2.png" width="100%" />
 
-Initial release of ...
+## 🚀 Installation
 
-### 1.0.1
+1. **Install the Extension:** Search for "NATT Configuration Editor" in the Visual Studio Code extensions marketplace and install it.
+2. **Open Your Project:** Open the project you want to test in Visual Studio Code.
+3. **Initialize the NATT Testing Structure:** Use the `NATT Init` command or the button in the side bar to set up the necessary files for testing.
+4. **Run Tests:** Execute your tests directly from the terminal or using the provided commands.
+5. **View Reports:** Access detailed test reports within the editor to review and analyze the results.
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

@@ -1,6 +1,7 @@
 {
   "name": "natt-configuration-editor",
   "displayName": "NATT Configuration Editor",
+  "publisher": "0xM4R71N",
   "description": "Test scenario configuration editor for black box network application testing tool.",
   "version": "0.0.1",
   "engines": {
