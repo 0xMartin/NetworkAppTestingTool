@@ -25,6 +25,10 @@
         "title": "NATT Stop"
       },
       {
+        "command": "extension.nattShow",
+        "title": "NATT Show Report"
+      },
+      {
         "command": "extension.nattValidate",
         "title": "NATT Validate"
       }
@@ -44,6 +48,12 @@
           "type": "webview",
           "id": "homeView",
           "name": "Home"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "nattReportView",
+          "name": "NATT Report"
         }
       ]
     }
