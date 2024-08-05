@@ -17,10 +17,10 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 - **Universality**: The tool supports testing various types of software applications regardless of their implementation details.
 - **Separation**: Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
-- **Independence**: The tool operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
+- **Independence**: The tool operates independently of external network resources (servers, clients, ...), allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 
-<img src="./doc/simple-rest-diagram-outline.png">
+<img src="./doc/diagram_simple_rest.png">
 
 ## What does the tool allow you to test?
 
@@ -42,7 +42,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
 
-* **VS Code extension:** ...
+* **VS Code extension: ...**
 
 * **Configuration editor: [config-editor](./config-editor)**
 
@@ -71,6 +71,14 @@ Or using custom script that builds the tool and deploys it to the configuration 
 ```
 ./fast_build_and_move_to_editor.sh
 ```
+
+## Future improvements
+
+* The possibility of defining your own keywords
+* The possibility of launching more than one external applications at one time
+* Add path variable support for REST API testing
+* Add more testing options when testing the web crawler
+* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
 
 ---
 
@@ -127,14 +135,6 @@ For help, specify the -h or --help argument.
 ```bash
 java -jar NATT.jar -c <path-to-test-config>
 ```
-
-## Future improvements
-
-* The possibility of defining your own keywords
-* The possibility of launching more than one external applications at one time
-* Add path variable support for REST API testing
-* Add more testing options when testing the web crawler
-* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
 
 ---
 
