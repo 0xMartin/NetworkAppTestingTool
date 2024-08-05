@@ -150,7 +150,7 @@ The configuration language of our tool is designed to be intuitive, comprising a
 
 ## 🚀 VS Code extension for NATT 
 
-> Extension README [here](./vscode-extension/natt-configuration-editor)
+> **Extension README [here](./vscode-extension/natt-configuration-editor)**
 
 To further streamline the process of creating and managing your test configurations, we offer a Visual Studio Code (VS Code) extension. This extension provides a robust environment with features such as syntax highlighting, code completion, and snippet support specifically for test-config*.yaml files.
 
@@ -165,7 +165,8 @@ To further streamline the process of creating and managing your test configurati
 ## Configuration editor
 
 For NATT black box testing tool was also created simple "IDE". It allows you easily create, edit and test your configurations. 
-**More about it you can finde [here](./config-editor/README.md).**
+
+> **More about it you can find [here](./config-editor/README.md).**
 
 ## 🧩 Understanding Test Structures
 
