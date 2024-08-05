@@ -79,15 +79,15 @@
   \begin{block}{1. Motivation}
 
     The primary motivation for this thesis was to solve the problem associated with the \textbf{increasing
-    number of students at the faculty} and to ease the workload of teachers in evaluating assignments.
+    number of students at the faculty} and to ease the workload of teachers in evaluating tasks.
     This work specifically focuses on the programming network applications course, where verifying
     the functionality of students' solutions often requires additional network resources (servers, clients, ...),
     making the assessment process time-consuming. Network applications \textbf{often have varied behaviors
     and communicate in different ways}, which poses a significant challenge in creating a 
     universal solution that can accommodate all these testing needs.
 
-    \hspace{2em}Therefore, the goal was to develop a flexible and universal solution that would
-    allow the testing of software assignments both \textbf{locally and within GitLab repositories}, without
+    \hspace{2em}Therefore, the goal was to develop a flexible, universal and easy solution that would
+    allow the testing of software \textbf{locally and within GitLab repositories}, without
     relying on external network resources. This will help students and, more importantly, teachers,
     as this solution will save them a significant amount of time, allowing them to focus on more
     important matters at the faculty. This solution is not limited to educational institutions,
@@ -104,9 +104,9 @@
     to define test scenarios using a basic set of keywords. Additionally, a \textbf{simple IDE} was developed to
     facilitate the creation and runtime testing of these test scenario configurations.
 
-    \hspace{2em}This thesis includes not only the the Network application testing tool \textbf{(NATT)} but also the IDE,
-    tool documentation, example projects and configurations, a new set of assignments for the 
-    network programming course, GitLab repositories for each assignment and aditional tools for course.
+    \hspace{2em}This thesis includes not only the the Network application testing tool \textbf{(NATT)} but also the 
+    \textbf{Configuration Editor}, documentation for tool, example projects and configurations, a new set consisting of 8 tasks 
+    for a network programming course, GitLab repositories for each task and aditional tools for course.
 
     \begin{figure}
       \centering
@@ -207,10 +207,12 @@
  
   \end{exampleblock}
 
-  \begin{block}{7. NATT IDE}
+  \begin{block}{7. NATT Config Editor \& VS Code Extension}
 
     \begin{minipage}{0.7\textwidth}
-      The NATT IDE (Configuration Editor) offers a easy interface for \textbf{creating test configurations}. It includes an \textbf{auto-completion} feature for all keywords, automatically providing required parameters. Users can also \textbf{run tests} directly within the IDE to check their behavior.
+      NATT config Editor is simple IDE and offers an easy interface for \textbf{creating test configurations}. It includes an 
+      \textbf{auto-completion} feature, \textbf{running} the test scenario and viewing of the final test report. For NATT is 
+      also available an \textbf{extension for VS Code}, which allows the same functions as the mentioned editor.
     \end{minipage}
     \hfill
     \noindent\begin{minipage}{0.25\textwidth}
