@@ -9,6 +9,7 @@
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/0xMartin/NetworkAppTestingTool">
   </div>
   <i>Created as part of the thesis at <b>UTB FAI</b></i>
+  <i>Short info about this thesis [here](./doc/latex_poster/poster.pdf)</i>
 </div>
 
 # 💡 Description of testing tool
