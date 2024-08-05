@@ -10,7 +10,7 @@
   </div>
   <i>Created as part of the thesis at <b>UTB FAI</b></i>
   <br>
-  <i>Short info about this thesis <a href="./doc/latex_poster/poster.pdf">here</a></i>
+  <i>Short info about this thesis <a href="./doc/latex-poster/poster.pdf">here</a></i>
 </div>
 
 # 💡 Description of testing tool
