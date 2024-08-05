@@ -8,7 +8,7 @@
     <img alt="GitHub downloads" src="https://img.shields.io/github/downloads/0xMartin/NetworkAppTestingTool/total">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/0xMartin/NetworkAppTestingTool">
   </div>
-  <i>Created as part of the thesis at UTB</i>
+  <i>Created as part of the thesis at <b>UTB FAI</b></i>
 </div>
 
 # 💡 Description of testing tool
@@ -22,7 +22,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 <img src="./doc/diagram_simple_rest.png">
 
-## What does the tool allow you to test?
+## 🔍 What does the tool allow you to test?
 
 * Testing simple __email__ sending applications
 * Testing __clients__ that use the telnet protocol
@@ -34,7 +34,9 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing the application through the __standard stream__
 * The __tested__ applications can be written __in any language__
 
-## Now available as extension in Visual Studio Code!
+## 🚀 Now available as extension in Visual Studio Code!
+
+Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MartinKubik.natt-vscode-extension)
 
 ---
 
@@ -82,7 +84,7 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 ---
 
-## Testing diagrams 
+## 🧪 Testing diagrams 
 
 These two diagrams illustrate how application testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The communication is then evaluated for the purpose of testing. It is verified whether the tested application behaves according to defined expectations.
 
@@ -144,7 +146,7 @@ In order to ensure the versatility of our black box testing tool, we've devised 
 
 The configuration language of our tool is designed to be intuitive, comprising a set of keywords that users can easily manipulate to tailor their testing requirements. Writing configurations for our tool is akin to crafting configurations for GitLab CI/CD pipelines, ensuring familiarity and ease of use for those experienced with such processes.
 
-## VS Code extension for NATT 
+## 🚀 VS Code extension for NATT 
 
 To further streamline the process of creating and managing your test configurations, we offer a Visual Studio Code (VS Code) extension. This extension provides a robust environment with features such as syntax highlighting, code completion, and snippet support specifically for test-config*.yaml files.
 
