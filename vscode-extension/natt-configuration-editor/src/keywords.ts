@@ -1,3 +1,6 @@
+/**
+ * Content in this file is same as in NATT configuration web editor
+ */
 
 var keywordDetails = {
     test_root: {

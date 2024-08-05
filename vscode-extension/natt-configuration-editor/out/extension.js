@@ -33,6 +33,7 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const nattviewprovider_1 = __importDefault(require("./nattviewprovider"));
 const reportwebviewprovider_1 = __importDefault(require("./reportwebviewprovider"));
+const snippets_1 = __importDefault(require("./snippets"));
 let testTerminal;
 function checkNattJarExists(projectPath) {
     const jarPath = path.join(projectPath, 'NATT.jar');
@@ -140,6 +141,19 @@ function activate(context) {
     stopButton.command = 'extension.nattStop';
     stopButton.show();
     context.subscriptions.push(disposableCreate, disposableRun, disposableShowReport, disposableStop, disposableValidate, runButton, stopButton);
+    // Other *************************************************************************************
+    // Register completion item provider for YAML files with name test-config**.yaml
+    const completionProvider = vscode.languages.registerCompletionItemProvider({ scheme: 'file', pattern: '**/test-config*.yaml' }, {
+        provideCompletionItems(document, position) {
+            return snippets_1.default.map(snippet => {
+                const item = new vscode.CompletionItem(snippet.caption, vscode.CompletionItemKind.Snippet);
+                item.insertText = snippet.snippet;
+                item.detail = snippet.meta;
+                return item;
+            });
+        }
+    });
+    context.subscriptions.push(completionProvider);
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

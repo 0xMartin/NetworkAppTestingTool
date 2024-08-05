@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * Content in this file is same as in NATT configuration web editor
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 var keywordDetails = {
     test_root: {

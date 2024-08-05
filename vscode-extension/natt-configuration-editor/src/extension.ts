@@ -4,6 +4,7 @@ import * as path from 'path';
 
 import NattViewProvider from './nattviewprovider';
 import ReportWebviewProvider from './reportwebviewprovider';
+import keywordSnippets from './snippets';
 
 let testTerminal: vscode.Terminal | undefined;
 
@@ -138,6 +139,25 @@ export function activate(context: vscode.ExtensionContext) {
     stopButton.show();
 
     context.subscriptions.push(disposableCreate, disposableRun, disposableShowReport, disposableStop, disposableValidate, runButton, stopButton);
+
+    // Other *************************************************************************************
+    // Register completion item provider for YAML files with name test-config**.yaml
+
+    const completionProvider = vscode.languages.registerCompletionItemProvider(
+        { scheme: 'file', pattern: '**/test-config*.yaml' },
+        {
+            provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+                return keywordSnippets.map(snippet => {
+                    const item = new vscode.CompletionItem(snippet.caption, vscode.CompletionItemKind.Snippet);
+                    item.insertText = snippet.snippet;
+                    item.detail = snippet.meta;
+                    return item;
+                });
+            }
+        }
+    );
+
+    context.subscriptions.push(completionProvider);
 }
 
 export function deactivate() { }
