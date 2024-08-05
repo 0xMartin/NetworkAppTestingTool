@@ -150,6 +150,8 @@ The configuration language of our tool is designed to be intuitive, comprising a
 
 ## 🚀 VS Code extension for NATT 
 
+> Extension README [here](./vscode-extension/natt-configuration-editor)
+
 To further streamline the process of creating and managing your test configurations, we offer a Visual Studio Code (VS Code) extension. This extension provides a robust environment with features such as syntax highlighting, code completion, and snippet support specifically for test-config*.yaml files.
 
 **Key Features:**
