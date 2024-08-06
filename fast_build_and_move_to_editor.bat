@@ -5,5 +5,3 @@ rem zkopiruje vytvoreny jar soubor do slozky config-editor a prejmenuje ho na NA
 copy app\build\libs\app-all.jar config-editor\NATT.jar
 echo NATT.jar moved to config-editor
 
-copy app\build\libs\app-all.jar vscode-extension\natt-configuration-editor\resources\NATT.jar
-echo NATT.jar moved to NATT vscode extension
