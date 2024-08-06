@@ -48,8 +48,6 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
 
-* **VS Code extension: [https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
-
 * **Configuration editor: [config-editor](./config-editor)**
 
 * Test suite configuration for all task types: [configuration-examples](./configuration-examples)
@@ -82,9 +80,10 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 * The possibility of defining your own keywords
 * The possibility of launching more than one external applications at one time
+* Add plugin support
 * Add path variable support for REST API testing
 * Add more testing options when testing the web crawler
-* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
+* Add additional modules for testing other types of applications: client testing use encrypted communication, UI testing (like Selenium), ...
 
 ---
 
