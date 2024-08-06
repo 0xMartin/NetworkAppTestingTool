@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  6 AUG 2024 03:12
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  6 AUG 2024 18:20
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1322,44 +1322,44 @@ Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 <imgs/FAI_ico.png, id=10, 385.44pt x 385.44pt>
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
-Package luatex.def Info: imgs/FAI_ico.png  used on input line 62.
+Package luatex.def Info: imgs/FAI_ico.png  used on input line 60.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\resizebox' on input line 69.
+(hyperref)                removing `\resizebox' on input line 67.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\textwidth' on input line 69.
+(hyperref)                removing `\textwidth' on input line 67.
 
 (./poster.aux)
 \openout1 = poster.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
-9.
+7.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1417,7 +1417,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 69.
+Package hyperref Info: Link coloring OFF on input line 67.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1430,9 +1430,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count383
 )
-LaTeX Info: Redefining \ref on input line 69.
-LaTeX Info: Redefining \pageref on input line 69.
-LaTeX Info: Redefining \nameref on input line 69.
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
 
 (./poster.out) (./poster.out)
 \@outlinefile=\write5
@@ -1467,60 +1467,60 @@ Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.14).
 
 (./poster.nav)
-LaTeX Font Info:    Calculating math sizes for size <38.4> on input line 69.
+LaTeX Font Info:    Calculating math sizes for size <38.4> on input line 67.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-9.
+7.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-9.
+7.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-69.
+67.
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
-Package luatex.def Info: imgs/FAI_ico.png  used on input line 69.
+Package luatex.def Info: imgs/FAI_ico.png  used on input line 67.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
-<./imgs/natt-main-banner.png, id=17, 996.72375pt x 457.71pt>
+<./imgs/natt-main-banner.png, id=16, 996.72375pt x 457.71pt>
 File: ./imgs/natt-main-banner.png Graphic file (type png)
 <use ./imgs/natt-main-banner.png>
-Package luatex.def Info: ./imgs/natt-main-banner.png  used on input line 228.
+Package luatex.def Info: ./imgs/natt-main-banner.png  used on input line 226.
 (luatex.def)             Requested size: 2535.16632pt x 1164.44226pt.
-<./imgs/simple-rest-diagram.png, id=18, 1421.31pt x 393.47pt>
+<./imgs/simple-rest-diagram.png, id=17, 1421.31pt x 393.47pt>
 File: ./imgs/simple-rest-diagram.png Graphic file (type png)
 <use ./imgs/simple-rest-diagram.png>
-Package luatex.def Info: ./imgs/simple-rest-diagram.png  used on input line 228
+Package luatex.def Info: ./imgs/simple-rest-diagram.png  used on input line 226
 .
 (luatex.def)             Requested size: 2535.16632pt x 701.85132pt.
-<./imgs/simple-mqtt-diagram.png, id=19, 1421.31pt x 393.47pt>
+<./imgs/simple-mqtt-diagram.png, id=18, 1421.31pt x 393.47pt>
 File: ./imgs/simple-mqtt-diagram.png Graphic file (type png)
 <use ./imgs/simple-mqtt-diagram.png>
-Package luatex.def Info: ./imgs/simple-mqtt-diagram.png  used on input line 228
+Package luatex.def Info: ./imgs/simple-mqtt-diagram.png  used on input line 226
 .
 (luatex.def)             Requested size: 2535.16632pt x 701.85132pt.
-<./imgs/test-config-struct.png, id=20, 1284.8pt x 792.9625pt>
+<./imgs/test-config-struct.png, id=19, 1284.8pt x 792.9625pt>
 File: ./imgs/test-config-struct.png Graphic file (type png)
 <use ./imgs/test-config-struct.png>
-Package luatex.def Info: ./imgs/test-config-struct.png  used on input line 228.
+Package luatex.def Info: ./imgs/test-config-struct.png  used on input line 226.
 
 (luatex.def)             Requested size: 2535.16632pt x 1564.72258pt.
-LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 228.
-<./imgs/extension_qr.png, id=21, 212.795pt x 209.78375pt>
+LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 226.
+<./imgs/extension_qr.png, id=20, 212.795pt x 209.78375pt>
 File: ./imgs/extension_qr.png Graphic file (type png)
 <use ./imgs/extension_qr.png>
-Package luatex.def Info: ./imgs/extension_qr.png  used on input line 228.
+Package luatex.def Info: ./imgs/extension_qr.png  used on input line 226.
 (luatex.def)             Requested size: 633.79158pt x 624.95142pt.
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
-Package luatex.def Info: imgs/FAI_ico.png  used on input line 228.
+Package luatex.def Info: imgs/FAI_ico.png  used on input line 226.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -1543,14 +1543,14 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  40945 strings out of 477805
- 305234,1648299 words of node,token memory allocated
- 66961 words of node memory still in use:
-   373 hlist, 40 vlist, 39 rule, 549 disc, 71 local_par, 10 math, 1473 glue, 856
- kern, 202 penalty, 5027 glyph, 960 attribute, 83 glue_spec, 960 attribute_list,
+ 305230,1648299 words of node,token memory allocated
+ 66934 words of node memory still in use:
+   373 hlist, 40 vlist, 39 rule, 549 disc, 71 local_par, 10 math, 1473 glue, 853
+ kern, 202 penalty, 5027 glyph, 957 attribute, 83 glue_spec, 957 attribute_list,
  4 write, 152 pdf_literal, 280 pdf_colorstack, 7 pdf_setmatrix, 7 pdf_save, 7 pd
 f_restore nodes
-   avail lists: 2:441,3:1160,4:987,5:2734,6:222,7:20250,8:21,9:1482,10:24,11:167
-5
+   avail lists: 2:425,3:1156,4:987,5:2705,6:221,7:20154,8:17,9:1482,10:24,11:166
+7
  59711 multiletter control sequences out of 65536+600000
  96 fonts using 16259903 bytes
  128i,20n,115p,726b,1073s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1559,10 +1559,10 @@ share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
 re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
 xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
 e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
-Output written on poster.pdf (1 page, 497307 bytes).
+Output written on poster.pdf (1 page, 497591 bytes).
 
-PDF statistics: 75 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+PDF statistics: 73 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  3 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
