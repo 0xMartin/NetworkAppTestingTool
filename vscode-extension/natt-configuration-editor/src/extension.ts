@@ -1,12 +1,17 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as https from 'https';
+import * as stream from 'stream';
+import { promisify } from 'util';
+import { IncomingMessage } from 'http';
 
 import NattViewProvider from './nattviewprovider';
 import ReportWebviewProvider from './reportwebviewprovider';
 import keywordSnippets from './snippets';
 
 let testTerminal: vscode.Terminal | undefined;
+const pipeline = promisify(stream.pipeline);
 
 function checkNattJarExists(projectPath: string): boolean {
     const jarPath = path.join(projectPath, 'NATT.jar');
@@ -34,16 +39,15 @@ export function activate(context: vscode.ExtensionContext) {
     // Commands *************************************************************************************
 
     // Command: init test
-    let disposableCreate = vscode.commands.registerCommand('extension.nattInit', () => {
+    let disposableCreate = vscode.commands.registerCommand('extension.nattInit', async () => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (workspaceFolders && workspaceFolders.length > 0) {
             const projectPath = workspaceFolders[0].uri.fsPath;
 
-            const sourceYamlPath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
-            const sourceJarPath = path.join(context.extensionPath, 'resources', 'NATT.jar');
+            vscode.window.showInformationMessage('NATT initialization started!');
 
+            const sourceYamlPath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
             const destYamlPath = path.join(projectPath, 'test-config.yaml');
-            const destJarPath = path.join(projectPath, 'NATT.jar');
 
             // Check if the YAML file already exists
             if (!fs.existsSync(destYamlPath)) {
@@ -53,10 +57,39 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showInformationMessage('test-config.yaml already exists, skipping copy.');
             }
 
-            // Copy the JAR file regardless of its existence
-            fs.copyFileSync(sourceJarPath, destJarPath);
+            // Define the URL and destination path for the JAR file
+            const config = vscode.workspace.getConfiguration('natt-configuration-editor');
+            const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.4.5/NATT.jar');
+            const destJarPath = path.join(projectPath, 'NATT.jar');
 
-            vscode.window.showInformationMessage('NATT structure initialized successfully!');
+            // Function to download the file
+            const downloadFile = async (url: string, dest: string) => {
+                return new Promise<void>((resolve, reject) => {
+                    const handleResponse = (response: IncomingMessage) => {
+                        if (response.statusCode === 200) {
+                            pipeline(response, fs.createWriteStream(dest)).then(resolve).catch(reject);
+                        } else if (response.statusCode === 302 || response.statusCode === 301) {
+                            const redirectUrl = response.headers.location;
+                            if (redirectUrl) {
+                                downloadFile(redirectUrl, dest).then(resolve).catch(reject);
+                            } else {
+                                reject(new Error('Redirect location not found'));
+                            }
+                        } else {
+                            reject(new Error(`Failed to get '${url}' (${response.statusCode})`));
+                        }
+                    };
+
+                    https.get(url, handleResponse).on('error', reject);
+                });
+            };
+
+            try {
+                await downloadFile(jarUrl, destJarPath);
+                vscode.window.showInformationMessage('NATT.jar downloaded successfully. Setup complete!');
+            } catch (error) {
+                vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error}`);
+            }
         } else {
             vscode.window.showErrorMessage('No workspace folder is open.');
         }
