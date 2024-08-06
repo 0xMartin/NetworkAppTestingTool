@@ -701,9 +701,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT ./imgs/FAI_ico.png
 INPUT ./imgs/FAI_ico.png
-INPUT ./imgs/natt-banner-tech.png
-INPUT ./imgs/natt-banner-tech.png
-INPUT ./imgs/natt-banner-tech.png
+INPUT ./imgs/natt-main-banner.png
+INPUT ./imgs/natt-main-banner.png
+INPUT ./imgs/natt-main-banner.png
 INPUT ./imgs/simple-rest-diagram.png
 INPUT ./imgs/simple-rest-diagram.png
 INPUT ./imgs/simple-rest-diagram.png
@@ -731,9 +731,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT ./imgs/github-qr.png
-INPUT ./imgs/github-qr.png
-INPUT ./imgs/github-qr.png
+INPUT ./imgs/extension_qr.png
+INPUT ./imgs/extension_qr.png
+INPUT ./imgs/extension_qr.png
 INPUT ./imgs/FAI_ico.png
 INPUT ./imgs/FAI_ico.png
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map

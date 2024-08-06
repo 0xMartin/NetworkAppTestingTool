@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  5 AUG 2024 20:19
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  6 AUG 2024 03:12
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1489,11 +1489,11 @@ File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
 Package luatex.def Info: imgs/FAI_ico.png  used on input line 69.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
-<./imgs/natt-banner-tech.png, id=17, 1044.90375pt x 542.025pt>
-File: ./imgs/natt-banner-tech.png Graphic file (type png)
-<use ./imgs/natt-banner-tech.png>
-Package luatex.def Info: ./imgs/natt-banner-tech.png  used on input line 228.
-(luatex.def)             Requested size: 2535.16632pt x 1315.26091pt.
+<./imgs/natt-main-banner.png, id=17, 996.72375pt x 457.71pt>
+File: ./imgs/natt-main-banner.png Graphic file (type png)
+<use ./imgs/natt-main-banner.png>
+Package luatex.def Info: ./imgs/natt-main-banner.png  used on input line 228.
+(luatex.def)             Requested size: 2535.16632pt x 1164.44226pt.
 <./imgs/simple-rest-diagram.png, id=18, 1421.31pt x 393.47pt>
 File: ./imgs/simple-rest-diagram.png Graphic file (type png)
 <use ./imgs/simple-rest-diagram.png>
@@ -1513,24 +1513,20 @@ Package luatex.def Info: ./imgs/test-config-struct.png  used on input line 228.
 
 (luatex.def)             Requested size: 2535.16632pt x 1564.72258pt.
 LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 228.
-<./imgs/github-qr.png, id=21, 201.75375pt x 201.75375pt>
-File: ./imgs/github-qr.png Graphic file (type png)
-<use ./imgs/github-qr.png>
-Package luatex.def Info: ./imgs/github-qr.png  used on input line 228.
-(luatex.def)             Requested size: 633.79158pt x 633.80061pt.
-
-Overfull \vbox (122.51501pt too high) detected at line 228
- []
-
+<./imgs/extension_qr.png, id=21, 212.795pt x 209.78375pt>
+File: ./imgs/extension_qr.png Graphic file (type png)
+<use ./imgs/extension_qr.png>
+Package luatex.def Info: ./imgs/extension_qr.png  used on input line 228.
+(luatex.def)             Requested size: 633.79158pt x 624.95142pt.
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
 Package luatex.def Info: imgs/FAI_ico.png  used on input line 228.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-<./imgs/FAI_ico.png><./imgs/natt-banner-tech.png><./imgs/simple-rest-diagram.png
-><./imgs/simple-mqtt-diagram.png><./imgs/test-config-struct.png><./imgs/github-q
-r.png>]
+<./imgs/FAI_ico.png><./imgs/natt-main-banner.png><./imgs/simple-rest-diagram.png
+><./imgs/simple-mqtt-diagram.png><./imgs/test-config-struct.png><./imgs/extensio
+n_qr.png>]
 \tf@nav=\write6
 
 \openout6 = poster.nav
@@ -1563,7 +1559,7 @@ share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
 re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
 xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
 e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
-Output written on poster.pdf (1 page, 487456 bytes).
+Output written on poster.pdf (1 page, 497307 bytes).
 
 PDF statistics: 75 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream

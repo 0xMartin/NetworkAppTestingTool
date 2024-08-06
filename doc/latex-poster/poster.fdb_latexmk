@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1722881961 "poster.tex" "poster.pdf" "poster" 1722881963
+["pdflatex"] 1722906735 "poster.tex" "poster.pdf" "poster" 1722906737
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bold.luc" 1722729988 1514696 d39ff2641de7eace266e7566064c21a5 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bolditalic.luc" 1722729987 1593032 0fee76948c0477352366b65b1dd5e099 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-italic.luc" 1722729989 1586624 d97b9c527737fc87f1a63c6308dd6c8a ""
@@ -347,15 +347,15 @@
   "beamercolorthemeutb.sty" 1722733150 1520 2139ddbc914a2ad9374530b3419908d6 ""
   "beamerthemegemini.sty" 1722721642 6726 3b1744dffda098b55e3ae32b8d66ec7a ""
   "imgs/FAI_ico.png" 1722730531 7553 0015d48fa0524853bb4dafc35c2a1b96 ""
-  "imgs/github-qr.png" 1722771065 1828 fb3c894a0926a48a4904a151b9beb27f ""
-  "imgs/natt-banner-tech.png" 1722767474 165705 ae0eccc126b40bc2b7993d6fe1190982 ""
+  "imgs/extension_qr.png" 1722906238 2249 c1f31edc6e9167f0b378d4afa07f88ba ""
+  "imgs/natt-main-banner.png" 1722906650 165776 400f6fcbf5cf4dac85a96b00a42bf3a7 ""
   "imgs/simple-mqtt-diagram.png" 1722774900 59670 ae7df213978b4a9481e6b26d76cb806b ""
   "imgs/simple-rest-diagram.png" 1722774900 66325 6b90c77a81ffe974863b00548de4b745 ""
   "imgs/test-config-struct.png" 1722775560 267206 4471d6d08290b34c7e820751951f33d8 ""
-  "poster.aux" 1722881963 1119 1002c80bff2d4a480d225ebed1a05287 "pdflatex"
-  "poster.nav" 1722881963 307 9e520c26371a1250ff9fc1fe87f9c655 "pdflatex"
-  "poster.out" 1722881962 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "poster.tex" 1722881955 8814 b6460a6bc8cdf51910cdd0ff0d71319b ""
+  "poster.aux" 1722906737 1119 1002c80bff2d4a480d225ebed1a05287 "pdflatex"
+  "poster.nav" 1722906737 307 9e520c26371a1250ff9fc1fe87f9c655 "pdflatex"
+  "poster.out" 1722906736 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "poster.tex" 1722906729 8817 481b481c866f24745d0f2848c639e34f ""
   (generated)
   "poster.aux"
   "poster.log"

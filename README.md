@@ -38,7 +38,9 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 ## 🚀 Now available as extension in Visual Studio Code!
 
-Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MartinKubik.natt-vscode-extension)
+Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)
+
+<img src="./doc/vscode_marketplace.png" width="100%">
 
 ---
 
@@ -46,7 +48,7 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
 
-* **VS Code extension: ...**
+* **VS Code extension: [https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
 * **Configuration editor: [config-editor](./config-editor)**
 
