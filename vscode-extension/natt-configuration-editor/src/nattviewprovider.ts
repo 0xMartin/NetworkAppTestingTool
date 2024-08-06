@@ -92,7 +92,7 @@ class NattViewProvider implements vscode.WebviewViewProvider {
                     padding: 0.5rem; /* 8px / 16px */
                     margin: 0.5rem 0; /* 8px / 16px */
                     border: none; 
-                    background-color: #3376cd; 
+                    background-color: #006abb; 
                     color: white; 
                     cursor: pointer; 
                     border-radius: 0.625rem; /* 10px / 16px */
@@ -101,6 +101,10 @@ class NattViewProvider implements vscode.WebviewViewProvider {
                     font-weight: bold;
                     display: inline-block;
                     text-align: center;
+                }
+
+                .button:hover {
+                    background-color: #209aef; 
                 }
 
                 .button img {
@@ -124,7 +128,6 @@ class NattViewProvider implements vscode.WebviewViewProvider {
                     border: 0.125rem solid #333; /* 2px / 16px */
                     margin-top: 0.625rem; /* 10px / 16px */
                     padding: 0.625rem; /* 10px / 16px */
-                    background-color: var(--vscode-sideBar-background);
                 }
 
                 .keywordInfoPanel {
@@ -145,15 +148,15 @@ class NattViewProvider implements vscode.WebviewViewProvider {
                     display: inline-block;
                     padding: 0.5rem 0.625rem; /* 8px 10px / 16px */
                     margin: 0.125rem; 
-                    background-color: #3a3d33;
+                    background-color: #252525;
                     cursor: pointer;
-                    border-radius: 0.25rem; /* 4px / 16px */
+                    border-radius: 1rem; 
                     transition: background-color 0.3s, color 0.3s;
                 }
 
                 .keyword-item:hover,
                 .keyword-item.active {
-                    background-color: #4a4d43;
+                    background-color: #444444;
                     color: #d0d0d0;
                 }
 
