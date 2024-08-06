@@ -58,6 +58,7 @@ The VS Code editor showing the configuration file on the left and the test resul
 1. **Install the Extension:** Search for "NATT Configuration Editor" in the Visual Studio Code extensions marketplace and install it.
 2. **Open Your Project:** Open the project you want to test in Visual Studio Code.
 3. **Initialize the NATT Testing Structure:** Use the `NATT Init` command or the button in the side bar to set up the necessary files for testing.
-4. **Run Tests:** Execute your tests directly from the terminal or using the provided commands.
-5. **View Reports:** Access detailed test reports within the editor to review and analyze the results.
+4. **Configure Your Tests:** Create and implements your test configuration files `test-config.yaml`.
+5. **Run Tests:** Execute your tests directly from the terminal or using the provided commands.
+6. **View Reports:** Access detailed test reports within the editor to review and analyze the results.
 
