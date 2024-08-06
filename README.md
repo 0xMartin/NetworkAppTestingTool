@@ -82,9 +82,10 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 * The possibility of defining your own keywords
 * The possibility of launching more than one external applications at one time
+* Add plugin support
 * Add path variable support for REST API testing
 * Add more testing options when testing the web crawler
-* Add additional modules for testing other types of applications: client testing using SSL, UI testing, ...
+* Add additional modules for testing other types of applications: client testing use encrypted communication, UI testing (like Selenium), ...
 
 ---
 
