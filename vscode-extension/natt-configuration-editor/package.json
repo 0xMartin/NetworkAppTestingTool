@@ -2,6 +2,7 @@
   "name": "natt-configuration-editor",
   "displayName": "NATT Configuration Editor",
   "publisher": "0xM4R71N",
+  "repository": "https://github.com/0xMartin/NetworkAppTestingTool",
   "description": "Test scenario configuration editor for black box network application testing tool.",
   "version": "0.0.1",
   "engines": {
@@ -68,7 +69,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.92.0",
+    "@types/vscode": "^1.91.1",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^7.14.1",

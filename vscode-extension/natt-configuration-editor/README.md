@@ -47,11 +47,11 @@ The extension provides several commands to facilitate testing:
 
 The primary side bar contains the main control panel for the extension, with buttons for "Initialize," "Run Test," "Stop Test," and "Validate." The lower section includes a list of keywords used in the NATT configuration.
 
-<img alt="NATT Extension 1" src="./doc/vs_code_extension_1.png" width="50%" />
+<img alt="NATT Extension 1" src="https://raw.githubusercontent.com/0xMartin/NetworkAppTestingTool/main/vscode-extension/natt-configuration-editor/doc/vs_code_extension_1.png" width="50%" />
 
 The VS Code editor showing the configuration file on the left and the test results report on the right. Users can see the outcome of their software tests in the detailed report.
 
-<img alt="NATT Extension 2" src="./doc/vs_code_extension_2.png" width="100%" />
+<img alt="NATT Extension 2" src="https://raw.githubusercontent.com/0xMartin/NetworkAppTestingTool/main/vscode-extension/natt-configuration-editor/doc/vs_code_extension_2.png" width="100%" />
 
 ## 🚀 Installation
 
