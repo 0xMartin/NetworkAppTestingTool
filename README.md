@@ -48,8 +48,6 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration keyword list: [keywords.md](./keywords.md)**
 
-* **VS Code extension: [https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
-
 * **Configuration editor: [config-editor](./config-editor)**
 
 * Test suite configuration for all task types: [configuration-examples](./configuration-examples)
