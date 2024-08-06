@@ -165,7 +165,7 @@ function activate(context) {
         }
     });
     // Buttons *************************************************************************************
-    // Vytvoření status bar tlačítek
+    // Create status bar buttons
     const runButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
     runButton.text = '$(play) NATT Run';
     runButton.command = 'extension.nattRun';
