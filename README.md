@@ -250,6 +250,10 @@ Messages received by this module are inserted into the message buffer as they we
 ## MQTT Broker Module
 This module **does not support** sending messages using the 'module_send' keyword. The module simply starts an MQTT broker and facilitates its operation. The module does not allow receiving incoming communication either. It acts solely as a mediator for MQTT communication between clients connected to it.
 
+## Web crawler
+
+This module **does not support** sending messages using the 'module_send' keyword. During the creation of this module, the process of analyzing web pages is automatically started. After the completion of this process, the output of the analysis is written into the message buffer.
+
 ---
 
 # 🧪 Test Configuration Samples
