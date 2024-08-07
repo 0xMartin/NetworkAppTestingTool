@@ -21,6 +21,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 - **Separation**: Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
 - **Independence**: The tool operates independently of external network resources (servers, clients, ...), allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
+- **Deployment Versatility:** The tool can be run on localhost or integrated into CI/CD pipelines on platforms like GitLab and GitHub, ensuring seamless testing across different environments.
 
 <img src="./doc/diagram_simple_rest.png">
 
@@ -34,7 +35,7 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 * Testing __MQTT clients__
 * Testing __Web crawlers__
 * Testing the application through the __standard stream__
-* The __tested__ applications can be written __in any language__
+> The __tested__ applications can be written __in any language__
 
 ## 🚀 Now available as extension in Visual Studio Code!
 
@@ -249,6 +250,10 @@ Messages received by this module are inserted into the message buffer as they we
 
 ## MQTT Broker Module
 This module **does not support** sending messages using the 'module_send' keyword. The module simply starts an MQTT broker and facilitates its operation. The module does not allow receiving incoming communication either. It acts solely as a mediator for MQTT communication between clients connected to it.
+
+## Web crawler
+
+This module **does not support** sending messages using the 'module_send' keyword. During the creation of this module, the process of analyzing web pages is automatically started. After the completion of this process, the output of the analysis is written into the message buffer.
 
 ---
 
