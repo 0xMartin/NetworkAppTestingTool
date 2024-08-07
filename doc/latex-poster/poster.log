@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  6 AUG 2024 18:20
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  7 AUG 2024 20:46
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1492,35 +1492,35 @@ Package luatex.def Info: imgs/FAI_ico.png  used on input line 67.
 <./imgs/natt-main-banner.png, id=16, 996.72375pt x 457.71pt>
 File: ./imgs/natt-main-banner.png Graphic file (type png)
 <use ./imgs/natt-main-banner.png>
-Package luatex.def Info: ./imgs/natt-main-banner.png  used on input line 226.
+Package luatex.def Info: ./imgs/natt-main-banner.png  used on input line 225.
 (luatex.def)             Requested size: 2535.16632pt x 1164.44226pt.
 <./imgs/simple-rest-diagram.png, id=17, 1421.31pt x 393.47pt>
 File: ./imgs/simple-rest-diagram.png Graphic file (type png)
 <use ./imgs/simple-rest-diagram.png>
-Package luatex.def Info: ./imgs/simple-rest-diagram.png  used on input line 226
+Package luatex.def Info: ./imgs/simple-rest-diagram.png  used on input line 225
 .
 (luatex.def)             Requested size: 2535.16632pt x 701.85132pt.
 <./imgs/simple-mqtt-diagram.png, id=18, 1421.31pt x 393.47pt>
 File: ./imgs/simple-mqtt-diagram.png Graphic file (type png)
 <use ./imgs/simple-mqtt-diagram.png>
-Package luatex.def Info: ./imgs/simple-mqtt-diagram.png  used on input line 226
+Package luatex.def Info: ./imgs/simple-mqtt-diagram.png  used on input line 225
 .
 (luatex.def)             Requested size: 2535.16632pt x 701.85132pt.
 <./imgs/test-config-struct.png, id=19, 1284.8pt x 792.9625pt>
 File: ./imgs/test-config-struct.png Graphic file (type png)
 <use ./imgs/test-config-struct.png>
-Package luatex.def Info: ./imgs/test-config-struct.png  used on input line 226.
+Package luatex.def Info: ./imgs/test-config-struct.png  used on input line 225.
 
 (luatex.def)             Requested size: 2535.16632pt x 1564.72258pt.
-LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 226.
+LaTeX Font Info:    Calculating math sizes for size <79.62> on input line 225.
 <./imgs/extension_qr.png, id=20, 212.795pt x 209.78375pt>
 File: ./imgs/extension_qr.png Graphic file (type png)
 <use ./imgs/extension_qr.png>
-Package luatex.def Info: ./imgs/extension_qr.png  used on input line 226.
+Package luatex.def Info: ./imgs/extension_qr.png  used on input line 225.
 (luatex.def)             Requested size: 633.79158pt x 624.95142pt.
 File: imgs/FAI_ico.png Graphic file (type png)
 <use imgs/FAI_ico.png>
-Package luatex.def Info: imgs/FAI_ico.png  used on input line 226.
+Package luatex.def Info: imgs/FAI_ico.png  used on input line 225.
 (luatex.def)             Requested size: 341.42903pt x 341.43306pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -1543,14 +1543,14 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  40945 strings out of 477805
- 305230,1648299 words of node,token memory allocated
- 66934 words of node memory still in use:
-   373 hlist, 40 vlist, 39 rule, 549 disc, 71 local_par, 10 math, 1473 glue, 853
- kern, 202 penalty, 5027 glyph, 957 attribute, 83 glue_spec, 957 attribute_list,
+ 305244,1648299 words of node,token memory allocated
+ 67142 words of node memory still in use:
+   374 hlist, 40 vlist, 39 rule, 545 disc, 71 local_par, 10 math, 1480 glue, 858
+ kern, 202 penalty, 5050 glyph, 959 attribute, 83 glue_spec, 959 attribute_list,
  4 write, 152 pdf_literal, 280 pdf_colorstack, 7 pdf_setmatrix, 7 pdf_save, 7 pd
 f_restore nodes
-   avail lists: 2:425,3:1156,4:987,5:2705,6:221,7:20154,8:17,9:1482,10:24,11:166
-7
+   avail lists: 2:425,3:1156,4:987,5:2720,6:221,7:20244,8:17,9:1485,10:25,11:165
+5
  59711 multiletter control sequences out of 65536+600000
  96 fonts using 16259903 bytes
  128i,20n,115p,726b,1073s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1559,7 +1559,7 @@ share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
 re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
 xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
 e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
-Output written on poster.pdf (1 page, 497591 bytes).
+Output written on poster.pdf (1 page, 497764 bytes).
 
 PDF statistics: 73 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
