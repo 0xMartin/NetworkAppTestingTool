@@ -49,7 +49,7 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 ## Helpful links
 
-* **Configuration keyword list: [keywords.md](./keywords.md)**
+* **Configuration - keyword documentation: [keywords.md](./keywords.md)**
 
 * **VS Code Extension [NATT Configuration Editor](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
