@@ -710,9 +710,9 @@ INPUT ./imgs/simple-rest-diagram.png
 INPUT ./imgs/simple-mqtt-diagram.png
 INPUT ./imgs/simple-mqtt-diagram.png
 INPUT ./imgs/simple-mqtt-diagram.png
-INPUT ./imgs/test-config-struct.png
-INPUT ./imgs/test-config-struct.png
-INPUT ./imgs/test-config-struct.png
+INPUT ./imgs/test-scruct-and-config.png
+INPUT ./imgs/test-scruct-and-config.png
+INPUT ./imgs/test-scruct-and-config.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr17.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr17.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr17.tfm

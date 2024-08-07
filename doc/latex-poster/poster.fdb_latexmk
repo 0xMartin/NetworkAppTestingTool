@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1723060199 "poster.tex" "poster.pdf" "poster" 1723060202
+["pdflatex"] 1723066285 "poster.tex" "poster.pdf" "poster" 1723066287
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bold.luc" 1722729988 1514696 d39ff2641de7eace266e7566064c21a5 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-bolditalic.luc" 1722729987 1593032 0fee76948c0477352366b65b1dd5e099 ""
   "/home/martin/.texlive2021/texmf-var/luatex-cache/generic/fonts/otl/lato-italic.luc" 1722729989 1586624 d97b9c527737fc87f1a63c6308dd6c8a ""
@@ -351,11 +351,11 @@
   "imgs/natt-main-banner.png" 1722906650 165776 400f6fcbf5cf4dac85a96b00a42bf3a7 ""
   "imgs/simple-mqtt-diagram.png" 1722774900 59670 ae7df213978b4a9481e6b26d76cb806b ""
   "imgs/simple-rest-diagram.png" 1722774900 66325 6b90c77a81ffe974863b00548de4b745 ""
-  "imgs/test-config-struct.png" 1722775560 267206 4471d6d08290b34c7e820751951f33d8 ""
-  "poster.aux" 1723060202 1119 1002c80bff2d4a480d225ebed1a05287 "pdflatex"
-  "poster.nav" 1723060202 307 9e520c26371a1250ff9fc1fe87f9c655 "pdflatex"
-  "poster.out" 1723060201 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "poster.tex" 1723060153 8780 12169ec13a35a69648e99041d83a9389 ""
+  "imgs/test-scruct-and-config.png" 1723066245 229450 7133f96ce4d136f99d126ecda63a134e ""
+  "poster.aux" 1723066287 1119 1002c80bff2d4a480d225ebed1a05287 "pdflatex"
+  "poster.nav" 1723066287 307 9e520c26371a1250ff9fc1fe87f9c655 "pdflatex"
+  "poster.out" 1723066287 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "poster.tex" 1723066277 8784 37d8b70a3350df34c8508a1467c7b0f8 ""
   (generated)
   "poster.aux"
   "poster.log"
