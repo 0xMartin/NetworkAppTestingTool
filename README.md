@@ -41,7 +41,9 @@ This **Black Box** Testing Tool is designed for automating the testing and evalu
 
 Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)
 
-<img src="./doc/vscode_marketplace.png" width="100%">
+> Or Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter: `ext install 0xM4R71N.natt-configuration-editor`
+
+<img src="./doc/vs_code_marketplace.png" width="100%">
 
 ---
 
