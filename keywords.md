@@ -79,7 +79,7 @@ Launches the application. At any given time, only one external application can r
 
 | **Parameter**            | **Type** | **Description**                                                         |
 | ------------------------ | -------- | ----------------------------------------------------------------------- |
-| `default` or  `command`  | string   | Command to run the application. Can run only one application at a time. |
+| `command`  | string   | Command to run the application. Can run only one application at a time. |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
   
 ```yaml
@@ -114,7 +114,7 @@ Stops the currently running application and launches the new application.
    
 | **Parameter**            | **Type** | **Description**                                |
 | ------------------------ | -------- | ---------------------------------------------- |
-| `default` or  `command`  | string   | Command to reload the application.             |
+| `command`  | string   | Command to reload the application.             |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
 
 
@@ -132,7 +132,7 @@ Sends a message to the running application via standard streaming.
 
 | **Parameter**            | **Type** | **Description**                                |
 | ------------------------ | -------- | ---------------------------------------------- |
-| `default` or  `message`  | string   | Message to send through the standard stream.   |
+| `message`  | string   | Message to send through the standard stream.   |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
 
 
@@ -471,7 +471,7 @@ Verifies if an external application is currently running.
 
 | **Parameter**            | **Type**                  | **Description**                                                        |
 | ------------------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `default` or `result`    | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| `result`    | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 | `name` \| *not required* | string                    | Name of program runner. *(default: "default")*                         |
 
 ```yaml
