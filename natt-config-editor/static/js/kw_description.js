@@ -25,14 +25,14 @@ var keywordDetails = {
         ]
     },
     run_app: {
-        description: 'Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.',
+        description: 'Launches the application. If the name parameter is correctly set, multiple applications can be launched at the same time. It allows the definition of arguments to be passed to the application upon its launch.',
         parameters: [
             { name: 'command', type: 'string', description: 'Command to run the application. Can run only one application at a time.' },
             { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     run_app_later: {
-        description: 'Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.',
+        description: 'Launches the application with a time delay. If the name parameter is correctly set, multiple applications can be launched at the same time. This operation is asynchronous.',
         parameters: [
             { name: 'command', type: 'string', description: 'Command to run the application. Can run only one application at a time.' },
             { name: 'delay', type: 'long', description: 'Time after which the application starts.' },

@@ -15,12 +15,10 @@ test_root:
                     name: "Case name 1"
                     description: "Description 1 here"
                     steps: 
-                        - read_file:
-                            var_name: "var-1"
-                            file_path: "request/request_create_author.xml"
-                        - standard_stream_send: 
-                            message: "Message to send"
-                            name: "app-2"
+                        - module_send:
+                            name: "app-1"
+                            message: "Message $your-var"
+                            delay: 100
                         - wait: 3000
                 - test_case:
                     name: "Case name 2"

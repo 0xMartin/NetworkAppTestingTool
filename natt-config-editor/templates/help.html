@@ -280,7 +280,8 @@
         <p>This set includes keywords that enable working with an external application. It&#39;s primarily designed for
             launching and communicating with the tested applications.</p>
         <h3 id="run_app">run_app</h3>
-        <p>Launches the application. At any given time, only one external application can run! It allows the definition
+        <p>Launches the application. If the name parameter is correctly set, multiple applications can be launched at
+            the same time. It allows the definition
             of arguments to be passed to the application upon its launch.</p>
         <table>
             <thead>
@@ -306,8 +307,8 @@
         <pre><code class="language-yaml">run_app: &quot;java -jar app.jar -arg1 111 -arg2 222&quot;
 </code></pre>
         <h3 id="run_app_later">run_app_later</h3>
-        <p>Launches the application with a time delay. This operation is asynchronous. Again, only one external
-            application can run at a time.</p>
+        <p>Launches the application with a time delay. If the name parameter is correctly set, multiple applications can
+            be launched at the same time. This operation is asynchronous.</p>
         <table>
             <thead>
                 <tr>
