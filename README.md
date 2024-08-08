@@ -51,9 +51,9 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration - keyword documentation: [keywords.md](./keywords.md)**
 
-* **VS Code Extension [NATT Configuration Editor](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
+* **VS Code Extension [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
-* **Configuration editor: [config-editor](./config-editor)**
+* **Configuration editor: [NATT Configuration Editor](./natt-config-editor)**
 
 * Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
 
@@ -172,7 +172,7 @@ To further streamline the process of implementing and managing your test configu
 
 For NATT black box testing tool was also created simple "IDE". It allows you easily create, edit and test your configurations. 
 
-> **More about it you can find [here](./config-editor/README.md).**
+> **More about it you can find [here](./natt-config-editor/README.md).**
 
 ## 🧩 Understanding Test Structures
 
