@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:lib="http://example.com/book-web-service">
+   <soapenv:Header />
+   <soapenv:Body>
+      <lib:getAuthorRequest>
+         <lib:authorId>TMP_ID</lib:authorId>
+      </lib:getAuthorRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
