@@ -122,10 +122,11 @@
 
   \begin{alertblock}{3. Main features of testing tool}
 
-    This Black Box Testing Tool automates the testing of software applications, 
-    specifically network applications. It operates \textbf{independently of external network resources}
-    by creating virtual servers and clients, offers flexible configuration for defining new test scenarios,
-    and can be run on \textbf{localhost} or integrated into \textbf{CI/CD pipelines} on platforms like GitLab and GitHub.
+    This testing tool automates the testing of software applications, specifically network applications. 
+    It operates \textbf{independently of external network resources} by creating virtual servers and clients,
+    offers flexible configuration for defining test scenarios, and can be run on \textbf{localhost} or 
+    integrated into \textbf{CI/CD pipelines} on platforms like GitLab and GitHub. This tool is tests, 
+    how applications \textbf{interact with their environment} through communication protocols.
 
     \heading{What does the tool allow you to test?}
     \begin{enumerate}
@@ -147,23 +148,16 @@
     black box testing tool. The diagrams show the process of \textbf{how the tool interacts} 
     with different types of applications. 
 
-    \hspace{2em} On the left side of each diagram, the testing tool communicates with 
+    \hspace{2em} On the left side of each diagram is the testing tool that communicates with 
     the tested application through \textbf{virtually created modules (highlighted in blue)}. This 
-    communication is then evaluated to determine if the application meets the defined
+    communication is then \textbf{evaluated} to determine if the application meets the defined
     expectations.
 
     \begin{figure}
       \centering
-        \includegraphics[width=1.0\textwidth]{./imgs/simple-rest-diagram.png}
-      \caption{Testing of REST API application}
+        \includegraphics[width=0.97\textwidth]{./imgs/simple-test-diagram.png}
+      \caption{Testing diagrams - REST \& MQTT}
     \end{figure}
-
-    \begin{figure}
-      \centering
-        \includegraphics[width=1.0\textwidth]{./imgs/simple-mqtt-diagram.png}
-      \caption{Testing of MQTT application}
-    \end{figure}
-
   \end{block}
 
 \end{column}
@@ -176,12 +170,12 @@
 
     The image below illustrates how test scenarios are defined for this tool. At the 
     beginning is the Test Root node, which is the \textbf{entry point} for each test 
-    scenario configuration. This root node sets the overall context for the testing 
-    process and encompasses all test suites within it. 
+    scenario. This root node sets the overall context for the testing 
+    process and includes all test suites within it. 
 
     \hspace{2em} The diagram illustrates the \textbf{context of each test segment} and the 
     duration for which variables or resources remain active. On the right side, a simplified
-    test scenario configuration is shown, which NATT \textbf{uses to generate} an acyclic graph that 
+    test configuration is shown, which NATT \textbf{uses to generate} an acyclic graph that 
     is subsequently executed.
 
     \begin{figure}
@@ -195,9 +189,9 @@
   \begin{exampleblock}{6. Usage of testing tool}
 
     \begin{enumerate}
-      \item \textbf{Educational Use:} Automates and standardizes student assignment evaluations in network programming courses.
+      \item \textbf{Educational Use:} Automates evaluations of student assignments in programming courses.
       
-      \item \textbf{Professional Use:} Facilitates efficient testing and debugging of network applications in software development.
+      \item \textbf{Professional Use:} Facilitates efficient testing of network applications in software development.
       
       \item \textbf{Programming Competitions:} Provides automated testing and fair evaluation for multiple submissions in competitive programming events.
    \end{enumerate}
