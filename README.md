@@ -55,9 +55,9 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration editor: [NATT Configuration Editor](./natt-config-editor)**
 
-* Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
-
 * Simple example project: [project-example](./examples/project-example)
+
+* Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
 
 ## System Requirements
 
