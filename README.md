@@ -51,7 +51,7 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration - keyword documentation: [keywords.md](./keywords.md)**
 
-* **VS Code Extension <a href="https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor" target="_blank">NATT Editor for VS Code</a>**
+* **VS Code Extension [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
 * **Configuration editor: [NATT Configuration Editor](./natt-config-editor)**
 
