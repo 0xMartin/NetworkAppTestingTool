@@ -252,6 +252,8 @@ class NattViewProvider {
                 </div>
             </div>
 
+            <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md" target="_blank">Keyword documentation</a>
+
             <span class="github-link"><b>NATT version:</b> 1.4.5</span>
 
             <script>
