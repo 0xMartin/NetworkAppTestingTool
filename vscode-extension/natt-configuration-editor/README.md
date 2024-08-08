@@ -26,6 +26,8 @@ The tested applications can be written in any language.
 
 > For more information about **NATT**, visit the [NATT GitHub repository](https://github.com/0xMartin/NetworkAppTestingTool).
 
+> **Documentation for all keywords that are used in configuration [NATT keywords](https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md).**
+
 ## 🌟 Features of the NATT Configuration Editor
 
 - **📝 Intuitive Configuration Editor:** Easily create and modify test configurations with syntax highlighting and autocomplete.

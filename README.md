@@ -15,7 +15,7 @@
 
 # 💡 Description of testing tool
 
-This **Black Box** Testing Tool is designed for automating the testing and evaluation of tasks without requiring knowledge of the software's internal structure or implementation details. It offers several key features:
+This **Black Box Testing** Tool is designed for automating the testing of **network application** or **console applications**. It tests how applications **interact with their environment** and does not test the internal behavior of the application. It offers several key features:
 
 - **Universality**: The tool supports testing various types of software applications regardless of their implementation details.
 - **Separation**: Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
@@ -86,6 +86,7 @@ Or using custom script that builds the tool and deploys it to the configuration 
 * The possibility of defining your own keywords
 * The possibility of launching more than one external applications at one time
 * Add plugin support
+* Add automatic plagiarism checking
 * Add path variable support for REST API testing
 * Add more testing options when testing the web crawler
 * Add additional modules for testing other types of applications: client testing use encrypted communication, UI testing (like Selenium), ...
@@ -94,7 +95,7 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 ## 🧪 Testing diagrams 
 
-These two diagrams illustrate how application testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The communication is then evaluated for the purpose of testing. It is verified whether the tested application behaves according to defined expectations.
+These two diagrams illustrate how testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The **incoming data** from the communication channels is then evaluated for testing purposes. It is verified whether the tested application behaves according to defined expectations.
 
 <img src="./doc/diagram_rest.png" alt="Diagram with testing of REST app" >
 
@@ -150,17 +151,16 @@ java -jar NATT.jar -c <path-to-test-config>
 
 # 🔧 Configuring of the Testing Tool
 
-In order to ensure the versatility of our black box testing tool, we've devised a straightforward method for users to convey precisely what tasks they want the tool to undertake. This is achieved through the utilization of YAML-formatted configurations for test sets. These configurations serve as blueprints, enabling the tool to execute tasks reliably and efficiently.
+To ensure the versatility of this black box testing tool, a simple method has been devised to allow users **to define exactly what tasks** the tool should perform. This is achieved by using test suite configurations in **YAML format**. 
 
-The configuration language of our tool is designed to be intuitive, comprising a set of keywords that users can easily manipulate to tailor their testing requirements. Writing configurations for our tool is akin to crafting configurations for GitLab CI/CD pipelines, ensuring familiarity and ease of use for those experienced with such processes.
+The configuration language of this tool is designed to be intuitive, comprising a set of keywords that users can **easily manipulate** to tailor their testing requirements. Writing configurations for the tool is akin to writing configurations **for GitLab CI/CD pipelines**, ensuring familiarity and ease of use for those experienced with such processes.
 
 ## 🚀 VS Code extension for NATT 
 
 > **Extension README [here](./vscode-extension/natt-configuration-editor)**
 
-To further streamline the process of creating and managing your test configurations, we offer a Visual Studio Code (VS Code) extension. This extension provides a robust environment with features such as syntax highlighting, code completion, and snippet support specifically for test-config*.yaml files.
+To further streamline the process of implementing and managing your test configurations, is available a **Visual Studio Code extension**. This extension provides this features:
 
-**Key Features:**
 * **Running Tests:** Running the test directly in the VS code environment.
 * **Code Completion:** Intelligent suggestions are provided as you type, helping to speed up the writing process and reduce errors.
 * **Snippets:** Predefined snippets are available to quickly insert common configuration patterns and structures.
@@ -182,7 +182,7 @@ Let's dive into the structure of tests in our tool. The image below this text sh
 
 # 📩 Variables and Received Messages
 
-During testing, you have the flexibility to work with variable contents or with a message buffer containing all messages received during testing. The content of the received message buffer is automatically cleared upon the completion of each test case. Variables are only accessible within the context in which they were created. Therefore, if a variable is created within a test case, it will only be available within that specific test case. There's no need to declare a variable before writing to it; simply input the desired content, and if it doesn't exist, it will be automatically created.
+During testing, you have the flexibility to work with **variable contents** or with a **message buffer** containing all messages received during testing. The content of the received message buffer is automatically **cleared upon the completion of each test case**. Variables are only accessible within the **context** in which they were created. Therefore, if a variable is created within a test case, it will only be available within that specific test case. There's no need to declare a variable before writing to it; simply input the desired content, and if it doesn't exist, it will be automatically created.
 
 ### Important:
 * **Variable** - Contains arbitrary data into which information is inserted during test execution. These variables are automatically populated by the tool. The variable **'(module-name)-last-msg'** holds the content of the message received last by a given module. The variable **'(module-name)-action-msg'** contains the content of the message that triggered the termination of waiting (**'wait_until'** keyword).
@@ -193,7 +193,7 @@ During testing, you have the flexibility to work with variable contents or with 
 
 # 🔠 Inserting Variables into Strings
 
-Accessing the content of variables can be achieved using specific keywords tailored for this purpose, or their values can be directly inserted into any parameter of any keyword in the configuration. However, the parameter must be of string type. Simply insert the name of the variable preceded by **'$'** into the desired string. For example, in the following manner:  **"Text $var1 Text"**. Name of variable is **"var1"**.
+Accessing the content of variables can be achieved using **specific keywords** tailored for this purpose, or their values can be **directly inserted** into any parameter of any keyword in the configuration. However, the parameter must be of string type. Simply insert the name of the variable preceded by **'$'** into the desired string. For example, in the following manner:  **"Text $var1 Text"**. Name of variable is **"var1"**.
 
 # 🔑 Keywords
 
@@ -207,8 +207,8 @@ All keywords are executed synchronously. If any keyword has a parameter of the "
 
 # 📦 Working with Communication Modules
 
-Each module has its specific behavior and ways in which it needs to be handled. This section describes each of them and the methods to properly utilize their functionality when writing testing configurations.
-
+Each module has its **specific behavior** and ways in which it needs to be handled. This section describes each of them and the methods to properly utilize their functionality when writing testing configurations.
+s
 Upon receiving a message by any module, its content is appropriately processed and inserted into the message buffer. In all cases, the content of this last received message is also stored in a variable with the following name format: "<module-name>-last-msg". Using this variable can significantly simplify configuration writing in certain cases.
 
 ## External Application Runner
