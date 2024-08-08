@@ -5,7 +5,7 @@
   "publisher": "0xM4R71N",
   "repository": "https://github.com/0xMartin/NetworkAppTestingTool",
   "description": "Test scenario configuration editor for black box network application testing tool.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "vscode": "^1.91.1"
   },

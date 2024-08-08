@@ -1,0 +1,166 @@
+test_root:
+    max_points: 4.0
+    initial_steps: 
+        # spusti virtualni telnet server na portu 9999
+        - create_telnet_server:
+            name: "tel-server-1"
+            port: 9999
+    test_suites: 
+        - test_suite:
+            name: "Testování odesílání zpráv"
+            dela: 700
+            initial_steps: 
+                - run_app: "java -jar app/build/libs/app.jar localhost 9999"
+                - wait: 200
+            test_cases: 
+                - test_case:
+                    name: "Test odeslání zprávy 1"
+                    description: "Testovaný telnet klient odešle na server několik testovacích zpráv a pak ověří, zda byly tyto zprávy doručeny správně."
+                    steps: 
+                        # testovane aplikaci pres std in zada zpravy pro odeslani
+                        - standard_stream_send: "This is test message 1"
+                        - wait: 500
+                        - standard_stream_send: "Next test message"
+                        - wait: 1200
+                        # overeni prijatych zprav
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "tel-server-1"
+                            index: 0
+                        - buffer_get:
+                            var_name: "var-2"
+                            module_name: "tel-server-1"
+                            index: 1
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is test message 1"
+                            mode: "equals"
+                            case_sensitive: true
+                        - assert_string:
+                            var_name: "var-2"
+                            expected: "Next test message"
+                            mode: "equals"
+                            case_sensitive: true
+                - test_case:
+                    name: "Test odeslání zprávy 2"
+                    description: "Testovaný telnet klient odešle na server mnoho zpráv v krátkém okamžiku. Bude ověřováno, zda byli doručený všechny z nich."
+                    steps:
+                        # testovane aplikaci pres std in zada zpravy pro odeslani
+                        - standard_stream_send: "This is test message 1"
+                        - standard_stream_send: "This is test message 2"
+                        - standard_stream_send: "This is test message 3"
+                        - standard_stream_send: "This is test message 4"
+                        - standard_stream_send: "This is test message 5"
+                        - wait: 1200
+                        # overeni prijatych zprav
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "tel-server-1"
+                            text: "This is test message 3"
+                            mode: "equals"
+                            case_sensitive: true
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is test message 3"
+                            mode: "equals"
+                            case_sensitive: true
+                        - count_and_store:
+                            var_name: "var-2"
+                            module_name: "tel-server-1"
+                        - assert_equals:
+                            var_name: "var-2"
+                            value: 5
+                - test_case:
+                    name: "Test odeslání zprávy 3"
+                    description: "Bude odesláno několik zpráv. Budou testovano, zda seznam doručených zpráv neobsahuje zprávy, které nebyli odesílány."
+                    steps:
+                        # testovane aplikaci pres std in zada zpravy pro odeslani
+                        - standard_stream_send: "This is test message 1"
+                        - standard_stream_send: "This is test message 3"
+                        - standard_stream_send: "This is test message 5"
+                        - wait: 1200
+                        # overi zda seznam dorucenych zprav neobsahuje zpravu, ktera nebyla odeslana (ale byla odeslana predchozim TC)
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "tel-server-1"
+                            text: "This is test message 4"
+                            mode: "equals"
+                            case_sensitive: true
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: ""
+                            mode: "equals"
+                            case_sensitive: true
+        - test_suite:
+            name: "Testování přijímání zpráv"
+            delay: 700
+            initial_steps: 
+                - run_app: "java -jar app/build/libs/app.jar localhost 9999"
+                - wait: 200
+            test_cases: 
+                - test_case:
+                    name: "Test přijímání zpráv 1"
+                    description: "Virtuální server odešle připojenému telnet klientovi zprávu a bude testováno, zda tuto zprávu obdržel ve správné podobě."
+                    steps: 
+                        # odesle zpravu testovane aplikaci
+                        - module_send:
+                            name: "tel-server-1"
+                            message: "This is message from server"
+                        - wait: 1200
+                        # overeni prijateho obsahu
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "app-std-out"
+                            index: 0
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is message from server"
+                            mode: "equals"
+                            case_sensitive: true
+                - test_case:
+                    name: "Test přijímání zpráv 2"
+                    description: "Virtuální server odešle připojenému telnet klientovi několik zpráv a bude testováno, zda tuto zprávu obdržel ve správné podobě."
+                    steps: 
+                        # odesle nekolik zprav testovane aplikaci
+                        - module_send:
+                            name: "tel-server-1"
+                            message: "This is message from server 1"
+                        - wait: 400
+                        - module_send:
+                            name: "tel-server-1"
+                            message: "Next message"
+                        - wait: 900
+                        # overeni obsahu
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "app-std-out"
+                            index: 0
+                        - buffer_get:
+                            var_name: "var-2"
+                            module_name: "app-std-out"
+                            index: 1
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is message from server 1"
+                            mode: "equals"
+                            case_sensitive: true
+                        - assert_string:
+                            var_name: "var-2"
+                            expected: "Next message"
+                            mode: "equals"
+                            case_sensitive: true
+        - test_suite:
+            name: "Test příkazu pro ukončení"
+            delay: 500
+            initial_steps: 
+                - run_app: "java -jar app/build/libs/app.jar localhost 9999"
+                - wait: 200
+            test_cases: 
+                - test_case:
+                    name: "Test ukončení"
+                    description: "Na standardní stream telnet klienta bude odeslan přikaz '//QUIT' pro ukončení. Bude ověřeno, zda se aplikace opravdu ukončila."
+                    steps:
+                        # odeslani prikazu pro ukonceni
+                        - standard_stream_send: "/QUIT"
+                        - wait: 1000
+                        - assert_app_is_running: false

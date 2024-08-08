@@ -1,0 +1,246 @@
+test_root:
+    max_points: 10.0
+    initial_steps: 
+        # spusti testovany IM server
+        - run_app: "java -jar app/build/libs/app.jar 9999 10"
+        - wait: 3000
+        # vytvoreni 3 virtualnich telnet klientu
+        - create_telnet_client:
+            name: "client-1"
+            host: "localhost"
+            port: 9999
+        - create_telnet_client:
+            name: "client-2"
+            host: "localhost"
+            port: 9999
+        - create_telnet_client:
+            name: "client-3"
+            host: "localhost"
+            port: 9999
+        - wait: 2000
+        # kazdy z klientu zada svuj nickname se kterym bude vystupovat na IM serveru
+        - module_send:
+            name: "client-1"
+            message: "Klient1"
+        - module_send:
+            name: "client-2"
+            message: "Klient2"
+        - module_send:
+            name: "client-3"
+            message: "Klient3"
+        - wait: 800
+    test_suites: 
+        - test_suite:
+            name: "Testování běžné komunikace"
+            dela: 500
+            test_cases: 
+                - test_case:
+                    name: "Zaklaní test komunikace 1"
+                    description: "V tomto testovacím případě bude testováno, zda doručení ostatním klientům probíhá správně. Odesílání zpráv bude probíhat v základní diskuzní místnosti public."
+                    steps: 
+                        # klient 1 odesle zpravu
+                        - module_send:
+                            name: "client-1"
+                            message: "Hello, world!"
+                        - wait: 1000
+                        # klient 2 a 3 overi zda tuto zpravu obdrzeli
+                        - assert_string:
+                            var_name: "client-2-last-msg"
+                            expected: "[Klient1] >> Hello, world!"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "client-3-last-msg"
+                            expected: "[Klient1] >> Hello, world!"
+                            mode: "contains"
+                - test_case:
+                    name: "Zaklaní test komunikace 2"
+                    description: "V tomto testovacím případě bude testováno, zda doručení ostatním klientům probíhá správně. Odesílání zpráv bude probíhat v základní diskuzní místnosti public."
+                    steps: 
+                        # klient 1, 2 a 3 odeslou zpravu
+                        - module_send:
+                            name: "client-1"
+                            message: "Testing 123"
+                        - module_send:
+                            name: "client-2"
+                            message: "12345 - 67890"
+                        - module_send:
+                            name: "client-3"
+                            message: "This is a test message"
+                        - wait: 1000
+                        # vzajemne bude overeno zda vsichni obdrzeli zpravu
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                            text: "[Klient2]"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "[Klient2] >> 12345 - 67890"
+                            mode: "equals"
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                            text: "[Klient3]"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "[Klient3] >> This is a test message"
+                            mode: "contains"
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "client-2"
+                            text: "[Klient1]"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "[Klient1] >> Testing 123"
+                            mode: "contains"
+                - test_case:
+                    name: "Test odeslání soukromé zprávy"
+                    description: "V tomto testovacím případě bude testováno, zda server umožnuje posílání soukromých zpráv. Klient 2 soukromou zprávu odešle klientu 3."
+                    steps: 
+                        # klient 2 odesila soukromou zpravu
+                        - module_send:
+                            name: "client-2"
+                            message: "#sendPrivate Klient3 This is a private message"
+                        - wait: 1000
+                        # overi se zda soukroma zprava byla dorucena a zda ji nikdo jiny neobdrzel
+                        - store_to_var:
+                            var_name: "var-1"
+                            module_name: "client-3"
+                            text: "[Klient2]"
+                            mode: "contains"
+                        - store_to_var:
+                            var_name: "var-2"
+                            module_name: "client-2"
+                            text: "[Klient2]"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "[Klient2] >> This is a private message"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "var-2"
+                            expected: "[Klient2] >> This is a private message"
+                            mode: "contains"
+                            result: false
+        - test_suite:
+            name: "Testování diskuzních místností"
+            delay: 500
+            initial_steps: []
+            test_cases: 
+                - test_case:
+                    name: "Test vstoupení do diskuzní místnosti"
+                    description: "V rámci tohoto testovacího případu bude ověřena funkčnost příkazů #join a #groups."
+                    steps: 
+                        # klient 1 a 2 vstoupy do mistnosti MyGroup1
+                        - module_send:
+                            name: "client-1"
+                            message: "#join MyGroup1"
+                        - module_send:
+                            name: "client-2"
+                            message: "#join MyGroup1"
+                        - wait: 1000 
+                        # je overeno prikazem group ze se opravu nachazi ve skupine MyGroup1
+                        - module_send:
+                            name: "client-1"
+                            message: "#groups"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "client-1-last-msg"
+                            expected: "MyGroup1"
+                            mode: "contains"
+                        # klient 1 a 2 opousti defaultni mistnost s nazvem public
+                        - module_send:
+                            name: "client-1"
+                            message: "#leave public"
+                        - module_send:
+                            name: "client-2"
+                            message: "#leave public" 
+                        - wait: 1000 
+                        # overuje se zda se nenachazi v mistnosti public
+                        - module_send:
+                            name: "client-1"
+                            message: "#groups"
+                        - wait: 1000 
+                        - assert_string:
+                            var_name: "client-1-last-msg"
+                            expected: "public"
+                            mode: "contains"
+                            result: false
+                - test_case:
+                    name: "Test komunikace v diskuzní místnosti"
+                    description: "Tento testovací případ závisí na výsledku předchozího, kdy se dva klienti připojili k soukromé místnosti MyGroup1. Nyní bude ověřeno, že komunikace probíhá správně a členové, kteří nejsou v této místnosti, zprávu neobdrží."
+                    steps: 
+                        # odeslani zpravy jen ve skupine MyGroup1
+                        - module_send:
+                            name: "client-1"
+                            message: "This is private message"
+                        - wait: 1000
+                        # overuje se zda klient 2 obdrzel a klient 3 ne
+                        - assert_string:
+                            var_name: "client-2-last-msg"
+                            expected: "This is private message"
+                            mode: "contains"
+                        - assert_string:
+                            var_name: "client-3-last-msg"
+                            expected: "This is private message"
+                            mode: "contains"
+                            result: false
+                        # klient 3 se pripoji do MyGroup1
+                        - module_send:
+                            name: "client-3"
+                            message: "#join MyGroup1"
+                        - wait: 1000 
+                        # je overovano zda uz klient 3 zpravy obdrzi
+                        - module_send:
+                            name: "client-1"
+                            message: "This is private message"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "client-3-last-msg"
+                            expected: "This is private message"
+                            mode: "contains"
+        - test_suite:
+            name: "Testování příkazu pro změnů jména"
+            delay: 500
+            test_cases: 
+                - test_case:
+                    name: "Test změny jména"
+                    description: "Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude unikátní v rámci IM serveru."
+                    steps: 
+                        # odesle prikaz pro zmenu jmena
+                        - module_send:
+                            name: "client-1"
+                            message: "#setMyName NoveJmeno1"
+                        - wait: 1000
+                        # je overeno zda uz jeho zpravy jsou ostatni odesilany z jeho novym jmenem
+                        - module_send:
+                            name: "client-1"
+                            message: "This is new message"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "client-2-last-msg"
+                            expected: "[NoveJmeno1] >> This is new message"
+                            mode: "contains"
+                - test_case:
+                    name: "Test změny na neunikátní jméno"
+                    description: "Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude neunikátní v rámci IM serveru a tak se předpokládá, že mu nebude změněno, jelikož už jiný uživatel toto jméno má nastaveno."
+                    steps: 
+                        # odesle prikaz pro zmenu jmena
+                        - module_send:
+                            name: "client-1"
+                            message: "#setMyName Klient2"
+                        - wait: 1000
+                        # je overeno zda jeho jmeno zustalo stejne jelikoz nebylo unikatni.
+                        - module_send:
+                            name: "client-1"
+                            message: "This is new message"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "client-2-last-msg"
+                            expected: "[NoveJmeno1] >> This is new message"
+                            mode: "contains"
+
+                        
+                        

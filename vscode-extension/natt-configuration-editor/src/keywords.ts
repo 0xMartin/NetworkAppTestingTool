@@ -4,24 +4,24 @@
 
 var keywordDetails = {
     test_root: {
-        description: 'Root test configuration keyword. Must be at the beginning of the test configuration.',
+        description: 'Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.',
         parameters: [
-            { name: 'max_points', type: 'float', description: 'Maximum points for the test.' },
+            { name: 'max_points', type: 'float', description: 'Maximum points for the test. Used in the evaluation of graded assignments.' },
             { name: 'initial_steps', type: 'list | not required', description: 'Initial steps for all test suites. These steps are performed only once at the beginning and then the test suites are executed.' },
-            { name: 'test_suites', type: 'list', description: 'List of test suites.' }
+            { name: 'test_suites', type: 'list', description: 'List of test all suites.' }
         ]
     },
     test_suite: {
-        description: 'Keyword for test suite configuration.',
+        description: 'Used to define a testing suite.',
         parameters: [
             { name: 'name', type: 'string', description: 'Name of the test suite.' },
             { name: 'delay', type: 'long | not required', description: 'Delay between executed test cases. After finishing of the test case, it will wait for the specified time. (default: 500 ms)' },
-            { name: 'initial_steps', type: 'list | not required', description: 'Initial steps for the test suite. These steps are performed only once at the beginning' },
+            { name: 'initial_steps', type: 'list | not required', description: 'Initial steps for the test suite. These steps are performed only once at the beginning.' },
             { name: 'test_cases', type: 'list', description: 'List of test cases.' }
         ]
     },
     test_case: {
-        description: 'This keyword defines a single test case.',
+        description: 'Allows the definition of individual test cases.',
         parameters: [
             { name: 'name', type: 'string', description: 'Name of the test case.' },
             { name: 'description', type: 'string', description: 'Description of the test case.' },
@@ -29,45 +29,45 @@ var keywordDetails = {
         ]
     },
     run_app: {
-        description: 'Run external application for testing. In one moment, only one external application can run.',
+        description: 'Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.',
         parameters: [
             { name: '', type: 'string', description: 'Command to run the application. Can run only one application at a time.' }
         ]
     },
     run_app_later: {
-        description: 'Run external application for testing with delay. This operation is async. In one moment, only one external application can run.',
+        description: 'Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.',
         parameters: [
             { name: 'command', type: 'string', description: 'Command to run the application. Can run only one application at a time.' },
-            { name: 'delay', type: 'long', description: 'Time after which the application starts' },
+            { name: 'delay', type: 'long', description: 'Time after which the application starts.' },
         ]
     },
     reload_app: {
-        description: 'Stop the currently running external application and start a new one. ',
+        description: 'Stops the currently running application and launches the new application.',
         parameters: [
             { name: '', type: 'string', description: 'Command to reload the application.' }
         ]
     },
     standard_stream_send: {
-        description: 'Sends a message to the external application through the standard stream.',
+        description: 'Sends a message to the running application via standard streaming.',
         parameters: [
             { name: '', type: 'string', description: 'Message to send through the standard stream.' }
         ]
     },
     wait: {
-        description: 'Pauses the test execution for a specified amount of time.',
+        description: 'Pauses the test execution for a defined duration.',
         parameters: [
             { name: '', type: 'integer', description: 'Time to wait in milliseconds.' }
         ]
     },
     wait_until: {
-        description: 'Waiting for action. The action is triggered by the receipt of a message by a specific communication module. The message that triggered the end of the waiting will be stored in a variable with the name \'<module-name>-action-msg\'',
+        description: 'It waits until a message is received from a certain communication module. Messages can be filtered using the keyword create_filter_action. The content of the message that triggered the action is automatically saved in the (module-name)-action-msg variable for possible testing.',
         parameters: [
-            { name: 'module_name', type: 'string', description: 'The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2' },
+            { name: 'module_name', type: 'string', description: 'The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2.' },
             { name: 'time_out', type: 'integer | not required', description: 'Maximum waiting time in milliseconds. (default: 10 000 ms)' }
         ]
     },
     store_to_var: {
-        description: 'Find and store a specific message from the buffer into a variable. If there is more than one message in the message buffer, it stores the first one.',
+        description: 'Retrieves and stores the content of a specific message from the message buffer into the chosen variable. If multiple messages match the specified search conditions, the variable stores the first one found, i.e., the one received first.',
         parameters: [
             { name: 'var_name', type: 'string', description: 'Name of the variable to store the value of message.' },
             { name: 'module_name', type: 'string', description: 'The module from which the message was received.' },
@@ -78,50 +78,50 @@ var keywordDetails = {
         ]
     },
     count_and_store: {
-        description: 'Counts the number of messages received during the one test case and stores this number in a variable.',
+        description: 'Counts the number of received messages during a single test case and saves this count into a variable.',
         parameters: [
             { name: 'var_name', type: 'string', description: 'Variable to store the count.' },
             { name: 'module_name', type: 'string', description: 'module whose received messages will be counted.' }
         ]
     },
     read_file: {
-        description: 'Reads content from a specified file and stores it in a variable.',
+        description: 'Reads the content from the specified file on the local device and stores its value into the defined variable.',
         parameters: [
             { name: 'var_name', type: 'string', description: 'Variable to store the file content.' },
             { name: 'file_path', type: 'string', description: 'Path to the file to be read.' }
         ]
     },
     set_var: {
-        description: 'Stores value in to the variable.',
+        description: 'Sets the specified variable to the defined content.',
         parameters: [
             { name: 'var_name', type: 'string', description: 'Variable to store the value.' },
             { name: 'value', type: 'string', description: 'The value that will be stored in the variable.' }
         ]
     },
     replace: {
-        description: "Stores modified value into the variable.",
+        description: "Retrieves the content of a specific variable, replacing all desired words with their replacements. The result is stored in another variable.",
         parameters: [
             { name: "to_var", type: "string", description: "Variable to store the modified text." },
             { name: "from_var", type: "string", description: "Variable containing the original text." },
             { name: "str_from", type: "list", description: "String to be replaced in the original text." },
-            { name: "str_to", type: "list", description: "String to replace occurrences of str_from in the original text." }
+            { name: "str_to", type: "list", description: "String to replace occurrences of 'str_from' in the original text." }
         ]
     },
     write_file: {
-        description: 'Writes content to a specified file.',
+        description: 'Writes the defined content into a file on the local device.',
         parameters: [
             { name: 'file_path', type: 'string', description: 'The path to the file where the content will be written.' },
             { name: 'content', type: 'string', description: 'The content to be written to the file.' }
         ]
     },
     clear_buffer: {
-        description: 'Clears the message buffer of a module or all modules. The buffer is always automatically cleared at the end of each test case.',
+        description: 'Clears the content of the message buffer. Its possible to clear the buffer content for all modules or for a specific one.',
         parameters: [
             { name: '', type: 'string', description: 'Specific module name, or symbol "*" for all modules.' }
         ]
     },
     json_get: {
-        description: 'Extracts a value from a JSON structure and stores it into a variable.',
+        description: 'Extracts the value of a specified attribute from the content of a variable in JSON format. Its possible to access array indices or to traverse multiple levels in one step.',
         parameters: [
             { name: 'to_var', type: 'string', description: 'Variable to store the extracted value.' },
             { name: 'from_var', type: 'string', description: 'Variable containing the JSON structure.' },
@@ -129,7 +129,7 @@ var keywordDetails = {
         ]
     },
     buffer_get: {
-        description: 'Stores the contents of a message from the message buffer at a specific index into a variable.',
+        description: 'Retrieves the content of a single message from the message buffer of a specific module. The message is accessed using an index, and its content is stored in the defined variable.',
         parameters: [
             { name: 'var_name', type: 'string', description: 'Variable to store the extracted message value.' },
             { name: 'module_name', type: 'string', description: 'Module name, its message buffer will be accessed.' },
@@ -208,12 +208,12 @@ var keywordDetails = {
         description: 'Sends a message from a specified module.',
         parameters: [
             { name: 'name', type: 'string', description: 'Name of the sending module.' },
-            { name: 'message', type: 'string', description: 'Message to send.' },
+            { name: 'message', type: 'string', description: 'Message to send. For different modules, the content may have different format requirements.' },
             { name: 'delay', type: 'long | not required', description: 'How long it will take to send a message after calling this key word.' }
         ]
     },
     create_filter_action: {
-        description: 'Creates a filter for module message receive raction based on specified criteria.',
+        description: 'Creates a filter for actions triggered upon message reception. Text content can be filtered.',
         parameters: [
             { name: 'name', type: 'string', description: 'Name of module.' },
             { name: 'text', type: 'string', description: 'Text to filter on.' },

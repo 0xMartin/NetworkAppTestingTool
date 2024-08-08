@@ -1,0 +1,247 @@
+test_root:
+    max_points: 4.0
+    initial_steps: 
+        # spusti testovany server
+        - run_app: "java -jar app/build/libs/app.jar 9999 5"
+        - wait: 800
+    test_suites: 
+        - test_suite:
+            name: "Testování serveru s jedním klientem"
+            delay: 500
+            initial_steps: 
+                # vytvori virtualniho telnet klienta
+                - create_telnet_client:
+                    name: "client-1"
+                    host: "localhost"
+                    port: 9999
+                - wait: 600
+            test_cases: 
+                - test_case:
+                    name: "Test komunikace jednoho klienta 1"
+                    description: "Bude testována komunikace mezi serverem a jedním telnet klientem. Klient odešle jednu zprávu a bude testováno, zda testovaný echo server odeslal tu stejnou zprávu zpět."
+                    steps: 
+                        # odeslani zpravy na testovany server
+                        - module_send:
+                            name: "client-1"
+                            message: "This is a test message"
+                        - wait: 900
+                        # overeni echo zpravy ze serveru
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                            index: 0
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is a test message"
+                            mode: "equals"
+                            case_sensitive: true
+                - test_case:
+                    name: "Test komunikace jednoho klienta 2"
+                    description: "Bude testována komunikace mezi serverem a jedním telnet klientem."
+                    steps:
+                        # odeslani nekolika zprav na testovany server
+                        - module_send:
+                            name: "client-1"
+                            message: "Testing message 123"
+                        - wait: 600
+                        - module_send:
+                            name: "client-1"
+                            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                        - wait: 900
+                        # overeni echo zprav ze serveru
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                            index: 0
+                        - buffer_get:
+                            var_name: "var-2"
+                            module_name: "client-1"
+                            index: 1
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "Testing message 123"
+                            mode: "equals"
+                        - assert_string:
+                            var_name: "var-2"
+                            expected: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            mode: "equals"
+        - test_suite:
+            name: "Testování serveru s více klienty"
+            delay: 500
+            initial_steps:
+                # vytvori 3 virtualni telnet klienty 
+                - create_telnet_client:
+                    name: "client-1"
+                    host: "localhost"
+                    port: 9999
+                - create_telnet_client:
+                    name: "client-2"
+                    host: "localhost"
+                    port: 9999
+                - create_telnet_client:
+                    name: "client-3"
+                    host: "localhost"
+                    port: 9999
+                - wait: 800
+            test_cases: 
+                - test_case:
+                    name: "Test komunikace více klientů 1"
+                    description: "Bude testována komunikace mezi serverem a více telnet klienty. Každý klient odešle jednu zprávu a bude testováno, zda testovaný echo server odeslal všem klientům tu stejnou zprávu zpět."
+                    steps: 
+                        # odeslani nekolika zprav na testovany server
+                        - module_send:
+                            name: "client-1"
+                            message: "This is testing message 987654321" 
+                        - module_send:
+                            name: "client-2"
+                            message: "This is testing message from client #2" 
+                        - module_send:
+                            name: "client-3"
+                            message: "Next testing message from client 3!!" 
+                        - wait: 900
+                        # overeni prijatych zprav
+                        - buffer_get:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                            index: 0
+                        - buffer_get:
+                            var_name: "var-2"
+                            module_name: "client-2"
+                            index: 0
+                        - buffer_get:
+                            var_name: "var-3"
+                            module_name: "client-3"
+                            index: 0
+                        - assert_string:
+                            var_name: "var-1"
+                            expected: "This is testing message 987654321"
+                            mode: "equals"
+                        - assert_string:
+                            var_name: "var-2"
+                            expected: "This is testing message from client #2"
+                            mode: "equals"
+                        - assert_string:
+                            var_name: "var-3"
+                            expected: "Next testing message from client 3!!"
+                            mode: "equals"
+                - test_case:
+                    name: "Test komunikace více klientů 2"
+                    description: "Bude testována komunikace mezi serverem a více telnet klienty. Každý klient odešle několik zpráv a bude ověřováno, zda odpověděl na všechny z nich."
+                    steps: 
+                        # odeslani nekolika zprav na testovany server
+                        - module_send:
+                            name: "client-1"
+                            message: "This is testing message 1" 
+                        - module_send:
+                            name: "client-1"
+                            message: "This is testing message 2" 
+                        - module_send:
+                            name: "client-1"
+                            message: "This is testing message 3" 
+                        - module_send:
+                            name: "client-2"
+                            message: "This is testing message 1" 
+                        - module_send:
+                            name: "client-2"
+                            message: "This is testing message 2" 
+                        - module_send:
+                            name: "client-2"
+                            message: "This is testing message 3" 
+                        - module_send:
+                            name: "client-2"
+                            message: "This is testing message 4" 
+                        - module_send:
+                            name: "client-3"
+                            message: "This is testing message 1" 
+                        - module_send:
+                            name: "client-3"
+                            message: "This is testing message 2" 
+                        - wait: 1400
+                        # overni poctu prijatych zprav od echo serveru
+                        - count_and_store:
+                            var_name: "var-1"
+                            module_name: "client-1"
+                        - count_and_store:
+                            var_name: "var-2"
+                            module_name: "client-2"
+                        - count_and_store:
+                            var_name: "var-3"
+                            module_name: "client-3"
+                        - assert_equals:
+                            var_name: "var-1"
+                            value: 3
+                        - assert_equals:
+                            var_name: "var-2"
+                            value: 4
+                        - assert_equals:
+                            var_name: "var-3"
+                            value: 2
+        - test_suite:
+            name: "Testování omezení počtu připojení k serveru"
+            delay: 500
+            initial_steps:
+                # vytvori 6 virtualni telnet klienty (max kapacita serveru je nastavena na 5)
+                - create_telnet_client:
+                    name: "client-1"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+                - create_telnet_client:
+                    name: "client-2"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+                - create_telnet_client:
+                    name: "client-3"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+                - create_telnet_client:
+                    name: "client-4"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+                - create_telnet_client:
+                    name: "client-5"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+                - create_telnet_client:
+                    name: "client-6"
+                    host: "localhost"
+                    port: 9999
+                - wait: 500
+            test_cases: 
+                - test_case:
+                    name: "Testování omezení počtu klientů 1"
+                    description: "Server byl spušten s paramatrem, který určuje, že k serveru se může připojit pouze 5 klientů. K tomuto serveru se následně pokouší připojit 6 klientů. U posledního klienta 'client-6' se očekává, že nebude zpět přijímat zprávy od serveru, protože se nemůže připojit."
+                    steps: 
+                        # odeslani testovacich zprav na server
+                        - module_send:
+                            name: "client-5"
+                            message: "This is testing message 1" 
+                        - module_send:
+                            name: "client-6"
+                            message: "This is testing message 1" 
+                        - module_send:
+                            name: "client-5"
+                            message: "This is testing message 2" 
+                        - module_send:
+                            name: "client-6"
+                            message: "This is testing message 2" 
+                        - wait: 1200
+                        # overeni poctu prijatych zprav pro clienta-5 (pripojeneho) a clienta-6 (nepripojeneho)
+                        - count_and_store:
+                            var_name: "var-1"
+                            module_name: "client-5"
+                        - count_and_store:
+                            var_name: "var-2"
+                            module_name: "client-6"
+                        - assert_equals:
+                            var_name: "var-1"
+                            value: 2
+                        - assert_equals:
+                            var_name: "var-2"
+                            value: 0
+                        
+

@@ -17,6 +17,7 @@
         body {
             overflow: auto !important;
             color: #eee;
+            background: #1f1f1f;
         }
 
         h1,
@@ -33,6 +34,26 @@
             max-width: 70%;
             display: block;
             margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding-right: 2em;
+        }
+
+        code.language-yaml {
+            display: block;
+            padding: 1em;
+            margin: 1em 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #2e2e2e;
+            border-left: 4px solid #61afef;
+            color: #abb2bf;
+            white-space: pre-wrap;
         }
     </style>
 </head>
@@ -88,7 +109,8 @@
             framework, the core of which comes from the Test Root node. This basic element, paramount in any
             configuration, determines the overarching setting for the testing process. All test suites are defined in
             this root element.</p>
-        <p><img class="content-img" src="{{ url_for('get_icon', filename='test-config-struct.png') }}" alt="Test structure">
+        <p><img class="content-img" src="{{ url_for('get_icon', filename='test-config-struct.png') }}"
+                alt="Test structure">
         </p>
         <h1 id="-variables-and-received-messages">📩 Variables and Received Messages</h1>
         <p>During testing, you have the flexibility to work with variable contents or with a message buffer containing
@@ -130,480 +152,1243 @@
             values must be of the same type. The value of a parameter can also contain additional nested keywords.</p>
         <p>All keywords are executed synchronously. If any keyword has a parameter of the "delay" type. Its enable a
             delayed call, then the keyword is executed asynchronously.</p>
+
         <h2 id="main-keywords">Main Keywords</h2>
-        <p>This set comprises all the keywords that directly define the testing structure.</p>
-        <ol>
-            <li><strong><code>test_root</code> – Marks the root element of the test configuration. It must be located at
-                    the beginning of the testing configuration. Tests start executing from this point.</strong>
-                <ul>
-                    <li><code>max_points</code>: <em>Type</em>: float, <em>Description</em>: Maximum points for the
-                        test.</li>
-                    <li><code>initial_steps</code>: <em>Type</em>: list | not required, <em>Description</em>: Initial
-                        steps for all test suites. These steps are performed only once at the beginning and then the
-                        test suites are executed.</li>
-                    <li><code>test_suites</code>: <em>Type</em>: list, <em>Description</em>: List of test suites.</li>
-                </ul>
-            </li>
-            <li><strong><code>test_suite</code> – Used to define a testing suite.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Name of the test suite.</li>
-                    <li><code>delay</code>: <em>Type</em>: long | not required, <em>Description</em>: Delay between
-                        executed test cases. After finishing of the test case, it will wait for the specified time.
-                        (default: 500 ms)</li>
-                    <li><code>initial_steps</code>: <em>Type</em>: list | not required, <em>Description</em>: Initial
-                        steps for the test suite. These steps are performed only once at the beginning.</li>
-                    <li><code>test_cases</code>: <em>Type</em>: list, <em>Description</em>: List of test cases.</li>
-                </ul>
-            </li>
-            <li><strong><code>test_case</code> – Allows the definition of individual test cases.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Name of the test case.</li>
-                    <li><code>description</code>: <em>Type</em>: string, <em>Description</em>: Description of the test
-                        case.</li>
-                    <li><code>steps</code>: <em>Type</em>: list, <em>Description</em>: Steps to execute in the test
-                        case.</li>
-                </ul>
-            </li>
-        </ol>
+        <p>This set contains all the keywords that directly define the testing structure.</p>
+        <h3 id="test_root">test_root</h3>
+        <p>Marks the root element of the test configuration. It must be located at the beginning of the testing
+            configuration. Tests start executing from this point.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>max_points</code></td>
+                    <td>float | <em>not required</em></td>
+                    <td>Maximum points for the test. Used in the evaluation of graded assignments.</td>
+                </tr>
+                <tr>
+                    <td><code>initial_steps</code></td>
+                    <td>list | <em>not required</em></td>
+                    <td>Initial steps for all test suites. These steps are performed only once at the beginning and then
+                        the test suites are executed.</td>
+                </tr>
+                <tr>
+                    <td><code>test_suites</code></td>
+                    <td>list</td>
+                    <td>List of test all suites.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">test_root:
+    max_points: 10.0
+    initial_steps: []
+    test_suites: []
+</code></pre>
+        <h3 id="test_suite">test_suite</h3>
+        <p>Used to define a testing suite.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Name of the test suite.</td>
+                </tr>
+                <tr>
+                    <td><code>delay</code></td>
+                    <td>long | <em>not required</em></td>
+                    <td>Delay between executed test cases. After finishing of the test case, it will wait for the
+                        specified time. (default: 500 ms)</td>
+                </tr>
+                <tr>
+                    <td><code>initial_steps</code></td>
+                    <td>list | <em>not required</em></td>
+                    <td>Initial steps for the test suite. These steps are performed only once at the beginning.</td>
+                </tr>
+                <tr>
+                    <td><code>test_cases</code></td>
+                    <td>list</td>
+                    <td>List of test cases.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">test_suite:
+    name: &quot;suite_name&quot;
+    delay: 500
+    initial_steps: []
+    test_cases: []
+</code></pre>
+        <h3 id="test_case">test_case</h3>
+        <p>Allows the definition of individual test cases.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Name of the test case.</td>
+                </tr>
+                <tr>
+                    <td><code>description</code></td>
+                    <td>string</td>
+                    <td>Description of the test case.</td>
+                </tr>
+                <tr>
+                    <td><code>steps</code></td>
+                    <td>list</td>
+                    <td>Steps to execute in the test case.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">test_case:
+    name: &quot;Case name&quot;
+    description: &quot;Description here&quot;
+    steps: []
+</code></pre>
+        <hr>
         <h2 id="keywords-for-controlling-external-applications">Keywords for Controlling External Applications</h2>
         <p>This set includes keywords that enable working with an external application. It&#39;s primarily designed for
-            launching and communicating with the tested application.</p>
-        <ol>
-            <li><strong><code>run_app</code> - Launches the application. At any given time, only one external
-                    application can run. It allows the definition of arguments to be passed to the application upon its
-                    launch.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: string, <em>Description</em>: Command to run the
-                        application. Can run only one application at a time.</li>
-                </ul>
-            </li>
-            <li><strong><code>run_app_later</code> - Launches the application with a time delay. This operation is
-                    asynchronous. Again, only one external application can run at a time.</strong>
-                <ul>
-                    <li><code>command</code>: <em>Type</em>: string, <em>Description</em>: Command to run the
-                        application. Can run only one application at a time.</li>
-                    <li><code>delay</code>: <em>Type</em>: long, <em>Description</em>: Time after which the application
-                        starts.</li>
-                </ul>
-            </li>
-            <li><strong><code>reload_app</code> - Stops the currently running application and restarts it.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: string, <em>Description</em>: Command to reload the
-                        application.</li>
-                </ul>
-            </li>
-            <li><strong><code>standard_stream_send</code> - Sends a message to the running application via standard
-                    streaming.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Message to send through the
-                        standard stream.</li>
-                </ul>
-            </li>
-        </ol>
+            launching and communicating with the tested applications.</p>
+        <h3 id="run_app">run_app</h3>
+        <p>Launches the application. At any given time, only one external application can run! It allows the definition
+            of arguments to be passed to the application upon its launch.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>string</td>
+                    <td>Command to run the application. Can run only one application at a time.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">run_app: &quot;java -jar app.jar -arg1 111 -arg2 222&quot;
+</code></pre>
+        <h3 id="run_app_later">run_app_later</h3>
+        <p>Launches the application with a time delay. This operation is asynchronous. Again, only one external
+            application can run at a time.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>command</code></td>
+                    <td>string</td>
+                    <td>Command to run the application. Can run only one application at a time.</td>
+                </tr>
+                <tr>
+                    <td><code>delay</code></td>
+                    <td>long</td>
+                    <td>Time after which the application starts.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">run_app_later: 
+    command: &quot;java -jar app.jar -arg1 111 -arg2 222&quot;
+    delay: 500
+</code></pre>
+        <h3 id="reload_app">reload_app</h3>
+        <p>Stops the currently running application and launches the new application.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>string</td>
+                    <td>Command to reload the application.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">reload_app: &quot;java -jar app.jar&quot;
+</code></pre>
+        <h3 id="standard_stream_send">standard_stream_send</h3>
+        <p>Sends a message to the running application via standard streaming.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Message to send through the standard stream.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">standard_stream_send: &quot;Message to send&quot;
+</code></pre>
+        <hr>
         <h2 id="general-keywords">General Keywords</h2>
-        <p>This set encompasses keywords for working with variables, waiting, conditional waiting, and more.</p>
-        <ol>
-            <li><strong><code>wait</code> - Pauses the test execution for a defined duration.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: integer, <em>Description</em>: Time to wait in
-                        milliseconds.</li>
-                </ul>
-            </li>
-            <li><strong><code>wait_until</code> - Waits until a specific action occurs, triggered by the reception of a
-                    message from a certain communication module. It can be extended with filtering conditions. The
-                    content of the message that triggered the action is automatically stored in a variable for potential
-                    testing.</strong>
-                <ul>
-                    <li><code>module_name</code>: <em>Type</em>: string, <em>Description</em>: The module that should
-                        trigger the action. You can specify multiple modules this way: module-1 &amp; module-2.</li>
-                    <li><code>time_out</code>: <em>Type</em>: integer | not required, <em>Description</em>: Maximum
-                        waiting time in milliseconds. (default: 10 000 ms)</li>
-                </ul>
-            </li>
-            <li><strong><code>store_to_var</code> - Retrieves and stores the content of a specific message from the
-                    message buffer into the chosen variable. If multiple messages match the specified search conditions,
-                    the variable stores the first one found, i.e., the one received first.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Name of the variable to
-                        store the value of the message.</li>
-                    <li><code>module_name</code>: <em>Type</em>: string, <em>Description</em>: The module from which the
-                        message was received.</li>
-                    <li><code>text</code>: <em>Type</em>: string | not required, <em>Description</em>: Text that must be
-                        included in the message. (default: &quot;&quot;)</li>
-                    <li><code>tag</code>: <em>Type</em>: string | not required, <em>Description</em>: Required tag of
-                        the message. (default: &quot;&quot;)</li>
-                    <li><code>mode</code>: <em>Type</em>: string | not required, <em>Description</em>: Finding mode.
-                        There are these modes: &quot;equals&quot;, &quot;contains&quot;, &quot;startswith&quot;,
-                        &quot;endswith&quot;. (default: equals)</li>
-                    <li><code>case_sensitive | not required</code>: <em>Type</em>: boolean, <em>Description</em>:
-                        Whether the filter should be case sensitive.</li>
-                </ul>
-            </li>
-            <li><strong><code>count_and_store</code> - Counts the number of received messages during a single test case
-                    and saves this count into a variable.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the count.
-                    </li>
-                    <li><code>module_name</code>: <em>Type</em>: string, <em>Description</em>: Module whose received
-                        messages will be counted.</li>
-                </ul>
-            </li>
-            <li><strong><code>read_file</code> - Reads the content from the specified file on the local device and
-                    stores its value into the defined variable.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the file
-                        content.</li>
-                    <li><code>file_path</code>: <em>Type</em>: string, <em>Description</em>: Path to the file to be
-                        read.</li>
-                </ul>
-            </li>
-            <li><strong><code>set_var</code> - Sets the specified variable to the defined content.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the value.
-                    </li>
-                    <li><code>value</code>: <em>Type</em>: string, <em>Description</em>: The value that will be stored
-                        in the variable.</li>
-                </ul>
-            </li>
-            <li><strong><code>replace</code> - Retrieves the content of a specific variable, replacing all desired words
-                    with their replacements. The result is stored in another variable.</strong>
-                <ul>
-                    <li><code>to_var</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the modified
-                        text.</li>
-                    <li><code>from_var</code>: <em>Type</em>: string, <em>Description</em>: Variable containing the
-                        original text.</li>
-                    <li><code>str_from</code>: <em>Type</em>: list, <em>Description</em>: String to be replaced in the
-                        original text.</li>
-                    <li><code>str_to</code>: <em>Type</em>: list, <em>Description</em>: String to replace occurrences of
-                        <code>str_from</code> in the original text.
-                    </li>
-                </ul>
-            </li>
-            <li><strong><code>write_file</code> - Writes the defined content into a file on the local device.</strong>
-                <ul>
-                    <li><code>file_path</code>: <em>Type</em>: string, <em>Description</em>: The path to the file where
-                        the content will be written.</li>
-                    <li><code>content</code>: <em>Type</em>: string, <em>Description</em>: The content to be written to
-                        the file.</li>
-                </ul>
-            </li>
-            <li><strong><code>clear_buffer</code> - Clears the content of the message buffer. It&#39;s possible to clear
-                    the buffer content for all modules or for a specific one.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: string, <em>Description</em>: Specific module name, or
-                        symbol &quot;*&quot; for all modules.</li>
-                </ul>
-            </li>
-            <li><strong><code>json_get</code> - Extracts the value of a specified attribute from the content of a
-                    variable in JSON format. It&#39;s possible to access array indices or to traverse multiple levels in
-                    one step.</strong>
-                <ul>
-                    <li><code>to_var</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the
-                        extracted value.</li>
-                    <li><code>from_var</code>: <em>Type</em>: string, <em>Description</em>: Variable containing the JSON
-                        structure.</li>
-                    <li><code>param_name</code>: <em>Type</em>: string, <em>Description</em>: Name of the parameter to
-                        extract from the JSON. If the structure is a list, specify an index to get one element. It is
-                        also possible to approach a certain parameter hierarchically in depth, when the parameter names
-                        are separated by &quot;:&quot;. For example: parent_param:child_param.</li>
-                </ul>
-            </li>
-            <li><strong><code>buffer_get</code> - Retrieves the content of a single message from the message buffer of a
-                    specific module. The message is accessed using an index, and its content is stored in the defined
-                    variable.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to store the
-                        extracted message value.</li>
-                    <li><code>module_name</code>: <em>Type</em>: string, <em>Description</em>: Module name, its message
-                        buffer will be accessed.</li>
-                    <li><code>index</code>: <em>Type</em>: long, <em>Description</em>: Index of the message whose value
-                        will be extracted from the buffer into a variable. When the index is negative, it indexes from
-                        the back of the buffer. -1 is the last index of the buffer. At the last position is the last
-                        received message.</li>
-                </ul>
-            </li>
-        </ol>
+        <p>This set includes keywords for working with variables, waiting, conditional waiting, and more.</p>
+        <h3 id="wait">wait</h3>
+        <p>Pauses the test execution for a defined duration.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>integer</td>
+                    <td>Time to wait in milliseconds.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">wait: 1000
+</code></pre>
+        <h3 id="wait_until">wait_until</h3>
+        <p>It waits until a message is received from a certain communication module. Messages can be filtered using the
+            keyword <code>create_filter_action</code>. The content of the message that triggered the action is
+            automatically saved in the <code>(module-name)-action-msg</code> variable for possible testing.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>module_name</code></td>
+                    <td>string</td>
+                    <td>The module that should trigger the action. You can specify multiple modules this way: module-1
+                        &amp; module-2.</td>
+                </tr>
+                <tr>
+                    <td><code>time_out</code></td>
+                    <td>integer | <em>not required</em></td>
+                    <td>Maximum waiting time in milliseconds. <em>(default: 10 000 ms)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">wait_until:
+    module_name: &quot;module-1 &amp; module-2&quot;
+    time_out: 30000
+</code></pre>
+        <h3 id="store_to_var">store_to_var</h3>
+        <p>Retrieves and stores the content of a specific message from the message buffer into the chosen variable. If
+            multiple messages match the specified search conditions, the variable stores the first one found, i.e., the
+            one received first.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Name of the variable to store the value of the message.</td>
+                </tr>
+                <tr>
+                    <td><code>module_name</code></td>
+                    <td>string</td>
+                    <td>The module from which the message was received.</td>
+                </tr>
+                <tr>
+                    <td><code>text</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Text that must be included in the message. <em>(default: &quot;&quot;)</em></td>
+                </tr>
+                <tr>
+                    <td><code>tag</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Required tag of the message. <em>(default: &quot;&quot;)</em></td>
+                </tr>
+                <tr>
+                    <td><code>mode</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Finding mode. There are these modes: <code>&quot;equals&quot;</code>,
+                        <code>&quot;contains&quot;</code>, <code>&quot;startswith&quot;</code>,
+                        <code>&quot;endswith&quot;</code>. <em>(default: equals)</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>case_sensitive</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>Whether the filter should be case sensitive.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">store_to_var:
+    var_name: &quot;var-1&quot;
+    module_name: &quot;module-1&quot;
+    text: &quot;Search text&quot;
+    tag: &quot;message-tag&quot;
+    mode: &quot;equals&quot;
+    case_sensitive: true
+</code></pre>
+        <h3 id="count_and_store">count_and_store</h3>
+        <p>Counts the number of received messages during a single test case and saves this count into a variable.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to store the count.</td>
+                </tr>
+                <tr>
+                    <td><code>module_name</code></td>
+                    <td>string</td>
+                    <td>Module whose received messages will be counted.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">count_and_store:
+    var_name: &quot;var-1&quot;
+    module_name: &quot;module-1
+</code></pre>
+        <h3 id="read_file">read_file</h3>
+        <p>Reads the content from the specified file on the local device and stores its value into the defined variable.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to store the file content.</td>
+                </tr>
+                <tr>
+                    <td><code>file_path</code></td>
+                    <td>string</td>
+                    <td>Path to the file to be read.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">read_file:
+    var_name: &quot;var-1&quot;
+    file_path: &quot;path/to/file.txt&quot;
+</code></pre>
+        <h3 id="set_var">set_var</h3>
+        <p>Sets the specified variable to the defined content.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to store the value.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>string</td>
+                    <td>The value that will be stored in the variable.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">set_var:
+    var_name: &quot;var-1&quot;
+    value: &quot;New value&quot;
+</code></pre>
+        <h3 id="replace">replace</h3>
+        <p>Retrieves the content of a specific variable, replacing all desired words with their replacements. The result
+            is stored in another variable.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>to_var</code></td>
+                    <td>string</td>
+                    <td>Variable to store the modified text.</td>
+                </tr>
+                <tr>
+                    <td><code>from_var</code></td>
+                    <td>string</td>
+                    <td>Variable containing the original text.</td>
+                </tr>
+                <tr>
+                    <td><code>str_from</code></td>
+                    <td>list</td>
+                    <td>String to be replaced in the original text.</td>
+                </tr>
+                <tr>
+                    <td><code>str_to</code></td>
+                    <td>list</td>
+                    <td>String to replace occurrences of <code>str_from</code> in the original text.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">replace:
+    to_var: &quot;var-1&quot;
+    from_var: &quot;var-2&quot;
+    str_from: [&quot;TMP_PARAM_1&quot;, &quot;TMP_PARAM_2&quot;]
+    str_to: [&quot;Value&quot;, &quot;1234&quot;]
+</code></pre>
+        <h3 id="write_file">write_file</h3>
+        <p>Writes the defined content into a file on the local device.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>file_path</code></td>
+                    <td>string</td>
+                    <td>The path to the file where the content will be written.</td>
+                </tr>
+                <tr>
+                    <td><code>content</code></td>
+                    <td>string</td>
+                    <td>The content to be written to the file.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">write_file:
+    file_path: &quot;path/to/file.txt&quot;
+    content: &quot;this text will be saved in a file with the value of this variable $your-var&quot;
+</code></pre>
+        <h3 id="clear_buffer">clear_buffer</h3>
+        <p>Clears the content of the message buffer. It&#39;s possible to clear the buffer content for all modules or
+            for a specific one.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>string</td>
+                    <td>Specific module name, or symbol <code>*</code> for all modules.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">clear_buffer: &quot;module-1&quot;
+</code></pre>
+        <h3 id="json_get">json_get</h3>
+        <p>Extracts the value of a specified attribute from the content of a variable in JSON format. It&#39;s possible
+            to access array indices or to traverse multiple levels in one step.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>to_var</code></td>
+                    <td>string</td>
+                    <td>Variable to store the extracted value.</td>
+                </tr>
+                <tr>
+                    <td><code>from_var</code></td>
+                    <td>string</td>
+                    <td>Variable containing the JSON structure.</td>
+                </tr>
+                <tr>
+                    <td><code>param_name</code></td>
+                    <td>string</td>
+                    <td>Name of the parameter to extract from the JSON. If the structure is a list, specify an index to
+                        get one element. It is also possible to approach a certain parameter hierarchically in depth,
+                        when the parameter names are separated by &quot;:&quot;. For example: parent_param:child_param.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">json_get:
+    to_var: &quot;var-1&quot;
+    from_var: &quot;var-2&quot;
+    param_name: &quot;id&quot;
+
+json_get:
+    to_var: &quot;var-1&quot;
+    from_var: &quot;var-2&quot;
+    param_name: &quot;createAuthorResponse:author:id&quot;
+</code></pre>
+        <h3 id="buffer_get">buffer_get</h3>
+        <p>Retrieves the content of a single message from the message buffer of a specific module. The message is
+            accessed using an index, and its content is stored in the defined variable.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to store the extracted message value.</td>
+                </tr>
+                <tr>
+                    <td><code>module_name</code></td>
+                    <td>string</td>
+                    <td>Module name; its message buffer will be accessed.</td>
+                </tr>
+                <tr>
+                    <td><code>index</code></td>
+                    <td>long</td>
+                    <td>Index of the message whose value will be extracted from the buffer into a variable. When the
+                        index is negative, it indexes from the back of the buffer. <code>-1</code> is the last index of
+                        the buffer. At the last position is the last received message.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">buffer_get:
+    var_name: &quot;var-1&quot;
+    module_name: &quot;module-1&quot;
+    index: 0
+</code></pre>
+        <hr>
         <h2 id="keywords-for-assertion-definition">Keywords for Assertion Definition</h2>
         <p>This set comprises keywords that allow the definition of assertions that must be met during testing.</p>
-        <ol>
-            <li><strong><code>assert_string</code> - Verifies if a variable contains the expected string.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to perform the
-                        assertion on.</li>
-                    <li><code>expected</code>: <em>Type</em>: string, <em>Description</em>: The expected string.</li>
-                    <li><code>mode</code>: <em>Type</em>: string | not required, <em>Description</em>: Comparison mode.
-                        There are these modes: &quot;equals&quot;, &quot;contains&quot;, &quot;startswith&quot;,
-                        &quot;endswith&quot;. (default: equals)</li>
-                    <li><code>case_sensitive</code>: <em>Type</em>: boolean | not required, <em>Description</em>:
-                        Determines if the comparison should be case sensitive. (default: true)</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_lower</code> - Checks if a numeric variable is lower than the expected
-                    value.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to perform the
-                        assertion on.</li>
-                    <li><code>value</code>: <em>Type</em>: float, <em>Description</em>: The upper limit for the variable
-                        value.</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_larger</code> - Checks if a numeric variable is larger than the expected
-                    value.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to perform the
-                        assertion on.</li>
-                    <li><code>value</code>: <em>Type</em>: float, <em>Description</em>: The lower limit for the variable
-                        value.</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_equals</code> - Checks if a variable equals the expected number. It&#39;s possible
-                    to set a certain tolerance range.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: Variable to perform the
-                        assertion on.</li>
-                    <li><code>value</code>: <em>Type</em>: float, <em>Description</em>: Expected value of the variable.
-                    </li>
-                    <li><code>tolerance</code>: <em>Type</em>: float, <em>Description</em>: Permissible deviation from
-                        the expected value.</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_range</code> - Verifies if the sequence of received messages from two modules falls
-                    within a specified segment. Simple comparison rules can also be defined for comparison.</strong>
-                <ul>
-                    <li><code>module1_name</code>: <em>Type</em>: string, <em>Description</em>: First module involved in
-                        the assertion.</li>
-                    <li><code>module2_name</code>: <em>Type</em>: string, <em>Description</em>: Second module involved
-                        in the assertion.</li>
-                    <li><code>start</code>: <em>Type</em>: integer, <em>Description</em>: Start index for the range
-                        check.</li>
-                    <li><code>count</code>: <em>Type</em>: integer, <em>Description</em>: Number of values to check
-                        within the range.</li>
-                    <li><code>rule</code>: <em>Type</em>: string, <em>Description</em>: Message content comparison rule.
-                        Format is: <message separator>|<X>;<X>;... Where is <X> is # (equals), ? (arbitrary), number
-                                        0-100 diff tolerance.</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_app_is_running</code> - Verifies if an external application is currently
-                    running.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_module_is_running</code> - Verifies if a specific module is currently
-                    running.</strong>
-                <ul>
-                    <li><code>module_name</code>: <em>Type</em>: string, <em>Description</em>: Name of module.</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>assert_json</code> - Allows verification if the JSON object in a variable is identical to
-                    the expected JSON object.</strong>
-                <ul>
-                    <li><code>var_name</code>: <em>Type</em>: string, <em>Description</em>: The name of the variable
-                        containing the JSON object to be asserted.</li>
-                    <li><code>expected</code>: <em>Type</em>: string, <em>Description</em>: The expected JSON object in
-                        string format for comparison.</li>
-                    <li><code>exact_mode</code>: <em>Type</em>: string, <em>Description</em>: Specifies a comparison
-                        mode for JSON objects that requires strict equality between expected and actual JSON. If is
-                        false, it only compares parameters that are in expected JSON. (default: false)</li>
-                    <li><code>result</code>: <em>Type</em>: boolean | not required, <em>Description</em>: It determines
-                        the expected outcome of the assertion. (default: true)</li>
-                </ul>
-            </li>
-        </ol>
+        <h3 id="assert_string">assert_string</h3>
+        <p>Verifies if a variable contains the expected string.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to perform the assertion on.</td>
+                </tr>
+                <tr>
+                    <td><code>expected</code></td>
+                    <td>string</td>
+                    <td>The expected string.</td>
+                </tr>
+                <tr>
+                    <td><code>mode</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Comparison mode. There are these modes: <code>&quot;equals&quot;</code>,
+                        <code>&quot;contains&quot;</code>, <code>&quot;startswith&quot;</code>,
+                        <code>&quot;endswith&quot;</code>. <em>(default: equals)</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>case_sensitive</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>Determines if the comparison should be case sensitive. <em>(default: true)</em></td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_string:
+    var_name: &quot;var-1&quot;
+    expected: &quot;Expected value&quot;
+    mode: &quot;equals&quot;
+    case_sensitive: true
+    result: true
+</code></pre>
+        <h3 id="assert_lower">assert_lower</h3>
+        <p>Checks if a numeric variable is lower than the expected value.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to perform the assertion on.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>float</td>
+                    <td>The upper limit for the variable value.</td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_lower:
+    var_name: &quot;var-1&quot;
+    value: 100.0
+    result: true
+</code></pre>
+        <h3 id="assert_larger">assert_larger</h3>
+        <p>Checks if a numeric variable is larger than the expected value.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to perform the assertion on.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>float</td>
+                    <td>The lower limit for the variable value.</td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_larger:
+    var_name: &quot;var-1&quot;
+    value: 100.0
+    result: true
+</code></pre>
+        <h3 id="assert_equals">assert_equals</h3>
+        <p>Checks if a variable equals the expected number. It&#39;s possible to set a certain tolerance range.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>Variable to perform the assertion on.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>float</td>
+                    <td>Expected value of the variable.</td>
+                </tr>
+                <tr>
+                    <td><code>tolerance</code></td>
+                    <td>float</td>
+                    <td>Permissible deviation from the expected value.</td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_equals:
+    var_name: &quot;var-1&quot;
+    value: 100.0
+    tolerance: 5
+    result: true
+</code></pre>
+        <h3 id="assert_range">assert_range</h3>
+        <p>Verifies if the sequence of received messages from two modules falls within a specified segment. Simple
+            comparison rules can also be defined for comparison.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>module1_name</code></td>
+                    <td>string</td>
+                    <td>First module involved in the assertion.</td>
+                </tr>
+                <tr>
+                    <td><code>module2_name</code></td>
+                    <td>string</td>
+                    <td>Second module involved in the assertion.</td>
+                </tr>
+                <tr>
+                    <td><code>start</code></td>
+                    <td>integer</td>
+                    <td>Start index for the range check.</td>
+                </tr>
+                <tr>
+                    <td><code>count</code></td>
+                    <td>integer</td>
+                    <td>Number of values to check within the range.</td>
+                </tr>
+                <tr>
+                    <td><code>rule</code></td>
+                    <td>string</td>
+                    <td>Message content comparison rule. Format is: <code>(message separator)|(X);(X);...</code> Where
+                        <code>(X)</code> is <code>#</code> <code>(equals)</code>, <code>?</code>
+                        <code>(arbitrary)</code>, number <code>0-100 diff tolerance</code>. <strong>Example:</strong>
+                        &quot;,|#;?;15&quot;
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_range:
+    module1_name: &quot;module-1&quot;
+    module2_name: &quot;module-2&quot;
+    start: 0
+    count: 10
+    rule: &quot;;|#;10&quot;
+    result: true
+</code></pre>
+        <h3 id="assert_app_is_running">assert_app_is_running</h3>
+        <p>Verifies if an external application is currently running.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_app_is_running: true
+</code></pre>
+        <h3 id="assert_module_is_running">assert_module_is_running</h3>
+        <p>Verifies if a specific module is currently running.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>module_name</code></td>
+                    <td>string</td>
+                    <td>Name of module.</td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_module_is_running: 
+    module_name: &quot;module-1&quot;
+    result: true
+</code></pre>
+        <h3 id="assert_json">assert_json</h3>
+        <p>Allows verification if the JSON object in a variable is identical to the expected JSON object.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>var_name</code></td>
+                    <td>string</td>
+                    <td>The name of the variable containing the JSON object to be asserted.</td>
+                </tr>
+                <tr>
+                    <td><code>expected</code></td>
+                    <td>string</td>
+                    <td>The expected JSON object in string format for comparison.</td>
+                </tr>
+                <tr>
+                    <td><code>exact_mode</code></td>
+                    <td>string</td>
+                    <td>Specifies a comparison mode for JSON objects that requires strict equality between expected and
+                        actual JSON. If false, it only compares parameters that are in the expected JSON. <em>(default:
+                            false)</em></td>
+                </tr>
+                <tr>
+                    <td><code>result</code></td>
+                    <td>boolean | <em>not required</em></td>
+                    <td>It determines the expected outcome of the assertion. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">assert_json: 
+    var_name: &quot;module-1&quot;
+    expected: &#39;{&quot;name&quot;: &quot;value&quot;, &quot;atr1&quot;: 0}&#39;
+    exact_mode: false
+    result: true
+</code></pre>
+        <hr>
         <h2 id="keywords-for-working-with-modules">Keywords for Working with Modules</h2>
         <p>This set includes keywords that enable working with communication modules.</p>
-        <ol>
-            <li><strong><code>create_telnet_client</code> - Creates a module that launches a new virtual Telnet
-                    client.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>host</code>: <em>Type</em>: string | not required, <em>Description</em>: Hostname or IP
-                        address to connect to. (default: localhost)</li>
-                    <li><code>port</code>: <em>Type</em>: integer | not required, <em>Description</em>: Port number on
-                        the host to connect to. (default: 23)</li>
-                </ul>
-            </li>
-            <li><strong><code>create_telnet_server</code> - Creates a module that launches a virtual Telnet
-                    server.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>port</code>: <em>Type</em>: integer | not required, <em>Description</em>: Port number to
-                        listen on. (default: 23)</li>
-                </ul>
-            </li>
-            <li><strong><code>create_web_crawler</code> - Creates a module that launches a web crawler.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>start_url</code>: <em>Type</em>: string, <em>Description</em>: URL to start crawling from.
-                    </li>
-                    <li><code>max_depth</code>: <em>Type</em>: integer, <em>Description</em>: Maximum depth to crawl.
-                    </li>
-                    <li><code>analyzer</code>: <em>Type</em>: string, <em>Description</em>: Analyzer to use for parsing
-                        the web pages.</li>
-                </ul>
-            </li>
-            <li><strong><code>create_email_server</code> - Creates a module that launches a virtual email
-                    server.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>port</code>: <em>Type</em>: integer, <em>Description</em>: Port number on which the email
-                        server will listen.</li>
-                </ul>
-            </li>
-            <li><strong><code>create_rest_tester</code> - Creates a module that launches an HTTP client for testing REST
-                    APIs.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>url</code>: <em>Type</em>: string, <em>Description</em>: URL of the REST API to test.</li>
-                    <li><code>request_type</code>: <em>Type</em>: string, <em>Description</em>: Type of HTTP request to
-                        send (GET, POST, etc.).</li>
-                    <li><code>content_type</code>: <em>Type</em>: string, <em>Description</em>: Data type in request.
-                        (default: application/json).</li>
-                </ul>
-            </li>
-            <li><strong><code>create_soap_tester</code> - Creates a module for testing SOAP services.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>url</code>: <em>Type</em>: string, <em>Description</em>: URL of the SOAP service to test.
-                    </li>
-                </ul>
-            </li>
-            <li><strong><code>create_mqtt_client</code> - Creates a module that launches a virtual MQTT client.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>topics</code>: <em>Type</em>: array | not required, <em>Description</em>: List of topics
-                        to subscribe to. (default: empty)</li>
-                    <li><code>broker_url</code>: <em>Type</em>: string | not required, <em>Description</em>: URL of the
-                        MQTT broker to connect to. (default: tcp://localhost:1883)</li>
-                </ul>
-            </li>
-            <li><strong><code>create_mqtt_broker</code> - Creates a module that launches an MQTT broker.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Unique name for the module.</li>
-                    <li><code>port</code>: <em>Type</em>: integer | not required, <em>Description</em>: Port number for
-                        the MQTT broker. (default: 1883)</li>
-                </ul>
-            </li>
-            <li><strong><code>termite_module</code> - Terminates a running module that is no longer needed.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: string, <em>Description</em>: Name of the module to
-                        terminate.</li>
-                </ul>
-            </li>
-            <li><strong><code>module_send</code> - Sends a message using a specific module.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Name of the sending module.</li>
-                    <li><code>message</code>: <em>Type</em>: string, <em>Description</em>: Message to send.</li>
-                    <li><code>delay | not required</code>: <em>Type</em>: long, <em>Description</em>: How long it will
-                        take to send a message after calling this key word.</li>
-                </ul>
-            </li>
-            <li><strong><code>create_filter_action</code> - Creates a filter for actions triggered upon message
-                    reception. Text content can be filtered.</strong>
-                <ul>
-                    <li><code>name</code>: <em>Type</em>: string, <em>Description</em>: Name of module.</li>
-                    <li><code>text</code>: <em>Type</em>: string, <em>Description</em>: Text to filter on.</li>
-                    <li><code>tag</code>: <em>Type</em>: string | not required, <em>Description</em>: Tag of message.
-                        (default: &quot;&quot;)</li>
-                    <li><code>mode</code>: <em>Type</em>: string | not required, <em>Description</em>: Filter mode.
-                        There are this modes: &quot;equals&quot;, &quot;contains&quot;, &quot;startswith&quot;,
-                        &quot;endswith&quot;. (default: equals)</li>
-                    <li><code>case_sensitive | not required</code>: <em>Type</em>: boolean, <em>Description</em>:
-                        Whether the filter should be case sensitive. (default: true)</li>
-                </ul>
-            </li>
-            <li><strong><code>clear_filter_actions</code> - Removes all action filters for a specific module.</strong>
-                <ul>
-                    <li><code>default</code>: <em>Type</em>: string, <em>Description</em>: Name of module.</li>
-                </ul>
-            </li>
-        </ol>
-        <h1 id="-working-with-communication-modules">📦 Working with Communication Modules</h1>
-        <p>Each module has its specific behavior and ways in which it needs to be handled. This section describes each
-            of them and the methods to properly utilize their functionality when writing testing configurations.</p>
-        <p>Upon receiving a message by any module, its content is appropriately processed and inserted into the message
-            buffer. In all cases, the content of this last received message is also stored in a variable with the
-            following name format: &quot;<module-name>-last-msg&quot;. Using this variable can significantly simplify
-                configuration writing in certain cases.</p>
-        <h2 id="external-application-launcher">External Application Launcher</h2>
-        <p>This module is automatically created before the actual testing begins, and it&#39;s not necessary to create
-            it manually. It&#39;s not possible to create multiple instances of this module.</p>
-        <p>For message sending use <strong>&#39;standard_stream_send&#39;</strong> instead of
-            <strong>&#39;module_send&#39;</strong>.
-        </p>
-        <p>Messages received by this module are inserted into the message buffer. The tag of each inserted message is
-            set to an empty value.</p>
-        <h2 id="telnet-client-module">Telnet Client Module</h2>
-        <p>This module must be created before its functionalities are utilized during testing. Multiple instances of
-            this module can exist within a testing suite. The same applies to all other modules unless stated otherwise.
-        </p>
-        <p>Messages sent using the &#39;module_send&#39; keyword to this module <strong>don&#39;t require any specific
-                format</strong>. It sends any passed text string.</p>
-        <p>Messages received by this module are inserted into the message buffer. The tag of each inserted message is
-            set to an empty value.</p>
-        <h2 id="telnet-server-module">Telnet Server Module</h2>
-        <p>For the Telnet server, messages sent using the &#39;module_send&#39; keyword <strong>don&#39;t require any
-                specific format</strong>. It sends any passed text string to all connected clients.</p>
-        <p>All messages from clients received by this module are inserted into the message buffer. The tag of each
-            inserted message is set to the ID of the client that sent the message. The client ID follows the format
-            <strong>&quot;client-#&quot;</strong> where <strong>#</strong> represents the client number. The client
-            number depends on the order in which they connected to the server. The first connected client will have the
-            ID <strong>&quot;client-1&quot;</strong>, the second will have <strong>&quot;client-2&quot;</strong>, and so
-            on.
-        </p>
-        <h2 id="smtp-email-server-module">SMTP Email Server Module</h2>
-        <p>This module <strong>does not support sending</strong> messages using the &#39;module_send&#39; keyword. It
-            only starts the email server and accepts emails.</p>
-        <p>The content of all emails received by this module is inserted into the message buffer. The tag of each
-            inserted message is set to the <strong>subject value</strong> of the respective email.</p>
-        <h2 id="rest-tester-module">REST Tester Module</h2>
-        <p>For the REST tester module, the message content sent using the &#39;module_send&#39; keyword must
-            <strong>have a specific format</strong>. The text sent by this module can contain multiple parameters. For
-            this purpose, the text in the message must be in the following format:
-            <code><strong>(name_1)=(value_1);(name_2)=(value_2)</strong></code>
-        </p>
-        <p>Where <strong>(name)</strong> is the parameter name to be inserted into the query string. If this
-            name starts with the prefix <strong>&#39;#&#39;</strong>, its content will be inserted into the request
-            body.
-            All responses to requests from the server received by this module are inserted into the message buffer in
-            <strong>JSON format</strong>. The tag of each inserted message is set to the <strong>endpoint
-                address</strong> from which the response was received.
-        </p>
-        <h2 id="soap-tester-module">SOAP Tester Module</h2>
-        <p>For the SOAP tester module, the message content sent using the &#39;module_send&#39; keyword must
-            <strong>have a specific format</strong>. The sent request content must be in XML format, and its structure
-            must be as required by the tested SOAP web service.
-            The request can be entered manually or loaded directly from a prepared file, and the loaded content can be
-            sent using this method.
-        </p>
-        <p>All responses to requests from the server received by this module are inserted into the message buffer. Each
-            message is converted <strong>from XML to JSON format before insertion</strong>. The tag of each inserted
-            message is set to the <strong>endpoint address</strong> from which the response was received.</p>
-        <h2 id="mqtt-client-module">MQTT Client Module</h2>
-        <p>For the MQTT client module, the message content sent using the &#39;module_send&#39; keyword must
-            <strong>have a specific format</strong>. The message must specify the topic and the content of the message.
-            The format is as follows: <code><strong>(topic):(Message)</strong></code>
-        </p>
-        <p>Messages received by this module are inserted into the message buffer as they were received. The tag of each
-            message is set to the value of the <strong>topic</strong> from which the message was received.</p>
-        <h2 id="mqtt-broker-module">MQTT Broker Module</h2>
-        <p>This module <strong>does not support</strong> sending messages using the &#39;module_send&#39; keyword. The
-            module simply starts an MQTT broker and facilitates its operation. The module does not allow receiving
-            incoming communication either. It acts solely as a mediator for MQTT communication between clients connected
-            to it.</p>
+        <h3 id="create_telnet_client">create_telnet_client</h3>
+        <p>Creates a module that launches a new virtual Telnet client.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>host</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Hostname or IP address to connect to. <em>(default: localhost)</em></td>
+                </tr>
+                <tr>
+                    <td><code>port</code></td>
+                    <td>integer | <em>not required</em></td>
+                    <td>Port number on the host to connect to. <em>(default: 23)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_telnet_client:
+    name: &quot;module-1&quot;
+    host: &quot;localhost&quot;
+    port: 23
+</code></pre>
+        <h3 id="create_telnet_server">create_telnet_server</h3>
+        <p>Creates a module that launches a virtual Telnet server.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>port</code></td>
+                    <td>integer | <em>not required</em></td>
+                    <td>Port number to listen on. <em>(default: 23)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_telnet_server:
+    name: &quot;module-1&quot;
+    port: 23
+</code></pre>
+        <h3 id="create_web_crawler">create_web_crawler</h3>
+        <p>Creates a module that launches a web crawler.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>start_url</code></td>
+                    <td>string</td>
+                    <td>URL to start crawling from.</td>
+                </tr>
+                <tr>
+                    <td><code>max_depth</code></td>
+                    <td>integer</td>
+                    <td>Maximum depth to crawl.</td>
+                </tr>
+                <tr>
+                    <td><code>analyzer</code></td>
+                    <td>string</td>
+                    <td>Analyzer to use for parsing the web pages.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_web_crawler:
+    name: &quot;module-1&quot;
+    start_url: &quot;https://example.com&quot;
+    max_depth: 2
+    analyzer: &quot;word-freq:20&quot;
+</code></pre>
+        <h3 id="create_email_server">create_email_server</h3>
+        <p>Creates a module that launches a virtual email server.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>port</code></td>
+                    <td>integer</td>
+                    <td>Port number on which the email server will listen.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_email_server:
+    name: &quot;module-1&quot;
+    port: 25
+</code></pre>
+        <h3 id="create_rest_tester">create_rest_tester</h3>
+        <p>Creates a module that launches an HTTP client for testing REST APIs.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>string</td>
+                    <td>URL of the REST API to test.</td>
+                </tr>
+                <tr>
+                    <td><code>request_type</code></td>
+                    <td>string</td>
+                    <td>Type of HTTP request to send (GET, POST, etc.).</td>
+                </tr>
+                <tr>
+                    <td><code>content_type</code></td>
+                    <td>string</td>
+                    <td>Data type in request. <em>(default: application/json)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_rest_tester:
+    name: &quot;module-1&quot;
+    url: &quot;http://api.example.com&quot;
+    request_type: &quot;POST&quot;
+    content_type: &quot;application/json&quot;
+</code></pre>
+        <h3 id="create_soap_tester">create_soap_tester</h3>
+        <p>Creates a module for testing SOAP services.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>string</td>
+                    <td>URL of the SOAP service to test.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_soap_tester:
+    name: &quot;module-1&quot;
+    url: &quot;http://soap.example.com/ws&quot;
+</code></pre>
+        <h3 id="create_mqtt_client">create_mqtt_client</h3>
+        <p>Creates a module that launches a virtual MQTT client.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>topics</code></td>
+                    <td>array | <em>not required</em></td>
+                    <td>List of topics to subscribe to. <em>(default: empty)</em></td>
+                </tr>
+                <tr>
+                    <td><code>broker_url</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>URL of the MQTT broker to connect to. <em>(default: tcp://localhost:1883)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_mqtt_client:
+    name: &quot;module-1&quot;
+    topics: [&quot;topic1&quot;, &quot;topic2&quot;]
+    broker_url: &quot;tcp://localhost:1883&quot;
+</code></pre>
+        <h3 id="create_mqtt_broker">create_mqtt_broker</h3>
+        <p>Creates a module that launches an MQTT broker.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Unique name for the module.</td>
+                </tr>
+                <tr>
+                    <td><code>port</code></td>
+                    <td>integer | <em>not required</em></td>
+                    <td>Port number for the MQTT broker. <em>(default: 1883)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_mqtt_broker:
+    name: &quot;module-1&quot;
+    port: 1883
+</code></pre>
+        <h3 id="termite_module">termite_module</h3>
+        <p>Terminates a running module that is no longer needed.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>string</td>
+                    <td>Name of the module to terminate.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">termite_module:
+    name: &quot;module-1&quot;
+</code></pre>
+        <h3 id="module_send">module_send</h3>
+        <p>Sends a message using a specific module.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Name of the sending module.</td>
+                </tr>
+                <tr>
+                    <td><code>message</code></td>
+                    <td>string</td>
+                    <td>Message to send. For different modules, the content may have different format requirements.</td>
+                </tr>
+                <tr>
+                    <td><code>delay</code></td>
+                    <td>long | <em>not required</em></td>
+                    <td>How long it will take to send a message after calling this keyword.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">module_send:
+    name: &quot;module-1&quot;
+    message: &quot;Message $your-var&quot;
+    delay: 0
+</code></pre>
+        <h3 id="create_filter_action">create_filter_action</h3>
+        <p>Creates a filter for actions triggered upon message reception. Text content can be filtered.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Name of module.</td>
+                </tr>
+                <tr>
+                    <td><code>text</code></td>
+                    <td>string</td>
+                    <td>Text to filter on.</td>
+                </tr>
+                <tr>
+                    <td><code>tag</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Tag of message. <em>(default: &quot;&quot;)</em></td>
+                </tr>
+                <tr>
+                    <td><code>mode</code></td>
+                    <td>string | <em>not required</em></td>
+                    <td>Filter mode. There are these modes: &quot;equals&quot;, &quot;contains&quot;,
+                        &quot;startswith&quot;, &quot;endswith&quot;. <em>(default: equals)</em></td>
+                </tr>
+                <tr>
+                    <td><code>case_sensitive</code></td>
+                    <td>boolean</td>
+                    <td>Whether the filter should be case sensitive. <em>(default: true)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">create_filter_action:
+    name: &quot;module-1&quot;
+    text: &quot;Text&quot;
+    tag: &quot;Message-tag&quot;
+    mode: &quot;equals&quot;
+    case_sensitive: true
+</code></pre>
+        <h3 id="clear_filter_actions">clear_filter_actions</h3>
+        <p>Removes all action filters for a specific module.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Parameter</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Description</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>default</code></td>
+                    <td>string</td>
+                    <td>Name of module.</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-yaml">clear_filter_actions:
+    name: &quot;module-1&quot;
+</code></pre>
 
     </div>
 

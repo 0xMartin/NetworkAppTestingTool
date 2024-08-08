@@ -55,9 +55,9 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration editor: [config-editor](./config-editor)**
 
-* Test suite configuration for all task types: [configuration-examples](./configuration-examples)
+* Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
 
-* Simple example project: [project-example](./project-example)
+* Simple example project: [project-example](./examples/project-example)
 
 ## System Requirements
 
@@ -263,7 +263,7 @@ This module **does not support** sending messages using the 'module_send' keywor
 
 # 🧪 Test Configuration Samples
 
-**More examples in this direcotry [configuration-examples](./configuration-examples)**
+**More examples in this direcotry [configuration-examples](./examples/configuration-examples)**
 
 ## Testing of simple application for email sending
 
