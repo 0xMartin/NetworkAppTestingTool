@@ -6,7 +6,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 import utb.fai.Module.WebCrawler.Parser;
 import utb.fai.Module.WebCrawler.WebCrawler;
 import utb.fai.Module.WebCrawler.WordFrequencyAnalyzer;
@@ -26,7 +25,7 @@ public class CreateWebCrawlerKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         // zpracovani promennych v retezci
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
         this.startURL = VariableProcessor.processVariables(this.startURL);

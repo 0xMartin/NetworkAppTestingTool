@@ -14,7 +14,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje definovat trzeni ze json objekt v promenne je stejny jako ten
@@ -35,7 +34,7 @@ public class AssertJsonKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         this.finalStatus = false;
 
         // zpracovani promennych v retezci

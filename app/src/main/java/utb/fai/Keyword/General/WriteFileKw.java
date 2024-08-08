@@ -8,7 +8,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 import utb.fai.IO.LocalHostIO;
 
 /**
@@ -24,7 +23,7 @@ public class WriteFileKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         status = false;
 
         // zpracovani promennych v retezci
@@ -66,7 +65,7 @@ public class WriteFileKw extends Keyword {
     public String getDescription() {
         String message;
         if (!status) {
-            message = "<br><font color=\"red\">Failed to store value to variable.</font>";
+            message = "<br><font color=\"red\">Failed to write content to file.</font>";
         } else {
             String data = this.content.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
             message = String.format(

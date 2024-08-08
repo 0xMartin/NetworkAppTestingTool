@@ -9,7 +9,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje odeslat libovolnou textovou zpravu testovane aplikace skrz libovolny
@@ -28,7 +27,7 @@ public class ModuleSendKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         this.status = false;
 
         // zpracovani promennych v retezci
@@ -98,7 +97,7 @@ public class ModuleSendKw extends Keyword {
         String msg;
         if (this.status) {
             msg = String.format(
-                    "<font color=\"green\">Message was successfully sent by module <b>'%s'</b>. Message content: <br><b>%s</b></font>",
+                    "<font color=\"green\">Message was successfully sent by module <b>'%s'</b>. Message content: <b>%s</b></font>",
                     this.moduleName, this.message.replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
         } else {
             msg = String.format("<font color=\"red\">Failed to send message via module <b>'%s'</b>.</font>",

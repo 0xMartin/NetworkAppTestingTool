@@ -9,11 +9,10 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 import utb.fai.IO.LocalHostIO;
 
 /**
- * Umoznuje precist obsah testoveho souboru a jeho obsah vlozit do promenne
+ * Umoznuje precist obsah textoveho souboru a jeho obsah vlozit do promenne
  */
 @NATTAnnotation.Keyword(name = "read_file")
 public class ReadFileKw extends Keyword {
@@ -25,7 +24,7 @@ public class ReadFileKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         status = false;
 
         // zpracovani promennych v retezci

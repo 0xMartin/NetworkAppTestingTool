@@ -6,7 +6,6 @@ import utb.fai.Core.Keyword;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 import utb.fai.ReportGenerator.TestCaseResult;
 import utb.fai.Core.NATTAnnotation;
 import utb.fai.Core.NATTContext;
@@ -28,7 +27,7 @@ public class TestSuiteKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         boolean suitePassed = true;
 
         // vykonani inicializacnich keyword

@@ -2,6 +2,11 @@
 
 **[Go Back](./README.md)**
 
+> **Note 1:** When keyword have only one parameter, it is not necessary to specify the parameter name. In documentation parameters without name are named as `default`.
+
+> **Note 2:** Each keyword can be ignored by adding the parameter `ignore: true`
+
+
 ## Main Keywords
 
 This set contains all the keywords that directly define the testing structure.
@@ -72,53 +77,71 @@ This set includes keywords that enable working with an external application. It'
 
 Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.
 
-| **Parameter** | **Type** | **Description**                                                         |
-| ------------- | -------- | ----------------------------------------------------------------------- |
-| `default`     | string   | Command to run the application. Can run only one application at a time. |
+| **Parameter**            | **Type** | **Description**                                                         |
+| ------------------------ | -------- | ----------------------------------------------------------------------- |
+| `default` or  `command`  | string   | Command to run the application. Can run only one application at a time. |
+| `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
   
 ```yaml
 run_app: "java -jar app.jar -arg1 111 -arg2 222"
+
+run_app: 
+    command: "java -jar app.jar -arg1 111 -arg2 222"
+    name: "app-1"
 ```
 
 ### run_app_later
 
 Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.
 
-| **Parameter** | **Type** | **Description**                                                         |
-| ------------- | -------- | ----------------------------------------------------------------------- |
-| `command`     | string   | Command to run the application. Can run only one application at a time. |
-| `delay`       | long     | Time after which the application starts.                                |
+| **Parameter**            | **Type** | **Description**                                                         |
+| ------------------------ | -------- | ----------------------------------------------------------------------- |
+| `command`                | string   | Command to run the application. Can run only one application at a time. |
+| `delay`                  | long     | Time after which the application starts.                                |
+| `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
 
 
 ```yaml
 run_app_later: 
     command: "java -jar app.jar -arg1 111 -arg2 222"
     delay: 500
+    name: "app-1"
 ```
 
 ### reload_app
 
 Stops the currently running application and launches the new application.
    
-| **Parameter** | **Type** | **Description**                    |
-| ------------- | -------- | ---------------------------------- |
-| `default`     | string   | Command to reload the application. |
+| **Parameter**            | **Type** | **Description**                                |
+| ------------------------ | -------- | ---------------------------------------------- |
+| `default` or  `command`  | string   | Command to reload the application.             |
+| `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
 
 
 ```yaml
 reload_app: "java -jar app.jar"
+
+reload_app: 
+    command: "java -jar app.jar"
+    name: "app-1"
 ```
 
 ### standard_stream_send
 
 Sends a message to the running application via standard streaming.
 
-| **Parameter** | **Type** | **Description**                              |
-| ------------- | -------- | -------------------------------------------- |
-| `name`        | string   | Message to send through the standard stream. |
+| **Parameter**            | **Type** | **Description**                                |
+| ------------------------ | -------- | ---------------------------------------------- |
+| `default` or  `message`  | string   | Message to send through the standard stream.   |
+| `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
+
 
 ```yaml
 standard_stream_send: "Message to send"
+
+standard_stream_send: 
+    message: "Message to send"
+    name: "app-1"
 ```
 
 ---
@@ -209,6 +232,21 @@ read_file:
     file_path: "path/to/file.txt"
 ```
 
+### read_net_file
+
+Reads the content from the specified file on the network device and stores its value into the defined variable.
+
+| **Parameter** | **Type** | **Description**                     |
+| ------------- | -------- | ----------------------------------- |
+| `var_name`    | string   | Variable to store the file content. |
+| `file_url`    | string   | URL of the file to be read.         |
+
+```yaml
+read_net_file:
+    var_name: "var-1"
+    file_url: "path/to/file.txt"
+```
+
 ### set_var
 
 Sets the specified variable to the defined content.
@@ -255,6 +293,21 @@ Writes the defined content into a file on the local device.
 ```yaml
 write_file:
     file_path: "path/to/file.txt"
+    content: "this text will be saved in a file with the value of this variable $your-var"
+```
+
+### write_net_file
+
+Writes the defined content into a file on the network device.
+
+| **Parameter** | **Type** | **Description**                                    |
+| ------------- | -------- | -------------------------------------------------- |
+| `file_url`    | string   | URL of the file where the content will be written. |
+| `content`     | string   | The content to be written to the file.             |
+ 
+```yaml
+write_net_file:
+    file_url: "https://web.com/file.txt"
     content: "this text will be saved in a file with the value of this variable $your-var"
 ```
 
@@ -416,12 +469,17 @@ assert_range:
 
 Verifies if an external application is currently running.
 
-| **Parameter** | **Type**                  | **Description**                                                        |
-| ------------- | ------------------------- | ---------------------------------------------------------------------- |
-| `default`     | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter**            | **Type**                  | **Description**                                                        |
+| ------------------------ | ------------------------- | ---------------------------------------------------------------------- |
+| `default` or `result`    | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| `name` \| *not required* | string                    | Name of program runner. *(default: "default")*                         |
 
 ```yaml
 assert_app_is_running: true
+
+assert_app_is_running: 
+    result: true
+    name: "app-1"
 ```
 
 ### assert_module_is_running

@@ -13,19 +13,18 @@ import org.junit.Test;
 import utb.fai.Core.MessageBuffer;
 import utb.fai.Core.NATTContext;
 import utb.fai.Core.MessageBuffer.SearchType;
-import utb.fai.Core.ExternalProgramRunner;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
+import utb.fai.Module.ExternalProgramRunner;
 
 public class ExternalProgramRunnerTest {
 
     @Test
     public void externalProgramRunnerTest()
-            throws TestedAppFailedToRunException, InterruptedException, NonUniqueModuleNamesException,
+            throws InterruptedException, NonUniqueModuleNamesException,
             InternalErrorException {
-        ExternalProgramRunner runner = new ExternalProgramRunner();
-        runner.runExternalProgram("java -jar ../echo_test.jar");
+        ExternalProgramRunner runner = new ExternalProgramRunner("runner-1", "java -jar ../echo_test.jar");
+        runner.runModule();
 
         TimeUnit.SECONDS.sleep(1);
 
@@ -37,12 +36,12 @@ public class ExternalProgramRunnerTest {
 
         MessageBuffer msgBuff = NATTContext.instance().getMessageBuffer();
 
-        assertEquals(3, msgBuff.getMessages("app-std-out").size());
+        assertEquals(3, msgBuff.getMessages("runner-1").size());
 
         assertEquals("Přijatý text: Zprava odeslana z testovaci aplikace",
-                msgBuff.searchMessages("app-std-out", "", "", SearchType.NONE, false).getLast().getMessage());
+                msgBuff.searchMessages("runner-1", "", "", SearchType.NONE, false).getLast().getMessage());
 
-        runner.stopExternalProgram();
+        runner.terminateModule();
         TimeUnit.SECONDS.sleep(1);
     }
 

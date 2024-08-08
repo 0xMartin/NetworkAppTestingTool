@@ -252,6 +252,8 @@ public class NATTContext {
         this.keywordSet.put("write_file", WriteFileKw.class);
         this.keywordSet.put("set_var", SetVarKw.class);
         this.keywordSet.put("replace", ReplaceKw.class);
+        this.keywordSet.put("read_net_file", ReadNetFileKw.class);
+        this.keywordSet.put("write_net_file", WriteNetFileKw.class);
         // assert
         this.keywordSet.put("assert_larger", AssertLargerKw.class);
         this.keywordSet.put("assert_lower", AssertLowerKw.class);

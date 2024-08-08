@@ -6,7 +6,7 @@ var keywordSnippets = [
     {
         caption: 'app-std-out',
         snippet: 'app-std-out',
-        meta: 'NATT NATT Values'
+        meta: 'NATT Values'
     },
     {
         caption: 'ignore',
@@ -36,17 +36,17 @@ var keywordSnippets = [
     {
         caption: '$var',
         snippet: '$var',
-        meta: 'NATT Values'  
+        meta: 'NATT Values'
     },
     {
         caption: 'last-msg',
         snippet: 'last-msg',
-        meta: 'NATT Values'  
+        meta: 'NATT Values'
     },
     {
         caption: 'action-msg',
         snippet: 'action-msg',
-        meta: 'NATT Values'  
+        meta: 'NATT Values'
     },
     {
         caption: 'GET',
@@ -75,7 +75,7 @@ var keywordSnippets = [
     max_points: 10.0
     initial_steps: []
     test_suites: []`,
-        meta: "Main"
+        meta: "NATT Main"
     },
     {
         caption: 'test_suite',
@@ -84,7 +84,7 @@ var keywordSnippets = [
     delay: 500
     initial_steps: []
     test_cases: []`,
-        meta: "Main"
+        meta: "NATT Main"
     },
     {
         caption: 'test_case',
@@ -92,41 +92,48 @@ var keywordSnippets = [
     name: "Case name"
     description: "Description here"
     steps: []`,
-        meta: "Main"
+        meta: "NATT Main"
     },
     {
         caption: 'run_app',
-        snippet: `run_app: "java -jar app.jar"`,
-        meta: "App Controll"
+        snippet: `run_app: 
+    command: "java -jar app.jar"
+    name: "app-1"`,
+        meta: "NATT App Controll"
     },
     {
         caption: 'run_app_later',
         snippet: `run_app_later: 
     command: "java -jar app.jar"
-    delay: 500`,
-        meta: "App Controll"
+    delay: 500
+    name: "app-1"`,
+        meta: "NATT App Controll"
     },
     {
         caption: 'reload_app',
-        snippet: `reload_app: "java -jar app.jar"`,
-        meta: "App Controll"
+        snippet: `reload_app: 
+    command: "java -jar app.jar"
+    name: "app-1"`,
+        meta: "NATT App Controll"
     },
     {
         caption: 'standard_stream_send',
-        snippet: `standard_stream_send: "Message to send"`,
-        meta: "App Controll"
+        snippet: `standard_stream_send: 
+    message: "Message to send"
+    name: "app-1"`,
+        meta: "NATT App Controll"
     },
     {
         caption: 'wait',
         snippet: `wait: 1000`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'wait_until',
         snippet: `wait_until:
     module_name: "module-1 & module-2"
     time_out: 30000`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'store_to_var',
@@ -137,14 +144,14 @@ var keywordSnippets = [
     tag: "message-tag"
     mode: "equals"
     case_sensitive: true`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'count_and_store',
         snippet: `count_and_store:
     var_name: "var-1"
     module_name: "module-1"`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'buffer_get',
@@ -152,21 +159,28 @@ var keywordSnippets = [
     var_name: "var-1"
     module_name: "module-1"
     index: 0`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'read_file',
         snippet: `read_file:
     var_name: "var-1"
     file_path: "path/to/file.txt"`,
-        meta: "General"
+        meta: "NATT General"
+    },
+    {
+        caption: 'read_net_file',
+        snippet: `read_net_file:
+    var_name: "var-1"
+    file_url: "https://web.com/file.txt"`,
+        meta: "NATT General"
     },
     {
         caption: 'set_var',
         snippet: `set_var:
     var_name: "var-1"
     value: "New value"`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'replace',
@@ -175,19 +189,26 @@ var keywordSnippets = [
     from_var: "var-2"
     str_from: ["TMP_PARAM_1", "TMP_PARAM_2"]
     str_to: ["Value", "1234"]`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'write_file',
         snippet: `write_file:
     file_path: "path/to/file.txt"
     content: "this text will be saved in a file with the value of this variable \\$your-var"`,
-        meta: "General"
+        meta: "NATT General"
+    },
+    {
+        caption: 'write_net_file',
+        snippet: `write_net_file:
+    file_url: "https://web.com/file.txt"
+    content: "this text will be saved in a file with the value of this variable \\$your-var"`,
+        meta: "NATT General"
     },
     {
         caption: 'clear_buffer',
         snippet: `clear_buffer: "module-1 or *"`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'json_get',
@@ -195,7 +216,7 @@ var keywordSnippets = [
     to_var: "var-1"
     from_var: "var-2"
     param_name: "parameter-name"`,
-        meta: "General"
+        meta: "NATT General"
     },
     {
         caption: 'create_telnet_client',
@@ -203,14 +224,14 @@ var keywordSnippets = [
     name: "module-1"
     host: "localhost"
     port: 23`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_telnet_server',
         snippet: `create_telnet_server:
     name: "module-1"
     port: 23`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_web_crawler',
@@ -219,14 +240,14 @@ var keywordSnippets = [
     start_url: "https://example.com"
     max_depth: 2
     analyzer: "word-freq:20"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_email_server',
         snippet: `create_email_server:
     name: "module-1"
     port: 25`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_rest_tester',
@@ -235,14 +256,14 @@ var keywordSnippets = [
     url: "http://api.example.com"
     request_type: "POST"
     content_type: "application/json"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_soap_tester',
         snippet: `create_soap_tester:
     name: "module-1"
     url: "http://soap.example.com/ws"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_mqtt_client',
@@ -250,20 +271,20 @@ var keywordSnippets = [
     name: "module-1"
     topics: ["topic1", "topic2"]
     broker_url: "tcp://localhost:1883"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_mqtt_broker',
         snippet: `create_mqtt_broker:
     name: "module-1"
     port: 1883`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'termite_module',
         snippet: `termite_module:
     name: "module-1"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'module_send',
@@ -271,7 +292,7 @@ var keywordSnippets = [
     name: "module-1"
     message: "Message \\$your-var"
     delay: 0`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'create_filter_action',
@@ -281,13 +302,13 @@ var keywordSnippets = [
     tag: "Message-tag"
     mode: "equals"
     case_sensitive: true`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'clear_filter_actions',
         snippet: `clear_filter_actions:
     name: "module-1"`,
-        meta: "Module"
+        meta: "NATT Module"
     },
     {
         caption: 'assert_string',
@@ -297,7 +318,7 @@ var keywordSnippets = [
     mode: "equals"
     case_sensitive: true
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_lower',
@@ -305,7 +326,7 @@ var keywordSnippets = [
     var_name: "var-1"
     value: 100.0
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_larger',
@@ -313,7 +334,7 @@ var keywordSnippets = [
     var_name: "var-1"
     value: 100.0
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_equals',
@@ -322,7 +343,7 @@ var keywordSnippets = [
     value: 100.0
     tolerance: 5
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_range',
@@ -333,19 +354,19 @@ var keywordSnippets = [
     count: 10
     rule: ";|#;10"
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_app_is_running',
         snippet: `assert_app_is_running: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_module_is_running',
         snippet: `assert_module_is_running: 
     module_name: "module-1"
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     },
     {
         caption: 'assert_json',
@@ -354,7 +375,7 @@ var keywordSnippets = [
     expected: '{"name": "value", "atr1": 0}'
     exact_mode: false
     result: true`,
-        meta: "Assert"
+        meta: "NATT Assert"
     }
 ];
 

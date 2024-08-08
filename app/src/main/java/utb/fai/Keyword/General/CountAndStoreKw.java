@@ -10,7 +10,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje spocitat pocet zprav v bufferu a ulozit toto cislo do definovane
@@ -26,7 +25,7 @@ public class CountAndStoreKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         status = false;
 
         // zpracovani promennych v retezci

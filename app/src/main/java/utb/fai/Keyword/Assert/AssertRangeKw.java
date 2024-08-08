@@ -11,7 +11,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje definovat trzeni ze definovana oblast v bufferu prijatych zprav
@@ -35,7 +34,7 @@ public class AssertRangeKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         this.notEqualStr = null;
 
         if (start < 0) {

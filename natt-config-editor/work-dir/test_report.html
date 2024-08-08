@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 4, 2024 08:54:37 PM</span></a>
+<a href="#"><span class="badge badge-primary">Aug 8, 2024 07:47:30 PM</span></a>
 </li>
 </ul>
 </div>
@@ -72,6 +72,7 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -92,7 +93,7 @@
           <div class="test-detail">
             <p class="name">Test root initialization</p>
             <p class="text-sm">
-              <span>20:54:37 PM</span> / <span>00:00:00:000</span>
+              <span>19:47:30 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -101,8 +102,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Test root initialization</h5>
-<span class='badge badge-success'>08.04.2024 20:54:37</span>
-<span class='badge badge-danger'>08.04.2024 20:54:37</span>
+<span class='badge badge-success'>08.08.2024 19:47:30</span>
+<span class='badge badge-danger'>08.08.2024 19:47:30</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 </div>
@@ -114,23 +115,16 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:37 PM</td>
+        <td>7:47:30 PM</td>
         <td>
-          <b>[Create Telnet Server]</b> port = 9999, name = "module-1"<br><font color="green">The module with name 'module-1' is running.</font>
+          <b>[Run App]</b> name = "app-1", command = "java -jar echo_test.jar"
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:37 PM</td>
+        <td>7:47:31 PM</td>
         <td>
-          <b>[Run App]</b> java -jar app/build/libs/app.jar localhost 9999
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:38 PM</td>
-        <td>
-          <b>[Wait]</b> 1000
+          <b>[Wait]</b> 500
         </td>
       </tr>
   </tbody>
@@ -145,7 +139,7 @@
           <div class="test-detail">
             <p class="name">Test suite 'Suite name 1' initialization</p>
             <p class="text-sm">
-              <span>20:54:37 PM</span> / <span>00:00:00:000</span>
+              <span>19:47:30 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -154,8 +148,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Test suite 'Suite name 1' initialization</h5>
-<span class='badge badge-success'>08.04.2024 20:54:37</span>
-<span class='badge badge-danger'>08.04.2024 20:54:37</span>
+<span class='badge badge-success'>08.08.2024 19:47:30</span>
+<span class='badge badge-danger'>08.08.2024 19:47:30</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 </div>
@@ -164,24 +158,24 @@
 </div>
 </div>          </div>
         </li>
-        <li class="test-item"  status="pass" test-id="3"
+        <li class="test-item"  status="fail" test-id="3"
           author=""
           tag="Suitename1"
           device="">
           <div class="test-detail">
             <p class="name">Case name 1</p>
             <p class="text-sm">
-              <span>20:54:37 PM</span> / <span>00:00:00:000</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>19:47:30 PM</span> / <span>00:00:00:000</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Case name 1</h5>
-<span class='badge badge-success'>08.04.2024 20:54:37</span>
-<span class='badge badge-danger'>08.04.2024 20:54:37</span>
+<h5 class="test-status text-fail">Case name 1</h5>
+<span class='badge badge-success'>08.08.2024 19:47:30</span>
+<span class='badge badge-danger'>08.08.2024 19:47:30</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 </div>
@@ -194,30 +188,36 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:38 PM</td>
+        <td>7:47:31 PM</td>
         <td>
-          <b>[Module Send]</b> name = "module-1", message = "55.4+6.6"<br><font color="green">Message was successfully sent by module <b>'module-1'</b>. Message content: <br><b>55.4+6.6</b></font>
+          <b>[Read File]</b> file_path = "request/request_create_author.xml", var_name = "var-1"<br><font color="green">The following content of file has been stored in a variable named <b>[var-1]</b>: <b>'&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:lib="http://example.com/book-web-service"&gt;
+   &lt;soapenv:Header /&gt;
+   &lt;soapenv:Body&gt;
+      &lt;lib:createAuthorRequest&gt;
+         &lt;lib:author&gt;
+            &lt;lib:id&gt;TMP_ID&lt;/lib:id&gt;
+            &lt;lib:name&gt;TMP_NAME&lt;/lib:name&gt;
+            &lt;lib:surname&gt;TMP_SURNAME&lt;/lib:surname&gt;
+         &lt;/lib:author&gt;
+      &lt;/lib:createAuthorRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;
+'</b></font>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:47:31 PM</td>
+        <td>
+          <b>[Standard Stream Send]</b> name = "app-2", message = "Message to send"<br><font color="red">Failed to send message on standard stream of external application.</font>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:39 PM</td>
+        <td>7:47:34 PM</td>
         <td>
-          <b>[Wait]</b> 1000
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:39 PM</td>
-        <td>
-          <b>[Buffer Get]</b> index = -1, module_name = "module-1", var_name = "var-1"<br><font color="green">The following message has been stored in a variable named <b>[var-1]</b>: <b>'62.0'</b></font>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:39 PM</td>
-        <td>
-          <b>[Assert String]</b> mode = "equals", expected = "62.0", var_name = "var-1"<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Value of variable <b>'62.0'</b> must equals expected text <b>'62.0'</b>)</font>
+          <b>[Wait]</b> 3000
         </td>
       </tr>
   </tbody>
@@ -232,7 +232,7 @@
           <div class="test-detail">
             <p class="name">Case name 2</p>
             <p class="text-sm">
-              <span>20:54:37 PM</span> / <span>00:00:00:000</span>
+              <span>19:47:30 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -241,8 +241,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Case name 2</h5>
-<span class='badge badge-success'>08.04.2024 20:54:37</span>
-<span class='badge badge-danger'>08.04.2024 20:54:37</span>
+<span class='badge badge-success'>08.08.2024 19:47:30</span>
+<span class='badge badge-danger'>08.08.2024 19:47:30</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
 </div>
@@ -255,30 +255,9 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:40 PM</td>
+        <td>7:47:34 PM</td>
         <td>
-          <b>[Module Send]</b> name = "module-1", message = "4-4+6-20"<br><font color="green">Message was successfully sent by module <b>'module-1'</b>. Message content: <br><b>4-4+6-20</b></font>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:41 PM</td>
-        <td>
-          <b>[Wait]</b> 1000
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:41 PM</td>
-        <td>
-          <b>[Buffer Get]</b> index = 0, module_name = "module-1", var_name = "var-1"<br><font color="green">The following message has been stored in a variable named <b>[var-1]</b>: <b>'-14.0'</b></font>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:41 PM</td>
-        <td>
-          <b>[Assert Equals]</b> value = -14.0, var_name = "var-1", tolerance = 0.0<br><font color="green">Assertion succeeded. <b>True</b> was expected as the result. Condition: (Expected value <b>'-14.000000'</b> must be same as the value of the variable <b>'-14.0'</b>)</font>
+          <b>[Standard Stream Send]</b> name = "app-1", message = "Message to send"<br><font color="green">Message was successfully sent on standard stream of external application. Message content: <br><b>'Message to send'</b></font>
         </td>
       </tr>
   </tbody>
@@ -286,60 +265,45 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="5"
+        <li class="test-item"  status="fail" test-id="5"
           author=""
-          tag="Suitename1"
+          tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Case name 3</p>
+            <p class="name">Result score</p>
             <p class="text-sm">
-              <span>20:54:37 PM</span> / <span>00:00:00:000</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>19:47:35 PM</span> / <span>00:00:00:000</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Case name 3</h5>
-<span class='badge badge-success'>08.04.2024 20:54:37</span>
-<span class='badge badge-danger'>08.04.2024 20:54:37</span>
+<h5 class="test-status text-fail">Result score</h5>
+<span class='badge badge-success'>08.08.2024 19:47:35</span>
+<span class='badge badge-danger'>08.08.2024 19:47:35</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
 </div>
-<div class="m-t-15"><span class="badge badge-pill badge-default">Suitename1</span></div>
-<div class="m-t-10 m-l-5">Description 2 here</div>
+<div class="m-t-10 m-l-5">This is not a test case. This is an informative page containing the final score of the tested application.</div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:42 PM</td>
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:47:35 PM</td>
         <td>
-          <b>[Module Send]</b> name = "module-1", message = "-2-4-6"<br><font color="green">Message was successfully sent by module <b>'module-1'</b>. Message content: <br><b>-2-4-6</b></font>
+          Tested application for test suite 'Suite name 1' get 5.00 / 10.00 points
         </td>
       </tr>
       <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:43 PM</td>
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:47:35 PM</td>
         <td>
-          <b>[Wait]</b> 1000
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:43 PM</td>
-        <td>
-          <b>[Buffer Get]</b> index = 0, module_name = "module-1", var_name = "var-1"<br><font color="green">The following message has been stored in a variable named <b>[var-1]</b>: <b>''</b></font>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:54:43 PM</td>
-        <td>
-          <b>[Assert Equals]</b> result = false, value = 2.0, var_name = "var-1", tolerance = 0.0<br><font color="green">Assertion succeeded. <b>False</b> was expected as the result. Condition: (Expected value <b>'2.000000'</b> must be same as the value of the variable <b>''</b>)</font>
+          TOTAL SCORE: 5.00 / 10.00 points
         </td>
       </tr>
   </tbody>
@@ -367,15 +331,17 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>4</span>
+<span class='badge log pass-bg'>2</span>
+<span class='badge log badge-danger'>1</span>
 </span>
 <p class="name">Suitename1</p>
-<p class="duration text-sm">4 tests</p>
+<p class="duration text-sm">3 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
 <h4>Suitename1</h4>
-<span status="pass" class='badge log pass-bg'>4 passed</span>
+<span status="pass" class='badge log pass-bg'>2 passed</span>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -388,30 +354,23 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>20:54:37 PM</td>
+<td>19:47:30 PM</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>Test suite 'Suite name 1' initialization</a>
 </td>
 </tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>20:54:37 PM</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:47:30 PM</td>
 <td>
 <a href="#" class="linked" test-id='3' id='3'>Case name 1</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>20:54:37 PM</td>
+<td>19:47:30 PM</td>
 <td>
 <a href="#" class="linked" test-id='4' id='4'>Case name 2</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>20:54:37 PM</td>
-<td>
-<a href="#" class="linked" test-id='5' id='5'>Case name 3</a>
 </td>
 </tr>
 </tbody>
@@ -431,25 +390,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 4, 2024 08:54:37 PM</h3>
+<h3>Aug 8, 2024 07:47:30 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 4, 2024 08:54:37 PM</h3>
+<h3>Aug 8, 2024 07:47:35 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>5</h3>
+<h3>3</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>2</h3>
 </div></div>
 </div>
 </div>
@@ -465,12 +424,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>5</b> tests passed
+<div><small data-tooltip='60%'>
+<b>3</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='40%'><b>2</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -488,10 +447,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>15</b> events passed</small></div>
+<div><small data-tooltip='62%'><b>5</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>0</b> others
+<small data-tooltip='25%'><b>2</b> events failed,
+<b data-tooltip='%'>1</b> others
 </small>
 </div>
 </div>
@@ -507,7 +466,7 @@
 </div></div>
 <script>
 var timeline = {
-"Test root initialization":0,"Test suite 'Suite name 1' initialization":0,"Case name 1":0,"Case name 2":0,"Case name 3":0
+"Test root initialization":0,"Test suite 'Suite name 1' initialization":0,"Case name 1":0,"Case name 2":0,"Result score":0
 };
 </script>
 <div class="row">
@@ -518,11 +477,11 @@ var timeline = {
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
 <td>Suitename1</td>
-<td>4</td>
+<td>2</td>
+<td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>66.667%</td>
 </tr>
 </tbody>
 </table></div>
@@ -533,8 +492,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 5,
-failParent: 0,
+passParent: 3,
+failParent: 2,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -550,11 +509,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 15,
-failEvents: 0,
+passEvents: 5,
+failEvents: 2,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 0
+infoEvents: 1
 };
 </script>        </div>
       </div>

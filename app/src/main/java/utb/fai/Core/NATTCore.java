@@ -4,14 +4,15 @@ import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
 import utb.fai.Exception.NonUniqueTestNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 import utb.fai.IO.LocalHostIO;
 import utb.fai.IO.NetworkIO;
+import utb.fai.Module.ExternalProgramRunner;
 import utb.fai.ReportGenerator.TestReportGenerator;
 
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -23,7 +24,7 @@ import java.util.Map;
 public class NATTCore {
 
     // verze nastroje
-    public static final String VERSION = "1.4.5";
+    public static final String VERSION = "1.5.0";
 
     // defaultni cesta k vystupnimu souboru z reportem o testovani
     public static final String REPORT_PATH = "test_report.html";
@@ -128,9 +129,12 @@ public class NATTCore {
         } catch (Exception ex) {
         }
 
+        // info
         logger.info(String.format(
                 "NATT CORE initialization done\nVersion: %s \nConfiguration path: %s\nConfiguration loading mode: %s",
                 NATTCore.VERSION, configPath, loadConfigFromLocalHost ? "FROM HOST" : "FROM URL"));
+        String currentDirectory = System.getProperty("user.dir");
+        logger.info("Working directory path: " + currentDirectory);
     }
 
     public String getConfigPath() {
@@ -142,14 +146,14 @@ public class NATTCore {
     }
 
     /**
-     * Ukonci externi aplikaci
+     * Ukonci vsechny aktualne spustene moduly
      */
-    public static void TermiteExternalApp() {
-        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(ExternalProgramRunner.NAME);
-        if (runner != null) {
-            runner.stopExternalProgram();
-        }
+    public static void termiteAllModules() {
+        LinkedList<NATTModule> modules = NATTContext.instance().getModules();
+        modules.stream().forEach((m) -> {
+            m.terminateModule();
+        });
+        NATTContext.instance().getModules().clear();
     }
 
     /**
@@ -218,23 +222,18 @@ public class NATTCore {
      * keywordy v testovaci sade inicializuji a nasledne se zacnou vykonavat v
      * definovanem poradi. Nakonec se vykonaji ukoncujici akce.
      * 
-     * @throws TestedAppFailedToRunException
      * @throws InternalErrorException
      * @throws InvalidSyntaxInConfigurationException
      * @throws NonUniqueModuleNamesException
      */
     public void executeAllTests()
-            throws TestedAppFailedToRunException, InternalErrorException, InvalidSyntaxInConfigurationException,
+            throws InternalErrorException, InvalidSyntaxInConfigurationException,
             NonUniqueModuleNamesException, NonUniqueTestNamesException {
         logger.info("Start test executing ...");
 
         if (this.rootKeyword == null) {
             throw new InternalErrorException("The test_root element is not initialized!");
         }
-
-        // vytvoreni instacne trvaleho modulu pro komonikaci s externe testovanou
-        // aplikaci
-        this.programRunner = new ExternalProgramRunner();
 
         // vygenerovani extentu pro generovani reportu testovani
         NATTContext.instance().setReportExtent(TestReportGenerator.generateReportExtent(NATTCore.REPORT_PATH,
@@ -261,9 +260,6 @@ public class NATTCore {
 
         // volani ukoncujicich akci
         this.rootKeyword.deleteAction();
-
-        // ukonci runner pokud jeste stale bezi
-        this.programRunner.stopExternalProgram();
 
         logger.info("Test executing finished");
     }

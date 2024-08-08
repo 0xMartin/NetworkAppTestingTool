@@ -8,7 +8,6 @@ import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
 import utb.fai.Exception.NonUniqueTestNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Hlavni metoda univerzalniho black box testovaciho a hodnoticiho nastroje pro
@@ -37,32 +36,27 @@ public class NetworkAppTestingTool {
 
         } catch (InternalErrorException e) {
             e.printStackTrace();
-            NATTCore.TermiteExternalApp();
+            NATTCore.termiteAllModules();
             System.exit(e.getErrorCode());
 
         } catch (InvalidSyntaxInConfigurationException e) {
             e.printStackTrace();
-            NATTCore.TermiteExternalApp();
+            NATTCore.termiteAllModules();
             System.exit(e.getErrorCode());
 
         } catch (IOException e) {
             e.printStackTrace();
-            NATTCore.TermiteExternalApp();
+            NATTCore.termiteAllModules();
             System.exit(StatusCode.INTERNAL_ERROR);
-
-        } catch (TestedAppFailedToRunException e) {
-            e.printStackTrace();
-            NATTCore.TermiteExternalApp();
-            System.exit(e.getErrorCode());
 
         } catch (NonUniqueModuleNamesException e) {
             e.printStackTrace();
-            NATTCore.TermiteExternalApp();
+            NATTCore.termiteAllModules();
             System.exit(e.getErrorCode());
 
         } catch (NonUniqueTestNamesException e) {
             e.printStackTrace();
-            NATTCore.TermiteExternalApp();
+            NATTCore.termiteAllModules();
             System.exit(e.getErrorCode());
 
         }

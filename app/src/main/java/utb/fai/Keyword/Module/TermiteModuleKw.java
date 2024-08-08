@@ -8,7 +8,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 @NATTAnnotation.Keyword(name = "termite_module")
 public class TermiteModuleKw extends Keyword {
@@ -17,7 +16,7 @@ public class TermiteModuleKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         // zpracovani promennych v retezci
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 

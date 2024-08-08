@@ -8,7 +8,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umozuje odstranit vsechny filtri akci pro dany modul
@@ -20,7 +19,7 @@ public class ClearFilterActionsKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         // zpracovani promennych v retezci
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
@@ -43,7 +42,7 @@ public class ClearFilterActionsKw extends Keyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", Keyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue(Keyword.DEFAULT_PARAMETER_NAME, Keyword.ParameterValueType.STRING,
                 true);
         moduleName = (String) val.getValue();
 

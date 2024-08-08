@@ -1,14 +1,14 @@
 package utb.fai.Keyword.Assert;
 
-import utb.fai.Core.ExternalProgramRunner;
 import utb.fai.Core.Keyword;
 import utb.fai.Core.NATTAnnotation;
 import utb.fai.Core.NATTContext;
 import utb.fai.Core.NATTLogger;
+import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
+import utb.fai.Module.ExternalProgramRunner;
 
 /**
  * Umoznuje definovat trzeni ze je externi testovana aplikace spustena
@@ -19,19 +19,24 @@ public class AssertAppIsRunningKw extends Keyword {
     private NATTLogger logger = new NATTLogger(AssertAppIsRunningKw.class);
 
     protected Boolean result;
+    protected String moduleName;
 
     // finalni stav tvrzeni (bude pouzito pri informativni zprave v reportu)
     private boolean finalStatus;
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         if (result == null) {
             this.result = true;
         }
 
+        // zpracovani promennych v retezci
+        this.moduleName = VariableProcessor.processVariables(this.moduleName);
+
+        // zjisteni stavu behu aplikace
         ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(ExternalProgramRunner.NAME);
+                .getModule(this.moduleName == null ? "default" : this.moduleName);
         if (runner == null) {
             logger.warning("Assertion failed. External program runner not found!");
             return false;
@@ -56,9 +61,14 @@ public class AssertAppIsRunningKw extends Keyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (boolean) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(Keyword.DEFAULT_PARAMETER_NAME, Keyword.ParameterValueType.BOOLEAN,
+        ParameterValue val = this.getParameterValue(new String[]{"result", Keyword.DEFAULT_PARAMETER_NAME}, Keyword.ParameterValueType.BOOLEAN,
                 true);
         result = (Boolean) val.getValue();
+
+        // (string) [neni vyzadovany]
+        val = this.getParameterValue("name", Keyword.ParameterValueType.STRING,
+                false);
+        moduleName = (String) val.getValue();
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
     }

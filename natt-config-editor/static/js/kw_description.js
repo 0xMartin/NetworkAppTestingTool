@@ -27,7 +27,8 @@ var keywordDetails = {
     run_app: {
         description: 'Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.',
         parameters: [
-            { name: '', type: 'string', description: 'Command to run the application. Can run only one application at a time.' }
+            { name: 'command', type: 'string', description: 'Command to run the application. Can run only one application at a time.' },
+            { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     run_app_later: {
@@ -35,18 +36,21 @@ var keywordDetails = {
         parameters: [
             { name: 'command', type: 'string', description: 'Command to run the application. Can run only one application at a time.' },
             { name: 'delay', type: 'long', description: 'Time after which the application starts.' },
+            { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     reload_app: {
         description: 'Stops the currently running application and launches the new application.',
         parameters: [
-            { name: '', type: 'string', description: 'Command to reload the application.' }
+            { name: 'command', type: 'string', description: 'Command to reload the application.' },
+            { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     standard_stream_send: {
         description: 'Sends a message to the running application via standard streaming.',
         parameters: [
-            { name: '', type: 'string', description: 'Message to send through the standard stream.' }
+            { name: 'message', type: 'string', description: 'Message to send through the standard stream.' },
+            { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     wait: {
@@ -56,7 +60,7 @@ var keywordDetails = {
         ]
     },
     wait_until: {
-        description: 'It waits until a message is received from a certain communication module. Messages can be filtered using the keyword <b>create_filter_action</b>. The content of the message that triggered the action is automatically saved in the <b>(module-name)-action-msg</b> variable for possible testing.',
+        description: 'It waits until a message is received from a certain communication module. Messages can be filtered using the keyword create_filter_action. The content of the message that triggered the action is automatically saved in the (module-name)-action-msg variable for possible testing.',
         parameters: [
             { name: 'module_name', type: 'string', description: 'The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2.' },
             { name: 'time_out', type: 'integer | not required', description: 'Maximum waiting time in milliseconds. (default: 10 000 ms)' }
@@ -87,6 +91,13 @@ var keywordDetails = {
             { name: 'file_path', type: 'string', description: 'Path to the file to be read.' }
         ]
     },
+    read_net_file: {
+        description: 'Reads the content from the specified file on the network device and stores its value into the defined variable.',
+        parameters: [
+            { name: 'var_name', type: 'string', description: 'Variable to store the file content.' },
+            { name: 'file_url', type: 'string', description: 'URL of the file to be read.' }
+        ]
+    },
     set_var: {
         description: 'Sets the specified variable to the defined content.',
         parameters: [
@@ -107,6 +118,13 @@ var keywordDetails = {
         description: 'Writes the defined content into a file on the local device.',
         parameters: [
             { name: 'file_path', type: 'string', description: 'The path to the file where the content will be written.' },
+            { name: 'content', type: 'string', description: 'The content to be written to the file.' }
+        ]
+    },
+    write_net_file: {
+        description: 'Writes the defined content into a file on the network device.',
+        parameters: [
+            { name: 'file_url', type: 'string', description: 'URL of the file where the content will be written.' },
             { name: 'content', type: 'string', description: 'The content to be written to the file.' }
         ]
     },
@@ -273,7 +291,8 @@ var keywordDetails = {
     assert_app_is_running: {
         description: 'Asserts that external tested application is running now.',
         parameters: [
-            { name: '', type: 'boolean | not required', description: 'It determines the expected outcome of the assertion. (default: true)' }
+            { name: 'result', type: 'boolean', description: 'It determines the expected outcome of the assertion. (default: true)' },
+            { name: 'name', type: 'string | not required', description: 'Name of program runner. (default: "default")' }
         ]
     },
     assert_module_is_running: {

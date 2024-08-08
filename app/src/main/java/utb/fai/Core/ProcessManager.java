@@ -62,7 +62,7 @@ public class ProcessManager {
                 int exitValue = process.waitFor();
                 if (exitValue == 0) {
                     ProcessManager.logger.info("Process PID " + pid + " has been terminated.");
-                    removePID(filePath, pid); 
+                    removePID(filePath, pid);
                 } else {
                     ProcessManager.logger.warning("Failed to terminate process PID " + pid);
                 }
@@ -79,7 +79,7 @@ public class ProcessManager {
      * @param newPID   PID ktery ma byt pridan
      * @throws IOException
      */
-    public static void addPID(String filePath, String newPID) throws IOException {
+    public static synchronized void addPID(String filePath, String newPID) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(newPID);
             writer.newLine();
@@ -94,7 +94,7 @@ public class ProcessManager {
      * @param targetPID PID ktery ma byt odebran
      * @throws IOException
      */
-    public static void removePID(String filePath, String targetPID) throws IOException {
+    public static synchronized void removePID(String filePath, String targetPID) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(filePath));
         List<String> updatedLines = lines.stream().filter(line -> !line.trim().equals(targetPID))
                 .collect(Collectors.toList());

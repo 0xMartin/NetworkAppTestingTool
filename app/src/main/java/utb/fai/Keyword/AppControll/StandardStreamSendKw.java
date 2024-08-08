@@ -1,6 +1,5 @@
 package utb.fai.Keyword.AppControll;
 
-import utb.fai.Core.ExternalProgramRunner;
 import utb.fai.Core.Keyword;
 import utb.fai.Core.NATTAnnotation;
 import utb.fai.Core.NATTContext;
@@ -8,7 +7,7 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
+import utb.fai.Module.ExternalProgramRunner;
 
 /**
  * Umoznuje odeslat textovou zpravu na standartni stream spustene externi
@@ -18,19 +17,21 @@ import utb.fai.Exception.TestedAppFailedToRunException;
 public class StandardStreamSendKw extends Keyword {
 
     protected String message;
+    protected String moduleName;
 
     private boolean status;
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         this.status = false;
-         
+
         // zpracovani promennych v retezci
         this.message = VariableProcessor.processVariables(this.message);
+        this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
         ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(ExternalProgramRunner.NAME);
+                .getModule(moduleName == null ? "default": moduleName);
         if (runner == null) {
             return false;
         }
@@ -44,9 +45,15 @@ public class StandardStreamSendKw extends Keyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(Keyword.DEFAULT_PARAMETER_NAME, Keyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue(new String[] { "message", Keyword.DEFAULT_PARAMETER_NAME },
+                Keyword.ParameterValueType.STRING,
                 true);
         message = (String) val.getValue();
+
+        // (string) [neni vyzadovany]
+        val = this.getParameterValue("name", Keyword.ParameterValueType.STRING,
+                false);
+        moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
@@ -59,10 +66,11 @@ public class StandardStreamSendKw extends Keyword {
         String message;
         if (this.status) {
             message = String.format(
-                    "<font color=\"green\">Message was successfully sent on standard stream of external application. Message content:<br><b>%s</b></font>",
+                    "<font color=\"green\">Message was successfully sent on standard stream of external application. Message content: <b>'%s'</b></font>",
                     this.message);
         } else {
-            message = String.format("<font color=\"red\">Failed to send message on standard stream of external application.</font>");
+            message = String.format(
+                    "<font color=\"red\">Failed to send message on standard stream of external application.</font>");
         }
         return super.getDescription() + "<br>" + message;
     }

@@ -3,7 +3,6 @@ package utb.fai.Core;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -206,22 +205,32 @@ public abstract class Keyword {
      * metodu. Zastupne symboly za promenne nahradi uz jejich hodnotou (jen ve
      * String).
      * 
-     * @param name     Nazev pozadovaneho parametru
-     * @param type     Predpokladany typ parametru. Pri nacitani tohoto parametru je
+     * @param names    Nazev pozadovaneho parametru. Dany parametr muze mit vice
+     *                 ruznych nazvu. Je pouzivat hodnota prvniho nelezeneho
+     *                 parametru.
+     * @param type     Predpokladany typ parametru. Pri nacitani tohoto parametru
+     *                 je
      *                 overovano a musi odpovidat.
      * @param required True v pripade kdy je hodnota tohoto parametru vyzadovana.
-     *                 Pokud bude false, muze funkce navratit i null v hodnote a typ
+     *                 Pokud bude false, muze funkce navratit i null v hodnote a
+     *                 typ
      *                 parametru bude oznacen jako null, ale exception nebude
      *                 vyvolan.
      * 
      * @return Hodnota parametru
      * @throws InvalidSyntaxInConfigurationException
      */
-    public ParameterValue getParameterValue(String name, ParameterValueType type, boolean required)
+    public ParameterValue getParameterValue(String[] names, ParameterValueType type, boolean required)
             throws InvalidSyntaxInConfigurationException {
 
-        // ziskani hodnoty parametru
-        ParameterValue val = this.parameters.get(name.toLowerCase());
+        // ziskani hodnoty parametru podle names, je pouzita prvni nalezena hodnota
+        ParameterValue val = null;
+        for (String name : names) {
+            val = this.parameters.get(name.toLowerCase());
+            if (val != null) {
+                break;
+            }
+        }
 
         // overeni existence hodnoty
         if (val == null) {
@@ -253,6 +262,29 @@ public abstract class Keyword {
         }
 
         return val;
+    }
+
+    /**
+     * Navrati hodnotu parametru keywordy s RAW nactenych hodnot. Jde o bezpecnou
+     * metodu. Zastupne symboly za promenne nahradi uz jejich hodnotou (jen ve
+     * String).
+     * 
+     * @param names    Nazev pozadovaneho parametru.
+     * @param type     Predpokladany typ parametru. Pri nacitani tohoto parametru
+     *                 je
+     *                 overovano a musi odpovidat.
+     * @param required True v pripade kdy je hodnota tohoto parametru vyzadovana.
+     *                 Pokud bude false, muze funkce navratit i null v hodnote a
+     *                 typ
+     *                 parametru bude oznacen jako null, ale exception nebude
+     *                 vyvolan.
+     * 
+     * @return Hodnota parametru
+     * @throws InvalidSyntaxInConfigurationException
+     */
+    public ParameterValue getParameterValue(String name, ParameterValueType type, boolean required)
+            throws InvalidSyntaxInConfigurationException {
+        return this.getParameterValue(new String[] {name}, type, required);
     }
 
     /**
@@ -438,12 +470,11 @@ public abstract class Keyword {
      *         byl cely uspesny musi byt vsechny jeho akce v nem provedene uspesne.
      *         Tedy vsechny musi navratit true.
      * 
-     * @throws TestedAppFailedToRunException
      * @throws InternalErrorException
      * @throws NonUniqueModuleNamesException
      */
     public abstract boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException;
+            throws InternalErrorException, NonUniqueModuleNamesException;
 
     /**
      * Jde o akci, ktere bude volana na konci "zivotniho cyklu keywordu". Tedy ve
@@ -492,7 +523,8 @@ public abstract class Keyword {
                         if (value.length() > 70) {
                             value = value.substring(0, 67) + "..";
                         }
-                        // symboli < a > nahradi jinym formatem aby je bylo mozne spolehlice zobrazit v html
+                        // symboli < a > nahradi jinym formatem aby je bylo mozne spolehlice zobrazit v
+                        // html
                         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
                         paramStr.add(String.format("%s = \"%s\"", param.getKey(), value));
                     } else {

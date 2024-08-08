@@ -9,7 +9,6 @@ import utb.fai.Core.VariableProcessor;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje definovat trzeni ze konktretni modul je aktivni
@@ -27,7 +26,7 @@ public class AssertModuleIsRunningKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         // zpracovani promennych v retezci
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 

@@ -104,24 +104,31 @@ var keywordSnippets = [
     },
     {
         caption: 'run_app',
-        snippet: `run_app: "java -jar app.jar"`,
+        snippet: `run_app: 
+    command: "java -jar app.jar"
+    name: "app-1"`,
         meta: "App Controll"
     },
     {
         caption: 'run_app_later',
         snippet: `run_app_later: 
     command: "java -jar app.jar"
-    delay: 500`,
+    delay: 500
+    name: "app-1"`,
         meta: "App Controll"
     },
     {
         caption: 'reload_app',
-        snippet: `reload_app: "java -jar app.jar"`,
+        snippet: `reload_app: 
+    command: "java -jar app.jar"
+    name: "app-1"`,
         meta: "App Controll"
     },
     {
         caption: 'standard_stream_send',
-        snippet: `standard_stream_send: "Message to send"`,
+        snippet: `standard_stream_send: 
+    message: "Message to send"
+    name: "app-1"`,
         meta: "App Controll"
     },
     {
@@ -170,6 +177,13 @@ var keywordSnippets = [
         meta: "General"
     },
     {
+        caption: 'read_net_file',
+        snippet: `read_net_file:
+    var_name: "var-1"
+    file_url: "https://web.com/file.txt"`,
+        meta: "General"
+    },
+    {
         caption: 'set_var',
         snippet: `set_var:
     var_name: "var-1"
@@ -189,6 +203,13 @@ var keywordSnippets = [
         caption: 'write_file',
         snippet: `write_file:
     file_path: "path/to/file.txt"
+    content: "this text will be saved in a file with the value of this variable \\$your-var"`,
+        meta: "General"
+    },
+    {
+        caption: 'write_net_file',
+        snippet: `write_net_file:
+    file_url: "https://web.com/file.txt"
     content: "this text will be saved in a file with the value of this variable \\$your-var"`,
         meta: "General"
     },
@@ -345,7 +366,9 @@ var keywordSnippets = [
     },
     {
         caption: 'assert_app_is_running',
-        snippet: `assert_app_is_running: true`,
+        snippet: `assert_app_is_running: 
+    result: true
+    name: "app-1"`,
         meta: "Assert"
     },
     {

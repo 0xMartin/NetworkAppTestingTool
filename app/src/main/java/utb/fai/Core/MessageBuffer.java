@@ -46,7 +46,7 @@ public class MessageBuffer {
         }
 
         this.messages.put(name, new CopyOnWriteArrayList<NATTMessage>());
-        logger.info("Message buffer created for module wtih name: " + name);
+        logger.info("Message buffer created for module with name: " + name);
         return true;
     }
 

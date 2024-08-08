@@ -6,7 +6,6 @@ import utb.fai.Core.NATTLogger;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 import utb.fai.Exception.NonUniqueModuleNamesException;
-import utb.fai.Exception.TestedAppFailedToRunException;
 
 /**
  * Umoznuje definovat cekani
@@ -20,7 +19,7 @@ public class WaitKw extends Keyword {
 
     @Override
     public boolean execute()
-            throws InternalErrorException, TestedAppFailedToRunException, NonUniqueModuleNamesException {
+            throws InternalErrorException, NonUniqueModuleNamesException {
         // musi byt vyssi jak 0
         if (this.waitTimeMs <= 0) {
             throw new InternalErrorException("Wait time must be higher than 0 ms!");
