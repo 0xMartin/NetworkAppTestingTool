@@ -84,7 +84,6 @@ Or using custom script that builds the tool and deploys it to the configuration 
 ## Future improvements
 
 * The possibility of defining your own keywords
-* The possibility of launching more than one external applications at one time
 * Add plugin support
 * Add automatic plagiarism checking
 * Add path variable support for REST API testing
