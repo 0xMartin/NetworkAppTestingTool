@@ -4,17 +4,17 @@
 
 ## Main Keywords
 
-This set comprises all the keywords that directly define the testing structure.
+This set contains all the keywords that directly define the testing structure.
 
 ### test_root
 
 Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.
 
-| **Parameter**       | **Type**            | **Description**                                                                                 |
-|---------------------|---------------------|-------------------------------------------------------------------------------------------------|
-| `max_points`        | float               | Maximum points for the test.                                                                    |
-| `initial_steps`     | list \| *not required* | Initial steps for all test suites. These steps are performed only once at the beginning and then the test suites are executed. |
-| `test_suites`       | list                | List of test suites.                                                                            |
+| **Parameter**   | **Type**                | **Description**                                                                                                                |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `max_points`    | float \| *not required* | Maximum points for the test. Used in the evaluation of graded assignments.                                                     |
+| `initial_steps` | list \| *not required*  | Initial steps for all test suites. These steps are performed only once at the beginning and then the test suites are executed. |
+| `test_suites`   | list                    | List of test all suites.                                                                                                       |
 
 
 ```yaml
@@ -28,12 +28,12 @@ test_root:
 
 Used to define a testing suite.
 
-| **Parameter**       | **Type**            | **Description**                                                                                 |
-|---------------------|---------------------|-------------------------------------------------------------------------------------------------|
-| `name`              | string              | Name of the test suite.                                                                        |
-| `delay`             | long \| *not required* | Delay between executed test cases. After finishing of the test case, it will wait for the specified time. (default: 500 ms) |
-| `initial_steps`     | list \| *not required* | Initial steps for the test suite. These steps are performed only once at the beginning.         |
-| `test_cases`        | list                | List of test cases.                                                                            |
+| **Parameter**   | **Type**               | **Description**                                                                                                             |
+| --------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | string                 | Name of the test suite.                                                                                                     |
+| `delay`         | long \| *not required* | Delay between executed test cases. After finishing of the test case, it will wait for the specified time. (default: 500 ms) |
+| `initial_steps` | list \| *not required* | Initial steps for the test suite. These steps are performed only once at the beginning.                                     |
+| `test_cases`    | list                   | List of test cases.                                                                                                         |
 
   
 ```yaml
@@ -48,11 +48,11 @@ test_suite:
 
 Allows the definition of individual test cases.
 
-| **Parameter**       | **Type**    | **Description**                     |
-|---------------------|-------------|-------------------------------------|
-| `name`              | string      | Name of the test case.              |
-| `description`       | string      | Description of the test case.       |
-| `steps`             | list        | Steps to execute in the test case.  |
+| **Parameter** | **Type** | **Description**                    |
+| ------------- | -------- | ---------------------------------- |
+| `name`        | string   | Name of the test case.             |
+| `description` | string   | Description of the test case.      |
+| `steps`       | list     | Steps to execute in the test case. |
 
 
 ```yaml
@@ -66,15 +66,15 @@ test_case:
 
 ## Keywords for Controlling External Applications
 
-This set includes keywords that enable working with an external application. It's primarily designed for launching and communicating with the tested application.
+This set includes keywords that enable working with an external application. It's primarily designed for launching and communicating with the tested applications.
 
 ### run_app
 
-Launches the application. At any given time, only one external application can run. It allows the definition of arguments to be passed to the application upon its launch.
+Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.
 
-| **Parameter**       | **Type**    | **Description**                                     |
-|---------------------|-------------|-----------------------------------------------------|
-| `default`           | string      | Command to run the application. Can run only one application at a time. |
+| **Parameter** | **Type** | **Description**                                                         |
+| ------------- | -------- | ----------------------------------------------------------------------- |
+| `default`     | string   | Command to run the application. Can run only one application at a time. |
   
 ```yaml
 run_app: "java -jar app.jar -arg1 111 -arg2 222"
@@ -84,10 +84,10 @@ run_app: "java -jar app.jar -arg1 111 -arg2 222"
 
 Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.
 
-| **Parameter**       | **Type** | **Description**                                     |
-|---------------------|----------|-----------------------------------------------------|
-| `command`           | string   | Command to run the application. Can run only one application at a time. |
-| `delay`             | long     | Time after which the application starts.          |
+| **Parameter** | **Type** | **Description**                                                         |
+| ------------- | -------- | ----------------------------------------------------------------------- |
+| `command`     | string   | Command to run the application. Can run only one application at a time. |
+| `delay`       | long     | Time after which the application starts.                                |
 
 
 ```yaml
@@ -98,11 +98,11 @@ run_app_later:
 
 ### reload_app
 
-Stops the currently running application and restarts it.
+Stops the currently running application and launches the new application.
    
-| **Parameter**       | **Type** | **Description**                              |
-|---------------------|----------|----------------------------------------------|
-| `default`           | string   | Command to reload the application.          |
+| **Parameter** | **Type** | **Description**                    |
+| ------------- | -------- | ---------------------------------- |
+| `default`     | string   | Command to reload the application. |
 
 
 ```yaml
@@ -110,11 +110,12 @@ reload_app: "java -jar app.jar"
 ```
 
 ### standard_stream_send
-Sends a message to the running application via standard streaming.**
 
-| **Parameter**       | **Type** | **Description**                                   |
-|---------------------|----------|---------------------------------------------------|
-| `name`              | string   | Message to send through the standard stream.     |
+Sends a message to the running application via standard streaming.
+
+| **Parameter** | **Type** | **Description**                              |
+| ------------- | -------- | -------------------------------------------- |
+| `name`        | string   | Message to send through the standard stream. |
 
 ```yaml
 standard_stream_send: "Message to send"
@@ -124,15 +125,15 @@ standard_stream_send: "Message to send"
 
 ## General Keywords
 
-This set encompasses keywords for working with variables, waiting, conditional waiting, and more.
+This set includes keywords for working with variables, waiting, conditional waiting, and more.
 
 ### wait
 
-Pauses the test execution for a defined duration.**
+Pauses the test execution for a defined duration.
 
-| **Parameter**       | **Type** | **Description**                           |
-|---------------------|----------|-------------------------------------------|
-| `default`           | integer  | Time to wait in milliseconds.             |
+| **Parameter** | **Type** | **Description**               |
+| ------------- | -------- | ----------------------------- |
+| `default`     | integer  | Time to wait in milliseconds. |
   
 ```yaml
 wait: 1000
@@ -140,12 +141,12 @@ wait: 1000
 
 ### wait_until
 
-Waits until a specific action occurs, triggered by the reception of a message from a certain communication module. It can be extended with filtering conditions. The content of the message that triggered the action is automatically stored in a variable for potential testing.
+It waits until a message is received from a certain communication module. Messages can be filtered using the keyword `create_filter_action`. The content of the message that triggered the action is automatically saved in the `(module-name)-action-msg` variable for possible testing.
 
-| **Parameter**       | **Type**            | **Description**                                                      |
-|---------------------|---------------------|----------------------------------------------------------------------|
-| `module_name`       | string              | The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2. |
-| `time_out`          | integer \| *not required* | Maximum waiting time in milliseconds. *(default: 10 000 ms)*         |
+| **Parameter** | **Type**                  | **Description**                                                                                            |
+| ------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `module_name` | string                    | The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2. |
+| `time_out`    | integer \| *not required* | Maximum waiting time in milliseconds. *(default: 10 000 ms)*                                               |
 
 
 ```yaml
@@ -158,14 +159,14 @@ wait_until:
 
 Retrieves and stores the content of a specific message from the message buffer into the chosen variable. If multiple messages match the specified search conditions, the variable stores the first one found, i.e., the one received first.
 
-| **Parameter**       | **Type**            | **Description**                                                                                       |
-|---------------------|---------------------|-------------------------------------------------------------------------------------------------------|
-| `var_name`          | string              | Name of the variable to store the value of the message.                                               |
-| `module_name`       | string              | The module from which the message was received.                                                       |
-| `text`              | string \| *not required* | Text that must be included in the message. *(default: "")*                                             |
-| `tag`               | string \| *not required* | Required tag of the message. *(default: "")*                                                           |
-| `mode`              | string \| *not required* | Finding mode. There are these modes: "equals", "contains", "startswith", "endswith". *(default: equals)* |
-| `case_sensitive`    | boolean             | Whether the filter should be case sensitive.                                                           |
+| **Parameter**    | **Type**                  | **Description**                                                                                                  |
+| ---------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `var_name`       | string                    | Name of the variable to store the value of the message.                                                          |
+| `module_name`    | string                    | The module from which the message was received.                                                                  |
+| `text`           | string \| *not required*  | Text that must be included in the message. *(default: "")*                                                       |
+| `tag`            | string \| *not required*  | Required tag of the message. *(default: "")*                                                                     |
+| `mode`           | string \| *not required*  | Finding mode. There are these modes: `"equals"`, `"contains"`, `"startswith"`, `"endswith"`. *(default: equals)* |
+| `case_sensitive` | boolean \| *not required* | Whether the filter should be case sensitive.                                                                     |
 
 
 ```yaml
@@ -182,10 +183,10 @@ store_to_var:
 
 Counts the number of received messages during a single test case and saves this count into a variable.
 
-| **Parameter**       | **Type** | **Description**                                               |
-|---------------------|----------|---------------------------------------------------------------|
-| `var_name`          | string   | Variable to store the count.                                 |
-| `module_name`       | string   | Module whose received messages will be counted.              |
+| **Parameter** | **Type** | **Description**                                 |
+| ------------- | -------- | ----------------------------------------------- |
+| `var_name`    | string   | Variable to store the count.                    |
+| `module_name` | string   | Module whose received messages will be counted. |
 
 ```yaml
 count_and_store:
@@ -197,10 +198,10 @@ count_and_store:
 
 Reads the content from the specified file on the local device and stores its value into the defined variable.
 
-| **Parameter**       | **Type** | **Description**                       |
-|---------------------|----------|---------------------------------------|
-| `var_name`          | string   | Variable to store the file content.   |
-| `file_path`         | string   | Path to the file to be read.          |
+| **Parameter** | **Type** | **Description**                     |
+| ------------- | -------- | ----------------------------------- |
+| `var_name`    | string   | Variable to store the file content. |
+| `file_path`   | string   | Path to the file to be read.        |
 
 ```yaml
 read_file:
@@ -212,10 +213,10 @@ read_file:
 
 Sets the specified variable to the defined content.
 
-| **Parameter**       | **Type** | **Description**                            |
-|---------------------|----------|--------------------------------------------|
-| `var_name`          | string   | Variable to store the value.              |
-| `value`             | string   | The value that will be stored in the variable. |
+| **Parameter** | **Type** | **Description**                                |
+| ------------- | -------- | ---------------------------------------------- |
+| `var_name`    | string   | Variable to store the value.                   |
+| `value`       | string   | The value that will be stored in the variable. |
 
 ```yaml
 set_var:
@@ -227,12 +228,12 @@ set_var:
 
 Retrieves the content of a specific variable, replacing all desired words with their replacements. The result is stored in another variable.
 
-| **Parameter**       | **Type**  | **Description**                                                  |
-|---------------------|-----------|------------------------------------------------------------------|
-| `to_var`            | string    | Variable to store the modified text.                            |
-| `from_var`          | string    | Variable containing the original text.                          |
-| `str_from`          | list      | String to be replaced in the original text.                     |
-| `str_to`            | list      | String to replace occurrences of `str_from` in the original text. |
+| **Parameter** | **Type** | **Description**                                                   |
+| ------------- | -------- | ----------------------------------------------------------------- |
+| `to_var`      | string   | Variable to store the modified text.                              |
+| `from_var`    | string   | Variable containing the original text.                            |
+| `str_from`    | list     | String to be replaced in the original text.                       |
+| `str_to`      | list     | String to replace occurrences of `str_from` in the original text. |
 
 ```yaml
 replace:
@@ -246,10 +247,10 @@ replace:
 
 Writes the defined content into a file on the local device.
 
-| **Parameter**       | **Type** | **Description**                        |
-|---------------------|----------|----------------------------------------|
-| `file_path`         | string   | The path to the file where the content will be written. |
-| `content`           | string   | The content to be written to the file. |
+| **Parameter** | **Type** | **Description**                                         |
+| ------------- | -------- | ------------------------------------------------------- |
+| `file_path`   | string   | The path to the file where the content will be written. |
+| `content`     | string   | The content to be written to the file.                  |
  
 ```yaml
 write_file:
@@ -261,9 +262,9 @@ write_file:
 
 Clears the content of the message buffer. It's possible to clear the buffer content for all modules or for a specific one.
 
-| **Parameter**       | **Type** | **Description**                                           |
-|---------------------|----------|-----------------------------------------------------------|
-| `default`           | string   | Specific module name, or symbol "*" for all modules.    |
+| **Parameter** | **Type** | **Description**                                      |
+| ------------- | -------- | ---------------------------------------------------- |
+| `default`     | string   | Specific module name, or symbol `*` for all modules. |
 
 ```yaml
 clear_buffer: "module-1"
@@ -273,28 +274,33 @@ clear_buffer: "module-1"
 
 Extracts the value of a specified attribute from the content of a variable in JSON format. It's possible to access array indices or to traverse multiple levels in one step.
 
-| **Parameter**       | **Type** | **Description**                                                                                   |
-|---------------------|----------|---------------------------------------------------------------------------------------------------|
-| `to_var`            | string   | Variable to store the extracted value.                                                            |
-| `from_var`          | string   | Variable containing the JSON structure.                                                          |
-| `param_name`        | string   | Name of the parameter to extract from the JSON. If the structure is a list, specify an index to get one element. It is also possible to approach a certain parameter hierarchically in depth, when the parameter names are separated by ":". For example: parent_param:child_param. |
+| **Parameter** | **Type** | **Description**                                                                                                                                                                                                                                                                     |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to_var`      | string   | Variable to store the extracted value.                                                                                                                                                                                                                                              |
+| `from_var`    | string   | Variable containing the JSON structure.                                                                                                                                                                                                                                             |
+| `param_name`  | string   | Name of the parameter to extract from the JSON. If the structure is a list, specify an index to get one element. It is also possible to approach a certain parameter hierarchically in depth, when the parameter names are separated by ":". For example: parent_param:child_param. |
 
 ```yaml
 json_get:
     to_var: "var-1"
     from_var: "var-2"
-    param_name: "parameter-name"
+    param_name: "id"
+
+json_get:
+    to_var: "var-1"
+    from_var: "var-2"
+    param_name: "createAuthorResponse:author:id"
 ```
 
 ### buffer_get
 
 Retrieves the content of a single message from the message buffer of a specific module. The message is accessed using an index, and its content is stored in the defined variable.
 
-| **Parameter**       | **Type** | **Description**                                                                                           |
-|---------------------|----------|-----------------------------------------------------------------------------------------------------------|
-| `var_name`          | string   | Variable to store the extracted message value.                                                            |
-| `module_name`       | string   | Module name; its message buffer will be accessed.                                                        |
-| `index`             | long     | Index of the message whose value will be extracted from the buffer into a variable. When the index is negative, it indexes from the back of the buffer. -1 is the last index of the buffer. At the last position is the last received message. |
+| **Parameter** | **Type** | **Description**                                                                                                                                                                                                                                  |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `var_name`    | string   | Variable to store the extracted message value.                                                                                                                                                                                                   |
+| `module_name` | string   | Module name; its message buffer will be accessed.                                                                                                                                                                                                |
+| `index`       | long     | Index of the message whose value will be extracted from the buffer into a variable. When the index is negative, it indexes from the back of the buffer. `-1` is the last index of the buffer. At the last position is the last received message. |
 
 ```yaml
 buffer_get:
@@ -313,13 +319,13 @@ This set comprises keywords that allow the definition of assertions that must be
 
 Verifies if a variable contains the expected string.
 
-| **Parameter**       | **Type**            | **Description**                                                                                           |
-|---------------------|---------------------|-----------------------------------------------------------------------------------------------------------|
-| `var_name`          | string              | Variable to perform the assertion on.                                                                    |
-| `expected`          | string              | The expected string.                                                                                     |
-| `mode`              | string \| *not required* | Comparison mode. There are these modes: "equals", "contains", "startswith", "endswith". *(default: equals)* |
-| `case_sensitive`    | boolean \| *not required* | Determines if the comparison should be case sensitive. *(default: true)*                                   |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                     |
+| **Parameter**    | **Type**                  | **Description**                                                                                                     |
+| ---------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `var_name`       | string                    | Variable to perform the assertion on.                                                                               |
+| `expected`       | string                    | The expected string.                                                                                                |
+| `mode`           | string \| *not required*  | Comparison mode. There are these modes: `"equals"`, `"contains"`, `"startswith"`, `"endswith"`. *(default: equals)* |
+| `case_sensitive` | boolean \| *not required* | Determines if the comparison should be case sensitive. *(default: true)*                                            |
+| `result`         | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                              |
   
 ```yaml
 assert_string:
@@ -334,11 +340,11 @@ assert_string:
 
 Checks if a numeric variable is lower than the expected value.
 
-| **Parameter**       | **Type**            | **Description**                                                 |
-|---------------------|---------------------|-----------------------------------------------------------------|
-| `var_name`          | string              | Variable to perform the assertion on.                          |
-| `value`             | float               | The upper limit for the variable value.                        |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter** | **Type**                  | **Description**                                                        |
+| ------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `var_name`    | string                    | Variable to perform the assertion on.                                  |
+| `value`       | float                     | The upper limit for the variable value.                                |
+| `result`      | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 
 ```yaml
 assert_lower:
@@ -351,11 +357,11 @@ assert_lower:
 
 Checks if a numeric variable is larger than the expected value.
 
-| **Parameter**       | **Type**            | **Description**                                                 |
-|---------------------|---------------------|-----------------------------------------------------------------|
-| `var_name`          | string              | Variable to perform the assertion on.                          |
-| `value`             | float               | The lower limit for the variable value.                        |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter** | **Type**                  | **Description**                                                        |
+| ------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `var_name`    | string                    | Variable to perform the assertion on.                                  |
+| `value`       | float                     | The lower limit for the variable value.                                |
+| `result`      | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 
 ```yaml
 assert_larger:
@@ -368,12 +374,12 @@ assert_larger:
 
 Checks if a variable equals the expected number. It's possible to set a certain tolerance range.
 
-| **Parameter**       | **Type**            | **Description**                                                     |
-|---------------------|---------------------|---------------------------------------------------------------------|
-| `var_name`          | string              | Variable to perform the assertion on.                              |
-| `value`             | float               | Expected value of the variable.                                    |
-| `tolerance`         | float               | Permissible deviation from the expected value.                     |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter** | **Type**                  | **Description**                                                        |
+| ------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `var_name`    | string                    | Variable to perform the assertion on.                                  |
+| `value`       | float                     | Expected value of the variable.                                        |
+| `tolerance`   | float                     | Permissible deviation from the expected value.                         |
+| `result`      | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 
 ```yaml
 assert_equals:
@@ -387,14 +393,14 @@ assert_equals:
 
 Verifies if the sequence of received messages from two modules falls within a specified segment. Simple comparison rules can also be defined for comparison.
 
-| **Parameter**       | **Type**            | **Description**                                                                                           |
-|---------------------|---------------------|-----------------------------------------------------------------------------------------------------------|
-| `module1_name`      | string              | First module involved in the assertion.                                                                  |
-| `module2_name`      | string              | Second module involved in the assertion.                                                                 |
-| `start`             | integer             | Start index for the range check.                                                                         |
-| `count`             | integer             | Number of values to check within the range.                                                              |
-| `rule`              | string              | Message content comparison rule. Format is: *(message separator)*|*(X)*;*(X)*;... Where <X> is # (equals), ? (arbitrary), number 0-100 diff tolerance. **Example: ",|#;?;15"** |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                     |
+| **Parameter**  | **Type**                  | **Description**                                                                                                                                                                          |
+| -------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `module1_name` | string                    | First module involved in the assertion.                                                                                                                                                  |
+| `module2_name` | string                    | Second module involved in the assertion.                                                                                                                                                 |
+| `start`        | integer                   | Start index for the range check.                                                                                                                                                         |
+| `count`        | integer                   | Number of values to check within the range.                                                                                                                                              |
+| `rule`         | string                    | Message content comparison rule. Format is: `(message separator)\|(X);(X);...` Where `(X)` is `#` `(equals)`, `?` `(arbitrary)`, number `0-100 diff tolerance`. **Example:** ",\|#;?;15" |
+| `result`       | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                                                                                                   |
 
 ```yaml
 assert_range:
@@ -410,9 +416,9 @@ assert_range:
 
 Verifies if an external application is currently running.
 
-| **Parameter**       | **Type**            | **Description**                                           |
-|---------------------|---------------------|-----------------------------------------------------------|
-| `default`           | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter** | **Type**                  | **Description**                                                        |
+| ------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `default`     | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 
 ```yaml
 assert_app_is_running: true
@@ -422,10 +428,10 @@ assert_app_is_running: true
 
 Verifies if a specific module is currently running.
 
-| **Parameter**       | **Type**            | **Description**                                           |
-|---------------------|---------------------|-----------------------------------------------------------|
-| `module_name`       | string              | Name of module.                                          |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| **Parameter** | **Type**                  | **Description**                                                        |
+| ------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `module_name` | string                    | Name of module.                                                        |
+| `result`      | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 
 ```yaml
 assert_module_is_running: 
@@ -437,12 +443,12 @@ assert_module_is_running:
 
 Allows verification if the JSON object in a variable is identical to the expected JSON object.
 
-| **Parameter**       | **Type**            | **Description**                                                                                           |
-|---------------------|---------------------|-----------------------------------------------------------------------------------------------------------|
-| `var_name`          | string              | The name of the variable containing the JSON object to be asserted.                                      |
-| `expected`          | string              | The expected JSON object in string format for comparison.                                                |
-| `exact_mode`        | string              | Specifies a comparison mode for JSON objects that requires strict equality between expected and actual JSON. If false, it only compares parameters that are in the expected JSON. *(default: false)* |
-| `result`            | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                     |
+| **Parameter** | **Type**                  | **Description**                                                                                                                                                                                      |
+| ------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `var_name`    | string                    | The name of the variable containing the JSON object to be asserted.                                                                                                                                  |
+| `expected`    | string                    | The expected JSON object in string format for comparison.                                                                                                                                            |
+| `exact_mode`  | string                    | Specifies a comparison mode for JSON objects that requires strict equality between expected and actual JSON. If false, it only compares parameters that are in the expected JSON. *(default: false)* |
+| `result`      | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                                                                                                               |
 
 ```yaml
 assert_json: 
@@ -462,11 +468,11 @@ This set includes keywords that enable working with communication modules.
 
 Creates a module that launches a new virtual Telnet client.
 
-| **Parameter**       | **Type**            | **Description**                                        |
-|---------------------|---------------------|--------------------------------------------------------|
-| `name`              | string              | Unique name for the module.                           |
-| `host`              | string \| *not required* | Hostname or IP address to connect to. *(default: localhost)* |
-| `port`              | integer \| *not required* | Port number on the host to connect to. *(default: 23)* |
+| **Parameter** | **Type**                  | **Description**                                              |
+| ------------- | ------------------------- | ------------------------------------------------------------ |
+| `name`        | string                    | Unique name for the module.                                  |
+| `host`        | string \| *not required*  | Hostname or IP address to connect to. *(default: localhost)* |
+| `port`        | integer \| *not required* | Port number on the host to connect to. *(default: 23)*       |
   
 ```yaml
 create_telnet_client:
@@ -479,10 +485,10 @@ create_telnet_client:
 
 Creates a module that launches a virtual Telnet server.
 
-| **Parameter**       | **Type**            | **Description**                            |
-|---------------------|---------------------|--------------------------------------------|
-| `name`              | string              | Unique name for the module.               |
-| `port`              | integer \| *not required* | Port number to listen on. *(default: 23)* |
+| **Parameter** | **Type**                  | **Description**                           |
+| ------------- | ------------------------- | ----------------------------------------- |
+| `name`        | string                    | Unique name for the module.               |
+| `port`        | integer \| *not required* | Port number to listen on. *(default: 23)* |
   
 ```yaml
 create_telnet_server:
@@ -494,12 +500,12 @@ create_telnet_server:
 
 Creates a module that launches a web crawler.
 
-| **Parameter**       | **Type**            | **Description**                                      |
-|---------------------|---------------------|------------------------------------------------------|
-| `name`              | string              | Unique name for the module.                         |
-| `start_url`         | string              | URL to start crawling from.                         |
-| `max_depth`         | integer             | Maximum depth to crawl.                            |
-| `analyzer`          | string              | Analyzer to use for parsing the web pages.          |
+| **Parameter** | **Type** | **Description**                            |
+| ------------- | -------- | ------------------------------------------ |
+| `name`        | string   | Unique name for the module.                |
+| `start_url`   | string   | URL to start crawling from.                |
+| `max_depth`   | integer  | Maximum depth to crawl.                    |
+| `analyzer`    | string   | Analyzer to use for parsing the web pages. |
   
 ```yaml
 create_web_crawler:
@@ -513,10 +519,10 @@ create_web_crawler:
 
 Creates a module that launches a virtual email server.
 
-| **Parameter**       | **Type**    | **Description**                                 |
-|---------------------|-------------|-------------------------------------------------|
-| `name`              | string      | Unique name for the module.                    |
-| `port`              | integer     | Port number on which the email server will listen. |
+| **Parameter** | **Type** | **Description**                                    |
+| ------------- | -------- | -------------------------------------------------- |
+| `name`        | string   | Unique name for the module.                        |
+| `port`        | integer  | Port number on which the email server will listen. |
 
 ```yaml
 create_email_server:
@@ -528,12 +534,12 @@ create_email_server:
 
 Creates a module that launches an HTTP client for testing REST APIs.
 
-| **Parameter**       | **Type**    | **Description**                                          |
-|---------------------|-------------|----------------------------------------------------------|
-| `name`              | string      | Unique name for the module.                             |
-| `url`               | string      | URL of the REST API to test.                            |
-| `request_type`      | string      | Type of HTTP request to send (GET, POST, etc.).         |
-| `content_type`      | string      | Data type in request. *(default: application/json)*     |
+| **Parameter**  | **Type** | **Description**                                     |
+| -------------- | -------- | --------------------------------------------------- |
+| `name`         | string   | Unique name for the module.                         |
+| `url`          | string   | URL of the REST API to test.                        |
+| `request_type` | string   | Type of HTTP request to send (GET, POST, etc.).     |
+| `content_type` | string   | Data type in request. *(default: application/json)* |
   
 ```yaml
 create_rest_tester:
@@ -547,10 +553,10 @@ create_rest_tester:
 
 Creates a module for testing SOAP services.
 
-| **Parameter**       | **Type**    | **Description**                              |
-|---------------------|-------------|----------------------------------------------|
-| `name`              | string      | Unique name for the module.                 |
-| `url`               | string      | URL of the SOAP service to test.            |
+| **Parameter** | **Type** | **Description**                  |
+| ------------- | -------- | -------------------------------- |
+| `name`        | string   | Unique name for the module.      |
+| `url`         | string   | URL of the SOAP service to test. |
 
 ```yaml
 create_soap_tester:
@@ -562,11 +568,11 @@ create_soap_tester:
 
 Creates a module that launches a virtual MQTT client.
 
-| **Parameter**       | **Type**            | **Description**                                          |
-|---------------------|---------------------|----------------------------------------------------------|
-| `name`              | string              | Unique name for the module.                             |
-| `topics`            | array \| *not required* | List of topics to subscribe to. *(default: empty)*      |
-| `broker_url`        | string \| *not required* | URL of the MQTT broker to connect to. *(default: tcp://localhost:1883)* |
+| **Parameter** | **Type**                 | **Description**                                                         |
+| ------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `name`        | string                   | Unique name for the module.                                             |
+| `topics`      | array \| *not required*  | List of topics to subscribe to. *(default: empty)*                      |
+| `broker_url`  | string \| *not required* | URL of the MQTT broker to connect to. *(default: tcp://localhost:1883)* |
   
 ```yaml
 create_mqtt_client:
@@ -579,10 +585,10 @@ create_mqtt_client:
 
 Creates a module that launches an MQTT broker.
 
-| **Parameter**       | **Type**            | **Description**                                  |
-|---------------------|---------------------|--------------------------------------------------|
-| `name`              | string              | Unique name for the module.                     |
-| `port`              | integer \| *not required* | Port number for the MQTT broker. *(default: 1883)* |
+| **Parameter** | **Type**                  | **Description**                                    |
+| ------------- | ------------------------- | -------------------------------------------------- |
+| `name`        | string                    | Unique name for the module.                        |
+| `port`        | integer \| *not required* | Port number for the MQTT broker. *(default: 1883)* |
 
 ```yaml
 create_mqtt_broker:
@@ -594,9 +600,9 @@ create_mqtt_broker:
 
 Terminates a running module that is no longer needed.
 
-| **Parameter**       | **Type**    | **Description**                        |
-|---------------------|-------------|----------------------------------------|
-| `default`           | string      | Name of the module to terminate.       |
+| **Parameter** | **Type** | **Description**                  |
+| ------------- | -------- | -------------------------------- |
+| `default`     | string   | Name of the module to terminate. |
 
 ```yaml
 termite_module:
@@ -607,11 +613,11 @@ termite_module:
 
 Sends a message using a specific module.
 
-| **Parameter**       | **Type**            | **Description**                                                   |
-|---------------------|---------------------|-------------------------------------------------------------------|
-| `name`              | string              | Name of the sending module.                                      |
-| `message`           | string              | Message to send.                                                 |
-| `delay`             | long \| *not required* | How long it will take to send a message after calling this keyword. |
+| **Parameter** | **Type**               | **Description**                                                                             |
+| ------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
+| `name`        | string                 | Name of the sending module.                                                                 |
+| `message`     | string                 | Message to send. For different modules, the content may have different format requirements. |
+| `delay`       | long \| *not required* | How long it will take to send a message after calling this keyword.                         |
 
 ```yaml
 module_send:
@@ -624,13 +630,13 @@ module_send:
 
 Creates a filter for actions triggered upon message reception. Text content can be filtered.
 
-| **Parameter**       | **Type**            | **Description**                                                   |
-|---------------------|---------------------|-------------------------------------------------------------------|
-| `name`              | string              | Name of module.                                                  |
-| `text`              | string              | Text to filter on.                                               |
-| `tag`               | string \| *not required* | Tag of message. *(default: "")*                                    |
-| `mode`              | string \| *not required* | Filter mode. There are these modes: "equals", "contains", "startswith", "endswith". *(default: equals)* |
-| `case_sensitive`    | boolean             | Whether the filter should be case sensitive. *(default: true)*    |
+| **Parameter**    | **Type**                 | **Description**                                                                                         |
+| ---------------- | ------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `name`           | string                   | Name of module.                                                                                         |
+| `text`           | string                   | Text to filter on.                                                                                      |
+| `tag`            | string \| *not required* | Tag of message. *(default: "")*                                                                         |
+| `mode`           | string \| *not required* | Filter mode. There are these modes: "equals", "contains", "startswith", "endswith". *(default: equals)* |
+| `case_sensitive` | boolean                  | Whether the filter should be case sensitive. *(default: true)*                                          |
 
 ```yaml
 create_filter_action:
@@ -645,9 +651,9 @@ create_filter_action:
 
 Removes all action filters for a specific module.
 
-| **Parameter**       | **Type**    | **Description**          |
-|---------------------|-------------|--------------------------|
-| `default`           | string      | Name of module.          |
+| **Parameter** | **Type** | **Description** |
+| ------------- | -------- | --------------- |
+| `default`     | string   | Name of module. |
 
 ```yaml
 clear_filter_actions:
