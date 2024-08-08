@@ -22,12 +22,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = __importStar(require("vscode"));
-const keywords_1 = __importDefault(require("./keywords"));
 class NattViewProvider {
     _extensionUri;
     static viewType = 'homeView';
@@ -141,69 +137,6 @@ class NattViewProvider {
                     border-radius: 0.3125rem; /* 5px / 16px */
                     padding: 0.5rem; /* 8px / 16px */
                 }
-
-                .keywordpanel-wrapper {
-                    position: relative;
-                    border-radius: 0.8rem; 
-                    border: 0.125rem solid #333; /* 2px / 16px */
-                    margin-top: 0.625rem; /* 10px / 16px */
-                    padding: 0.625rem; /* 10px / 16px */
-                }
-
-                .keywordInfoPanel {
-                    display: flex;
-                    flex-direction: column;
-                    overflow: auto;
-                }
-
-                .keyword-list {
-                    overflow-x: auto;
-                    white-space: nowrap;
-                    border-bottom: 0.125rem solid #333; /* 2px / 16px */
-                    padding-bottom: 0.625rem; /* 10px / 16px */
-                    margin-bottom: 0.625rem; /* 10px / 16px */
-                }
-
-                .keyword-item {
-                    display: inline-block;
-                    padding: 0.5rem 0.625rem; /* 8px 10px / 16px */
-                    margin: 0.125rem; 
-                    background-color: #252525;
-                    cursor: pointer;
-                    border-radius: 1rem; 
-                    transition: background-color 0.3s, color 0.3s;
-                }
-
-                .keyword-item:hover,
-                .keyword-item.active {
-                    background-color: #444444;
-                    color: #d0d0d0;
-                }
-
-                .keyword-description {
-                    padding: 0.625rem; /* 10px / 16px */
-                    overflow-y: auto;
-                }
-
-                .keyword-description ul {
-                    list-style-type: disc;
-                    color: #d0d0d0;
-                }
-
-                .keyword-description ul li {
-                    margin-bottom: 0.625rem; /* 10px / 16px */
-                }
-
-                .keyword-search {
-                    padding: 0.5rem; /* 8px / 16px */
-                    border: 0.125rem solid #333; /* 2px / 16px */
-                    border-radius: 0.3125rem; /* 5px / 16px */
-                    background-color: var(--vscode-input-background);
-                    color: var(--vscode-input-foreground);
-                    width: 100%;
-                    box-sizing: border-box;
-                    margin-bottom: 0.625rem; /* 10px / 16px */
-                }
             </style>
         </head>
         <body>
@@ -240,92 +173,17 @@ class NattViewProvider {
                 </button>
             </div>
 
-            <div class="keywordpanel-wrapper">
-                <input type="text" class="keyword-search" id="keywordSearch" placeholder="Search for a keyword..." oninput="filterKeywords()">
-                <div class="keywordInfoPanel">
-                    <div class="keyword-list" id="keywordList">
-                        <!-- Keyword items will be injected here -->
-                    </div>
-                    <div class="keyword-description" id="keywordDetails">
-                        <!-- Keyword details will be injected here -->
-                    </div>
-                </div>
-            </div>
-
             <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md" target="_blank">Keyword documentation</a>
-
-            <span class="github-link"><b>NATT version:</b> 1.4.5</span>
 
             <script>
                 const vscode = acquireVsCodeApi();
-                const keywordDetails = ${JSON.stringify(keywords_1.default)};
 
                 function executeCommand(command) {
                     vscode.postMessage({ command: command });
                 }
 
-                function showKeywordDetails(keyword) {
-                    const detailsDiv = document.getElementById('keywordDetails');
-                    detailsDiv.innerHTML = '';
-
-                    if (keyword && keywordDetails[keyword]) {
-                        const details = keywordDetails[keyword];
-                        const description = document.createElement('p');
-                        description.textContent = details.description;
-                        detailsDiv.appendChild(description);
-
-                        const paramListTitle = document.createElement('strong');
-                        paramListTitle.textContent = 'Parameters:';
-                        detailsDiv.appendChild(paramListTitle);
-
-                        const paramList = document.createElement('ul');
-                        details.parameters.forEach(param => {
-                            const paramItem = document.createElement('li');
-                            paramItem.innerHTML = \`<strong>\${param.name} (\${param.type})</strong>: \${param.description}\`;
-                            paramList.appendChild(paramItem);
-                        });
-
-                        detailsDiv.appendChild(paramList);
-                    }
-                }
-
-                function filterKeywords() {
-                    const searchInput = document.getElementById('keywordSearch').value.toLowerCase();
-                    const keywordItems = document.getElementsByClassName('keyword-item');
-
-                    for (let i = 0; i < keywordItems.length; i++) {
-                        const item = keywordItems[i];
-                        if (item.textContent.toLowerCase().includes(searchInput)) {
-                            item.style.display = 'inline-block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    }
-
-                    const firstVisibleKeyword = Array.from(keywordItems).find(item => item.style.display === 'inline-block');
-                    if (firstVisibleKeyword) {
-                        showKeywordDetails(firstVisibleKeyword.textContent);
-                    } else {
-                        document.getElementById('keywordDetails').innerHTML = '';
-                    }
-                }
-
-                function createKeywordList() {
-                    const keywordListDiv = document.getElementById('keywordList');
-                    for (const keyword in keywordDetails) {
-                        const keywordItemDiv = document.createElement('div');
-                        keywordItemDiv.className = 'keyword-item';
-                        keywordItemDiv.textContent = keyword;
-                        keywordItemDiv.onclick = () => showKeywordDetails(keyword);
-                        keywordListDiv.appendChild(keywordItemDiv);
-                    }
-                }
-
                 // Initialize the keyword list when the page loads
                 window.onload = createKeywordList;
-
-                // show base keyword
-                showKeywordDetails('test_root');
             </script>
         </body>
         </html>`;

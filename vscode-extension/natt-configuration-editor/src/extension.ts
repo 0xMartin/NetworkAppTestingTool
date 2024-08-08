@@ -59,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
-            const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.4.5/NATT.jar');
+            const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.5.0/NATT.jar');
             const destJarPath = path.join(projectPath, 'NATT.jar');
 
             // Function to download the file
@@ -85,7 +85,19 @@ export function activate(context: vscode.ExtensionContext) {
             };
 
             try {
-                await downloadFile(jarUrl, destJarPath);
+                // Use vscode.window.withProgress to show a loading bar during the download
+                await vscode.window.withProgress({
+                    location: vscode.ProgressLocation.Notification,
+                    title: "Downloading NATT.jar",
+                    cancellable: false
+                }, async (progress, token) => {
+                    progress.report({ message: "Starting download..." });
+
+                    await downloadFile(jarUrl, destJarPath);
+
+                    progress.report({ message: "Download complete!" });
+                });
+
                 vscode.window.showInformationMessage('NATT.jar downloaded successfully. Setup complete!');
             } catch (error) {
                 vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error}`);
@@ -160,7 +172,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Buttons *************************************************************************************
     // Create status bar buttons
-    
+
     const runButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
     runButton.text = '$(play) NATT Run';
     runButton.command = 'extension.nattRun';
