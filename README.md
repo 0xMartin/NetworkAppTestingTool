@@ -209,7 +209,7 @@ All keywords are executed synchronously. If any keyword has a parameter of the "
 
 Each module has its **specific behavior** and ways in which it needs to be handled. This section describes each of them and the methods to properly utilize their functionality when writing testing configurations.
 s
-Upon receiving a message by any module, its content is appropriately processed and inserted into the message buffer. In all cases, the content of this last received message is also stored in a variable with the following name format: "<module-name>-last-msg". Using this variable can significantly simplify configuration writing in certain cases.
+Upon receiving a message by any module, its content is appropriately processed and inserted into the message buffer. In all cases, the content of this last received message is also stored in a variable with the following name format: **'(module-name)-last-msg'**. Using this variable can significantly simplify configuration writing in certain cases.
 
 ## External Application Runner
 This module is automatically created before the actual testing begins, and it's not necessary to create it manually. It's not possible to create multiple instances of this module.
