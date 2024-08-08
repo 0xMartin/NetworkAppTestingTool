@@ -1,5 +1,7 @@
 # Example project - Telnet Calculator
 
+**[Go Back](../../README.md)**
+
 This is a simple example project. The tested application is a telnet client to which the server sends a mathematical formula, which the client calculates and sends the result back to the server. 
 
 **Supported formula symbols:** +,- and numbers (44, 23, 4.356)
