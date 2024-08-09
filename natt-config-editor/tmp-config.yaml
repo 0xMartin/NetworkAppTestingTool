@@ -3,8 +3,13 @@ test_root:
     initial_steps: 
         - run_app: 
             command: "java -jar echo_test.jar"
-            name: "app-1"
         - wait: 500
+        - custom_keyword:
+            name: "my_keyword"
+            params: ["param_1", "param_2"]
+            steps:
+                - standard_stream_send: "This is message 1: $param_1"
+                - standard_stream_send: "This is message 2: $param_2"
     test_suites: 
         - test_suite:
             name: "Suite name 1"
@@ -15,15 +20,16 @@ test_root:
                     name: "Case name 1"
                     description: "Description 1 here"
                     steps: 
-                        - module_send:
-                            name: "app-1"
-                            message: "Message $your-var"
-                            delay: 100
+                        - call_keyword:
+                            name: "my_keyword"
+                            param_1: "Variable 1"
+                            param_2: 123456
                         - wait: 3000
                 - test_case:
                     name: "Case name 2"
                     description: "Description 2 here"
                     steps:
-                        - standard_stream_send: 
-                            message: "Message to send"
-                            name: "app-1"
+                        - call_keyword:
+                            name: "my_keyword"
+                            param_1: "Variable 1"
+                            param_2: 123456

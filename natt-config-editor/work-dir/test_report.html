@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 8, 2024 08:04:28 PM</span></a>
+<a href="#"><span class="badge badge-primary">Aug 9, 2024 02:15:33 PM</span></a>
 </li>
 </ul>
 </div>
@@ -93,7 +93,7 @@
           <div class="test-detail">
             <p class="name">Test root initialization</p>
             <p class="text-sm">
-              <span>20:04:28 PM</span> / <span>00:00:00:000</span>
+              <span>14:15:33 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -102,8 +102,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Test root initialization</h5>
-<span class='badge badge-success'>08.08.2024 20:04:28</span>
-<span class='badge badge-danger'>08.08.2024 20:04:28</span>
+<span class='badge badge-success'>08.09.2024 14:15:33</span>
+<span class='badge badge-danger'>08.09.2024 14:15:33</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 </div>
@@ -115,16 +115,23 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:04:28 PM</td>
+        <td>2:15:33 PM</td>
         <td>
-          <b>[Run App]</b> name = "app-1", command = "java -jar echo_test.jar"
+          <b>[Run App]</b> command = "java -jar echo_test.jar"
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:04:29 PM</td>
+        <td>2:15:34 PM</td>
         <td>
           <b>[Wait]</b> 500
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:15:34 PM</td>
+        <td>
+          <b>[Custom Keyword]</b> name = "my_keyword"<br><font color="green">Custom keyword 'my_keyword' successfully created</font>
         </td>
       </tr>
   </tbody>
@@ -139,7 +146,7 @@
           <div class="test-detail">
             <p class="name">Test suite 'Suite name 1' initialization</p>
             <p class="text-sm">
-              <span>20:04:28 PM</span> / <span>00:00:00:000</span>
+              <span>14:15:33 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -148,8 +155,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Test suite 'Suite name 1' initialization</h5>
-<span class='badge badge-success'>08.08.2024 20:04:28</span>
-<span class='badge badge-danger'>08.08.2024 20:04:28</span>
+<span class='badge badge-success'>08.09.2024 14:15:33</span>
+<span class='badge badge-danger'>08.09.2024 14:15:33</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 </div>
@@ -165,7 +172,7 @@
           <div class="test-detail">
             <p class="name">Case name 1</p>
             <p class="text-sm">
-              <span>20:04:28 PM</span> / <span>00:00:00:000</span>
+              <span>14:15:33 PM</span> / <span>00:00:00:000</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -174,8 +181,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Case name 1</h5>
-<span class='badge badge-success'>08.08.2024 20:04:28</span>
-<span class='badge badge-danger'>08.08.2024 20:04:28</span>
+<span class='badge badge-success'>08.09.2024 14:15:33</span>
+<span class='badge badge-danger'>08.09.2024 14:15:33</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 </div>
@@ -188,14 +195,14 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:04:29 PM</td>
+        <td>2:15:34 PM</td>
         <td>
-          <b>[Module Send]</b> delay = 100, name = "app-1", message = "Message $your-var"<br><font color="green">Message was successfully sent by module <b>'app-1'</b>. Message content: <br><b>Message </b></font>
+          <b>[Call Keyword]</b> param_2 = 123456, name = "my_keyword", param_1 = "Variable 1"<br><b>Steps:</b><br>[0]: <b>[Standard Stream Send]</b> 'This is message 1: $param_1'<br><font color="green">Message was successfully sent on standard stream of external application. Message content: <b>'This is message 1: Variable 1'</b></font><br>[1]: <b>[Standard Stream Send]</b> 'This is message 2: $param_2'<br><font color="green">Message was successfully sent on standard stream of external application. Message content: <b>'This is message 2: '</b></font><br>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>8:04:32 PM</td>
+        <td>2:15:37 PM</td>
         <td>
           <b>[Wait]</b> 3000
         </td>
@@ -212,7 +219,7 @@
           <div class="test-detail">
             <p class="name">Case name 2</p>
             <p class="text-sm">
-              <span>20:04:28 PM</span> / <span>00:00:00:000</span>
+              <span>14:15:33 PM</span> / <span>00:00:00:000</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -221,8 +228,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-fail">Case name 2</h5>
-<span class='badge badge-success'>08.08.2024 20:04:28</span>
-<span class='badge badge-danger'>08.08.2024 20:04:28</span>
+<span class='badge badge-success'>08.09.2024 14:15:33</span>
+<span class='badge badge-danger'>08.09.2024 14:15:33</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
 </div>
@@ -235,9 +242,9 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>8:04:33 PM</td>
+        <td>2:15:37 PM</td>
         <td>
-          <b>[Standard Stream Send]</b> name = "app-1", message = "Message to send"<br><font color="red">Failed to send message on standard stream of external application.</font>
+          <b>[Call Keyword]</b> param_2 = 123456, name = "my_keyword", param_1 = "Variable 1"<br><b>Steps:</b><br>[0]: <b>[Standard Stream Send]</b> 'This is message 1: $param_1'<br><font color="red">Failed to send message on standard stream of external application.</font><br>[1]: <b>[Standard Stream Send]</b> 'This is message 2: $param_2'<br><font color="red">Failed to send message on standard stream of external application.</font><br>
         </td>
       </tr>
   </tbody>
@@ -252,7 +259,7 @@
           <div class="test-detail">
             <p class="name">Result score</p>
             <p class="text-sm">
-              <span>20:04:33 PM</span> / <span>00:00:00:000</span>
+              <span>14:15:38 PM</span> / <span>00:00:00:000</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -261,8 +268,8 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-fail">Result score</h5>
-<span class='badge badge-success'>08.08.2024 20:04:33</span>
-<span class='badge badge-danger'>08.08.2024 20:04:33</span>
+<span class='badge badge-success'>08.09.2024 14:15:38</span>
+<span class='badge badge-danger'>08.09.2024 14:15:38</span>
 <span class='badge badge-default'>00:00:00:000</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
 </div>
@@ -274,14 +281,14 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>8:04:33 PM</td>
+        <td>2:15:38 PM</td>
         <td>
           Tested application for test suite 'Suite name 1' get 5.00 / 10.00 points
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>8:04:33 PM</td>
+        <td>2:15:38 PM</td>
         <td>
           TOTAL SCORE: 5.00 / 10.00 points
         </td>
@@ -334,21 +341,21 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>20:04:28 PM</td>
+<td>14:15:33 PM</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>Test suite 'Suite name 1' initialization</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>20:04:28 PM</td>
+<td>14:15:33 PM</td>
 <td>
 <a href="#" class="linked" test-id='3' id='3'>Case name 1</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="fail">
 <td><span class="badge log fail-bg">Fail</span></td>
-<td>20:04:28 PM</td>
+<td>14:15:33 PM</td>
 <td>
 <a href="#" class="linked" test-id='4' id='4'>Case name 2</a>
 </td>
@@ -370,13 +377,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 8, 2024 08:04:28 PM</h3>
+<h3>Aug 9, 2024 02:15:33 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 8, 2024 08:04:33 PM</h3>
+<h3>Aug 9, 2024 02:15:38 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -427,9 +434,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='57%'><b>4</b> events passed</small></div>
+<div><small data-tooltip='62%'><b>5</b> events passed</small></div>
 <div>
-<small data-tooltip='28%'><b>2</b> events failed,
+<small data-tooltip='25%'><b>2</b> events failed,
 <b data-tooltip='%'>1</b> others
 </small>
 </div>
@@ -489,7 +496,7 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 4,
+passEvents: 5,
 failEvents: 2,
 warningEvents: 0,
 skipEvents: 0,

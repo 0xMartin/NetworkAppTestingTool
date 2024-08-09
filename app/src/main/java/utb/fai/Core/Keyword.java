@@ -284,7 +284,7 @@ public abstract class Keyword {
      */
     public ParameterValue getParameterValue(String name, ParameterValueType type, boolean required)
             throws InvalidSyntaxInConfigurationException {
-        return this.getParameterValue(new String[] {name}, type, required);
+        return this.getParameterValue(new String[] { name }, type, required);
     }
 
     /**
@@ -514,7 +514,12 @@ public abstract class Keyword {
             if (param.getValue().getType() != ParameterValueType.LIST
                     && param.getValue().getType() != ParameterValueType.KEYWORD) {
                 if (param.getKey().equals(Keyword.DEFAULT_PARAMETER_NAME)) {
-                    paramStr.add(String.format("%s", param.getValue().getValue()));
+                    // only one parameter
+                    if (param.getValue().getType() == ParameterValueType.STRING) {
+                        paramStr.add(String.format("\"%s\"", param.getValue().getValue()));
+                    } else {
+                        paramStr.add(String.format("%s", param.getValue().getValue()));
+                    }
                 } else {
                     if (param.getValue().getType() == ParameterValueType.STRING) {
                         // jde o string

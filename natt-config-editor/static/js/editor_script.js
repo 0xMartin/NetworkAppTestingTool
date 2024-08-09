@@ -227,6 +227,24 @@ var keywordSnippets = [
         meta: "General"
     },
     {
+        caption: 'custom_keyword',
+        snippet: `custom_keyword:
+    name: "my_keyword"
+    params: ["param_1", "param_2"]
+    steps:
+        - standard_stream_send: "This is message 1: \$param_1"
+        - standard_stream_send: "This is message 2: \$param_2"`,
+        meta: "General"
+    },
+    {
+        caption: 'call_keyword',
+        snippet: `call_keyword:
+    name: "my_keyword"
+    param_1: "Variable 1"
+    param_2: 123456`,
+        meta: "General"
+    },
+    {
         caption: 'create_telnet_client',
         snippet: `create_telnet_client:
     name: "module-1"

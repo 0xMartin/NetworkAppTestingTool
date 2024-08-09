@@ -51,11 +51,11 @@ public class ExternalProgramRunner extends NATTModule {
     @Override
     public void runModule() throws InternalErrorException {
         if (this.currentProcess != null) {
-            logger.warning(super.getNameForLogger() + "Failed to run. External application is currently running!");
+            logger.warning(super.getNameForLogger() + "Failed to run. External app is currently running!");
             return;
         }
 
-        logger.info(super.getNameForLogger() + "Run external application with command: " + command);
+        logger.info(super.getNameForLogger() + "Run external app with command: " + command);
 
         try {
             currentProcess = Runtime.getRuntime().exec(ExternalProgramRunner.commandStringToCommandList(command));
@@ -163,7 +163,7 @@ public class ExternalProgramRunner extends NATTModule {
     public boolean sendMessageToExternalProgram(String message, boolean endLine) {
         if (currentProcess != null) {
             logger.info(super.getNameForLogger()
-                    + "Sending message to external application on System.in. Message content: " + message);
+                    + "Sending message on standard stream. Message content: " + message);
             try {
 
                 outputStream.write(message.getBytes());
@@ -178,7 +178,7 @@ public class ExternalProgramRunner extends NATTModule {
                 logger.warning(super.getNameForLogger() + "Failed to send data. Stream is closed!");
             }
         } else {
-            logger.warning(super.getNameForLogger() + "Failed to send data. External application is not running now!");
+            logger.warning(super.getNameForLogger() + "Failed to send data. External app is not running now!");
         }
 
         return false;

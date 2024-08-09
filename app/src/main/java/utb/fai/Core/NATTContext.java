@@ -29,6 +29,12 @@ public class NATTContext {
     // list vsech vysledku testovacich pripadu
     private LinkedList<TestCaseResult> testCaseResults;
 
+    // vysledne bodove hodnoceni
+    private double finalScore;
+
+    // maximalni mozne bodove hodnoceni za testovani aplikace
+    private double maxScore;
+
     // seznam aktualne aktivnich modulu
     private LinkedList<NATTModule> modules;
 
@@ -38,14 +44,12 @@ public class NATTContext {
 
     // vsechny promenne vyuzivane pri testovani
     private ConcurrentHashMap<String, String> variables;
+    private Stack<ConcurrentHashMap<String, String>> variableHistory;
 
-    // vysledne bodove hodnoceni
-    private double finalScore;
+    // obsahuje vsechny registrovane custom keywordy
+    private HashMap<String, CustomKeywordKw> customKeywords;
 
-    // maximalni mozne bodove hodnoceni za testovani aplikace
-    private double maxScore;
-
-    // obsahuje vsechny nazvy keyword a k nim jejich prislusne tridy
+    // obsahuje vsechny registrovane nazvy keyword a k nim jejich prislusne tridy
     private final HashMap<String, Class<?>> keywordSet;
 
     /**********************************************************************************************/
@@ -75,6 +79,8 @@ public class NATTContext {
         }
     }
 
+    /**********************************************************************************************/
+
     /**
      * Navrati tridu obsahujici buffery zprav pro vsechny moduly
      * 
@@ -83,6 +89,8 @@ public class NATTContext {
     public MessageBuffer getMessageBuffer() {
         return messageBuffer;
     }
+
+    /**********************************************************************************************/
 
     /**
      * Navrati vsechny vytvorene promenne
@@ -141,6 +149,48 @@ public class NATTContext {
     }
 
     /**
+     * Ulozi aktualni stav promennych do historie pro pro nasledne obnoveni tohoto
+     * stavu
+     */
+    public void saveVariablesState() {
+        ConcurrentHashMap<String, String> snapshot = new ConcurrentHashMap<>(variables);
+        variableHistory.push(snapshot);
+        logger.info("Variables state has been saved.");
+    }
+
+    /**
+     * Obnoveni promennych na hodnotu ulozenou v historii
+     */
+    public void restoreVariablesState() {
+        if (!variableHistory.isEmpty()) {
+            variables = variableHistory.pop();
+            logger.info("Variables state has been restored.");
+        } else {
+            logger.warning("No saved state to restore.");
+        }
+    }
+
+    /**********************************************************************************************/
+
+    /**
+     * Navrati referenci na list obsahujici vsechny registrovane custom keywordy
+     * 
+     * @return HashMap<String, CustomKeywordKw>
+     */
+    public HashMap<String, CustomKeywordKw> getCustomKeywords() {
+        return this.customKeywords;
+    }
+
+    /**
+     * Vymaze vsechny custom keywordy
+     */
+    public void clearCustomKeywords() {
+        this.customKeywords.clear();
+    }
+
+    /**********************************************************************************************/
+
+    /**
      * Ziska vysledky vsech probhlich testovacich pripadu
      * 
      * @return List vysledku testovacich pripadu
@@ -159,6 +209,8 @@ public class NATTContext {
             this.testCaseResults.add(res);
         }
     }
+
+    /**********************************************************************************************/
 
     /**
      * Ziska sadu vsech keyword, ktere jsou dostupne pro tento nastroj
@@ -233,6 +285,8 @@ public class NATTContext {
         this.testCaseResults = new LinkedList<TestCaseResult>();
         this.messageBuffer = new MessageBuffer();
         this.variables = new ConcurrentHashMap<String, String>();
+        this.variableHistory = new Stack<ConcurrentHashMap<String, String>>();
+        this.customKeywords = new HashMap<String, CustomKeywordKw>();
 
         // keyword list /////////////////////////////////////////////////////
         this.keywordSet = new HashMap<String, Class<?>>();
@@ -254,6 +308,8 @@ public class NATTContext {
         this.keywordSet.put("replace", ReplaceKw.class);
         this.keywordSet.put("read_net_file", ReadNetFileKw.class);
         this.keywordSet.put("write_net_file", WriteNetFileKw.class);
+        this.keywordSet.put("custom_keyword", CustomKeywordKw.class);
+        this.keywordSet.put("call_keyword", CallKeywordKw.class);
         // assert
         this.keywordSet.put("assert_larger", AssertLargerKw.class);
         this.keywordSet.put("assert_lower", AssertLowerKw.class);

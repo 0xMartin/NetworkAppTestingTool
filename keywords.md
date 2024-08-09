@@ -362,6 +362,42 @@ buffer_get:
     index: 0
 ```
 
+### custom_keyword
+
+Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.
+
+| **Parameter** | **Type**           | **Description**                                                                                                               |
+| ------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string             | The unique name assigned to the custom keyword. This name is required for invoking the keyword later.                         |
+| `params`      | list \| optional   | A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the steps.  |
+| `steps`       | list               | A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when invoked.      |
+
+```yaml
+custom_keyword:
+    name: "my_keyword"
+    params: ["param_1", "param_2"]
+    steps:
+        - standard_stream_send: "This is message 1: \$param_1"
+        - standard_stream_send: "This is message 2: \$param_2"
+```
+
+### call_keyword
+
+This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps.
+
+| **Parameter** | **Type** | **Description**                                                                                   |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `name`        | string   | The name of the custom keyword to be invoked.                                                     |
+
+```yaml
+call_keyword:
+    name: "my_keyword"
+    param_1: "Variable 1"
+    param_2: 123456
+
+call_keyword: "my_keyword"
+```
+
 ---
 
 ## Keywords for Assertion Definition

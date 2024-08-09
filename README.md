@@ -83,7 +83,6 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 ## Future improvements
 
-* The possibility of defining your own keywords
 * Add plugin support
 * Add automatic plagiarism checking
 * Add path variable support for REST API testing

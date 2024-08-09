@@ -150,6 +150,20 @@ var keywordDetails = {
             { name: 'index', type: 'long', description: 'Index of the message whose value will be extracted from the buffer into a variable. When index is negative, it indexes from the back of the buffer. -1 is last index of buffer. At last position is last received message.' }
         ]
     },
+    call_keyword: {
+        description: "This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps.",
+        parameters: [
+            { name: "name", type: "string", description: "The name of the custom keyword to be invoked." }
+        ]
+    },
+    custom_keyword: {
+        description: "Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.",
+        parameters: [
+            { name: "name", type: "string", description: "The unique name assigned to the custom keyword. This name is required for invoking the keyword later."},
+            { name: "params", type: "list | not required", description: "A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the keyword's steps." },
+            { name: "steps", type: "list", description: "A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when the custom keyword is invoked." }
+        ]
+    },
     create_telnet_client: {
         description: 'Create module that starts a new virtual Telnet client.',
         parameters: [
