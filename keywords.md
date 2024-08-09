@@ -702,8 +702,7 @@ Terminates a running module that is no longer needed.
 | `default`     | string   | Name of the module to terminate. |
 
 ```yaml
-termite_module:
-    name: "module-1"
+termite_module: "module-1"
 ```
 
 ### module_send
