@@ -510,8 +510,8 @@ Verifies if an external application is currently running.
 
 | **Parameter**            | **Type**                  | **Description**                                                        |
 | ------------------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `result`                 | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
-| `name` \| *not required* | string                    | Name of program runner. *(default: "default")*                         |
+| `result`                 | boolean | It determines the expected outcome of the assertion. *(default: true)* |
+| `name`  | string \| *not required*                   | Name of program runner. *(default: "default")*                         |
 
 ```yaml
 assert_app_is_running: true
