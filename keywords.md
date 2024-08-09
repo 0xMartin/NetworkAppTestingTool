@@ -79,7 +79,7 @@ Launches the application. At any given time, only one external application can r
 
 | **Parameter**            | **Type** | **Description**                                                         |
 | ------------------------ | -------- | ----------------------------------------------------------------------- |
-| `command`  | string   | Command to run the application. Can run only one application at a time. |
+| `command`                | string   | Command to run the application. Can run only one application at a time. |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
   
 ```yaml
@@ -114,7 +114,7 @@ Stops the currently running application and launches the new application.
    
 | **Parameter**            | **Type** | **Description**                                |
 | ------------------------ | -------- | ---------------------------------------------- |
-| `command`  | string   | Command to reload the application.             |
+| `command`                | string   | Command to reload the application.             |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
 
 
@@ -132,7 +132,7 @@ Sends a message to the running application via standard streaming.
 
 | **Parameter**            | **Type** | **Description**                                |
 | ------------------------ | -------- | ---------------------------------------------- |
-| `message`  | string   | Message to send through the standard stream.   |
+| `message`                | string   | Message to send through the standard stream.   |
 | `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
 
 
@@ -366,11 +366,11 @@ buffer_get:
 
 Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.
 
-| **Parameter** | **Type**           | **Description**                                                                                                               |
-| ------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | string             | The unique name assigned to the custom keyword. This name is required for invoking the keyword later.                         |
-| `params`      | list \| optional   | A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the steps.  |
-| `steps`       | list               | A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when invoked.      |
+| **Parameter** | **Type**         | **Description**                                                                                                                                          |
+| ------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string           | The unique name assigned to the custom keyword. This name is required for invoking the keyword later.                                                    |
+| `params`      | list \| optional | A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the steps. Value of params must be string type. |
+| `steps`       | list             | A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when invoked.                                 |
 
 ```yaml
 custom_keyword:
@@ -385,15 +385,15 @@ custom_keyword:
 
 This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps.
 
-| **Parameter** | **Type** | **Description**                                                                                   |
-| ------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `name`        | string   | The name of the custom keyword to be invoked.                                                     |
+| **Parameter** | **Type** | **Description**                               |
+| ------------- | -------- | --------------------------------------------- |
+| `name`        | string   | The name of the custom keyword to be invoked. |
 
 ```yaml
 call_keyword:
     name: "my_keyword"
     param_1: "Variable 1"
-    param_2: 123456
+    param_2: "123456"
 
 call_keyword: "my_keyword"
 ```
@@ -507,7 +507,7 @@ Verifies if an external application is currently running.
 
 | **Parameter**            | **Type**                  | **Description**                                                        |
 | ------------------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `result`    | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
+| `result`                 | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)* |
 | `name` \| *not required* | string                    | Name of program runner. *(default: "default")*                         |
 
 ```yaml

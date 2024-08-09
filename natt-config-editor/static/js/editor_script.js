@@ -241,7 +241,7 @@ var keywordSnippets = [
         snippet: `call_keyword:
     name: "my_keyword"
     param_1: "Variable 1"
-    param_2: 123456`,
+    param_2: "123456"`,
         meta: "General"
     },
     {

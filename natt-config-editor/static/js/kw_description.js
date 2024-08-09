@@ -160,7 +160,7 @@ var keywordDetails = {
         description: "Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.",
         parameters: [
             { name: "name", type: "string", description: "The unique name assigned to the custom keyword. This name is required for invoking the keyword later."},
-            { name: "params", type: "list | not required", description: "A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the keyword's steps." },
+            { name: "params", type: "list | not required", description: "A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the keyword's steps. Value of params must be string type." },
             { name: "steps", type: "list", description: "A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when the custom keyword is invoked." }
         ]
     },

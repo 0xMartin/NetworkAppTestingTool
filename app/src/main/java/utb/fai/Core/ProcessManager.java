@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class ProcessManager {
 
-    public static String DEFAULT_FILE = "PID_LIST.txt";
+    public static String DEFAULT_FILE = "pid-list.txt";
 
     private static NATTLogger logger = new NATTLogger(ProcessManager.class);
 
