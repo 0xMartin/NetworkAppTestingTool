@@ -21,7 +21,7 @@ test_root:
                             - standard_stream_send: "Message to send"
                             - wait: 1000
                             - assert_string:
-                                var_name: "$module-1-last-msg"
+                                var_name: "module-1-last-msg"
                                 expected: "This is next message"
                                 mode: "equals"
                                 case_sensitive: true
@@ -33,7 +33,7 @@ test_root:
                             - standard_stream_send: "This is next message"
                             - wait: 1000
                             - assert_string:
-                                var_name: "$module-1-last-msg"
+                                var_name: "module-1-last-msg"
                                 expected: "This is next message"
                                 mode: "equals"
                                 case_sensitive: true

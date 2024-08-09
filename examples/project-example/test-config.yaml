@@ -21,14 +21,10 @@ test_root:
                             name: "module-1"
                             message: "55.4+6.6"
                         - wait: 1000
-                        - buffer_get:
-                            var_name: "var-1"
-                            module_name: "module-1"
-                            index: -1
-                        - assert_string:
-                            var_name: "var-1"
-                            expected: "62.0"
-                            mode: "equals"
+                        - assert_equals:
+                            var_name: "module-1-last-msg"
+                            value: 62
+                            tolerance: 0
                 - test_case:
                     name: "Case name 2"
                     description: "Description 2 here"
@@ -37,12 +33,8 @@ test_root:
                             name: "module-1"
                             message: "4-4+6-20"
                         - wait: 1000
-                        - buffer_get:
-                            var_name: "var-1"
-                            module_name: "module-1"
-                            index: 0
                         - assert_equals:
-                            var_name: "var-1"
+                            var_name: "module-1-last-msg"
                             value: -14
                             tolerance: 0
                 - test_case:
@@ -53,12 +45,8 @@ test_root:
                             name: "module-1"
                             message: "-2-4-6"
                         - wait: 1000
-                        - buffer_get:
-                            var_name: "var-1"
-                            module_name: "module-1"
-                            index: 0
                         - assert_equals:
-                            var_name: "var-1"
+                            var_name: "module-1-last-msg"
                             value: 2
                             tolerance: 0
                             result: false
