@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="utb.fai.TestCaseResultTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-08-09T15:30:12" hostname="pop-os" time="0.006">
+  <properties/>
+  <testcase name="testCreateTestCaseResult" classname="utb.fai.TestCaseResultTest" time="0.001"/>
+  <testcase name="testLogAction" classname="utb.fai.TestCaseResultTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

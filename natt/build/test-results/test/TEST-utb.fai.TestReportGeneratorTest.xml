@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="utb.fai.TestReportGeneratorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-08-09T15:30:12" hostname="pop-os" time="0.244">
+  <properties/>
+  <testcase name="testGenerateReportExtent" classname="utb.fai.TestReportGeneratorTest" time="0.244"/>
+  <system-out><![CDATA[[17:30:12][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test-report.html
+[17:30:12][TestReportGenerator][INFO] Report saved to file
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

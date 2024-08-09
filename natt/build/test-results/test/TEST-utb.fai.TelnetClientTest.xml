@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="utb.fai.TelnetClientTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-09T15:30:11" hostname="pop-os" time="0.006">
+  <properties/>
+  <testcase name="testSendMessage" classname="utb.fai.TelnetClientTest" time="0.003"/>
+  <testcase name="testConnectionEstablishment" classname="utb.fai.TelnetClientTest" time="0.002"/>
+  <testcase name="testCleanup" classname="utb.fai.TelnetClientTest" time="0.001"/>
+  <system-out><![CDATA[[17:30:11][MessageBuffer][INFO] Message buffer created for module with name: TestClient
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+[17:30:11][TelnetClient][INFO] (TestClient) Message send: Test message
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
+[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

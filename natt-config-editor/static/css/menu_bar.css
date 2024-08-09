@@ -6,31 +6,31 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.125rem solid #222;
-  }
-  
-  .menu-bar nav {
+}
+
+.menu-bar nav {
     display: flex;
     gap: 0.25rem;
-  }
-  
-  .menu-bar nav .menu-item {
+}
+
+.menu-bar nav .menu-item {
     position: relative;
-  }
-  
-  .menu-bar nav a {
+}
+
+.menu-bar nav a {
     color: white;
     text-decoration: none;
     font-size: 1rem;
     padding: 0.4375rem 0.75rem;
     cursor: pointer;
-  }
-  
-  .menu-bar nav a:hover {
+}
+
+.menu-bar nav a:hover {
     background-color: #444;
     border-radius: 0.1875rem;
-  }
-  
-  .menu-bar .dropdown {
+}
+
+.menu-bar .dropdown {
     display: none;
     position: absolute;
     background-color: #3e3e3e;
@@ -41,9 +41,9 @@
     z-index: 900;
     min-width: 15.375rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  }
-  
-  .menu-bar .dropdown button {
+}
+
+.menu-bar .dropdown button {
     display: flex;
     justify-content: space-between;
     border-radius: 0.3rem;
@@ -55,47 +55,47 @@
     border: transparent;
     background: transparent;
     width: 100%;
-  }
-  
-  .menu-bar .dropdown button .label {
+}
+
+.menu-bar .dropdown button .label {
     flex-grow: 1;
-  }
-  
-  .menu-bar .dropdown button:hover {
+}
+
+.menu-bar .dropdown button:hover {
     background-color: #1c3b5c;
-  }
-  
-  .menu-bar .menu-item:hover .dropdown {
+}
+
+.menu-bar .menu-item:hover .dropdown {
     display: block;
-  }
-  
-  .menu-bar hr {
+}
+
+.menu-bar hr {
     margin: 0;
     border: none;
     border-top: 0.0625rem solid #ddd;
-  }
-  
-  .small-icon {
+}
+
+.small-icon {
     width: 1.6rem;
     height: 1.6rem;
     margin-left: 0.3125rem;
-  }
-  
-  .checkbox-label {
+}
+
+.checkbox-label {
     display: flex;
     align-items: center;
     padding: 0.3125rem 0.625rem;
     font-size: 1rem;
     color: white;
     cursor: pointer;
-  }
-  
-  .checkbox-label input[type="checkbox"] {
+}
+
+.checkbox-label input[type="checkbox"] {
     margin-right: 0.5rem;
     accent-color: #1c3b5c;
-  }
-  
-  .checkbox-label:hover {
+}
+
+.checkbox-label:hover {
     background-color: #1c3b5c;
     border-radius: 0.3rem;
-  }
+}

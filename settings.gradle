@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = 'NetworkAppTestingTool'
-include('app')
+include('natt')
