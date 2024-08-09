@@ -150,6 +150,8 @@ class NattViewProvider {
 
             <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool" target="_blank">Visit the GitHub Repository</a>
 
+            <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md" target="_blank">Keyword documentation</a>
+
             <div class="button-container">
                 <button class="button" onclick="executeCommand('extension.nattInit')">
                     <span class="codicon codicon-git-init"></span>
@@ -172,8 +174,6 @@ class NattViewProvider {
                     Validate
                 </button>
             </div>
-
-            <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md" target="_blank">Keyword documentation</a>
 
             <script>
                 const vscode = acquireVsCodeApi();
