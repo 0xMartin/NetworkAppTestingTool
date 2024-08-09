@@ -430,7 +430,7 @@ assert_string:
 
 ### assert_lower
 
-Checks if a numeric variable is lower than the expected value.
+Checks if a numeric variable is lower than the specified value.
 
 | **Parameter** | **Type**                  | **Description**                                                        |
 | ------------- | ------------------------- | ---------------------------------------------------------------------- |
@@ -447,7 +447,7 @@ assert_lower:
 
 ### assert_larger
 
-Checks if a numeric variable is larger than the expected value.
+Checks if a numeric variable is larger than the specified value.
 
 | **Parameter** | **Type**                  | **Description**                                                        |
 | ------------- | ------------------------- | ---------------------------------------------------------------------- |
@@ -464,7 +464,7 @@ assert_larger:
 
 ### assert_equals
 
-Checks if a variable equals the expected number. It's possible to set a certain tolerance range.
+Checks if a variable is equal to the specified value. It's possible to set a certain tolerance range.
 
 | **Parameter** | **Type**                  | **Description**                                                        |
 | ------------- | ------------------------- | ---------------------------------------------------------------------- |
