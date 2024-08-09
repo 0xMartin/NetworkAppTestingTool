@@ -6,6 +6,9 @@
 
 > **Note 2:** Each keyword can be ignored by adding the parameter `ignore: true`
 
+> **Note 3:** The variable `(module-name)-last-msg` holds the content of the message received last by a given module.
+
+> **Note 4:** The variable `(module-name)-action-msg` contains the content of the message that triggered the termination of waiting (`wait_until` keyword).
 
 ## Main Keywords
 
