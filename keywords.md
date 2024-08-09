@@ -377,8 +377,8 @@ custom_keyword:
     name: "my_keyword"
     params: ["param_1", "param_2"]
     steps:
-        - standard_stream_send: "This is message 1: \$param_1"
-        - standard_stream_send: "This is message 2: \$param_2"
+        - standard_stream_send: "This is message 1: $param_1"
+        - standard_stream_send: "This is message 2: $param_2"
 ```
 
 ### call_keyword
