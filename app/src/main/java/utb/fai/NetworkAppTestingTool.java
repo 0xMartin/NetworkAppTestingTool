@@ -3,6 +3,7 @@ package utb.fai;
 import java.io.IOException;
 
 import utb.fai.Core.NATTCore;
+import utb.fai.Core.NATTLogger;
 import utb.fai.Core.StatusCode;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
@@ -34,29 +35,37 @@ public class NetworkAppTestingTool {
             // vygenerovani reportu (v pripade uspeni vsech testovacich pripadu)
             core.generateReport();
 
+            // ukonci zapis do log souboru
+            NATTLogger.LogFileWriter.getInstance().close();
+
         } catch (InternalErrorException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();
+            NATTLogger.LogFileWriter.getInstance().close();
             System.exit(e.getErrorCode());
 
         } catch (InvalidSyntaxInConfigurationException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();
+            NATTLogger.LogFileWriter.getInstance().close();
             System.exit(e.getErrorCode());
 
         } catch (IOException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();
+            NATTLogger.LogFileWriter.getInstance().close();
             System.exit(StatusCode.INTERNAL_ERROR);
 
         } catch (NonUniqueModuleNamesException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();
+            NATTLogger.LogFileWriter.getInstance().close();
             System.exit(e.getErrorCode());
 
         } catch (NonUniqueTestNamesException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();
+            NATTLogger.LogFileWriter.getInstance().close();
             System.exit(e.getErrorCode());
 
         }
