@@ -1,8 +1,12 @@
 .vscode/
 .gradle/
+
 natt/build/
 natt/bin/
 natt/natt-logs
+
+natt-spi/build/
+natt-spi/bin/
 
 natt-vscode-extension/.vscode/
 natt-vscode-extension/node_modules/

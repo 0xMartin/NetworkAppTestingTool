@@ -127,6 +127,7 @@ public class NATTCore {
             this.validateOnly = false;
         }
 
+        // show plugins
         if (cmd.hasOption("p")) {
             this.pluginLoader.loadPlugins();
             int i = 1;
@@ -137,6 +138,7 @@ public class NATTCore {
             System.exit(0);
         }
 
+        // show keywords
         if (cmd.hasOption("k")) {
             System.exit(0);
         }
