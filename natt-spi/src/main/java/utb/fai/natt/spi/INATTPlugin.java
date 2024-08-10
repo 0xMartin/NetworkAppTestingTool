@@ -6,10 +6,15 @@ package utb.fai.natt.spi;
 public interface INATTPlugin {
     
     /**
+     * Plugin name.
+     */
+    String getName();
+
+    /**
      * Initializes the NATT plugin.
      * 
      * @param ctx the NATT context
      */
-    public void initialize(INATTContext ctx);
+    void initialize(INATTContext ctx);
 
 }

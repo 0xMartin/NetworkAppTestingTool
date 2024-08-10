@@ -1,7 +1,6 @@
 package utb.fai.natt.core;
 
 import utb.fai.natt.spi.INATTPlugin;
-import utb.fai.natt.spi.INATTContext;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,19 +16,21 @@ public class PluginLoader {
 
     public static String pluginsDirectory = "plugins";
 
+    protected static NATTLogger logger = new NATTLogger(PluginLoader.class);
+
     /**
      * Nacte a inicializuje pluginy z daneho adresare.
      */
-    public void loadPlugins() {
+    public static void loadPlugins() {
         File dir = new File(pluginsDirectory);
         if (!dir.exists() || !dir.isDirectory()) {
-            System.err.println("Plugins directory not found.");
+            logger.warning("Plugins directory not found.");
             return;
         }
 
         File[] files = dir.listFiles((d, name) -> name.endsWith(".jar"));
         if (files == null || files.length == 0) {
-            System.out.println("No plugins found.");
+            logger.info("No plugins found.");
             return;
         }
 
@@ -37,7 +38,7 @@ public class PluginLoader {
             try {
                 loadPlugin(file);
             } catch (Exception e) {
-                System.err.println("Failed to load plugin: " + file.getName());
+                logger.error("Failed to load plugin [" + file.getName() + "]: " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -49,53 +50,38 @@ public class PluginLoader {
      * @param file Soubor s pluginy
      * @throws Exception
      */
-    private void loadPlugin(File file) throws Exception {
+    private static void loadPlugin(File file) throws Exception {
         URL[] urls = { file.toURI().toURL() };
-        try (URLClassLoader classLoader = new URLClassLoader(urls, this.getClass().getClassLoader())) {
+        try (URLClassLoader classLoader = new URLClassLoader(urls, PluginLoader.class.getClassLoader())) {
 
-            // Načti manifest
+            // nacte manifest
             Properties properties = new Properties();
             try (FileInputStream fis = new FileInputStream(new File(file.getParent(), "plugin.properties"))) {
                 properties.load(fis);
             }
 
+            // nacte hlavni tridu s pluginem
             String mainClassName = properties.getProperty("Main-Class");
             if (mainClassName == null) {
                 throw new IOException("No Main-Class defined in plugin.properties for " + file.getName());
             }
 
+            // kontrola, zda je trida implementuje INATTPlugin
             Class<?> pluginClass = classLoader.loadClass(mainClassName);
             if (!INATTPlugin.class.isAssignableFrom(pluginClass)) {
                 throw new ClassCastException("Class " + mainClassName + " does not implement INATTPlugin");
             }
 
+            // inicializace a registrace pluginu
             INATTPlugin plugin = (INATTPlugin) pluginClass.getDeclaredConstructor().newInstance();
-            if(plugin != null) {
+            if (plugin != null) {
                 plugin.initialize(NATTContext.instance());
+                logger.info("Successfully loaded and initialized plugin ["
+                        + plugin.getName() + "] from file: " + file.getName());
             } else {
-
+                logger.error("Failed to initialize plugin from file: " + file.getName());
             }
-
-            System.out.println("Successfully loaded and initialized plugin: " + mainClassName);
         }
-    }
-
-    /**
-     * Nastavi cestu k adresari s pluginy
-     * 
-     * @param pluginsDirectory Cesta k adresari s pluginy
-     */
-    public static void setPluginsDirectory(String pluginsDirectory) {
-        PluginLoader.pluginsDirectory = pluginsDirectory;
-    }
-
-    /**
-     * Vraci cestu k adresari s pluginy
-     * 
-     * @return Cesta k adresari s pluginy
-     */
-    public static String getPluginsDirectory() {
-        return pluginsDirectory;
     }
 
 }
