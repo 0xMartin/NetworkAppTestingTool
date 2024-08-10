@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import utb.fai.Core.Keyword.ParameterValue;
 import utb.fai.Core.Keyword.ParameterValueType;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
@@ -159,7 +160,8 @@ public class NATTTestBuilder {
         Keyword keywordChild = createKeywordInstance(keywordName);
 
         // sestaveni keyword
-        HashMap<String, Keyword.ParameterValue> complexTypes = keywordChild.build(data.get(keywordName));
+        HashMap<String, Keyword.ParameterValue> complexTypes = NATTTestBuilder.buildKeyword(keywordChild,
+                data.get(keywordName));
 
         // vlozeni jejich potomku do fronty pro dalsi zpracovani
         for (Map.Entry<String, Keyword.ParameterValue> e : complexTypes.entrySet()) {
@@ -167,6 +169,127 @@ public class NATTTestBuilder {
         }
 
         return keywordChild;
+    }
+
+    /**
+     * Metoda pro sestaveni datove struktury keyword. Nacte pozadovane parametry z
+     * predaneho pole s konfigurarci dane keywordy a ulozi si je pro nasledne
+     * zpracovani v metode keywordBuild(), ktera musi byt definovane v kazde tride,
+     * ktera dedi od tridy Keyword. Kazda keyword muze mit libovolny
+     * pocet potomku, jejich objekty s data jsou touto metodou navraceni pro
+     * zpracovani v dalsi iteraci
+     * 
+     * @param keyword Keyword, do ktere se maji nacist data s konfiguracniho objektu
+     * @param data    Konfiguracni data keywordy.
+     * 
+     * @return Reference na mapu, ktera obsahuje nazev parametru a jeho hodnotu
+     * @throws InvalidSyntaxInConfigurationException
+     */
+    @SuppressWarnings("unchecked")
+    public static HashMap<String, ParameterValue> buildKeyword(Keyword keyword, Object data)
+            throws InvalidSyntaxInConfigurationException {
+        // zde budou navraceny jen koplexni typy, ktere musi byt zpracovany samostatne
+        // mimo tuto metodu (keyword nebo list<keyword>)
+        HashMap<String, ParameterValue> complexType = new HashMap<>();
+
+        // zpracuje vsechny parametry keywordy. data musi byt nutne typu Map
+        if (data instanceof Map) {
+            // jedna se o komplexni keyword (obsahuje pouze vice pojmenovanych parametru)
+            Map<String, Object> keywordData = (Map<String, Object>) data;
+            for (Map.Entry<String, Object> entry : keywordData.entrySet()) {
+                String paramName = entry.getKey();
+                Object paramValue = entry.getValue();
+
+                // jednoduchy typ
+                if (paramValue instanceof Boolean) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            (Boolean) paramValue, ParameterValueType.BOOLEAN));
+
+                } else if (paramValue instanceof Integer) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            ((Integer) paramValue).longValue(), ParameterValueType.LONG));
+
+                } else if (paramValue instanceof Long) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            (Long) paramValue, ParameterValueType.LONG));
+
+                } else if (paramValue instanceof String) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            (String) paramValue, ParameterValueType.STRING));
+
+                } else if (paramValue instanceof Float) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            ((Float) paramValue).doubleValue(), ParameterValueType.DOUBLE));
+
+                } else if (paramValue instanceof Double) {
+                    keyword.putParameter(paramName, new ParameterValue(
+                            (Double) paramValue, ParameterValueType.DOUBLE));
+
+                    // komplexni typy, ktere vyzaduje dalsi zpracovani
+                } else if (paramValue instanceof List) {
+                    List<?> list = (List<?>) paramValue;
+                    if (list.size() > 0) {
+                        if (list.get(0) instanceof Map) {
+                            // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
+                            // tuto keywordu
+                            complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
+                        } else {
+                            // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
+                            // je mozne zapsat do list parametru teto keywordy
+                            keyword.putParameter(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
+                        }
+                    }
+                } else {
+                    // keyword (potomek) ... bude sestaven mimo tuto keywordu samostane
+                    complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.KEYWORD));
+                }
+            }
+        } else {
+            // jedna se o jednoduchou keyword (obsahuje pouze jeden jediny nepojmenovany
+            // parametr)
+            if (data instanceof Boolean) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        (Boolean) data, ParameterValueType.BOOLEAN));
+
+            } else if (data instanceof Integer) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        ((Integer) data).longValue(), ParameterValueType.LONG));
+
+            } else if (data instanceof Long) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        (Long) data, ParameterValueType.LONG));
+
+            } else if (data instanceof String) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        (String) data, ParameterValueType.STRING));
+
+            } else if (data instanceof Float) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        ((Float) data).doubleValue(), ParameterValueType.DOUBLE));
+
+            } else if (data instanceof Double) {
+                keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
+                        (Double) data, ParameterValueType.DOUBLE));
+
+            } else if (data instanceof List) {
+                List<?> list = (List<?>) data;
+                if (list.size() > 0) {
+                    if (list.get(0) instanceof Map) {
+                        // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
+                        // tuto keywordu
+                        complexType.put(Keyword.DEFAULT_PARAMETER_NAME,
+                                new ParameterValue(data, ParameterValueType.LIST));
+                    } else {
+                        // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
+                        // je mozne zapsat do list parametru teto keywordy
+                        keyword.putParameter(Keyword.DEFAULT_PARAMETER_NAME,
+                                new ParameterValue(data, ParameterValueType.LIST));
+                    }
+                }
+            }
+        }
+
+        return complexType;
     }
 
     /**

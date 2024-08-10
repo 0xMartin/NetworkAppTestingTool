@@ -289,6 +289,8 @@ public abstract class Keyword {
 
     /**
      * Debug funkce pro vypsani struktury keyword na standartni stream
+     * 
+     * @param offset Offset pro vypis (pocet mezer pred vypisem)
      */
     public void printToStructure(int offset) {
         String line_offset = String.valueOf(" ").repeat(Math.max(0, offset));
@@ -336,123 +338,6 @@ public abstract class Keyword {
                     break;
             }
         }
-    }
-
-    /**
-     * Metoda pro sestaveni datove struktury keyword. Nacte pozadovane parametry z
-     * predaneho pole s konfigurarci dane keywordy a ulozi si je pro nasledne
-     * zpracovani v metode keywordBuild(), ktera musi byt definovane v kazde tride,
-     * ktera dedi od tridy Keyword. Kazda keyword muze mit libovolny
-     * pocet potomku, jejich objekty s data jsou touto metodou navraceni pro
-     * zpracovani v dalsi iteraci
-     * 
-     * @return Reference na mapu, ktera obsahuje nazev parametru a jeho hodnotu
-     * @throws InvalidSyntaxInConfigurationException
-     */
-    @SuppressWarnings("unchecked")
-    public final HashMap<String, ParameterValue> build(Object data) throws InvalidSyntaxInConfigurationException {
-        // zde budou navraceny jen koplexni typy, ktere musi byt zpracovany samostatne
-        // mimo tuto metodu (keyword nebo list<keyword>)
-        HashMap<String, ParameterValue> complexType = new HashMap<>();
-
-        // zpracuje vsechny parametry keywordy. data musi byt nutne typu Map
-        if (data instanceof Map) {
-            // jedna se o komplexni keyword (obsahuje pouze vice pojmenovanych parametru)
-            Map<String, Object> keywordData = (Map<String, Object>) data;
-            for (Map.Entry<String, Object> entry : keywordData.entrySet()) {
-                String paramName = entry.getKey();
-                Object paramValue = entry.getValue();
-
-                // jednoduchy typ
-                if (paramValue instanceof Boolean) {
-                    this.putParameter(paramName, new ParameterValue(
-                            (Boolean) paramValue, ParameterValueType.BOOLEAN));
-
-                } else if (paramValue instanceof Integer) {
-                    this.putParameter(paramName, new ParameterValue(
-                            ((Integer) paramValue).longValue(), ParameterValueType.LONG));
-
-                } else if (paramValue instanceof Long) {
-                    this.putParameter(paramName, new ParameterValue(
-                            (Long) paramValue, ParameterValueType.LONG));
-
-                } else if (paramValue instanceof String) {
-                    this.putParameter(paramName, new ParameterValue(
-                            (String) paramValue, ParameterValueType.STRING));
-
-                } else if (paramValue instanceof Float) {
-                    this.putParameter(paramName, new ParameterValue(
-                            ((Float) paramValue).doubleValue(), ParameterValueType.DOUBLE));
-
-                } else if (paramValue instanceof Double) {
-                    this.putParameter(paramName, new ParameterValue(
-                            (Double) paramValue, ParameterValueType.DOUBLE));
-
-                    // komplexni typy, ktere vyzaduje dalsi zpracovani
-                } else if (paramValue instanceof List) {
-                    List<?> list = (List<?>) paramValue;
-                    if (list.size() > 0) {
-                        if (list.get(0) instanceof Map) {
-                            // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
-                            // tuto keywordu
-                            complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
-                        } else {
-                            // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
-                            // je mozne zapsat do list parametru teto keywordy
-                            this.putParameter(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
-                        }
-                    }
-                } else {
-                    // keyword (potomek) ... bude sestaven mimo tuto keywordu samostane
-                    complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.KEYWORD));
-                }
-            }
-        } else {
-            // jedna se o jednoduchou keyword (obsahuje pouze jeden jediny nepojmenovany
-            // parametr)
-            if (data instanceof Boolean) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Boolean) data, ParameterValueType.BOOLEAN));
-
-            } else if (data instanceof Integer) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        ((Integer) data).longValue(), ParameterValueType.LONG));
-
-            } else if (data instanceof Long) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Long) data, ParameterValueType.LONG));
-
-            } else if (data instanceof String) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (String) data, ParameterValueType.STRING));
-
-            } else if (data instanceof Float) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        ((Float) data).doubleValue(), ParameterValueType.DOUBLE));
-
-            } else if (data instanceof Double) {
-                this.putParameter(Keyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Double) data, ParameterValueType.DOUBLE));
-
-            } else if (data instanceof List) {
-                List<?> list = (List<?>) data;
-                if (list.size() > 0) {
-                    if (list.get(0) instanceof Map) {
-                        // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
-                        // tuto keywordu
-                        complexType.put(Keyword.DEFAULT_PARAMETER_NAME,
-                                new ParameterValue(data, ParameterValueType.LIST));
-                    } else {
-                        // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
-                        // je mozne zapsat do list parametru teto keywordy
-                        this.putParameter(Keyword.DEFAULT_PARAMETER_NAME,
-                                new ParameterValue(data, ParameterValueType.LIST));
-                    }
-                }
-            }
-        }
-
-        return complexType;
     }
 
     /**

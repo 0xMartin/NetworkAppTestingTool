@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import utb.fai.Core.Keyword;
 import utb.fai.Core.NATTAnnotation;
+import utb.fai.Core.NATTTestBuilder;
 import utb.fai.Exception.InternalErrorException;
 import utb.fai.Exception.InvalidSyntaxInConfigurationException;
 
@@ -60,7 +61,7 @@ public class KeywordTest {
                 data.put("param1", 10);
                 data.put("param2", "test");
 
-                keyword.build(data);
+                NATTTestBuilder.buildKeyword(keyword, data);
 
                 assertEquals((Long) 10L, (Long) keyword
                                 .getParameterValue("param1", Keyword.ParameterValueType.LONG, true).getValue());
@@ -80,7 +81,7 @@ public class KeywordTest {
                 data.put("param2", "test");
                 data.put("param3", true);
 
-                keyword.build(data);
+                NATTTestBuilder.buildKeyword(keyword, data);
 
                 assertEquals((Long) 10L, (Long) keyword
                                 .getParameterValue("param1", Keyword.ParameterValueType.LONG, true).getValue());
@@ -106,7 +107,7 @@ public class KeywordTest {
                 data.put("param3", 3.14);
                 data.put("param4", true);
 
-                keyword.build(data);
+                NATTTestBuilder.buildKeyword(keyword, data);
 
                 assertEquals((Long) 10L, (Long) keyword
                                 .getParameterValue("param1", Keyword.ParameterValueType.LONG, true).getValue());
@@ -134,7 +135,7 @@ public class KeywordTest {
                 HashMap<String, Object> data = new HashMap<>();
                 data.put("param1", list);
 
-                keyword.build(data);
+                NATTTestBuilder.buildKeyword(keyword, data);
 
                 assertEquals(list,
                                 keyword.getParameterValue("param1", Keyword.ParameterValueType.LIST, true).getValue());
