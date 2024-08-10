@@ -70,20 +70,24 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Gradle:** Gradle 8.7 or later
 
-## How to build testing tool?
+## Project Structure
 
-You can use gradle wrapper:
+* **natt-spi** - Source code of the NATT SPI (Service Provider Interface)
+* **natt** - Source code of the NATT testing tool
+* **
 
-```
-./gradlew :natt-spi:build
+## How to build the project
 
-./gradlew build
-```
-
-Or using custom script that builds the tool and deploys it to the configuration editor. Configuration editor require NATT.jar:
+1. Build the NATT SPI first using script:
 
 ```
-./fast_build_and_move_to_editor.sh
+./build_natt_spi.sh
+```
+
+2. Build the NATT testing tools:
+
+```
+./gradlew :natt:build
 ```
 
 ---
