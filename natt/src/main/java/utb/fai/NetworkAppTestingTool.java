@@ -18,10 +18,9 @@ import utb.fai.Exception.NonUniqueTestNamesException;
 public class NetworkAppTestingTool {
 
     public static void main(String[] args) {
-        NATTCore core = null;
         try {
             // inicializace nastroje
-            core = new NATTCore(args);
+            NATTCore core = new NATTCore(args);
 
             // nacte soubor s konfiguraci testu
             core.loadConfigFile();
