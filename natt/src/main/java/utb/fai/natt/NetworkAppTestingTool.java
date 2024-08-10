@@ -22,6 +22,9 @@ public class NetworkAppTestingTool {
             // inicializace nastroje
             NATTCore core = new NATTCore(args);
 
+            // nacte vsechny pluginy
+            core.loadPlugins();
+
             // nacte soubor s konfiguraci testu
             core.loadConfigFile();
 

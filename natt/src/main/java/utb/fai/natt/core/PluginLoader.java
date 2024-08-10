@@ -2,6 +2,7 @@ package utb.fai.natt.core;
 
 import utb.fai.natt.spi.INATTPlugin;
 
+import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,12 +17,20 @@ public class PluginLoader {
 
     public static String pluginsDirectory = "plugins";
 
-    protected static NATTLogger logger = new NATTLogger(PluginLoader.class);
+    protected NATTLogger logger = new NATTLogger(PluginLoader.class);
+    protected NATTContext context;
+
+    protected List<INATTPlugin> plugins;
+
+    public PluginLoader(NATTContext context) {
+        this.context = context;
+        this.plugins = new LinkedList<INATTPlugin>();
+    }
 
     /**
      * Nacte a inicializuje pluginy z daneho adresare.
      */
-    public static void loadPlugins() {
+    public void loadPlugins() {
         File dir = new File(pluginsDirectory);
         if (!dir.exists() || !dir.isDirectory()) {
             logger.warning("Plugins directory not found.");
@@ -50,7 +59,7 @@ public class PluginLoader {
      * @param file Soubor s pluginy
      * @throws Exception
      */
-    private static void loadPlugin(File file) throws Exception {
+    public void loadPlugin(File file) throws Exception {
         URL[] urls = { file.toURI().toURL() };
         try (URLClassLoader classLoader = new URLClassLoader(urls, PluginLoader.class.getClassLoader())) {
 
@@ -75,13 +84,23 @@ public class PluginLoader {
             // inicializace a registrace pluginu
             INATTPlugin plugin = (INATTPlugin) pluginClass.getDeclaredConstructor().newInstance();
             if (plugin != null) {
-                plugin.initialize(NATTContext.instance());
+                plugin.initialize(this.context);
+                this.plugins.add(plugin);
                 logger.info("Successfully loaded and initialized plugin ["
                         + plugin.getName() + "] from file: " + file.getName());
             } else {
                 logger.error("Failed to initialize plugin from file: " + file.getName());
             }
         }
+    }
+
+    /**
+     * Vrati seznam nactenych pluginu.
+     * 
+     * @return Seznam nactenych pluginu
+     */
+    public List<INATTPlugin> getPlugins() {
+        return plugins;
     }
 
 }

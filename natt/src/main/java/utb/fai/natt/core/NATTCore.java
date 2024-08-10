@@ -10,7 +10,6 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 import utb.fai.natt.spi.exception.NonUniqueTestNamesException;
 import utb.fai.natt.io.LocalHostIO;
 import utb.fai.natt.io.NetworkIO;
-import utb.fai.natt.module.ExternalProgramRunner;
 import utb.fai.natt.reportGenerator.TestReportGenerator;
 
 import org.apache.commons.cli.*;
@@ -34,10 +33,10 @@ public class NATTCore {
     public static final String REPORT_PATH = "test_report.html";
 
     // hlavni moduly
-    protected ExternalProgramRunner programRunner;
+    protected NATTLogger logger = new NATTLogger(NATTCore.class);
+    protected PluginLoader pluginLoader;
     protected LocalHostIO localHostIO;
     protected NetworkIO networkIO;
-    protected NATTLogger logger = new NATTLogger(NATTCore.class);
 
     // root keyworda, kterou se zacne vykonavani celeho testovani
     protected NATTKeyword rootKeyword;
@@ -77,6 +76,8 @@ public class NATTCore {
         options.addOption("t", "title", true, "Title/header of the resulting testing report");
         options.addOption("h", "help", false, "Help on how to use");
         options.addOption("v", "validate", false, "Validates the test suite configuration");
+        options.addOption("p", "plugins", false, "List of all loaded plugins");
+        options.addOption("k", "keywords", false, "List of all registered keywords");
 
         CommandLine cmd;
         try {
@@ -123,9 +124,10 @@ public class NATTCore {
             throw new InternalErrorException("It is necessary to specify the path to the configuration file!");
         }
 
-        // vytvoreni instacni trid pro nacitani
+        // inicializace modulu
         this.localHostIO = new LocalHostIO(configPath);
         this.networkIO = new NetworkIO(configPath);
+        this.pluginLoader = new PluginLoader(NATTContext.instance());
 
         // ukonceni predchozich procesu, ktere se nepodarilo spravne ukoncit
         try {
@@ -158,6 +160,17 @@ public class NATTCore {
             m.terminateModule();
         });
         NATTContext.instance().getModules().clear();
+    }
+
+    /**
+     * Nacte vsechny moduly, ktere jsou definovany v konfiguraci
+     */
+    public void loadPlugins() {
+        if (this.pluginLoader != null) {
+            this.pluginLoader.loadPlugins();
+        } else {
+            logger.error("Plugin loader is not initialized.");
+        }
     }
 
     /**
