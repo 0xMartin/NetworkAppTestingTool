@@ -7,7 +7,8 @@ repositories {
 }
 
 dependencies {
-
+    // Use JUnit test framework.
+    testImplementation libs.junit
 }
 
 java {
