@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="utb.fai.ExternalProgramRunnerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-09T15:29:59" hostname="pop-os" time="3.055">
+<testsuite name="utb.fai.ExternalProgramRunnerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-10T10:18:58" hostname="pop-os" time="3.039">
   <properties/>
-  <testcase name="testCommandStringToCommandList" classname="utb.fai.ExternalProgramRunnerTest" time="0.003"/>
-  <testcase name="testCommandStringToCommandListWithNoQuotes" classname="utb.fai.ExternalProgramRunnerTest" time="0.001"/>
-  <testcase name="testCommandStringToCommandListWithSpaces" classname="utb.fai.ExternalProgramRunnerTest" time="0.001"/>
+  <testcase name="testCommandStringToCommandList" classname="utb.fai.ExternalProgramRunnerTest" time="0.002"/>
+  <testcase name="testCommandStringToCommandListWithNoQuotes" classname="utb.fai.ExternalProgramRunnerTest" time="0.0"/>
+  <testcase name="testCommandStringToCommandListWithSpaces" classname="utb.fai.ExternalProgramRunnerTest" time="0.0"/>
   <testcase name="testCommandStringToCommandListWithEmptyString" classname="utb.fai.ExternalProgramRunnerTest" time="0.0"/>
-  <testcase name="externalProgramRunnerTest" classname="utb.fai.ExternalProgramRunnerTest" time="3.049"/>
+  <testcase name="externalProgramRunnerTest" classname="utb.fai.ExternalProgramRunnerTest" time="3.035"/>
   <testcase name="testCommandStringToCommandListWithURL" classname="utb.fai.ExternalProgramRunnerTest" time="0.001"/>
-  <system-out><![CDATA[[17:29:59][MessageBuffer][INFO] Message buffer created for module with name: runner-1
-[17:29:59][ExternalProgramRunner][INFO] (runner-1) Run external app with command: java -jar ../echo_test.jar
-[17:29:59][ProcessManager][INFO] New PID (197980) added to file
-[17:29:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Toto je příkladový program.'
-[17:29:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Zadejte text pro odeslání:'
-[17:30:00][ExternalProgramRunner][INFO] (runner-1) Sending message on standard stream. Message content: Zprava odeslana z testovaci aplikace
-[17:30:00][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Přijatý text: Zprava odeslana z testovaci aplikace'
-[17:30:00][ProcessManager][INFO] PID (197980) removed from file
-[17:30:00][ExternalProgramRunner][INFO] (runner-1) External application ends with exit code 0
+  <system-out><![CDATA[[12:18:58][MessageBuffer][INFO] Message buffer created for module with name: runner-1
+[12:18:58][ExternalProgramRunner][INFO] (runner-1) Run external app with command: java -jar ../echo_test.jar
+[12:18:58][ProcessManager][INFO] New PID (18751) added to file
+[12:18:58][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Toto je příkladový program.'
+[12:18:58][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Zadejte text pro odeslání:'
+[12:18:59][ExternalProgramRunner][INFO] (runner-1) Sending message on standard stream. Message content: Zprava odeslana z testovaci aplikace
+[12:18:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Přijatý text: Zprava odeslana z testovaci aplikace'
+[12:18:59][ProcessManager][INFO] PID (18751) removed from file
+[12:18:59][ExternalProgramRunner][INFO] (runner-1) External application ends with exit code 0
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

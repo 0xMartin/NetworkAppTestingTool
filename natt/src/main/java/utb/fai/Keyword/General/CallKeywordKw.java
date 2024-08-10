@@ -64,6 +64,10 @@ public class CallKeywordKw extends Keyword {
             if (step.isIgnored()) {
                 continue;
             }
+            if(step instanceof CallKeywordKw) {
+                this.logger.warning("Nested call of keyword is not allowed!");
+                continue;
+            }
             if (!step.execute()) {
                 this.error = true;
             }

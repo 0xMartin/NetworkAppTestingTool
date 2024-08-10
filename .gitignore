@@ -1,9 +1,9 @@
 .vscode/
 .gradle/
-app/build/
+natt/build/
 natt/bin/
 natt/natt-logs
 
-vscode-extension/natt-configuration-editor/.vscode/
-vscode-extension/natt-configuration-editor/node_modules/
+natt-vscode-extension/.vscode/
+natt-vscode-extension/node_modules/
 

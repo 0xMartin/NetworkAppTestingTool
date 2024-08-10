@@ -1,181 +1,182 @@
 
-V[17:29:59][MessageBuffer][INFO] Message buffer created for module with name: runner-1
+V[12:18:58][MessageBuffer][INFO] Message buffer created for module with name: runner-1
 
-m[17:29:59][ExternalProgramRunner][INFO] (runner-1) Run external app with command: java -jar ../echo_test.jar
+m[12:18:58][ExternalProgramRunner][INFO] (runner-1) Run external app with command: java -jar ../echo_test.jar
 
-@[17:29:59][ProcessManager][INFO] New PID (197980) added to file
+?[12:18:58][ProcessManager][INFO] New PID (18751) added to file
 
-|[17:29:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Toto je pÅ™Ã­kladovÃ½ program.'
+|[12:18:58][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Toto je pÅ™Ã­kladovÃ½ program.'
 
-z[17:29:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Zadejte text pro odeslÃ¡nÃ­:'
+z[12:18:58][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'Zadejte text pro odeslÃ¡nÃ­:'
 
-[17:30:00][ExternalProgramRunner][INFO] (runner-1) Sending message on standard stream. Message content: Zprava odeslana z testovaci aplikace
+[12:18:59][ExternalProgramRunner][INFO] (runner-1) Sending message on standard stream. Message content: Zprava odeslana z testovaci aplikace
 
-’[17:30:00][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'PÅ™ijatÃ½ text: Zprava odeslana z testovaci aplikace'
+’[12:18:59][MessageBuffer][INFO] Message added to buffer [ Mod: runner-1 | Tag:  ] Content: 'PÅ™ijatÃ½ text: Zprava odeslana z testovaci aplikace'
 
-@[17:30:00][ProcessManager][INFO] PID (197980) removed from file
+?[12:18:59][ProcessManager][INFO] PID (18751) removed from file
 
-^[17:30:00][ExternalProgramRunner][INFO] (runner-1) External application ends with exit code 0
-–[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": {"name": "Object Name", "value": "1234"}}
-†[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: {"name":"Object Name","value":"1234"}
-¯[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: [{"name": "Object Name", "value": "1234"}, {"name": "Object Name", "value": "0"}]
-ƒ[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: {"name":"Object Name","value":"0"}
-n[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"key": "value"}
-a[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
-Â[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": [{"name": "Object Name", "value": "1234"}, {"name": "Object Name", "value": "1234"}]}
-®[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: [{"name":"Object Name","value":"1234"},{"name":"Object Name","value":"1234"}]
-n[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: not_a_valid_json
-a[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
-^[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: 
-a[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
-w[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": "value11"}
-h[17:30:02][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: value11
- G[17:30:02][LocalHostIO][INFO] Text has been saved to a file (test.txt)
- H[17:30:02][LocalHostIO][INFO] Text has been loaded from file (test.txt)
- !^[17:30:02][LocalHostIO][INFO] Object data has been saved to a file in yaml format (test.yaml)
- !N[17:30:02][LocalHostIO][INFO] Yaml data has been loaded from file (test.yaml)
-#"T[17:30:02][MessageBuffer][INFO] Message buffer created for module with name: broker
-#"G2024-08-09 17:30:02 INFO  Server - Configuring message interceptors...
-#"a2024-08-09 17:30:02 INFO  BrokerInterceptor - Initializing broker interceptor. InterceptorIds=[]
-#"E2024-08-09 17:30:02 INFO  Server - Using default SSL context creator
-#"}2024-08-09 17:30:02 INFO  Server - An io.moquette.broker.security.AcceptAllAuthenticator authenticator instance will be used
-#"…2024-08-09 17:30:02 INFO  Server - Authorizator policy io.moquette.broker.security.PermitAllAuthorizatorPolicy instance will be used
-#"J2024-08-09 17:30:02 INFO  CTrieSubscriptionDirectory - Initializing CTrie
-#"[2024-08-09 17:30:02 INFO  CTrieSubscriptionDirectory - Initializing subscriptions store...
-#"@2024-08-09 17:30:02 INFO  NewNettyAcceptor - Netty is using NIO
-#"h2024-08-09 17:30:03 INFO  NewNettyAcceptor - Server bound to host=0.0.0.0, port=9999, protocol=TCP MQTT
-#"‚2024-08-09 17:30:03 INFO  NewNettyAcceptor - Property websocket_port has been setted to disabled. Websocket MQTT will be disabled
-#"`2024-08-09 17:30:03 INFO  Server - Moquette integration has been started successfully in 139 ms
-#"K[17:30:03][MQTTBroker][INFO] (broker) MQTT broker is running on port: 9999
-#"U[17:30:03][MessageBuffer][INFO] Message buffer created for module with name: client1
-#"B2024-08-09 17:30:03 INFO  MQTTMessageLogger - C->B CONNECT <null>
-#"2024-08-09 17:30:03 INFO  MQTTMessageLogger - C->B SUBSCRIBE <paho20212849902906> to topics [MqttTopicSubscription[topicFilter=topic-1, option=SubscriptionOption[qos=AT_LEAST_ONCE, noLocal=false, retainAsPublished=false, retainHandling=SEND_AT_SUBSCRIBE]]]
-#"n2024-08-09 17:30:03 INFO  MQTTMessageLogger - C<-B SUBACK <paho20212849902906> packetID <1>, grantedQoses [1]
-#"L[17:30:03][MQTTClientTester][INFO] (client1) MQTT Client module is running.
-#"U[17:30:03][MessageBuffer][INFO] Message buffer created for module with name: client2
-#"B2024-08-09 17:30:03 INFO  MQTTMessageLogger - C->B CONNECT <null>
-#"2024-08-09 17:30:03 INFO  MQTTMessageLogger - C->B SUBSCRIBE <paho20213252056203> to topics [MqttTopicSubscription[topicFilter=topic-2, option=SubscriptionOption[qos=AT_LEAST_ONCE, noLocal=false, retainAsPublished=false, retainHandling=SEND_AT_SUBSCRIBE]]]
-#"n2024-08-09 17:30:03 INFO  MQTTMessageLogger - C<-B SUBACK <paho20213252056203> packetID <1>, grantedQoses [1]
-#"L[17:30:03][MQTTClientTester][INFO] (client2) MQTT Client module is running.
-#"q[17:30:03][MQTTClientTester][INFO] (client1) Message send on topic [topic-2] with content: Message from client 1
-#"g[17:30:03][MQTTClientTester][INFO] (client1) Message send on topic [topic] with content: Wrong topic 1
-#"g[17:30:03][MQTTClientTester][INFO] (client1) Message send on topic [topic] with content: Wrong topic 2
-#"q[17:30:03][MQTTClientTester][INFO] (client2) Message send on topic [topic-1] with content: Message from client 2
-#"y[17:30:04][MessageBuffer][INFO] Message added to buffer [ Mod: client1 | Tag: topic-1 ] Content: 'Message from client 2'
-#"y[17:30:04][MessageBuffer][INFO] Message added to buffer [ Mod: client2 | Tag: topic-2 ] Content: 'Message from client 1'
-#"S2024-08-09 17:30:04 INFO  Server - Unbinding integration from the configured ports
-#"?2024-08-09 17:30:04 INFO  MQTTMessageLogger - Channel Inactive
-#"E[17:30:04][MQTTClientTester][WARNING] Connection to MQTT broker lost
-#"?2024-08-09 17:30:04 INFO  MQTTMessageLogger - Channel Inactive
-#"E[17:30:04][MQTTClientTester][WARNING] Connection to MQTT broker lost
-#"K2024-08-09 17:30:04 INFO  MQTTConnection - Notifying connection lost event
-#"K2024-08-09 17:30:04 INFO  MQTTConnection - Notifying connection lost event
-#"k2024-08-09 17:30:04 INFO  NewNettyAcceptor - Waiting for worker and boss event loop groups to terminate...
-#"f2024-08-09 17:30:06 INFO  NewNettyAcceptor - Metrics messages[read=0, write=0] bytes[read=0, write=0]
-#"W2024-08-09 17:30:06 INFO  BrokerInterceptor - Shutting down interceptor thread pool...
-#"\2024-08-09 17:30:06 INFO  BrokerInterceptor - Waiting for thread pool tasks to terminate...
-#"C2024-08-09 17:30:06 INFO  BrokerInterceptor - interceptors stopped
-#"J2024-08-09 17:30:06 INFO  Server - Moquette integration has been stopped.
-#"F[17:30:06][MQTTBroker][INFO] (broker) MQTT broker [broker] terminated
-%$U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%$m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%&U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%&U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
-%&m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%&o[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
-%'U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%'m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%'7[17:30:06][MessageBuffer][INFO] Message buffer cleared
-%(U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%(U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
-%(m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%(o[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
-%)U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%)m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%)N[17:30:06][MessageBuffer][INFO] Messages removed for modul with name: ModuleA
-%*U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%*U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
-%*m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%*o[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
-%+U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%+U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
-%+m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%+o[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
-%,U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%,U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
-%,m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%,o[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
-%-U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%-m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%.U[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
-%.m[17:30:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
-%.O[17:30:06][MessageBuffer][INFO] One message removed from buffer [ModuleA|TagA]
-02v[17:30:06][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test_report.html
-54`[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: http://example.com
-54^[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-56^[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-57^[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-58^[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-:9Y[17:30:07][MessageBuffer][INFO] Message buffer created for module with name: Test-Server
-:9][17:30:07][SMTPEmailServer][INFO] (Test-Server) SMTP Email Server is listening on port: 2525
-:9´2024-08-09 17:30:07 INFO  SmtpManager - Created user login testuser@example.com for address testuser@example.com with password testuser@example.com because it didn't exist before.
-:9ƒ[17:30:07][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
-:9ƒ[17:30:07][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
-:9ƒ[17:30:07][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
-:9ƒ[17:30:07][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
-:97[17:30:09][MessageBuffer][INFO] Message buffer cleared
-:9[[17:30:09][SMTPEmailServer][INFO] (Test-Server) SMTP email server [Test-Server] terminated
-:;][17:30:09][SMTPEmailServer][INFO] (Test-Server) SMTP Email Server is listening on port: 2525
-:;´2024-08-09 17:30:09 INFO  SmtpManager - Created user login testuser@example.com for address testuser@example.com with password testuser@example.com because it didn't exist before.
-:;ƒ[17:30:09][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
-:;7[17:30:11][MessageBuffer][INFO] Message buffer cleared
-:;[[17:30:11][SMTPEmailServer][INFO] (Test-Server) SMTP email server [Test-Server] terminated
-=<X[17:30:11][MessageBuffer][INFO] Message buffer created for module with name: TestClient
-=<y[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
-=<G[17:30:11][TelnetClient][INFO] (TestClient) Message send: Test message
-=<R[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
-=<A[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
-=>y[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
-=>R[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
-=>A[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
-=?y[17:30:11][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
-=?R[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
-=?A[17:30:11][TelnetClient][WARNING] (TestClient) Connection closed
-=?R[17:30:11][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
-A@V[17:30:11][MessageBuffer][INFO] Message buffer created for module with name: server-1
-A@R[17:30:11][TelnetServer][INFO] (server-1) Server socket is listening on port 9999
-A@N[17:30:11][TelnetServer][INFO] (server-1) Telnet server [server-1] terminated
-ABR[17:30:11][TelnetServer][INFO] (server-1) Server socket is listening on port 9999
-ABY[17:30:11][MessageBuffer][INFO] Message buffer created for module with name: TestClient1
-ABz[17:30:11][TelnetClient][INFO] (TestClient1) Telnet client connected to host with the address: 'localhost' on port '9999'
-ABV[17:30:11][TelnetClient][INFO] (TestClient1) Message send: Test message from client 1
-ABV[17:30:11][TelnetClient][INFO] (TestClient1) Message send: Test message from client 1
-ABY[17:30:11][MessageBuffer][INFO] Message buffer created for module with name: TestClient2
-ABz[17:30:11][TelnetClient][INFO] (TestClient2) Telnet client connected to host with the address: 'localhost' on port '9999'
-ABV[17:30:11][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
-ABV[17:30:11][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
-ABV[17:30:11][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
-AB?[17:30:11][TelnetServer][INFO] (server-1) Server socket closed
-AB€[17:30:11][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-1 ] Content: 'Test message from client 1'
-AB€[17:30:11][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
-AB€[17:30:11][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-1 ] Content: 'Test message from client 1'
-AB>[17:30:11][TelnetServer][INFO] (server-1) Client disconnected
-AB€[17:30:11][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
-AB€[17:30:11][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
-ABQ[17:30:12][SMTPEmailServer][INFO] (Test-Server) Email handler thread terminated.
-AB>[17:30:12][TelnetServer][INFO] (server-1) Client disconnected
-ABB[17:30:12][TelnetClient][WARNING] (TestClient1) Connection closed
-ABT[17:30:12][TelnetClient][INFO] (TestClient1) Telnet client [TestClient1] terminated
-ABT[17:30:12][TelnetClient][INFO] (TestClient2) Telnet client [TestClient2] terminated
-AB>[17:30:12][TelnetServer][INFO] (server-1) Client disconnected
-ABB[17:30:12][TelnetClient][WARNING] (TestClient2) Connection closed
-ABN[17:30:12][TelnetServer][INFO] (server-1) Telnet server [server-1] terminated
-GFv[17:30:12][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test-report.html
-GF;[17:30:12][TestReportGenerator][INFO] Report saved to file
-IH_[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
-IH\[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'age'. Data value: 30
-IJa[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'name-2'. Data value: John
-IL_[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
-IN_[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
-IN\[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'age'. Data value: 30
-IO_[17:30:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
+^[12:18:59][ExternalProgramRunner][INFO] (runner-1) External application ends with exit code 0
+–[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": {"name": "Object Name", "value": "1234"}}
+†[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: {"name":"Object Name","value":"1234"}
+¯[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: [{"name": "Object Name", "value": "1234"}, {"name": "Object Name", "value": "0"}]
+ƒ[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: {"name":"Object Name","value":"0"}
+n[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"key": "value"}
+a[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
+Â[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": [{"name": "Object Name", "value": "1234"}, {"name": "Object Name", "value": "1234"}]}
+®[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: [{"name":"Object Name","value":"1234"},{"name":"Object Name","value":"1234"}]
+n[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: not_a_valid_json
+a[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
+^[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: 
+a[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: 
+w[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'jsonVar'. Data value: {"target_key": "value11"}
+h[12:19:01][NATTContext][INFO] Data has been stored in to the variable 'newJsonVar'. Data value: value11
+ G[12:19:01][LocalHostIO][INFO] Text has been saved to a file (test.txt)
+ H[12:19:01][LocalHostIO][INFO] Text has been loaded from file (test.txt)
+ !^[12:19:02][LocalHostIO][INFO] Object data has been saved to a file in yaml format (test.yaml)
+ !N[12:19:02][LocalHostIO][INFO] Yaml data has been loaded from file (test.yaml)
+#"T[12:19:02][MessageBuffer][INFO] Message buffer created for module with name: broker
+#"G2024-08-10 12:19:02 INFO  Server - Configuring message interceptors...
+#"a2024-08-10 12:19:02 INFO  BrokerInterceptor - Initializing broker interceptor. InterceptorIds=[]
+#"E2024-08-10 12:19:02 INFO  Server - Using default SSL context creator
+#"}2024-08-10 12:19:02 INFO  Server - An io.moquette.broker.security.AcceptAllAuthenticator authenticator instance will be used
+#"…2024-08-10 12:19:02 INFO  Server - Authorizator policy io.moquette.broker.security.PermitAllAuthorizatorPolicy instance will be used
+#"J2024-08-10 12:19:02 INFO  CTrieSubscriptionDirectory - Initializing CTrie
+#"[2024-08-10 12:19:02 INFO  CTrieSubscriptionDirectory - Initializing subscriptions store...
+#"@2024-08-10 12:19:02 INFO  NewNettyAcceptor - Netty is using NIO
+#"h2024-08-10 12:19:02 INFO  NewNettyAcceptor - Server bound to host=0.0.0.0, port=9999, protocol=TCP MQTT
+#"‚2024-08-10 12:19:02 INFO  NewNettyAcceptor - Property websocket_port has been setted to disabled. Websocket MQTT will be disabled
+#"`2024-08-10 12:19:02 INFO  Server - Moquette integration has been started successfully in 147 ms
+#"K[12:19:02][MQTTBroker][INFO] (broker) MQTT broker is running on port: 9999
+#"U[12:19:02][MessageBuffer][INFO] Message buffer created for module with name: client1
+#"B2024-08-10 12:19:02 INFO  MQTTMessageLogger - C->B CONNECT <null>
+#"€2024-08-10 12:19:02 INFO  MQTTMessageLogger - C->B SUBSCRIBE <paho1237330248817> to topics [MqttTopicSubscription[topicFilter=topic-1, option=SubscriptionOption[qos=AT_LEAST_ONCE, noLocal=false, retainAsPublished=false, retainHandling=SEND_AT_SUBSCRIBE]]]
+#"m2024-08-10 12:19:02 INFO  MQTTMessageLogger - C<-B SUBACK <paho1237330248817> packetID <1>, grantedQoses [1]
+#"L[12:19:02][MQTTClientTester][INFO] (client1) MQTT Client module is running.
+#"U[12:19:02][MessageBuffer][INFO] Message buffer created for module with name: client2
+#"B2024-08-10 12:19:03 INFO  MQTTMessageLogger - C->B CONNECT <null>
+#"€2024-08-10 12:19:03 INFO  MQTTMessageLogger - C->B SUBSCRIBE <paho1237742195633> to topics [MqttTopicSubscription[topicFilter=topic-2, option=SubscriptionOption[qos=AT_LEAST_ONCE, noLocal=false, retainAsPublished=false, retainHandling=SEND_AT_SUBSCRIBE]]]
+#"m2024-08-10 12:19:03 INFO  MQTTMessageLogger - C<-B SUBACK <paho1237742195633> packetID <1>, grantedQoses [1]
+#"L[12:19:03][MQTTClientTester][INFO] (client2) MQTT Client module is running.
+#"q[12:19:03][MQTTClientTester][INFO] (client1) Message send on topic [topic-2] with content: Message from client 1
+#"g[12:19:03][MQTTClientTester][INFO] (client1) Message send on topic [topic] with content: Wrong topic 1
+#"g[12:19:03][MQTTClientTester][INFO] (client1) Message send on topic [topic] with content: Wrong topic 2
+#"q[12:19:03][MQTTClientTester][INFO] (client2) Message send on topic [topic-1] with content: Message from client 2
+#"y[12:19:03][MessageBuffer][INFO] Message added to buffer [ Mod: client1 | Tag: topic-1 ] Content: 'Message from client 2'
+#"y[12:19:03][MessageBuffer][INFO] Message added to buffer [ Mod: client2 | Tag: topic-2 ] Content: 'Message from client 1'
+#"S2024-08-10 12:19:04 INFO  Server - Unbinding integration from the configured ports
+#"E[12:19:04][MQTTClientTester][WARNING] Connection to MQTT broker lost
+#"?2024-08-10 12:19:04 INFO  MQTTMessageLogger - Channel Inactive
+#"E[12:19:04][MQTTClientTester][WARNING] Connection to MQTT broker lost
+#"?2024-08-10 12:19:04 INFO  MQTTMessageLogger - Channel Inactive
+#"K2024-08-10 12:19:04 INFO  MQTTConnection - Notifying connection lost event
+#"K2024-08-10 12:19:04 INFO  MQTTConnection - Notifying connection lost event
+#"k2024-08-10 12:19:04 INFO  NewNettyAcceptor - Waiting for worker and boss event loop groups to terminate...
+#"f2024-08-10 12:19:06 INFO  NewNettyAcceptor - Metrics messages[read=0, write=0] bytes[read=0, write=0]
+#"W2024-08-10 12:19:06 INFO  BrokerInterceptor - Shutting down interceptor thread pool...
+#"\2024-08-10 12:19:06 INFO  BrokerInterceptor - Waiting for thread pool tasks to terminate...
+#"C2024-08-10 12:19:06 INFO  BrokerInterceptor - interceptors stopped
+#"J2024-08-10 12:19:06 INFO  Server - Moquette integration has been stopped.
+#"F[12:19:06][MQTTBroker][INFO] (broker) MQTT broker [broker] terminated
+%$U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%$m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%&U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%&U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
+%&m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%&o[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
+%'U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%'m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%'7[12:19:06][MessageBuffer][INFO] Message buffer cleared
+%(U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%(U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
+%(m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%(o[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
+%)U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%)m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%)N[12:19:06][MessageBuffer][INFO] Messages removed for modul with name: ModuleA
+%*U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%*U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
+%*m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%*o[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
+%+U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%+U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
+%+m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%+o[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
+%,U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%,U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleB
+%,m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%,o[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleB | Tag: TagB ] Content: 'Goodbye World!'
+%-U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%-m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%.U[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: ModuleA
+%.m[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: ModuleA | Tag: TagA ] Content: 'Hello World!'
+%.O[12:19:06][MessageBuffer][INFO] One message removed from buffer [ModuleA|TagA]
+02v[12:19:06][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test_report.html
+54`[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: http://example.com
+54^[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+56^[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+57^[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+58^[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+:9Y[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: Test-Server
+:9][12:19:06][SMTPEmailServer][INFO] (Test-Server) SMTP Email Server is listening on port: 2525
+:9´2024-08-10 12:19:06 INFO  SmtpManager - Created user login testuser@example.com for address testuser@example.com with password testuser@example.com because it didn't exist before.
+:9ƒ[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
+:9ƒ[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
+:9ƒ[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
+:9ƒ[12:19:06][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
+:97[12:19:08][MessageBuffer][INFO] Message buffer cleared
+:9[[12:19:08][SMTPEmailServer][INFO] (Test-Server) SMTP email server [Test-Server] terminated
+:;][12:19:08][SMTPEmailServer][INFO] (Test-Server) SMTP Email Server is listening on port: 2525
+:;´2024-08-10 12:19:08 INFO  SmtpManager - Created user login testuser@example.com for address testuser@example.com with password testuser@example.com because it didn't exist before.
+:;ƒ[12:19:08][MessageBuffer][INFO] Message added to buffer [ Mod: Test-Server | Tag: Test Message ] Content: 'This is a test message'
+:;7[12:19:10][MessageBuffer][INFO] Message buffer cleared
+:;[[12:19:10][SMTPEmailServer][INFO] (Test-Server) SMTP email server [Test-Server] terminated
+=<X[12:19:10][MessageBuffer][INFO] Message buffer created for module with name: TestClient
+=<y[12:19:10][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+=<G[12:19:10][TelnetClient][INFO] (TestClient) Message send: Test message
+=<A[12:19:10][TelnetClient][WARNING] (TestClient) Connection closed
+=<R[12:19:10][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+=>y[12:19:10][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+=>R[12:19:10][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+=>A[12:19:10][TelnetClient][WARNING] (TestClient) Connection closed
+=?y[12:19:10][TelnetClient][INFO] (TestClient) Telnet client connected to host with the address: 'localhost' on port '5555'
+=?R[12:19:10][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+=?A[12:19:10][TelnetClient][WARNING] (TestClient) Connection closed
+=?R[12:19:10][TelnetClient][INFO] (TestClient) Telnet client [TestClient] terminated
+A@V[12:19:10][MessageBuffer][INFO] Message buffer created for module with name: server-1
+A@R[12:19:10][TelnetServer][INFO] (server-1) Server socket is listening on port 9999
+A@N[12:19:10][TelnetServer][INFO] (server-1) Telnet server [server-1] terminated
+ABR[12:19:10][TelnetServer][INFO] (server-1) Server socket is listening on port 9999
+ABY[12:19:10][MessageBuffer][INFO] Message buffer created for module with name: TestClient1
+ABz[12:19:10][TelnetClient][INFO] (TestClient1) Telnet client connected to host with the address: 'localhost' on port '9999'
+ABV[12:19:10][TelnetClient][INFO] (TestClient1) Message send: Test message from client 1
+ABV[12:19:10][TelnetClient][INFO] (TestClient1) Message send: Test message from client 1
+ABY[12:19:10][MessageBuffer][INFO] Message buffer created for module with name: TestClient2
+ABz[12:19:10][TelnetClient][INFO] (TestClient2) Telnet client connected to host with the address: 'localhost' on port '9999'
+ABV[12:19:10][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
+ABV[12:19:10][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
+ABV[12:19:10][TelnetClient][INFO] (TestClient2) Message send: Test message from client 2
+AB?[12:19:10][TelnetServer][INFO] (server-1) Server socket closed
+AB€[12:19:10][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-1 ] Content: 'Test message from client 1'
+AB€[12:19:10][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
+AB€[12:19:10][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-1 ] Content: 'Test message from client 1'
+AB€[12:19:10][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
+AB>[12:19:10][TelnetServer][INFO] (server-1) Client disconnected
+AB€[12:19:10][MessageBuffer][INFO] Message added to buffer [ Mod: server-1 | Tag: client-2 ] Content: 'Test message from client 2'
+ABQ[12:19:11][SMTPEmailServer][INFO] (Test-Server) Email handler thread terminated.
+AB>[12:19:11][TelnetServer][INFO] (server-1) Client disconnected
+ABB[12:19:11][TelnetClient][WARNING] (TestClient1) Connection closed
+ABT[12:19:11][TelnetClient][INFO] (TestClient1) Telnet client [TestClient1] terminated
+AB>[12:19:11][TelnetServer][INFO] (server-1) Client disconnected
+ABT[12:19:11][TelnetClient][INFO] (TestClient2) Telnet client [TestClient2] terminated
+ABB[12:19:11][TelnetClient][WARNING] (TestClient2) Connection closed
+ABN[12:19:11][TelnetServer][INFO] (server-1) Telnet server [server-1] terminated
+AB?[12:19:11][TelnetServer][INFO] (server-1) Server socket closed
+GFv[12:19:11][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test-report.html
+GF;[12:19:12][TestReportGenerator][INFO] Report saved to file
+IH_[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
+IH\[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'age'. Data value: 30
+IJa[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'name-2'. Data value: John
+IL_[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
+IN_[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John
+IN\[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'age'. Data value: 30
+IO_[12:19:12][NATTContext][INFO] Data has been stored in to the variable 'name'. Data value: John

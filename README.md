@@ -93,7 +93,7 @@ Or using custom script that builds the tool and deploys it to the configuration 
 
 ## 🧪 Testing diagrams 
 
-These two diagrams illustrate how testing is conducted using the **NATT** black box testing tool. On the left side, there is the testing tool which communicates with the tested application through modules (colored blue in the picture). The **incoming data** from the communication channels is then evaluated for testing purposes. It is verified whether the tested application behaves according to defined expectations.
+These two diagrams illustrate how testing is conducted using the **NATT**. On the left side, there is the testing tool which communicates with the tested application through **virtual created modules** (colored blue in the picture). The **incoming data** from the communication channels is then evaluated for testing purposes. It is verified whether the tested application behaves according to defined expectations.
 
 <img src="./doc/diagram_rest.png" alt="Diagram with testing of REST app" >
 
@@ -155,7 +155,7 @@ The configuration language of this tool is designed to be intuitive, comprising 
 
 ## 🚀 VS Code extension for NATT 
 
-> **Extension README [here](./vscode-extension/natt-configuration-editor)**
+> **Extension README [here](./natt-vscode-extension)**
 
 To further streamline the process of implementing and managing your test configurations, is available a **Visual Studio Code extension**. This extension provides this features:
 
@@ -174,7 +174,15 @@ For NATT black box testing tool was also created simple "IDE". It allows you eas
 
 ## 🧩 Understanding Test Structures
 
-Let's dive into the structure of tests in our tool. The image below this text shows a diagram of our test framework, the core of which comes from the Test Root node. This basic element, paramount in any configuration, determines the overarching setting for the testing process. All test suites are defined in this root element.
+The image below illustrates how test scenarios are defined for this tool. At the 
+beginning is the Test Root node, which is the **entry point** for each test 
+scenario. This root node sets the overall context for the testing 
+process and includes all test suites within it. 
+
+The diagram illustrates the **context of each test segment** and the 
+duration for which variables or resources remain active. On the right side, a simplified
+test configuration is shown, which NATT **uses to generate** an acyclic graph that 
+is subsequently executed.
 
 <img src="./doc/test-scruct-and-config.png" alt="Test structure">
 

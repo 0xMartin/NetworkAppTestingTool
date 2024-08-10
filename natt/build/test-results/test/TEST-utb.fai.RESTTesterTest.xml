@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="utb.fai.RESTTesterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-08-09T15:30:06" hostname="pop-os" time="0.245">
+<testsuite name="utb.fai.RESTTesterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-08-10T10:19:06" hostname="pop-os" time="0.214">
   <properties/>
-  <testcase name="testBuildPutRequest" classname="utb.fai.RESTTesterTest" time="0.228"/>
-  <testcase name="testBuildDeleteRequest" classname="utb.fai.RESTTesterTest" time="0.004"/>
-  <testcase name="testBuildGetRequest" classname="utb.fai.RESTTesterTest" time="0.003"/>
-  <testcase name="testBuildPostRequest" classname="utb.fai.RESTTesterTest" time="0.008"/>
-  <system-out><![CDATA[[17:30:06][MessageBuffer][INFO] Message buffer created for module with name: http://example.com
-[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
-[17:30:07][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+  <testcase name="testBuildPutRequest" classname="utb.fai.RESTTesterTest" time="0.205"/>
+  <testcase name="testBuildDeleteRequest" classname="utb.fai.RESTTesterTest" time="0.002"/>
+  <testcase name="testBuildGetRequest" classname="utb.fai.RESTTesterTest" time="0.002"/>
+  <testcase name="testBuildPostRequest" classname="utb.fai.RESTTesterTest" time="0.004"/>
+  <system-out><![CDATA[[12:19:06][MessageBuffer][INFO] Message buffer created for module with name: http://example.com
+[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
+[12:19:06][RESTTester][INFO] (http://example.com) REST tester [http://example.com] terminated
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

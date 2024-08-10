@@ -2,13 +2,19 @@
 
 **[Go Back](./README.md)**
 
-> **Note 1:** When keyword have only one parameter, it is not necessary to specify the parameter name. In documentation parameters without name are named as `default`.
+## NATT Core Variables
 
-> **Note 2:** Each keyword can be ignored by adding the parameter `ignore: true`
+The variable `(module-name)-last-msg` holds the content of the message received last by a given module.
 
-> **Note 3:** The variable `(module-name)-last-msg` holds the content of the message received last by a given module.
+The variable `(module-name)-action-msg` contains the content of the message that triggered the termination of waiting (`wait_until` keyword).
 
-> **Note 4:** The variable `(module-name)-action-msg` contains the content of the message that triggered the termination of waiting (`wait_until` keyword).
+## Keyword base info
+
+When keyword have only one parameter, it is not necessary to specify the parameter name. In documentation parameters without name are named as `default`.
+
+Each keyword can be ignored by adding the parameter `ignore: true`
+
+---
 
 ## Main Keywords
 
@@ -80,10 +86,10 @@ This set includes keywords that enable working with an external application. It'
 
 Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.
 
-| **Parameter**            | **Type** | **Description**                                                         |
-| ------------------------ | -------- | ----------------------------------------------------------------------- |
-| `command`                | string   | Command to run the application. Can run only one application at a time. |
-| `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
+| **Parameter** | **Type**                 | **Description**                                                         |
+| ------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `command`     | string                   | Command to run the application. Can run only one application at a time. |
+| `name`        | string \| *not required* | Name of program runner. *(default: "default")*                          |
   
 ```yaml
 run_app: "java -jar app.jar -arg1 111 -arg2 222"
@@ -97,11 +103,11 @@ run_app:
 
 Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.
 
-| **Parameter**            | **Type** | **Description**                                                         |
-| ------------------------ | -------- | ----------------------------------------------------------------------- |
-| `command`                | string   | Command to run the application. Can run only one application at a time. |
-| `delay`                  | long     | Time after which the application starts.                                |
-| `name` \| *not required* | string   | Name of program runner. *(default: "default")*                          |
+| **Parameter** | **Type**                 | **Description**                                                         |
+| ------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `command`     | string                   | Command to run the application. Can run only one application at a time. |
+| `delay`       | long                     | Time after which the application starts.                                |
+| `name`        | string \| *not required* | Name of program runner. *(default: "default")*                          |
 
 
 ```yaml
@@ -115,10 +121,10 @@ run_app_later:
 
 Stops the currently running application and launches the new application.
    
-| **Parameter**            | **Type** | **Description**                                |
-| ------------------------ | -------- | ---------------------------------------------- |
-| `command`                | string   | Command to reload the application.             |
-| `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
+| **Parameter** | **Type**                 | **Description**                                |
+| ------------- | ------------------------ | ---------------------------------------------- |
+| `command`     | string                   | Command to reload the application.             |
+| `name`        | string \| *not required* | Name of program runner. *(default: "default")* |
 
 
 ```yaml
@@ -133,10 +139,10 @@ reload_app:
 
 Sends a message to the running application via standard streaming.
 
-| **Parameter**            | **Type** | **Description**                                |
-| ------------------------ | -------- | ---------------------------------------------- |
-| `message`                | string   | Message to send through the standard stream.   |
-| `name` \| *not required* | string   | Name of program runner. *(default: "default")* |
+| **Parameter** | **Type**                 | **Description**                                |
+| ------------- | ------------------------ | ---------------------------------------------- |
+| `message`     | string                   | Message to send through the standard stream.   |
+| `name`        | string \| *not required* | Name of program runner. *(default: "default")* |
 
 
 ```yaml
@@ -369,11 +375,11 @@ buffer_get:
 
 Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.
 
-| **Parameter** | **Type**         | **Description**                                                                                                                                          |
-| ------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | string           | The unique name assigned to the custom keyword. This name is required for invoking the keyword later.                                                    |
+| **Parameter** | **Type**         | **Description**                                                                                                                                                   |
+| ------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string           | The unique name assigned to the custom keyword. This name is required for invoking the keyword later.                                                             |
 | `params`      | list \| optional | A list of parameters that the custom keyword expects to receive when invoked. These parameters can be used within the steps. Value of params must be string type. |
-| `steps`       | list             | A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when invoked.                                 |
+| `steps`       | list             | A list of keywords that will be executed as part of this custom keyword. Each step is executed in sequence when invoked.                                          |
 
 ```yaml
 custom_keyword:
@@ -508,10 +514,10 @@ assert_range:
 
 Verifies if an external application is currently running.
 
-| **Parameter**            | **Type**                  | **Description**                                                        |
-| ------------------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `result`                 | boolean | It determines the expected outcome of the assertion. *(default: true)* |
-| `name`  | string \| *not required*                   | Name of program runner. *(default: "default")*                         |
+| **Parameter** | **Type**                 | **Description**                                                        |
+| ------------- | ------------------------ | ---------------------------------------------------------------------- |
+| `result`      | boolean                  | It determines the expected outcome of the assertion. *(default: true)* |
+| `name`        | string \| *not required* | Name of program runner. *(default: "default")*                         |
 
 ```yaml
 assert_app_is_running: true
