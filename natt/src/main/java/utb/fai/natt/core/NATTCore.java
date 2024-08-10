@@ -1,6 +1,7 @@
 package utb.fai.natt.core;
 
 import utb.fai.natt.NetworkAppTestingTool;
+import utb.fai.natt.spi.INATTPlugin;
 import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.StatusCode;
@@ -66,6 +67,13 @@ public class NATTCore {
      * @throws InternalErrorException
      */
     public NATTCore(String[] args) throws InternalErrorException {
+
+        // inicializace modulu
+        this.localHostIO = new LocalHostIO(configPath);
+        this.networkIO = new NetworkIO(configPath);
+        this.pluginLoader = new PluginLoader(NATTContext.instance());
+
+        // zpracovani argumentu
         CommandLineParser parser = new DefaultParser();
         Options options = new Options();
 
@@ -119,15 +127,24 @@ public class NATTCore {
             this.validateOnly = false;
         }
 
+        if (cmd.hasOption("p")) {
+            this.pluginLoader.loadPlugins();
+            int i = 1;
+            logger.info("\nLoaded plugins:");
+            for (INATTPlugin plugin : this.pluginLoader.getPlugins()) {
+                logger.info(String.format("%d: %s", i++, plugin.getName()));
+            }
+            System.exit(0);
+        }
+
+        if (cmd.hasOption("k")) {
+            System.exit(0);
+        }
+
         // overeni zda je nastavena cesta ke konfiguraci
         if (configPath == null) {
             throw new InternalErrorException("It is necessary to specify the path to the configuration file!");
         }
-
-        // inicializace modulu
-        this.localHostIO = new LocalHostIO(configPath);
-        this.networkIO = new NetworkIO(configPath);
-        this.pluginLoader = new PluginLoader(NATTContext.instance());
 
         // ukonceni predchozich procesu, ktere se nepodarilo spravne ukoncit
         try {
