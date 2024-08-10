@@ -74,19 +74,22 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **natt-spi** - Source code of the NATT SPI (Service Provider Interface)
 * **natt** - Source code of the NATT testing tool
-* **
+* **natt-config-editor** - Source code of the NATT configuration editor
+* **natt-vs-code-extension** - Source code of the NATT extension for Visual Studio Code
+* **examples** - Examples of NATT configuration files
+* **doc** - Documentation resources for this repoository
 
 ## How to build the project
 
-1. Build the NATT SPI first using script:
+1. Build the NATT SPI first using script. This script fist build **NATT SPI library** and than move it to the lib directory of NATT project:
 
-```
+```bash
 ./build_natt_spi.sh
 ```
 
-2. Build the NATT testing tools:
+2. Build the NATT testing tools. Final build is in the **natt/build/libs** directory:
 
-```
+```bash
 ./gradlew :natt:build
 ```
 
