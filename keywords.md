@@ -392,7 +392,7 @@ custom_keyword:
 
 ### call_keyword
 
-This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps.
+This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps. Nested call of custom keyword is not allowed.
 
 | **Parameter** | **Type** | **Description**                               |
 | ------------- | -------- | --------------------------------------------- |

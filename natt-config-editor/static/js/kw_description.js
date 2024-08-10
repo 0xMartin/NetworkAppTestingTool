@@ -151,7 +151,7 @@ var keywordDetails = {
         ]
     },
     call_keyword: {
-        description: "This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps.",
+        description: "This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps. Nested call of custom keyword is not allowed.",
         parameters: [
             { name: "name", type: "string", description: "The name of the custom keyword to be invoked." }
         ]
