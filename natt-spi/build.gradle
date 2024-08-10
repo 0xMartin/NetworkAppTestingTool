@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library' 
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Automatic-Module-Name': 'utb.fai.natt.spi', 
+            'Implementation-Title': 'Network Application Testing Tool SPI',
+            'Implementation-Version': version
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+version = '1.0.0'
+group = 'utb.fai.natt'

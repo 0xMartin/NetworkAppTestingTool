@@ -1,0 +1,86 @@
+package utb.fai.natt.keyword.AppControll;
+
+import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.INATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
+import utb.fai.natt.spi.exception.InternalErrorException;
+import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
+import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
+
+import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.core.VariableProcessor;
+import utb.fai.natt.module.ExternalProgramRunner;
+
+/**
+ * Umoznuje spustit externi testovanou aplikaci
+ */
+@NATTAnnotation.Keyword(name = "run_app_later")
+public class RunAppLaterKw extends NATTKeyword {
+
+    private NATTLogger logger = new NATTLogger(RunAppLaterKw.class);
+
+    protected String command;
+    protected Long delay;
+    protected String moduleName;
+
+    @Override
+    public boolean execute(INATTContext ctx)
+            throws InternalErrorException, NonUniqueModuleNamesException {
+        // zpracovani promennych v retezci
+        this.command = VariableProcessor.processVariables(this.command);
+        this.moduleName = VariableProcessor.processVariables(this.moduleName);
+
+        if (this.delay <= 0) {
+            throw new InternalErrorException("Delay must be higher than 0 ms!");
+        }
+
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+            }
+            try {
+                ExternalProgramRunner runner = new ExternalProgramRunner(
+                        this.moduleName == null ? "default" : this.moduleName, this.command);
+                runner.runModule();
+            } catch (Exception e) {
+                logger.warning("Failed to run application later: " + e.getMessage());
+            }
+        });
+        thread.start();
+
+        return true;
+    }
+
+    @Override
+    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+        /// PARAMETRY
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // command (string) [je vyzadovany]
+        ParameterValue val = this.getParameterValue("command", NATTKeyword.ParameterValueType.STRING,
+                true);
+        command = (String) val.getValue();
+
+        // delay (string) [je vyzadovany]
+        val = this.getParameterValue("delay", NATTKeyword.ParameterValueType.LONG,
+                true);
+        delay = (Long) val.getValue();
+
+        // (string) [neni vyzadovany]
+        val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+                false);
+        moduleName = (String) val.getValue();
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    @Override
+    public void deleteAction(INATTContext ctx) throws InternalErrorException {
+        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
+                .getModule(this.moduleName == null ? "default" : this.moduleName);
+        if (runner != null) {
+            runner.terminateModule();
+        }
+    }
+
+}

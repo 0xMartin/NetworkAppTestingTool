@@ -22,6 +22,7 @@ This **Black Box Testing** Tool is designed for automating the testing of **netw
 - **Independence**: The tool operates independently of external network resources (servers, clients, ...), allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 - **Deployment Versatility:** The tool can be run on localhost or integrated into CI/CD pipelines on platforms like GitLab and GitHub, ensuring seamless testing across different environments.
+- **Plugin Support:** The tool supports the creation of custom plugins, allowing users to define their own keywords, communication modules or more for enhanced functionality. Tutorial is available [here](./plugin-example.md).
 
 <img src="./doc/diagram_simple_rest.png">
 
@@ -55,6 +56,8 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration editor: [NATT Configuration Editor](./natt-config-editor)**
 
+* **How to create custom plugin for NATT? [plugin-example.md](./plugin-example.md)**
+
 * Simple example project: [project-example](./examples/project-example)
 
 * Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
@@ -72,6 +75,8 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 You can use gradle wrapper:
 
 ```
+./gradlew :natt-spi:build
+
 ./gradlew build
 ```
 
@@ -80,14 +85,6 @@ Or using custom script that builds the tool and deploys it to the configuration 
 ```
 ./fast_build_and_move_to_editor.sh
 ```
-
-## Future improvements
-
-* Add plugin support
-* Add automatic plagiarism checking
-* Add path variable support for REST API testing
-* Add more testing options when testing the web crawler
-* Add additional modules for testing other types of applications: client testing use encrypted communication, UI testing (like Selenium), ...
 
 ---
 

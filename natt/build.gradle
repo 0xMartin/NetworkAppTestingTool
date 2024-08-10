@@ -14,6 +14,11 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+
+    // Local NATT libs
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
@@ -23,6 +28,10 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
 
+    // NATT SPI
+    implementation name: 'natt-spi-1.0.0'
+
+    // NATT dependencies
     implementation 'commons-cli:commons-cli:1.4'
     implementation 'com.aventstack:extentreports:5.0.5'
     implementation 'org.yaml:snakeyaml:1.29'
@@ -50,6 +59,12 @@ application {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'utb.fai.NetworkAppTestingTool'
+        attributes(
+            'Main-Class': 'utb.fai.NetworkAppTestingTool', 
+            'Implementation-Version': version
+        )
     }
 }
+
+version = '1.6.0'
+group = 'utb.fai.natt'
