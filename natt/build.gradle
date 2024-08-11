@@ -64,6 +64,10 @@ jar {
             'Implementation-Version': version
         )
     }
+    doFirst {
+        // Optionally, create the directory if it does not exist
+        file("$buildDir/resources/main").mkdirs()
+    }
 }
 
 task writeVersionProperties {
