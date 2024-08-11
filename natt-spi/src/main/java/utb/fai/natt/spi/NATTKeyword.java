@@ -64,6 +64,25 @@ public abstract class NATTKeyword {
             this.value = value;
         }
     }
+    
+    /**
+     * Documentation of a keyword.
+     */
+    public static class KeywordDocumentation {
+
+        //  Name of the keyword.
+        public String name;
+        
+        //  Description of the keyword.
+        public String description;
+
+        //  List of parameters.
+        public String[] parameters;
+
+        // List of types of parameters.
+        public ParameterValueType types;
+
+    }
 
     /**
      * Name of the keyword. It must always be unique. It will be used when constructing
@@ -348,7 +367,7 @@ public abstract class NATTKeyword {
     public abstract void deleteAction(INATTContext ctx) throws InternalErrorException;
 
     /**
-     * Returns a description of the keyword. Its name and parameters, plus any reason for failure.
+     * Returns a description of the keyword. Its name and parameters and status messages (success, error, etc.).
      * 
      * @return Description of the keyword.
      */
@@ -401,4 +420,12 @@ public abstract class NATTKeyword {
 
         return "<b>[" + name + "]</b> " + parameters;
     }
+
+    /**
+     * Returns documentation for the keyword. Returns null if the keyword does not have any documentation.
+     */
+    public KeywordDocumentation getDocumentation() {
+        return null;
+    }
+
 }

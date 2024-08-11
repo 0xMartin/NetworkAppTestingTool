@@ -3,6 +3,7 @@ package utb.fai.natt.core;
 import utb.fai.natt.NetworkAppTestingTool;
 import utb.fai.natt.spi.INATTPlugin;
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.KeywordDocumentation;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.StatusCode;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -14,6 +15,9 @@ import utb.fai.natt.io.NetworkIO;
 import utb.fai.natt.reportGenerator.TestReportGenerator;
 
 import org.apache.commons.cli.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -73,6 +77,8 @@ public class NATTCore {
         this.networkIO = new NetworkIO(configPath);
         this.pluginLoader = new PluginLoader(NATTContext.instance());
 
+        /************************************************************************************************************************* */
+
         // zpracovani argumentu
         CommandLineParser parser = new DefaultParser();
         Options options = new Options();
@@ -85,7 +91,7 @@ public class NATTCore {
         options.addOption("h", "help", false, "Help on how to use");
         options.addOption("v", "validate", false, "Validates the test suite configuration");
         options.addOption("p", "plugins", false, "List of all loaded plugins");
-        options.addOption("k", "keywords", false, "List of all registered keywords");
+        options.addOption("k", "keywords", false, "List of all registered keywords and their documentation");
 
         CommandLine cmd;
         try {
@@ -94,6 +100,8 @@ public class NATTCore {
             e.printStackTrace();
             throw new InternalErrorException("Failed to parse command line arguments.");
         }
+
+        /************************************************************************************************************************* */
 
         // help
         boolean helpRequested = cmd.hasOption("h");
@@ -138,10 +146,36 @@ public class NATTCore {
             System.exit(0);
         }
 
-        // show keywords
+        // show keywords documentation
         if (cmd.hasOption("k")) {
+            LinkedList<KeywordDocumentation> documentationList = new LinkedList<KeywordDocumentation>();
+
+            for (Map.Entry<String, java.lang.Class<?>> entry : NATTContext.instance().getKeywordSet().entrySet()) {
+                try {
+                    java.lang.Class<?> keywordClass = entry.getValue();
+                    java.lang.reflect.Constructor<?> constructor = keywordClass.getDeclaredConstructor();
+                    NATTKeyword keywordInstance = (NATTKeyword) constructor.newInstance();
+                    KeywordDocumentation doc = keywordInstance.getDocumentation();
+                    if (doc != null) {
+                        documentationList.add(doc);
+                    }
+                } catch (Exception e) {
+                    logger.warning("Failed to create keyword instance for keyword " + entry.getKey() + ".");
+                }
+            }
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(documentationList);
+                logger.info(json);
+            } catch (JsonProcessingException e) {
+                logger.error("Failed to convert keyword documentation to JSON.");
+            }
+
             System.exit(0);
         }
+
+        /************************************************************************************************************************* */
 
         // overeni zda je nastavena cesta ke konfiguraci
         if (configPath == null) {
