@@ -40,8 +40,7 @@ application {
 jar {
     manifest {
         attributes(
-            'Main-Class': 'natt.plugin.PluginMain', 
-            'Implementation-Version': version
+            'Main-Class': 'natt.plugin.PluginMain'
         )
     }
 }

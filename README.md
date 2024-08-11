@@ -5,6 +5,7 @@
     <img alt="UTB FAI Task" src="https://img.shields.io/badge/UTB_FAI-Software-yellow">
     <img alt="Java" src="https://img.shields.io/badge/Java-007396.svg?logo=java&logoColor=white)](https://www.java.com/">
     <img alt="Gradle" src="https://img.shields.io/badge/Gradle-02303A.svg?logo=gradle&logoColor=white)](https://gradle.org/">
+    <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/0xMartin/NetworkAppTestingTool">
     <img alt="GitHub downloads" src="https://img.shields.io/github/downloads/0xMartin/NetworkAppTestingTool/total">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/0xMartin/NetworkAppTestingTool">
   </div>
@@ -22,7 +23,7 @@ This **Black Box Testing** Tool is designed for automating the testing of **netw
 - **Independence**: The tool operates independently of external network resources (servers, clients, ...), allowing it to create virtual servers and clients for testing purposes.
 - **Flexibility**: Users can easily define new test sets using specific keywords in the configuration.
 - **Deployment Versatility:** The tool can be run on localhost or integrated into CI/CD pipelines on platforms like GitLab and GitHub, ensuring seamless testing across different environments.
-- **Plugin Support:** The tool supports the creation of custom plugins, allowing users to define their own keywords, communication modules or more for enhanced functionality. Tutorial is available [here](./plugin-example.md).
+- **Plugin Support:** The tool supports the creation of custom plugins, allowing users to define their own keywords, communication modules or more for enhanced functionality. Tutorial is available [here](./examples/plugin-example).
 
 <img src="./doc/diagram_simple_rest.png">
 
