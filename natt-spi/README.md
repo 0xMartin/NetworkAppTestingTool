@@ -1,23 +1,56 @@
 # NATT-SPI documentation
 
-## INATTPlugin
+**[Go Back](../README.md)**
 
-## INATTContext
+This repository contains the source code for the **NATT-SPI library**, which is utilized by the **NATT testing tool**. This library is essential for **implementing custom plugins within the NATT**.
 
-## NATTKeyword
+The source code includes the necessary interfaces and classes to extend and customize the functionality of NATT, allowing developers **to create their own modules and integrate them seamlessly**.
 
-## NATTModule
+Additionally, documentation for the SPI is available in the [./doc](./doc) directory, generated using Doxygen.
 
-## INATTMessage
+## How to add MATT-SPI dependency to project?
 
-## IMessageBuffer
+### 1 Download NATT-SPI
 
-## IMessageListener
+Download the required version of the **NATT-SPI** JAR file. Then, create a **lib** directory in your project and place the downloaded JAR file into it.
 
-## NATTAnnotation
+### 2 Add Local NATT Libraries
 
-## NATTAssert
+Locate the repositories block in your build.gradle file and add the following lines to include local NATT libraries:
 
-## NATTLogger
+```gradle
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
 
-## StatusCode
+    // Local NATT libs
+    flatDir {
+        dirs 'libs'
+    }
+}
+```
+
+### 3 Include NATT-SPI Dependency
+
+In the dependencies section, add a reference to the latest version of the NATT-SPI library:
+
+```gradle
+dependencies {
+    // NATT SPI
+    implementation name: 'natt-spi-1.0.0'
+}
+```
+
+### 4 Set the Main Class
+
+Configure the jar task to specify the main class of your plugin:
+
+```gradle
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'natt.plugin.PluginMain'
+        )
+    }
+}
+```
