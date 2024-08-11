@@ -148,7 +148,7 @@ socket.on('finished', function (data) {
 
     // event pro tlacitko nacteni reportu
     var buttons = iframe.contentWindow.document.querySelectorAll('#show_report_btn');
-    buttons.forEach(function(btn) {
+    buttons.forEach(function (btn) {
         btn.style.display = 'block';
         btn.addEventListener('click', function () {
             loadReport();
@@ -218,40 +218,160 @@ function setPanelTo5AndIframeTo7() {
     document.getElementById('iframe-container').className = 'col-md-7 p-0';
 }
 
-// incializace info popisu vsech keywors
+// register keyword snippets
+function registerKeywordSnippets() {
+    // Define the ACE editor completions setup
+    var langTools = ace.require("ace/ext/language_tools");
+    var customCompleter = {
+        getCompletions: function (editor, session, pos, prefix, callback) {
+            if (prefix.length === 0) {
+                callback(null, []);
+                return;
+            }
+            callback(null, keywordSnippets.filter(function (word) {
+                return word.caption.startsWith(prefix);
+            }).map(function (e) {
+                return { caption: e.caption, snippet: e.snippet, meta: e.meta, type: "snippet" };
+            }));
+        }
+    };
+
+    langTools.setCompleters([customCompleter]);
+
+    // Fetch data from the backend
+    fetch('/get-snippets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+                return;
+            }
+
+            // Assign the fetched snippets to a global variable
+            window.keywordSnippets = data.snippets;
+
+            // Register snippets in ACE editor
+            customCompleter.getCompletions = function (editor, session, pos, prefix, callback) {
+                if (prefix.length === 0) {
+                    callback(null, []);
+                    return;
+                }
+                callback(null, keywordSnippets.filter(function (word) {
+                    return word.caption.startsWith(prefix);
+                }).map(function (e) {
+                    return { caption: e.caption, snippet: e.snippet, meta: e.meta, type: "snippet" };
+                }));
+            };
+
+            // Load keyword information into the list
+            loadKeywordInfoList();
+        })
+        .catch(error => console.error('Error fetching snippets:', error));
+}
+
 function loadKeywordInfoList() {
     var keywordList = document.getElementById('keywordList');
     var keywordDescription = document.getElementById('keywordDescription');
     var lastActive = null;
 
-    keywordSnippets.forEach(function (keyword, index) {
-        if(keyword.meta !== 'Values') {
-            var item = document.createElement('div');
-            item.textContent = keyword.caption;
-            item.className = 'keyword-item';
-            item.onclick = function () {
-                if (lastActive) {
-                    lastActive.classList.remove('active');
-                }
-                item.classList.add('active');
-                lastActive = item;
+    // Clear any existing list items
+    keywordList.innerHTML = '';
 
-                // ziska detail o dane keyword a zobrazi ho
-                var details = keywordDetails[keyword.caption];
-                var htmlContent = `<h3>${keyword.caption}</h3>
-                        <p>${details.description}</p>
-                        <ul>`;
-                details.parameters.forEach(param => {
-                    htmlContent += `<li><b>${param.name}</b> <i>(${param.type})</i>: ${param.description}</li>`;
-                });
-                htmlContent += '</ul>';
-
-                keywordDescription.innerHTML = htmlContent;
-            };
-            keywordList.appendChild(item);
-    }
+    keywordSnippets.forEach(function (keyword) {
+        var item = document.createElement('div');
+        item.textContent = keyword.caption;
+        item.className = 'keyword-item';
+        item.onclick = function () {
+            if (lastActive) {
+                lastActive.classList.remove('active');
+            }
+            item.classList.add('active');
+            lastActive = item;
+        
+            displayKeywordDetails(keyword);
+        };
+        keywordList.appendChild(item);
     });
-};
+}
+
+function displayKeywordDetails(keyword) {
+    // Clear the existing content in the keywordDescription element
+    keywordDescription.innerHTML = '';
+
+    // Create the main container for the keyword details
+    const keywordItem = document.createElement('div');
+    keywordItem.className = 'keyword-item';
+
+    // Create and append the title element (keyword name)
+    const keywordTitle = document.createElement('div');
+    keywordTitle.className = 'keyword-title';
+    keywordTitle.textContent = keyword.caption;  // Using "caption" as the keyword name
+    keywordItem.appendChild(keywordTitle);
+
+    // Create and append the group element
+    const keywordGroup = document.createElement('span');
+    keywordGroup.className = 'keyword-group';
+    keywordGroup.textContent = keyword.meta.split(' - ')[0]; // Extract group from meta
+    keywordTitle.appendChild(keywordGroup);
+
+    // Create and append the description element
+    const keywordDesc = document.createElement('div');
+    keywordDesc.className = 'keyword-description';
+    keywordDesc.textContent = keyword.meta.split(' - ')[1]; // Extract description from meta
+    keywordItem.appendChild(keywordDesc);
+
+    // Create and append the parameters element
+    const keywordParameters = document.createElement('div');
+    keywordParameters.className = 'keyword-parameters';
+    const parameters = keyword.snippet.split('\n').slice(1); // Skip the first line (keyword name)
+    keywordParameters.innerHTML = parameters.map(param => {
+        const paramParts = param.trim().split(':');
+        return `<div class="parameter-pill">
+                    <span class="parameter-pill-name">${paramParts[0].trim()}</span>
+                    <span class="parameter-pill-type">${determineDataType(paramParts[1].trim())}</span>
+                </div>`;
+    }).join('<br>');
+    keywordItem.appendChild(keywordParameters);
+
+    // Append the constructed keyword item to the description panel
+    keywordDescription.appendChild(keywordItem);
+}
+
+function determineDataType(value) {
+    // Trim the value to ensure no extra spaces
+    value = value.trim();
+
+    // Check for BOOLEAN
+    if (value === "true" || value === "false") {
+        return "BOOLEAN";
+    }
+
+    // Check for LONG (integer)
+    if (!isNaN(value) && Number.isInteger(Number(value))) {
+        return "LONG";
+    }
+
+    // Check for DOUBLE (floating point)
+    if (!isNaN(value) && !Number.isInteger(Number(value)) && value.includes('.')) {
+        return "DOUBLE";
+    }
+
+    // Check for STRING (enclosed in quotes)
+    if (value.startsWith('"') && value.endsWith('"')) {
+        return "STRING";
+    }
+
+    // Check for LIST (starts and ends with square brackets)
+    if (value.startsWith('[') && value.endsWith(']')) {
+        return "LIST";
+    }
+
+    // If none of the above, return undefined
+    return "UNKNOWN";
+}
 
 function gotoHelp() {
     window.location.href = "./help";
@@ -263,7 +383,7 @@ window.onload = function () {
     setEditorHeight();
     insertInitialContent();
     showEmpty();
-    loadKeywordInfoList();
+    registerKeywordSnippets();
 };
 window.onresize = setEditorHeight;
 

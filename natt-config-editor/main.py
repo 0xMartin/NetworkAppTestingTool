@@ -4,6 +4,8 @@ import subprocess
 import webbrowser
 import os
 import select
+import json
+import re
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -13,6 +15,7 @@ process = None
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/help')
 def help():
@@ -104,7 +107,8 @@ def handle_stop_java():
     if process:
         process.terminate()  # posle signal SIGTERM
         process = None
-        emit('stopped', {'message': 'The testing process has been terminated by editor ...'})
+        emit('stopped', {
+             'message': 'The testing process has been terminated by editor ...'})
 
 
 @socketio.on('validate')
@@ -120,12 +124,12 @@ def handle_validation(json):
 
     try:
         val_process = subprocess.Popen(['java', '-jar', '../NATT.jar', '-c', '../tmp-config.yaml', '-v'],
-                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd='./work-dir')
+                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd='./work-dir')
         stdout, stderr = val_process.communicate()
 
         if val_process.returncode == 0:
             emit('validate-response', {'status': 'success',
-                'message': 'Configuration is valid'})
+                                       'message': 'Configuration is valid'})
         else:
             emit('validate-response', {'status': 'error', 'message': stderr})
     except Exception as e:
@@ -135,6 +139,64 @@ def handle_validation(json):
             process.stdout.close()
             process.stderr.close()
             process.terminate()
+
+@app.route('/get-snippets', methods=['POST'])
+def get_snippets():
+    try:
+        # Define the path to the NATT.jar and working directory
+        jar_path = '../NATT.jar'
+        work_dir = './work-dir'
+
+        # Execute the command to run NATT.jar and capture the output
+        result = subprocess.run(
+            ['java', '-jar', jar_path, '-kd'],
+            cwd=work_dir,
+            text=True,
+            capture_output=True
+        )
+
+        # Check if the command was successful
+        if result.returncode != 0:
+            return jsonify({"error": f"Error executing command: {result.stderr}"}), 500
+
+        # Extract the keyword list from the command output
+        keyword_list_match = re.search(
+            r'Documentation for registered keywords:\s*\[(.*)\]', result.stdout, re.S)
+        if not keyword_list_match:
+            return jsonify({"error": "Failed to find the keyword list in the output."}), 500
+
+        keyword_list_string = f'[{keyword_list_match.group(1)}]'
+
+        # Parse the keyword list JSON
+        try:
+            keyword_list = json.loads(keyword_list_string)
+        except json.JSONDecodeError as parse_error:
+            return jsonify({"error": f"Error parsing JSON: {str(parse_error)}"}), 500
+
+        # Create the keyword snippets
+        keyword_snippets = []
+        for keyword in keyword_list:
+            snippet = {
+                "caption": keyword["name"],
+                "snippet": f'{keyword["name"]}:\n' + '\n'.join([
+                    f'    {param}: ' + {
+                        "STRING": '"example"',
+                        "LONG": "100",
+                        "DOUBLE": "10.5",
+                        "BOOLEAN": "true",
+                        "LIST": "[]"
+                    }.get(keyword["types"][i], "example value")
+                    for i, param in enumerate(keyword["parameters"])
+                ]),
+                "meta": f'{keyword["kwGroup"]} - {keyword["description"]}'
+            }
+            keyword_snippets.append(snippet)
+
+        # Return the generated snippets as JSON
+        return jsonify({"snippets": keyword_snippets})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 def showPage():

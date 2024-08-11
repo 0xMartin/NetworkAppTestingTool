@@ -174,3 +174,70 @@ select {
     width: 300px;
     height: 300px;
 }
+
+.keyword-item {
+    position: relative;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.75rem;
+}
+
+.keyword-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #e1e1e1;
+    font-size: 1.2rem;
+}
+
+.keyword-group {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.25rem;
+    background-color: #555;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.keyword-description {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.keyword-parameters {
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.parameter-pill {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1.25rem;
+    font-size: 0.85rem;
+    margin: 0.25rem;
+    overflow: hidden;
+}
+
+.parameter-pill-name {
+    flex: 1;
+    padding-left: 0.4rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-right: 0.5rem;
+    background-color: #444;
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+    font-weight: bold;
+}
+
+.parameter-pill-type {
+    font-size: 0.75rem;
+    background-color: #252525;
+    border-top-right-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+    padding: 0.3rem;
+    white-space: nowrap;
+}
