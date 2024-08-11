@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATT Configuration Editor</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #1e1e1e;
+            color: #cfcfcf;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 0.625rem;
+            border-radius: 0.3125rem;
+            border-bottom: 0.125rem solid #333;
+            background-color: #252526;
+            margin-bottom: 1.25rem;
+        }
+
+        .header img {
+            width: 3.125rem;
+            height: 3.125rem;
+            margin-right: 0.625rem;
+        }
+
+        .header .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e1e1e1;
+        }
+
+        .header .subtitle {
+            font-size: 0.875rem;
+            color: #9a9a9a;
+        }
+
+        .button-container {
+            padding-top: 0.625rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .button {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: none;
+            background-color: #005e9c;
+            color: white;
+            cursor: pointer;
+            border-radius: 0.625rem;
+            width: 100%;
+            box-sizing: border-box;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0e74b7;
+        }
+
+        .button img {
+            margin-right: 0.625rem;
+        }
+
+        .github-link {
+            display: block;
+            margin-top: 1.25rem;
+            text-align: center;
+            color: #0096ff;
+            text-decoration: none;
+            background-color: #333;
+            border-radius: 0.3125rem;
+            padding: 0.5rem;
+        }
+
+        .keyword-list-wrapper {
+            flex: 1;
+            position: relative;
+            border: 1px solid #444;
+            border-bottom-left-radius: 0.3125rem;
+            border-bottom-right-radius: 0.3125rem;
+            background-color: #2d2d2d;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .keyword-list {
+            position: relative;
+            padding: 1rem;
+        }
+
+        .search-container {
+            margin-top: 0.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1px solid #555;
+            border-top-left-radius: 0.3125rem;
+            border-top-right-radius: 0.3125rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            background-color: #1e1e1e;
+            color: #cfcfcf;
+        }
+
+        .keyword-item {
+            position: relative;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 0.75rem;
+        }
+
+        .keyword-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e1e1e1;
+            font-size: 1.2rem;
+        }
+
+        .keyword-group {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1.25rem;
+            background-color: #555;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .keyword-description {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .keyword-parameters {
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .parameter-pill {
+            display: inline-flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 1.25rem;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+            overflow: hidden;
+        }
+
+        .parameter-pill-name {
+            flex: 1;
+            padding-left: 0.4rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+            padding-right: 0.5rem;
+            background-color: #444;
+            border-top-left-radius: 1.25rem;
+            border-bottom-left-radius: 1.25rem;
+            font-weight: bold;
+        }
+
+        .parameter-pill-type {
+            font-size: 0.75rem;
+            background-color: #252525;
+            border-top-right-radius: 1.25rem;
+            border-bottom-right-radius: 1.25rem;
+            padding: 0.3rem;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="@@iconUri@@" alt="Icon">
+        <div>
+            <div class="title">NATT</div>
+            <div class="subtitle">Configuration Editor</div>
+        </div>
+    </div>
+
+    <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool" target="_blank">Visit the GitHub
+        Repository</a>
+
+    <a class="github-link" href="https://github.com/0xMartin/NetworkAppTestingTool/blob/main/keywords.md"
+        target="_blank">Keyword documentation</a>
+
+    <div class="button-container">
+        <button class="button" onclick="executeCommand('extension.nattInit')">
+            Initialize
+        </button>
+        <button class="button" onclick="executeCommand('extension.nattRun')">
+            Run Test
+        </button>
+        <button class="button" onclick="executeCommand('extension.nattStop')">
+            Stop Test
+        </button>
+        <button class="button" onclick="executeCommand('extension.nattShow')">
+            Show Report
+        </button>
+        <button class="button" onclick="executeCommand('extension.nattValidate')">
+            Validate
+        </button>
+        <button class="button" onclick="executeCommand('extension.nattReload')">
+            Reload
+        </button>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search keywords...">
+    </div>
+    <div class="keyword-list-wrapper">
+        <div id="keyword-list" class="keyword-list"></div>
+    </div>
+
+    <script>
+        const vscode = acquireVsCodeApi();
+
+        function executeCommand(command) {
+            vscode.postMessage({ command: command });
+        }
+
+        function createKeywordList(keywords) {
+            const keywordListDiv = document.getElementById('keyword-list');
+            const searchInput = document.getElementById('search-input');
+            keywordListDiv.innerHTML = '';
+
+            searchInput.addEventListener('input', function () {
+                const filter = searchInput.value.toLowerCase();
+                document.querySelectorAll('.keyword-item').forEach(item => {
+                    const title = item.querySelector('.keyword-title').textContent.toLowerCase();
+                    item.style.display = title.includes(filter) ? '' : 'none';
+                });
+            });
+
+            keywords.forEach(keyword => {
+                const keywordItem = document.createElement('div');
+                keywordItem.className = 'keyword-item';
+
+                const keywordTitle = document.createElement('div');
+                keywordTitle.className = 'keyword-title';
+                keywordTitle.textContent = keyword.name;
+                keywordItem.appendChild(keywordTitle);
+
+                const keywordGroup = document.createElement('span');
+                keywordGroup.className = 'keyword-group';
+                keywordGroup.textContent = keyword.kwGroup;
+                keywordTitle.appendChild(keywordGroup);
+
+                const keywordDescription = document.createElement('div');
+                keywordDescription.className = 'keyword-description';
+                keywordDescription.textContent = keyword.description;
+                keywordItem.appendChild(keywordDescription);
+
+                const keywordParameters = document.createElement('div');
+                keywordParameters.className = 'keyword-parameters';
+                keywordParameters.innerHTML = keyword.parameters.map((param, index) => `<div class="parameter-pill"><span class="parameter-pill-name">${param}</span><span class="parameter-pill-type">${keyword.types[index]}</span></div>`).join('<br>');
+                keywordItem.appendChild(keywordParameters);
+
+                keywordListDiv.appendChild(keywordItem);
+            });
+        }
+
+        window.onload = () => {
+            window.addEventListener('message', event => {
+                const message = event.data;
+                if (message.command === 'loadKeywords') {
+                    createKeywordList(message.keywords);
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>

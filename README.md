@@ -94,6 +94,8 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 ./gradlew :natt:build
 ```
 
+>**You can also use the script that will build the NATT SPI and NATT testing tool: `./full_build.sh`**
+
 ---
 
 ## 🧪 Testing diagrams 

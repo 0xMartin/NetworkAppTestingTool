@@ -75,8 +75,8 @@ public class NATTCore {
     public NATTCore(String[] args) throws InternalErrorException {
 
         // inicializace modulu
-        this.localHostIO = new LocalHostIO(configPath);
-        this.networkIO = new NetworkIO(configPath);
+        this.localHostIO = new LocalHostIO("test-config.yaml");
+        this.networkIO = new NetworkIO("");
         this.pluginLoader = new PluginLoader(NATTContext.instance());
         this.pluginLoader.loadPlugins();
 
@@ -115,6 +115,7 @@ public class NATTCore {
         String buffer = cmd.getOptionValue("c");
         if (buffer != null) {
             this.configPath = buffer;
+            this.localHostIO.setFileName(this.configPath);
             this.loadConfigFromLocalHost = true;
         }
 
@@ -122,6 +123,7 @@ public class NATTCore {
         buffer = cmd.getOptionValue("nc");
         if (buffer != null) {
             this.configPath = buffer;
+            this.networkIO.setUrl(this.configPath);
             this.loadConfigFromLocalHost = false;
         }
 

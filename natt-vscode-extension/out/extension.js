@@ -33,15 +33,102 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const https = __importStar(require("https"));
 const stream = __importStar(require("stream"));
+const cp = __importStar(require("child_process"));
 const util_1 = require("util");
 const nattviewprovider_1 = __importDefault(require("./nattviewprovider"));
 const reportwebviewprovider_1 = __importDefault(require("./reportwebviewprovider"));
-const snippets_1 = __importDefault(require("./snippets"));
 let testTerminal;
 const pipeline = (0, util_1.promisify)(stream.pipeline);
+let currentCompletionProvider;
 function checkNattJarExists(projectPath) {
     const jarPath = path.join(projectPath, 'NATT.jar');
     return fs.existsSync(jarPath);
+}
+/**
+ * Register keyword snippets for the current version of NATT.jar. First call java -jar NATT.jar -kd. Then from the output read and parse the keywords snippets.
+ * @param context VS Code context
+ * @param view View where the all keywords will be displayed
+ */
+function registerKeywordSnippets(context, viewProvider) {
+    // Remove the previous completion provider if it exists
+    if (currentCompletionProvider) {
+        currentCompletionProvider.dispose();
+    }
+    // Get the root path of the currently opened workspace
+    const workspaceFolder = vscode.workspace.workspaceFolders?.[0]?.uri?.fsPath;
+    if (!workspaceFolder) {
+        vscode.window.showErrorMessage('No workspace folder is open.');
+        return;
+    }
+    // Path to NATT.jar
+    const jarPath = path.join(workspaceFolder, 'NATT.jar');
+    // Directory containing NATT.jar
+    const jarDirectory = path.dirname(jarPath);
+    // Execute the command and capture the output
+    cp.exec(`java -jar "${jarPath}" -kd`, { cwd: jarDirectory }, (error, stdout, stderr) => {
+        if (error) {
+            vscode.window.showErrorMessage(`Error executing command: ${error.message}`);
+            return;
+        }
+        const keywordListMatch = stdout.match(/Documentation for registered keywords:\s*\[(.*)\]/s);
+        if (!keywordListMatch) {
+            vscode.window.showErrorMessage('Failed to find the keyword list in the output.');
+            return;
+        }
+        const keywordListString = `[${keywordListMatch[1]}]`;
+        let keywordList;
+        try {
+            keywordList = JSON.parse(keywordListString);
+        }
+        catch (parseError) {
+            vscode.window.showErrorMessage(`Error parsing JSON: ${parseError}`);
+            return;
+        }
+        const keywordSnippets = keywordList.map(keyword => ({
+            caption: keyword.name,
+            snippet: `${keyword.name}:\n${keyword.parameters.map((param, index) => {
+                const type = keyword.types[index];
+                let exampleValue;
+                switch (type) {
+                    case 'STRING':
+                        exampleValue = `"example"`;
+                        break;
+                    case 'LONG':
+                        exampleValue = `100`;
+                        break;
+                    case 'DOUBLE':
+                        exampleValue = `10.5`;
+                        break;
+                    case 'BOOLEAN':
+                        exampleValue = `true`;
+                        break;
+                    case 'LIST':
+                        exampleValue = `[]`;
+                        break;
+                    default:
+                        exampleValue = `example value`;
+                }
+                return `    ${param}: ${exampleValue}`;
+            }).join('\n')}`,
+            meta: `${keyword.kwGroup} - ${keyword.description}`
+        }));
+        // Update the view with the keyword list
+        viewProvider.showKeywords(keywordList);
+        // Create and register the completion provider
+        currentCompletionProvider = vscode.languages.registerCompletionItemProvider({ scheme: 'file', pattern: '**/test-config*.yaml' }, {
+            provideCompletionItems(document, position) {
+                return keywordSnippets.map(snippet => {
+                    const item = new vscode.CompletionItem(snippet.caption, vscode.CompletionItemKind.Snippet);
+                    item.insertText = snippet.snippet;
+                    item.detail = snippet.meta;
+                    return item;
+                });
+            }
+        });
+        // Add the new provider to the subscriptions so it's properly disposed when the extension is deactivated
+        context.subscriptions.push(currentCompletionProvider);
+        vscode.window.showInformationMessage("Keyword snippets registered successfully.");
+    });
 }
 function activate(context) {
     console.log('Extension "NATT Configuration Editor" is now active!');
@@ -50,8 +137,8 @@ function activate(context) {
     const reportWebviewProvider = new reportwebviewprovider_1.default(context.extensionUri);
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('nattReportView', reportWebviewProvider));
     // Register Webview Panel for Activity Bar icon
-    const provider = new nattviewprovider_1.default(context.extensionUri);
-    context.subscriptions.push(vscode.window.registerWebviewViewProvider('homeView', provider));
+    const homeWebviewProvider = new nattviewprovider_1.default(context.extensionUri, context);
+    context.subscriptions.push(vscode.window.registerWebviewViewProvider('homeView', homeWebviewProvider));
     // Commands *************************************************************************************
     // Command: init test
     let disposableCreate = vscode.commands.registerCommand('extension.nattInit', async () => {
@@ -68,6 +155,16 @@ function activate(context) {
             }
             else {
                 vscode.window.showInformationMessage('test-config.yaml already exists, skipping copy.');
+            }
+            const sourceGitLabYamlPath = path.join(context.extensionPath, 'resources', '.gitlab-ci.yml');
+            const destGitLabYamlPath = path.join(projectPath, '.gitlab-ci.yml');
+            // Check if the gitlab-ci file already exists
+            if (!fs.existsSync(destGitLabYamlPath)) {
+                fs.copyFileSync(sourceGitLabYamlPath, destGitLabYamlPath);
+                vscode.window.showInformationMessage('.gitlab-ci.yml copied successfully!');
+            }
+            else {
+                vscode.window.showInformationMessage('.gitlab-ci.yml already exists, skipping copy.');
             }
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
@@ -173,6 +270,10 @@ function activate(context) {
             }
         }
     });
+    // Command: reload
+    let disposableReload = vscode.commands.registerCommand('extension.nattReload', () => {
+        registerKeywordSnippets(context, homeWebviewProvider);
+    });
     // Buttons *************************************************************************************
     // Create status bar buttons
     const runButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -183,20 +284,14 @@ function activate(context) {
     stopButton.text = '$(debug-stop) NATT Stop';
     stopButton.command = 'extension.nattStop';
     stopButton.show();
-    context.subscriptions.push(disposableCreate, disposableRun, disposableShowReport, disposableStop, disposableValidate, runButton, stopButton);
+    context.subscriptions.push(disposableCreate, disposableRun, disposableShowReport, disposableStop, disposableValidate, disposableReload, runButton, stopButton);
     // Other *************************************************************************************
     // Register completion item provider for YAML files with name test-config**.yaml
-    const completionProvider = vscode.languages.registerCompletionItemProvider({ scheme: 'file', pattern: '**/test-config*.yaml' }, {
-        provideCompletionItems(document, position) {
-            return snippets_1.default.map(snippet => {
-                const item = new vscode.CompletionItem(snippet.caption, vscode.CompletionItemKind.Snippet);
-                item.insertText = snippet.snippet;
-                item.detail = snippet.meta;
-                return item;
-            });
-        }
-    });
-    context.subscriptions.push(completionProvider);
+    registerKeywordSnippets(context, homeWebviewProvider);
 }
-function deactivate() { }
+function deactivate() {
+    if (currentCompletionProvider) {
+        currentCompletionProvider.dispose();
+    }
+}
 //# sourceMappingURL=extension.js.map

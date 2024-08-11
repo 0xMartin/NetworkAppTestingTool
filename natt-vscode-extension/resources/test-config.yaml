@@ -10,31 +10,31 @@ test_root:
         - wait: 1000
     test_suites:
         - test_suite:
-              name: "Suite name 1"
-              delay: 500
-              initial_steps: []
-              test_cases:
-                  - test_case:
-                        name: "Case name 1"
-                        description: "Description 1 here"
-                        steps:
-                            - standard_stream_send: "Message to send"
-                            - wait: 1000
-                            - assert_string:
-                                var_name: "module-1-last-msg"
-                                expected: "This is next message"
-                                mode: "equals"
-                                case_sensitive: true
-                                result: true
-                  - test_case:
-                        name: "Case name 2"
-                        description: "Description 2 here"
-                        steps:
-                            - standard_stream_send: "This is next message"
-                            - wait: 1000
-                            - assert_string:
-                                var_name: "module-1-last-msg"
-                                expected: "This is next message"
-                                mode: "equals"
-                                case_sensitive: true
-                                result: true
+            name: "Suite name 1"
+            delay: 500
+            initial_steps: []
+            test_cases:
+                - test_case:
+                    name: "Case name 1"
+                    description: "Description 1 here"
+                    steps:
+                        - standard_stream_send: "Message to send"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "module-1-last-msg"
+                            expected: "This is next message"
+                            mode: "equals"
+                            case_sensitive: true
+                            result: true
+                - test_case:
+                    name: "Case name 2"
+                    description: "Description 2 here"
+                    steps:
+                        - standard_stream_send: "This is next message"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "module-1-last-msg"
+                            expected: "This is next message"
+                            mode: "equals"
+                            case_sensitive: true
+                            result: true
