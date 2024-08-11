@@ -1,7 +1,6 @@
 package utb.fai.natt.module;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -33,7 +32,6 @@ import org.apache.http.util.EntityUtils;
  * je do message buferu vlozen chybovy status kod. Tag je nastaven ne adresu
  * endpointu, ze ktereho zprava prisla jako odpoved na pozadavek.
  */
-@NATTAnnotation.Module("rest-tester")
 public class RESTTester extends NATTModule {
 
     /**

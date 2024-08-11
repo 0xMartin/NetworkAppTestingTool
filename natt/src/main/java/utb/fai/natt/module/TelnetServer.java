@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -29,7 +28,6 @@ import utb.fai.natt.core.PortChecker;
  * "client-#" kde # odpovide cislu klient. Prvni pripojeni klient ma 1, druhy ma
  * 2 a tak dale
  */
-@NATTAnnotation.Module("telnet-server")
 public class TelnetServer extends NATTModule {
 
     private NATTLogger logger = new NATTLogger(TelnetServer.class);

@@ -7,7 +7,6 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -22,7 +21,6 @@ import utb.fai.natt.spi.NATTLogger;
  * tak jak prichazeji od komunikujici protistrany. Tag je vzdy nastaven na
  * hodnotu topicu, ze ktereho zprava prisla
  */
-@NATTAnnotation.Module("mqtt-client")
 public class MQTTClientTester extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(MQTTClientTester.class);

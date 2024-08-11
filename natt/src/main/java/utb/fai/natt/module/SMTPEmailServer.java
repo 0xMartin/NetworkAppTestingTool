@@ -9,7 +9,6 @@ import com.icegreen.greenmail.util.ServerSetup;
 import java.io.IOException;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -25,7 +24,6 @@ import utb.fai.natt.core.PortChecker;
  * tak jak prichazeji od odeslitele. Tag je vzdy nastaven na hodnotu "subject"
  * emailu a obsah zpravy odpovida obsahu samotneho emailu.
  */
-@NATTAnnotation.Module("email-server")
 public class SMTPEmailServer extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(SMTPEmailServer.class);

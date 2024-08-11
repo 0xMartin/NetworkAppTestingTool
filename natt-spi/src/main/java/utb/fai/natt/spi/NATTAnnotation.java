@@ -19,13 +19,4 @@ public class NATTAnnotation {
         public String name();
     }
 
-    /**
-     * Annotation for simple and clear definition of module parameters.
-     */
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public static @interface Module {
-        public String value();
-    }
-
 }

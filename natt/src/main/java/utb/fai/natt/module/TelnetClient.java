@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -21,7 +20,6 @@ import utb.fai.natt.spi.NATTLogger;
  * Prijate zpravy jsou do message bufferu ukladany v textove podobne neupravene
  * tak jak prichazeji od komunikujici protistrany. Tag je vzdy prazdny ""
  */
-@NATTAnnotation.Module("telnet-client")
 public class TelnetClient extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(TelnetClient.class);

@@ -93,7 +93,9 @@ public class NATTCore {
         options.addOption("h", "help", false, "Help on how to use");
         options.addOption("v", "validate", false, "Validates the test suite configuration");
         options.addOption("p", "plugins", false, "List of all loaded plugins");
-        options.addOption("k", "keywords", false, "List of all registered keywords and their documentation");
+        options.addOption("kd", "keywordDoc", false,
+                "List of all registered keywords and their documentation in json format");
+        options.addOption("k", "keywords", false, "List of all registered keywords");
 
         CommandLine cmd;
         try {
@@ -105,15 +107,7 @@ public class NATTCore {
 
         /************************************************************************************************************************* */
 
-        // help
-        boolean helpRequested = cmd.hasOption("h");
-        if (helpRequested) {
-            HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp("java -jar NATT.jar", options);
-            System.exit(0);
-        }
-
-        // title
+        // title vystupniho reportu
         this.testReportName = cmd.getOptionValue("t");
 
         // c parametr
@@ -130,26 +124,50 @@ public class NATTCore {
             this.loadConfigFromLocalHost = false;
         }
 
-        // validate only parameter
+        // validace konfiguracniho souboru
         if (cmd.hasOption("v")) {
             this.validateOnly = true;
         } else {
             this.validateOnly = false;
         }
 
-        // show plugins
+        // napoveda k pouziti
+        if (cmd.hasOption("h")) {
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("java -jar NATT.jar", options);
+            System.exit(0);
+        }
+
+        // zobrazi vsechny nactene pluginy
         if (cmd.hasOption("p")) {
             this.pluginLoader.loadPlugins();
             int i = 1;
-            logger.info("\nLoaded plugins:");
+            logger.info("Loaded plugins:");
             for (INATTPlugin plugin : this.pluginLoader.getPlugins()) {
                 logger.info(String.format("%d: %s", i++, plugin.getName()));
             }
             System.exit(0);
         }
 
-        // show keywords documentation
+        // zobrazi seznam vsech registrovanych keywordu (jejich nazvu)
         if (cmd.hasOption("k")) {
+            logger.info("Registered keywords:");
+            for (Map.Entry<String, java.lang.Class<?>> entry : NATTContext.instance().getKeywordSet().entrySet()) {
+                try {
+                    java.lang.Class<?> keywordClass = entry.getValue();
+                    java.lang.reflect.Constructor<?> constructor = keywordClass.getDeclaredConstructor();
+                    NATTKeyword keywordInstance = (NATTKeyword) constructor.newInstance();
+                    if (keywordInstance != null) {
+                        logger.info(keywordInstance.getKeywordName());
+                    }
+                } catch (Exception e) {
+                    logger.warning("Failed to create keyword instance for keyword " + entry.getKey() + ".");
+                }
+            }
+        }
+
+        // ve json formatu vypisi dokumentaci vsech registrovanych keyword
+        if (cmd.hasOption("kd")) {
             LinkedList<KeywordDocumentation> documentationList = new LinkedList<KeywordDocumentation>();
 
             for (Map.Entry<String, java.lang.Class<?>> entry : NATTContext.instance().getKeywordSet().entrySet()) {

@@ -7,12 +7,13 @@ public class PluginMain implements INATTPlugin {
 
     @Override
     public String getName() {
+        // name of your plugin
         return "My Plugin";
     }
 
     @Override
     public void initialize(INATTContext ctx) {
-        // Register your keywords here
+        // Register all your keywords here
         ctx.registerKeyword(new MyKeyword1());     
     }
     

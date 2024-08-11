@@ -11,7 +11,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -23,7 +22,6 @@ import utb.fai.natt.spi.NATTLogger;
  * vlaknech prochazi webove stranky a analyzuje je. Vystup je zavysli na
  * pouzitem analyzatoru.
  */
-@NATTAnnotation.Module("web-crawler")
 public class WebCrawler extends NATTModule {
 
 	protected NATTLogger logger = new NATTLogger(WebCrawler.class);

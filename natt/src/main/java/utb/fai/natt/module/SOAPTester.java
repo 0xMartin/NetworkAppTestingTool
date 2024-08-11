@@ -1,7 +1,6 @@
 package utb.fai.natt.module;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -32,7 +31,6 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  * Prijate zpravy jsou do message bufferu ukladany v textove podobne prevedene
  * do json formatu. Tag je vzdy prazdny ""
  */
-@NATTAnnotation.Module("soap-tester")
 public class SOAPTester extends NATTModule {
 
     /**

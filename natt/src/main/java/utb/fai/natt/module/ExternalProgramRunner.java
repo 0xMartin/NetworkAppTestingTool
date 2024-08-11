@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -21,7 +20,6 @@ import utb.fai.natt.core.ProcessManager;
  * Trida urcena pro spousteni externich aplikaci. Umoznuje spusteni, ukonceni,
  * odeslani a prijimani zprav na standartni stream teto aplikace.
  */
-@NATTAnnotation.Module("app.std.out")
 public class ExternalProgramRunner extends NATTModule {
 
     private NATTLogger logger = new NATTLogger(ExternalProgramRunner.class);

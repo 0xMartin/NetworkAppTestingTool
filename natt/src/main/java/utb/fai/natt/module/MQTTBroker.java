@@ -1,7 +1,6 @@
 package utb.fai.natt.module;
 
 import utb.fai.natt.spi.NATTModule;
-import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
@@ -17,7 +16,6 @@ import io.moquette.broker.config.MemoryConfig;
 /**
  * Modul umoznuje spustit MQTT broker
  */
-@NATTAnnotation.Module("mqtt-broker")
 public class MQTTBroker extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(MQTTBroker.class);
