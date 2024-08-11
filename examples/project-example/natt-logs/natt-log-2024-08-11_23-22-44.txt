@@ -1,0 +1,57 @@
+[23:22:44][PluginLoader][WARNING] Plugins directory not found.
+[23:22:44][NATTCore][INFO] NATT CORE initialization done
+Version: 1.6.0 
+Configuration path: test-config.yaml
+Configuration loading mode: FROM HOST
+[23:22:44][NATTCore][INFO] Working directory path: /home/martin/Projects/NetworkAppTestingTool/examples/project-example
+[23:22:44][NATTCore][INFO] Start loading of the configuration file ...
+[23:22:44][LocalHostIO][INFO] Yaml data has been loaded from file (test-config.yaml)
+[23:22:44][NATTCore][INFO] Configuration loading done
+[23:22:44][NATTCore][INFO] Start building test structure according to the configuration ...
+[23:22:44][NATTCore][INFO] Test structure ...
+[23:22:44][NATTCore][INFO] Test structure building done
+[23:22:44][NATTCore][INFO] Start test executing ...
+[23:22:44][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test_report.html
+[23:22:44][NATTCore][INFO] Starts execution on the root keyword  ...
+[23:22:44][MessageBuffer][INFO] Message buffer created for module with name: module-1
+[23:22:44][TelnetServer][INFO] (module-1) Server socket is listening on port 9999
+[23:22:44][MessageBuffer][INFO] Message buffer created for module with name: default
+[23:22:44][ExternalProgramRunner][INFO] (default) Run external app with command: java -jar app/build/libs/app.jar localhost 9999
+[23:22:44][ProcessManager][INFO] New PID (45094) added to file
+[23:22:44][WaitKw][INFO] Waiting: 1000 ms
+[23:22:44][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Client running. Server IP: localhost, Port: 9999'
+[23:22:45][TestSuiteKw][INFO] Test case 'Case name 1' starts executing now
+[23:22:45][TelnetServer][INFO] (module-1) Message send: 55.4+6.6
+[23:22:45][WaitKw][INFO] Waiting: 1000 ms
+[23:22:45][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Received formula: 55.4+6.6'
+[23:22:45][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Calculated result: 62.0'
+[23:22:45][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Sent result back to the server.'
+[23:22:45][MessageBuffer][INFO] Message added to buffer [ Mod: module-1 | Tag: client-1 ] Content: '62.0'
+[23:22:46][TestSuiteKw][INFO] Test suite 'Suite name 1' - Test case 'Case name 1' passed
+[23:22:46][MessageBuffer][INFO] Message buffer cleared
+[23:22:47][TestSuiteKw][INFO] Test case 'Case name 2' starts executing now
+[23:22:47][TelnetServer][INFO] (module-1) Message send: 4-4+6-20
+[23:22:47][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Received formula: 4-4+6-20'
+[23:22:47][WaitKw][INFO] Waiting: 1000 ms
+[23:22:47][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Calculated result: -14.0'
+[23:22:47][MessageBuffer][INFO] Message added to buffer [ Mod: module-1 | Tag: client-1 ] Content: '-14.0'
+[23:22:47][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Sent result back to the server.'
+[23:22:48][TestSuiteKw][INFO] Test suite 'Suite name 1' - Test case 'Case name 2' passed
+[23:22:48][MessageBuffer][INFO] Message buffer cleared
+[23:22:48][TestSuiteKw][INFO] Test case 'Case name 3' starts executing now
+[23:22:48][TelnetServer][INFO] (module-1) Message send: -2-4-6
+[23:22:48][MessageBuffer][INFO] Message added to buffer [ Mod: default | Tag:  ] Content: 'Received formula: -2-4-6'
+[23:22:48][WaitKw][INFO] Waiting: 1000 ms
+[23:22:48][TelnetServer][INFO] (module-1) Client disconnected
+[23:22:48][ProcessManager][INFO] PID (45094) removed from file
+[23:22:48][ExternalProgramRunner][INFO] (default) External application ends with exit code 0
+[23:22:49][TestSuiteKw][INFO] Test suite 'Suite name 1' - Test case 'Case name 3' passed
+[23:22:49][MessageBuffer][INFO] Message buffer cleared
+[23:22:50][MessageBuffer][INFO] Message buffer cleared
+[23:22:50][MessageBuffer][INFO] Message buffer cleared
+[23:22:50][TelnetServer][INFO] (module-1) Telnet server [module-1] terminated
+[23:22:50][TelnetServer][INFO] (module-1) Server socket closed
+[23:22:50][NATTCore][INFO] Test executing finished
+[23:22:50][NATTCore][INFO] Start generating test report
+[23:22:50][TestReportGenerator][INFO] Report saved to file
+[23:22:50][NATTCore][INFO] Report generating done. Leaving status: PASSED

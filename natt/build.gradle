@@ -66,5 +66,13 @@ jar {
     }
 }
 
+task writeVersionProperties {
+    doLast {
+        file("$buildDir/resources/main/version.properties").text = "version=${version}"
+    }
+}
+
+processResources.dependsOn writeVersionProperties
+
 version = '1.6.0'
 group = 'utb.fai.natt'

@@ -22,8 +22,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Hlavni trida testovaciho nastroju. Zajistuje pospupne zpracovani vsech testu
@@ -34,7 +36,7 @@ import java.util.Map;
 public class NATTCore {
 
     // verze nastroje (nacte z package.json)
-    public static final String VERSION = NetworkAppTestingTool.class.getPackage().getImplementationVersion();
+    public static final String VERSION = NATTCore.getVersion();
 
     // defaultni cesta k vystupnimu souboru z reportem o testovani
     public static final String REPORT_PATH = "test_report.html";
@@ -217,6 +219,24 @@ public class NATTCore {
                 NATTCore.VERSION, configPath, loadConfigFromLocalHost ? "FROM HOST" : "FROM URL"));
         String currentDirectory = System.getProperty("user.dir");
         logger.info("Working directory path: " + currentDirectory);
+    }
+
+    /**
+     * Vrati verzi NATT
+     * @return Verze NATT
+     */
+    public static String getVersion() {
+        Properties properties = new Properties();
+        try (InputStream input = NATTCore.class.getClassLoader().getResourceAsStream("version.properties")) {
+            if (input == null) {
+                return "unknown";
+            }
+            properties.load(input);
+            return properties.getProperty("version");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "unknown";
+        }
     }
 
     /**
