@@ -98,6 +98,16 @@ public class PluginMain implements INATTPlugin {
 After defining the main plugin class, you can create custom keywords according to your needs. Below is an example of how to define a custom keyword:
 
 ```java
+package natt.plugin;
+
+import utb.fai.natt.spi.INATTContext;
+import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
+import utb.fai.natt.spi.NATTAnnotation;
+import utb.fai.natt.spi.exception.InternalErrorException;
+import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
+import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
+
 @NATTAnnotation.Keyword(
     name = "my_keyword_1",
     description = "This is my first keyword.",
