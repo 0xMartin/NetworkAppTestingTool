@@ -22,7 +22,8 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
     name = "test_root",
     description = "Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.",
     parameters = { "max_points", "initial_steps", "test_suites" },
-    types = { ParamValType.DOUBLE, ParamValType.LIST, ParamValType.LIST }
+    types = { ParamValType.DOUBLE, ParamValType.LIST, ParamValType.LIST },
+    kwGroup = "NATT Main"
     )
 public class TestRootKw extends NATTKeyword {
 

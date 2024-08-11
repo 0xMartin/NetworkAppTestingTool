@@ -18,7 +18,8 @@ import utb.fai.natt.module.RESTTester;
     name = "create_rest_tester",
     description = "Creates a module that launches an HTTP client for testing REST APIs.",
     parameters = { "name", "url", "request_type", "content_type" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class CreateRESTTesterKw extends NATTKeyword {
 

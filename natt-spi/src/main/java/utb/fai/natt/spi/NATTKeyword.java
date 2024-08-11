@@ -71,21 +71,24 @@ public abstract class NATTKeyword {
     }
 
     /**
-     * Documentation of a keyword.
+     * Documentation of a keyword
      */
     public static class KeywordDocumentation {
 
-        // Name of the keyword.
+        // Name of the keyword
         public String name;
 
-        // Description of the keyword.
+        // Description of the keyword
         public String description;
 
-        // List of parameters.
+        // List of parameters
         public String[] parameters;
 
-        // List of types of parameters.
+        // List of types of parameters
         public ParamValType[] types;
+
+        // Keyword group
+        public String kwGroup;
 
     }
 
@@ -131,6 +134,7 @@ public abstract class NATTKeyword {
             this.documentation.description = annotation.description();
             this.documentation.parameters = annotation.parameters();
             this.documentation.types = annotation.types();
+            this.documentation.kwGroup = annotation.kwGroup();
         }
     }
 

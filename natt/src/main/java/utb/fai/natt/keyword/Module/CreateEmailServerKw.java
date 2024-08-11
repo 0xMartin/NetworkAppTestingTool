@@ -18,7 +18,8 @@ import utb.fai.natt.module.SMTPEmailServer;
     name = "create_email_server",
     description = "Creates a module that launches a virtual email server.",
     parameters = { "name", "port" },
-    types = { ParamValType.STRING, ParamValType.LONG }
+    types = { ParamValType.STRING, ParamValType.LONG },
+    kwGroup = "NATT Module"
     )
 public class CreateEmailServerKw extends NATTKeyword {
 

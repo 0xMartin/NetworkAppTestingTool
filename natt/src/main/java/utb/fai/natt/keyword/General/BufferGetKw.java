@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "buffer_get",
     description = "Retrieves the content of a single message from the message buffer of a specific module. The message is accessed using an index, and its content is stored in the defined variable.",
     parameters = {"var_name", "module_name", "index"},
-    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG}
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG},
+    kwGroup = "NATT General"
     )
 public class BufferGetKw extends NATTKeyword {
 

@@ -20,7 +20,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "create_filter_action",
     description = "Creates a filter for actions triggered upon message reception. Text content can be filtered.",
     parameters = { "name", "text", "tag", "mode", "case_sensitive" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN },
+    kwGroup = "NATT Module"
     )
 public class CreateFilterActionKw extends NATTKeyword {
 

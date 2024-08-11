@@ -21,7 +21,8 @@ import utb.fai.natt.io.LocalHostIO;
     name = "read_file", 
     description = "Reads the content from the specified file on the local device and stores its value into the defined variable.", 
     parameters = { "var_name", "file_path" }, 
-    types = { ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class ReadFileKw extends NATTKeyword {
 

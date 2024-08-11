@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_larger",
     description = "Checks if a numeric variable is larger than the specified value.",
     parameters = {"var_name", "value", "result"},
-    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertLargerKw extends NATTKeyword {
 

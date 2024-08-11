@@ -20,7 +20,8 @@ import utb.fai.natt.io.NetworkIO;
     name = "write_net_file",
     description = "Writes the defined content into a file on the network device.",
     parameters = {"file_url", "content"},
-    types = {ParamValType.STRING, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.STRING},
+    kwGroup = "NATT General"
     )
 public class WriteNetFileKw extends NATTKeyword {
 

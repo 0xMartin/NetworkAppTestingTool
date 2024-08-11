@@ -21,7 +21,8 @@ import utb.fai.natt.io.NetworkIO;
     name = "read_net_file", 
     description = "Reads the content from the specified file on the network device and stores its value into the defined variable.", 
     parameters = { "var_name", "file_url" }, 
-    types = { ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class ReadNetFileKw extends NATTKeyword {
 

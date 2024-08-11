@@ -22,6 +22,7 @@ public class NATTAnnotation {
         public String description();
         public String[] parameters() default {};
         public ParamValType[] types() default {};
+        public String kwGroup();
     }
 
 }

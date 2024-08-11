@@ -21,7 +21,8 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
     name = "test_case",
     description = "Allows the definition of individual test cases.",
     parameters = { "name", "description", "steps" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST },
+    kwGroup = "NATT Main"
     )
 public class TestCaseKw extends NATTKeyword {
 

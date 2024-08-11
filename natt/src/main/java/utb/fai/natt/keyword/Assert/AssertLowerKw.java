@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_lower",
     description = "Checks if a numeric variable is lower than the specified value.",
     parameters = {"var_name", "value", "result"},
-    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertLowerKw extends NATTKeyword {
 

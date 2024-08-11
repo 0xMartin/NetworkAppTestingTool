@@ -5,10 +5,12 @@ import utb.fai.natt.spi.INATTPlugin;
 
 public class PluginMain implements INATTPlugin {
 
+    public static final String NAME = "My Plugin";
+
     @Override
     public String getName() {
         // name of your plugin
-        return "My Plugin";
+        return PluginMain.NAME;
     }
 
     @Override

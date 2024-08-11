@@ -17,7 +17,7 @@ import java.util.List;
 
 public class KeywordTest {
 
-    @NATTAnnotation.Keyword(name = "ConcreteKeyword", description = "A test keyword")
+    @NATTAnnotation.Keyword(name = "ConcreteKeyword", description = "A test keyword", kwGroup = "Custom Group")
     private class ConcreteKeyword extends NATTKeyword {
 
         @Override

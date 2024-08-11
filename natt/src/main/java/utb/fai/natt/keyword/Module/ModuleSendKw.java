@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "module_send",
     description = "Sends a message using a specific module.",
     parameters = { "name", "message", "delay" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG },
+    kwGroup = "NATT Module"
     )
 public class ModuleSendKw extends NATTKeyword {
 

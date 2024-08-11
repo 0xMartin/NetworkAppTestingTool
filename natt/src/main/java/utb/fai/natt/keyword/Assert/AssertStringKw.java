@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_string",
     description = "Verifies if a variable contains the expected string.",
     parameters = {"var_name", "expected", "mode", "case_sensitive", "result"},
-    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertStringKw extends NATTKeyword {
 

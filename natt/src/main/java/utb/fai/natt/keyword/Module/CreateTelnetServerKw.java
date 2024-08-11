@@ -18,7 +18,8 @@ import utb.fai.natt.module.TelnetServer;
     name = "create_telnet_server",
     description = "Creates a module that launches a virtual Telnet server.",
     parameters = { "name", "port" },
-    types = { ParamValType.STRING, ParamValType.LONG }
+    types = { ParamValType.STRING, ParamValType.LONG },
+    kwGroup = "NATT Module"
     )
 public class CreateTelnetServerKw extends NATTKeyword {
 

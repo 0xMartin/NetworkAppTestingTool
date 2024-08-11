@@ -21,7 +21,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_equals",
     description = "Checks if a variable is equal to the specified value. It's possible to set a certain tolerance range.",
     parameters = {"var_name", "value", "tolerance", "result"},
-    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.DOUBLE, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.DOUBLE, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertEqualsKw extends NATTKeyword {
 

@@ -25,7 +25,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "json_get", 
     description = "Extracts the value of a specified attribute from the content of a variable in JSON format. It's possible to access array indices or to traverse multiple levels in one step.", 
     parameters = { "to_var", "from_var", "param_name" }, 
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class JsonGetKw extends NATTKeyword {
 

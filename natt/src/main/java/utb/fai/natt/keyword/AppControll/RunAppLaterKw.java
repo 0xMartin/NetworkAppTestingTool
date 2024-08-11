@@ -21,7 +21,8 @@ import utb.fai.natt.module.ExternalProgramRunner;
     name = "run_app_later",
     description = "Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.",
     parameters = {"command", "delay", "name"},
-    types = {ParamValType.STRING, ParamValType.LONG, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.LONG, ParamValType.STRING},
+    kwGroup = "NATT AppControll"
     )
 public class RunAppLaterKw extends NATTKeyword {
 

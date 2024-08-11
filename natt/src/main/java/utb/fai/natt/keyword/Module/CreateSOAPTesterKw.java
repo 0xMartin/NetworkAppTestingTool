@@ -18,7 +18,8 @@ import utb.fai.natt.module.SOAPTester;
     name = "create_soap_tester",
     description = "Creates a module for testing SOAP services.",
     parameters = { "name", "url" },
-    types = { ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class CreateSOAPTesterKw extends NATTKeyword {
 

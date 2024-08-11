@@ -24,7 +24,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "store_to_var", 
     description = "Retrieves and stores the content of a specific message from the message buffer into the chosen variable. If multiple messages match the specified search conditions, the variable stores the first one found, i.e., the one received first.", 
     parameters = { "var_name", "module_name", "text", "tag", "mode", "case_sensitive" }, 
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN },
+    kwGroup = "NATT General"
     )
 public class StoreToVarKw extends NATTKeyword {
 

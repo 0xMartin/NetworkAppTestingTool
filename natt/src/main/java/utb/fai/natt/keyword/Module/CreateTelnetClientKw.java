@@ -18,7 +18,8 @@ import utb.fai.natt.module.TelnetClient;
     name = "create_telnet_client",
     description = "Creates a module that launches a new virtual Telnet client.",
     parameters = { "name", "host", "port" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG },
+    kwGroup = "NATT Module"
     )
 public class CreateTelnetClientKw extends NATTKeyword {
 

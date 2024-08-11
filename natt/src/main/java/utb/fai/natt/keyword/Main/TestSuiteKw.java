@@ -21,7 +21,8 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
     name = "test_suite", 
     description = "Used to define a testing suite.", 
     parameters = { "name", "delay", "initial_steps", "test_cases" }, 
-    types = { ParamValType.STRING, ParamValType.LONG, ParamValType.LIST, ParamValType.LIST }
+    types = { ParamValType.STRING, ParamValType.LONG, ParamValType.LIST, ParamValType.LIST },
+    kwGroup = "NATT Main"
     )
 public class TestSuiteKw extends NATTKeyword {
 

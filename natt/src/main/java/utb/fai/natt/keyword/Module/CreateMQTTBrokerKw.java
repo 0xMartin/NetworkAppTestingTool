@@ -18,7 +18,8 @@ import utb.fai.natt.module.MQTTBroker;
     name = "create_mqtt_broker",
     description = "Creates a module that launches an MQTT broker.",
     parameters = { "name", "port" },
-    types = { ParamValType.STRING, ParamValType.LONG }
+    types = { ParamValType.STRING, ParamValType.LONG },
+    kwGroup = "NATT Module"
     )
 public class CreateMQTTBrokerKw extends NATTKeyword {
 

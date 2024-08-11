@@ -16,7 +16,8 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
     name = "wait", 
     description = "Pauses the test execution for a defined duration.", 
     parameters = { "time_out" }, 
-    types = { ParamValType.LONG }
+    types = { ParamValType.LONG },
+    kwGroup = "NATT General"
     )
 public class WaitKw extends NATTKeyword {
 

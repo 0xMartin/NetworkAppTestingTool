@@ -21,7 +21,8 @@ import utb.fai.natt.module.MQTTClientTester;
     name = "create_mqtt_client",
     description = "Creates a module that launches a virtual MQTT client.",
     parameters = { "name", "topics", "broker_url" },
-    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class CreateMQTTClientKw extends NATTKeyword {
 

@@ -27,7 +27,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "wait_until",
     description = "It waits until a message is received from a certain communication module. Messages can be filtered using the keyword create_filter_action. The content of the message that triggered the action is automatically saved in the (module-name)-action-msg variable for possible testing.",
     parameters = {"module_name", "time_out"},
-    types = {ParamValType.STRING, ParamValType.LONG}
+    types = {ParamValType.STRING, ParamValType.LONG},
+    kwGroup = "NATT General"
     )
 public class WaitUntilKw extends NATTKeyword {
 

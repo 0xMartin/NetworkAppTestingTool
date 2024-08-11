@@ -24,7 +24,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_range",
     description = "Verifies if the sequence of received messages from two modules falls within a specified segment. Simple comparison rules can also be defined for comparison.",
     parameters = {"module1_name", "module2_name", "start", "count", "rule", "result"},
-    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.LONG, ParamValType.STRING, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.LONG, ParamValType.STRING, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertRangeKw extends NATTKeyword {
 

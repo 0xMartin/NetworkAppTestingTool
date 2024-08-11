@@ -20,7 +20,8 @@ import utb.fai.natt.module.WebCrawler.WordFrequencyAnalyzer;
     name = "create_web_crawler",
     description = "Creates a module that launches a web crawler.",
     parameters = { "name", "start_url", "max_depth", "analyzer" },
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class CreateWebCrawlerKw extends NATTKeyword {
 

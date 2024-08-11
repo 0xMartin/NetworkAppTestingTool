@@ -20,7 +20,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_module_is_running",
     description = "Verifies if a specific module is currently running.",
     parameters = {"module_name", "result"},
-    types = {ParamValType.STRING, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertModuleIsRunningKw extends NATTKeyword {
 

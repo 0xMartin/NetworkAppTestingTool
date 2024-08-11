@@ -20,7 +20,8 @@ import utb.fai.natt.io.LocalHostIO;
     name = "write_file",
     description = "Writes the defined content into a file on the local device.",
     parameters = {"file_path", "content"},
-    types = {ParamValType.STRING, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.STRING},
+    kwGroup = "NATT General"
     )
 public class WriteFileKw extends NATTKeyword {
 

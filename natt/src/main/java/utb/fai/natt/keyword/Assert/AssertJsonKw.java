@@ -26,7 +26,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "assert_json",
     description = "Allows verification if the JSON object in a variable is identical to the expected JSON object.",
     parameters = {"var_name", "expected", "exact_mode", "result"},
-    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN}
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN},
+    kwGroup = "NATT Assert"
     )
 public class AssertJsonKw extends NATTKeyword {
 

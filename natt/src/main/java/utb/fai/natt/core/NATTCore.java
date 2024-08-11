@@ -187,6 +187,7 @@ public class NATTCore {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(documentationList);
+                System.out.println("Documentation for registered keywords:");
                 System.out.println(json);
             } catch (JsonProcessingException e) {
                 logger.error("Failed to convert keyword documentation to JSON.");

@@ -19,7 +19,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "clear_filter_actions",
     description = "Removes all action filters for a specific module.",
     parameters = { "module_name" },
-    types = { ParamValType.STRING }
+    types = { ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class ClearFilterActionsKw extends NATTKeyword {
 

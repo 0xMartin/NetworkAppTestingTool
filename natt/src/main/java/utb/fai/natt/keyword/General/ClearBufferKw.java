@@ -19,7 +19,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "clear_buffer", 
     description = "Clears the content of the message buffer. It's possible to clear the buffer content for all modules or for a specific one.", 
     parameters = {"module_name" }, 
-    types = { ParamValType.STRING }
+    types = { ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class ClearBufferKw extends NATTKeyword {
 

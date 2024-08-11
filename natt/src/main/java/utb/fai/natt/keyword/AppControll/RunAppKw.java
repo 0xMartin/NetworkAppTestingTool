@@ -19,7 +19,8 @@ import utb.fai.natt.module.ExternalProgramRunner;
     name = "run_app",
     description = "Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.",
     parameters = {"command", "name"},
-    types = {ParamValType.STRING, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.STRING},
+    kwGroup = "NATT AppControll"
     )
 public class RunAppKw extends NATTKeyword {
 

@@ -18,7 +18,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "set_var", 
     description = "Sets the specified variable to the defined content.", 
     parameters = { "var_name", "value" }, 
-    types = { ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class SetVarKw extends NATTKeyword {
 

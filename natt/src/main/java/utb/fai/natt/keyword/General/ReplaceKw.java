@@ -23,7 +23,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "replace", 
     description = "Retrieves the content of a specific variable, replacing all desired words with their replacements. The result is stored in another variable.", 
     parameters = { "to_var", "from_var", "str_from", "str_to" }, 
-    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST, ParamValType.LIST }
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST, ParamValType.LIST },
+    kwGroup = "NATT General"
     )
 public class ReplaceKw extends NATTKeyword {
 

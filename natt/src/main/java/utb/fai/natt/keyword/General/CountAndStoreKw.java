@@ -22,7 +22,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "count_and_store", 
     description = "Counts the number of received messages during a single test case and saves this count into a variable.", 
     parameters = { "var_name", "module_name" }, 
-    types = { ParamValType.STRING, ParamValType.STRING }
+    types = { ParamValType.STRING, ParamValType.STRING },
+    kwGroup = "NATT General"
     )
 public class CountAndStoreKw extends NATTKeyword {
 

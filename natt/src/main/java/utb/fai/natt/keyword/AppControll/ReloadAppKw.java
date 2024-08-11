@@ -19,7 +19,8 @@ import utb.fai.natt.module.ExternalProgramRunner;
     name = "reload_app",
     description = "Stops the currently running application and launches the new application.",
     parameters = {"command", "name"},
-    types = {ParamValType.STRING, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.STRING},
+    kwGroup = "NATT AppControll"
     )
 public class ReloadAppKw extends NATTKeyword {
 

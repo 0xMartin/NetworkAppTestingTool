@@ -16,7 +16,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "termite_module",
     description = "Terminates a running module that is no longer needed.",
     parameters = { "module_name" },
-    types = { ParamValType.STRING }
+    types = { ParamValType.STRING },
+    kwGroup = "NATT Module"
     )
 public class TermiteModuleKw extends NATTKeyword {
 

@@ -79,10 +79,12 @@ import utb.fai.natt.spi.INATTPlugin;
 
 public class PluginMain implements INATTPlugin {
 
+    public static final String NAME = "My Plugin";
+
     @Override
     public String getName() {
         // name of your plugin
-        return "My Plugin";
+        return PluginMain.NAME;
     }
 
     @Override
@@ -90,6 +92,7 @@ public class PluginMain implements INATTPlugin {
         // Register all your keywords here
         ctx.registerKeyword(new MyKeyword1());     
     }
+    
 }
 ```
 
@@ -112,8 +115,9 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
     name = "my_keyword_1",
     description = "This is my first keyword.",
     parameters = { "name" },
-    types = { ParamValType.STRING, ParamValType.LONG }
-)
+    types = { ParamValType.STRING, ParamValType.LONG },
+    kwGroup = PluginMain.NAME
+    )
 public class MyKeyword1 extends NATTKeyword {
 
     protected String moduleName;

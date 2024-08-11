@@ -20,7 +20,8 @@ import utb.fai.natt.module.ExternalProgramRunner;
     name = "assert_app_is_running",
     description = "Verifies if an external application is currently running.",
     parameters = {"result", "name"},
-    types = {ParamValType.BOOLEAN, ParamValType.STRING}
+    types = {ParamValType.BOOLEAN, ParamValType.STRING},
+    kwGroup = "NATT Assert"
     )
 public class AssertAppIsRunningKw extends NATTKeyword {
 

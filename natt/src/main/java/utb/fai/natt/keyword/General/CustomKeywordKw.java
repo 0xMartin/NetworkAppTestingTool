@@ -20,7 +20,8 @@ import utb.fai.natt.core.VariableProcessor;
     name = "custom_keyword", 
     description = "Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.", 
     parameters = { "name", "params", "steps" }, 
-    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.LIST }
+    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.LIST },
+    kwGroup = "NATT General"
     )
 public class CustomKeywordKw extends NATTKeyword {
 

@@ -20,7 +20,8 @@ import utb.fai.natt.module.ExternalProgramRunner;
     name = "standard_stream_send",
     description = "Sends a message to the running application via standard streaming.",
     parameters = {"message", "name"},
-    types = {ParamValType.STRING, ParamValType.STRING}
+    types = {ParamValType.STRING, ParamValType.STRING},
+    kwGroup = "NATT AppControll"
 )
 public class StandardStreamSendKw extends NATTKeyword {
 
