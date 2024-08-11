@@ -54,13 +54,13 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'utb.fai.NetworkAppTestingTool'
+    mainClass = 'utb.fai.natt.NetworkAppTestingTool'
 }
 
 jar {
     manifest {
         attributes(
-            'Main-Class': 'utb.fai.NetworkAppTestingTool', 
+            'Main-Class': 'utb.fai.natt.NetworkAppTestingTool', 
             'Implementation-Version': version
         )
     }

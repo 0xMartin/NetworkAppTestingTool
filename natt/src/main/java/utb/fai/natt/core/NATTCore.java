@@ -78,6 +78,7 @@ public class NATTCore {
         this.localHostIO = new LocalHostIO(configPath);
         this.networkIO = new NetworkIO(configPath);
         this.pluginLoader = new PluginLoader(NATTContext.instance());
+        this.pluginLoader.loadPlugins();
 
         /************************************************************************************************************************* */
 
@@ -140,30 +141,29 @@ public class NATTCore {
 
         // zobrazi vsechny nactene pluginy
         if (cmd.hasOption("p")) {
-            this.pluginLoader.loadPlugins();
             int i = 1;
-            logger.info("Loaded plugins:");
+            System.out.println("Loaded plugins:");
             for (INATTPlugin plugin : this.pluginLoader.getPlugins()) {
-                logger.info(String.format("%d: %s", i++, plugin.getName()));
+                System.out.println(String.format("%d: %s", i++, plugin.getName()));
             }
             System.exit(0);
         }
 
         // zobrazi seznam vsech registrovanych keywordu (jejich nazvu)
         if (cmd.hasOption("k")) {
-            logger.info("Registered keywords:");
             for (Map.Entry<String, java.lang.Class<?>> entry : NATTContext.instance().getKeywordSet().entrySet()) {
                 try {
                     java.lang.Class<?> keywordClass = entry.getValue();
                     java.lang.reflect.Constructor<?> constructor = keywordClass.getDeclaredConstructor();
                     NATTKeyword keywordInstance = (NATTKeyword) constructor.newInstance();
                     if (keywordInstance != null) {
-                        logger.info(keywordInstance.getKeywordName());
+                        System.out.println(keywordInstance.getKeywordName());
                     }
                 } catch (Exception e) {
-                    logger.warning("Failed to create keyword instance for keyword " + entry.getKey() + ".");
+                    System.out.println("Failed to create keyword instance for keyword " + entry.getKey() + ".");
                 }
             }
+            System.exit(0);
         }
 
         // ve json formatu vypisi dokumentaci vsech registrovanych keyword
@@ -187,7 +187,7 @@ public class NATTCore {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(documentationList);
-                logger.info(json);
+                System.out.println(json);
             } catch (JsonProcessingException e) {
                 logger.error("Failed to convert keyword documentation to JSON.");
             }
@@ -216,10 +216,20 @@ public class NATTCore {
         logger.info("Working directory path: " + currentDirectory);
     }
 
+    /**
+     * Vrati cestu ke konfiguraci
+     * 
+     * @return Cesta ke konfiguraci
+     */
     public String getConfigPath() {
         return configPath;
     }
 
+    /**
+     * Nastavi cestu ke konfiguraci
+     * 
+     * @param configPath cesta ke konfiguraci
+     */
     public void setConfigPath(String configPath) {
         this.configPath = configPath;
     }
@@ -233,17 +243,6 @@ public class NATTCore {
             m.terminateModule();
         });
         NATTContext.instance().getModules().clear();
-    }
-
-    /**
-     * Nacte vsechny moduly, ktere jsou definovany v konfiguraci
-     */
-    public void loadPlugins() {
-        if (this.pluginLoader != null) {
-            this.pluginLoader.loadPlugins();
-        } else {
-            logger.error("Plugin loader is not initialized.");
-        }
     }
 
     /**
