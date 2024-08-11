@@ -2,6 +2,9 @@ package utb.fai.natt.spi;
 
 import java.util.Objects;
 
+/**
+ * Class for asserting data matching between variables and expected values.
+ */
 public class NATTAssert {
 
     /**

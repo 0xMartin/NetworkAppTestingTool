@@ -7,25 +7,56 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * NATTLogger is a utility class for logging messages to Sytem.out and file.
+ */
 public class NATTLogger {
+
+    // Target class name
     private String className;
 
+    /**
+     * Constructor for NATTLogger.
+     * 
+     * @param clazz The class for which the logger is created.
+     */
     public NATTLogger(Class<?> clazz) {
         this.className = clazz.getSimpleName();
     }
 
+    /**
+     * Logs an info message.
+     * 
+     * @param message The message to be logged.
+     */
     public void info(String message) {
         log("INFO", message);
     }
 
+    /**
+     * Logs a warning message.
+     * 
+     * @param message The message to be logged.
+     */
     public void warning(String message) {
         log("WARNING", message);
     }
 
+    /**
+     * Logs an error message.
+     * 
+     * @param message The message to be logged.
+     */
     public void error(String message) {
         log("ERROR", message);
     }
 
+    /**
+     * Logs a message with the specified level.
+     * 
+     * @param level   The level of the message (INFO, WARNING, ERROR).
+     * @param message The message to be logged.
+     */
     private void log(String level, String message) {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -37,6 +68,9 @@ public class NATTLogger {
         LogFileWriter.getInstance().writeLog(logMessage);
     }
 
+    /**
+     * Singleton class for writing log messages to a file.
+     */
     public static class LogFileWriter {
         private static LogFileWriter instance;
         private BufferedWriter logFileWriter;
@@ -45,6 +79,11 @@ public class NATTLogger {
             initializeLogFile();
         }
 
+        /**
+         * Returns the singleton instance of LogFileWriter.
+         * 
+         * @return The singleton instance of LogFileWriter.
+         */
         public static synchronized LogFileWriter getInstance() {
             if (instance == null) {
                 instance = new LogFileWriter();
@@ -52,6 +91,9 @@ public class NATTLogger {
             return instance;
         }
 
+        /**
+         * Initializes the log file.
+         */
         private void initializeLogFile() {
             try {
                 // Create directory if it doesn't exist
@@ -72,6 +114,11 @@ public class NATTLogger {
             }
         }
 
+        /**
+         * Writes a log message to the log file.
+         * 
+         * @param message The message to be written to the log file.
+         */
         public synchronized void writeLog(String message) {
             try {
                 if (logFileWriter != null) {
@@ -84,6 +131,9 @@ public class NATTLogger {
             }
         }
 
+        /**
+         * Closes the log file.
+         */
         public void close() {
             try {
                 if (logFileWriter != null) {

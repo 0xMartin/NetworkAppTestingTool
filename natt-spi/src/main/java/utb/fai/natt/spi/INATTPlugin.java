@@ -1,10 +1,11 @@
 package utb.fai.natt.spi;
 
 /**
- * Interface for NATT plugins.
+ * Main interface for NATT plugins. Plugins are loaded by the NATT plugin loader
+ * and after that are initialized. NATT Context is passed to the plugin.
  */
 public interface INATTPlugin {
-    
+
     /**
      * Plugin name.
      */

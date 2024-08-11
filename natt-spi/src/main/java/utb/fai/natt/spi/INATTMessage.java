@@ -1,5 +1,8 @@
 package utb.fai.natt.spi;
 
+/**
+ * Interface for the NATT message. Messages are used in IMessageBuffer.
+ */
 public interface INATTMessage {
 
     /**

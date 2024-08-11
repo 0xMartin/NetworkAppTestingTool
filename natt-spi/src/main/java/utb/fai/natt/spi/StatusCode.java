@@ -1,5 +1,8 @@
 package utb.fai.natt.spi;
 
+/**
+ * Enumeration of NATT status codes.
+ */
 public class StatusCode {
 
     // Status for successful test execution

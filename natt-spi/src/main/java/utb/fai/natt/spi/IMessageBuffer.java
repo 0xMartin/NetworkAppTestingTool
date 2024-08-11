@@ -3,6 +3,9 @@ package utb.fai.natt.spi;
 import java.util.LinkedList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Interface for the message buffer. Provides methods for adding and retrieving messages from NATT modules.
+ */
 public interface IMessageBuffer {
 
     /**

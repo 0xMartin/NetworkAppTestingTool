@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Interface for the test context. Provides access to various components and functionalities
+ * Interface for the NATT context. Provides access to various components and functionalities
  * used throughout the testing tool.
  */
 public interface INATTContext {

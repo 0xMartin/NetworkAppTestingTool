@@ -7,7 +7,9 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 /**
- * Abstract class for basic module access
+ * Abstract class for NATT module. All modules must extend this class. Modules
+ * are used to communicate with the tested application. After the module is
+ * created, is automatically added to NATT context for further use.
  */
 public abstract class NATTModule {
 

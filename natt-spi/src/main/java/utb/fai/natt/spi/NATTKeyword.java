@@ -11,11 +11,9 @@ import java.util.Map;
 
 /**
  * Abstract class for a keyword. It ensures easy construction of a test
- * structure
- * that can also be easily executed. Each keyword contains its name and a map of
- * parameters.
- * How each parameter is used depends on the class that inherits from this
- * abstract class.
+ * structure that can also be easily executed. Each keyword contains its name
+ * and a map of parameters. How each parameter is used depends on the class that
+ * inherits from this abstract class.
  */
 public abstract class NATTKeyword {
 
