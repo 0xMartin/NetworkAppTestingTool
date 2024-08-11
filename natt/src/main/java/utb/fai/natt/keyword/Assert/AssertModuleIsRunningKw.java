@@ -64,7 +64,7 @@ public class AssertModuleIsRunningKw extends NATTKeyword {
     }
 
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // module_name (string) [je vyzadovany]

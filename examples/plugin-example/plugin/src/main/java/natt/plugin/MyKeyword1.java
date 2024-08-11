@@ -36,7 +36,7 @@ public class MyKeyword1 extends NATTKeyword {
     private MyModule1 module;
 
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         // load keyword parameter value. name of parameter is "name" or
         // DEFAULT_PARAMETER_NAME (DEFAULT_PARAMETER_NAME = in yaml is no need to
         // specify parameter name, like this my_keyword_1: "module-1")

@@ -375,7 +375,7 @@ public abstract class NATTKeyword {
      * @throws InvalidSyntaxInConfigurationException if initialization fails due to
      *                                               invalid syntax.
      */
-    public abstract void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException;
+    public abstract void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException;
 
     /**
      * In this method, the code that the keyword should execute will be defined.

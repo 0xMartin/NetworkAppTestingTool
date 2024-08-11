@@ -50,7 +50,7 @@ public class CreateTelnetServerKw extends NATTKeyword {
     }
 
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]

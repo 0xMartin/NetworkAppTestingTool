@@ -345,7 +345,7 @@ public class NATTTestBuilder {
                 continue;
 
             // inicializuje frontu
-            keyword.keywordInit(NATTContext.instance());
+            keyword.init(NATTContext.instance());
 
             // test unikatnosti nazvu testovaciho pripadu / sady
             if (keyword instanceof TestCaseKw || keyword instanceof TestSuiteKw) {

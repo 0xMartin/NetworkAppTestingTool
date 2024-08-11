@@ -95,7 +95,7 @@ public class TestRootKw extends NATTKeyword {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // max_points (double) [neni vyzadovany]

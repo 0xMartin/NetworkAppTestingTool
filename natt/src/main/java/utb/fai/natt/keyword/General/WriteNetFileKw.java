@@ -50,7 +50,7 @@ public class WriteNetFileKw extends NATTKeyword {
     }
 
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // file_url (string) [je vyzadovany]

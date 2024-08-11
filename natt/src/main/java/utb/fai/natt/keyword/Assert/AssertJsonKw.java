@@ -135,7 +135,7 @@ public class AssertJsonKw extends NATTKeyword {
     }
 
     @Override
-    public void keywordInit(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
+    public void init(INATTContext ctx) throws InvalidSyntaxInConfigurationException {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
