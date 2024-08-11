@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.General;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -14,7 +15,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umoznuje zavolat vlastni keyword
  */
-@NATTAnnotation.Keyword(name = "call_keyword")
+@NATTAnnotation.Keyword(
+    name = "call_keyword",
+    description = "This keyword is used to invoke a custom keyword that has been previously defined. You can also define input parameters for the custom keyword, which can be used within the keyword's steps. Nested call of custom keyword is not allowed.", 
+    parameters = { "name" }, 
+    types = { ParamValType.STRING }
+    )
 public class CallKeywordKw extends NATTKeyword {
 
     protected NATTLogger logger = new NATTLogger(CallKeywordKw.class);
@@ -51,7 +57,7 @@ public class CallKeywordKw extends NATTKeyword {
         if (this.kw.params != null) {
             for (String paramName : this.kw.params) {
                 try {
-                    ParameterValue paramValue = this.getParameterValue(paramName, NATTKeyword.ParameterValueType.STRING,
+                    ParameterValue paramValue = this.getParameterValue(paramName, NATTKeyword.ParamValType.STRING,
                             false);
                     NATTContext.instance().storeValueToVariable(paramName, paramValue.getValue().toString());
                 } catch (Exception e) {
@@ -90,7 +96,7 @@ public class CallKeywordKw extends NATTKeyword {
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
         ParameterValue val = this.getParameterValue(new String[] { "name", NATTKeyword.DEFAULT_PARAMETER_NAME },
-                NATTKeyword.ParameterValueType.STRING,
+                NATTKeyword.ParamValType.STRING,
                 true);
         kwName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Assert;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTAssert;
@@ -16,7 +17,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje definovat trzeni ze ciselna hodnota definovane promnenne je mensi
  * jako hodnota zadaneho cisla
  */
-@NATTAnnotation.Keyword(name = "assert_lower")
+@NATTAnnotation.Keyword(
+    name = "assert_lower",
+    description = "Checks if a numeric variable is lower than the specified value.",
+    parameters = {"var_name", "value", "result"},
+    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.BOOLEAN}
+    )
 public class AssertLowerKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertEqualsKw.class);
@@ -65,17 +71,17 @@ public class AssertLowerKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // value (double) [je vyzadovany]
-        val = this.getParameterValue("value", NATTKeyword.ParameterValueType.DOUBLE,
+        val = this.getParameterValue("value", NATTKeyword.ParamValType.DOUBLE,
                 true);
         value = (Double) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

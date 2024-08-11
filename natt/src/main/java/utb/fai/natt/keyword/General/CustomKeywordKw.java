@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.util.*;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +16,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umoznuje definovat vlastni keywordu
  */
-@NATTAnnotation.Keyword(name = "custom_keyword")
+@NATTAnnotation.Keyword(
+    name = "custom_keyword", 
+    description = "Allows for the definition of a custom keyword within the system. The custom keyword can include a series of steps and input parameters.", 
+    parameters = { "name", "params", "steps" }, 
+    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.LIST }
+    )
 public class CustomKeywordKw extends NATTKeyword {
 
     protected String kwName;
@@ -49,17 +55,17 @@ public class CustomKeywordKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         kwName = (String) val.getValue();
 
         // params (list) [je vyzadovany]
-        val = this.getParameterValue("params", NATTKeyword.ParameterValueType.LIST,
+        val = this.getParameterValue("params", NATTKeyword.ParamValType.LIST,
                 false);
         params = (List<String>) val.getValue();
 
         // steps (string) [je vyzadovany]
-        val = this.getParameterValue("steps", NATTKeyword.ParameterValueType.LIST,
+        val = this.getParameterValue("steps", NATTKeyword.ParamValType.LIST,
                 true);
         steps = (List<NATTKeyword>) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

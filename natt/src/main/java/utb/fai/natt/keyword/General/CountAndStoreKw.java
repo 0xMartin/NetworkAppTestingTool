@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.INATTMessage;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -17,7 +18,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje spocitat pocet zprav v bufferu a ulozit toto cislo do definovane
  * promenne
  */
-@NATTAnnotation.Keyword(name = "count_and_store")
+@NATTAnnotation.Keyword(
+    name = "count_and_store", 
+    description = "Counts the number of received messages during a single test case and saves this count into a variable.", 
+    parameters = { "var_name", "module_name" }, 
+    types = { ParamValType.STRING, ParamValType.STRING }
+    )
 public class CountAndStoreKw extends NATTKeyword {
 
     protected String varName;
@@ -48,12 +54,12 @@ public class CountAndStoreKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // module_name (string) [je vyzadovany]
-        val = this.getParameterValue("module_name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("module_name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

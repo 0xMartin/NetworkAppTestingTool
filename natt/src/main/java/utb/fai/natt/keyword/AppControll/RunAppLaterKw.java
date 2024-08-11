@@ -1,6 +1,8 @@
 package utb.fai.natt.keyword.AppControll;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
+
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +17,12 @@ import utb.fai.natt.module.ExternalProgramRunner;
 /**
  * Umoznuje spustit externi testovanou aplikaci
  */
-@NATTAnnotation.Keyword(name = "run_app_later")
+@NATTAnnotation.Keyword(
+    name = "run_app_later",
+    description = "Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.",
+    parameters = {"command", "delay", "name"},
+    types = {ParamValType.STRING, ParamValType.LONG, ParamValType.STRING}
+    )
 public class RunAppLaterKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(RunAppLaterKw.class);
@@ -58,17 +65,17 @@ public class RunAppLaterKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // command (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("command", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("command", NATTKeyword.ParamValType.STRING,
                 true);
         command = (String) val.getValue();
 
         // delay (string) [je vyzadovany]
-        val = this.getParameterValue("delay", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("delay", NATTKeyword.ParamValType.LONG,
                 true);
         delay = (Long) val.getValue();
 
         // (string) [neni vyzadovany]
-        val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 false);
         moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

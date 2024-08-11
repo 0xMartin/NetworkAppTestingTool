@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.General;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -13,7 +14,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umoznuje primo nastavit obsah dane promenne
  */
-@NATTAnnotation.Keyword(name = "set_var")
+@NATTAnnotation.Keyword(
+    name = "set_var", 
+    description = "Sets the specified variable to the defined content.", 
+    parameters = { "var_name", "value" }, 
+    types = { ParamValType.STRING, ParamValType.STRING }
+    )
 public class SetVarKw extends NATTKeyword {
 
     protected String varName;
@@ -43,12 +49,12 @@ public class SetVarKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // value (string) [je vyzadovany]
-        val = this.getParameterValue("value", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("value", NATTKeyword.ParamValType.STRING,
                 true);
         value = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

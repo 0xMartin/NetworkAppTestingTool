@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.Assert;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.INATTMessage;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -19,7 +20,12 @@ import utb.fai.natt.core.VariableProcessor;
  * obsahem shoduje u dvou specifikovanych modulu ktery tyto zpravy
  * prijali/vygenerovali
  */
-@NATTAnnotation.Keyword(name = "assert_range")
+@NATTAnnotation.Keyword(
+    name = "assert_range",
+    description = "Verifies if the sequence of received messages from two modules falls within a specified segment. Simple comparison rules can also be defined for comparison.",
+    parameters = {"module1_name", "module2_name", "start", "count", "rule", "result"},
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.LONG, ParamValType.STRING, ParamValType.BOOLEAN}
+    )
 public class AssertRangeKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertEqualsKw.class);
@@ -175,32 +181,32 @@ public class AssertRangeKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // module1_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("module1_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("module1_name", NATTKeyword.ParamValType.STRING,
                 true);
         module1Name = (String) val.getValue();
 
         // module2_name (string) [je vyzadovany]
-        val = this.getParameterValue("module2_name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("module2_name", NATTKeyword.ParamValType.STRING,
                 true);
         module2Name = (String) val.getValue();
 
         // start (long) [je vyzadovany]
-        val = this.getParameterValue("start", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("start", NATTKeyword.ParamValType.LONG,
                 true);
         start = (Long) val.getValue();
 
         // count (long) [je vyzadovany]
-        val = this.getParameterValue("count", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("count", NATTKeyword.ParamValType.LONG,
                 true);
         count = (Long) val.getValue();
 
         // rule (string) [je vyzadovany]
-        val = this.getParameterValue("rule", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("rule", NATTKeyword.ParamValType.STRING,
                 false);
         rule = (String) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

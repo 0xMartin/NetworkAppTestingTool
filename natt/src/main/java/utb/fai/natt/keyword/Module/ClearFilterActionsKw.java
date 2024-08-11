@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -14,7 +15,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umozuje odstranit vsechny filtri akci pro dany modul
  */
-@NATTAnnotation.Keyword(name = "clear_filter_actions")
+@NATTAnnotation.Keyword(
+    name = "clear_filter_actions",
+    description = "Removes all action filters for a specific module.",
+    parameters = { "module_name" },
+    types = { ParamValType.STRING }
+    )
 public class ClearFilterActionsKw extends NATTKeyword {
 
     protected String moduleName;
@@ -44,9 +50,8 @@ public class ClearFilterActionsKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(NATTKeyword.DEFAULT_PARAMETER_NAME,
-                NATTKeyword.ParameterValueType.STRING,
-                true);
+        ParameterValue val = this.getParameterValue(new String[] { "module_name", 
+            NATTKeyword.DEFAULT_PARAMETER_NAME }, NATTKeyword.ParamValType.STRING, true);
         moduleName = (String) val.getValue();
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -20,7 +21,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje ziskat urcity parametr z textu dane promenne, ktera je ve formatu
  * json
  */
-@NATTAnnotation.Keyword(name = "json_get")
+@NATTAnnotation.Keyword(
+    name = "json_get", 
+    description = "Extracts the value of a specified attribute from the content of a variable in JSON format. It's possible to access array indices or to traverse multiple levels in one step.", 
+    parameters = { "to_var", "from_var", "param_name" }, 
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING }
+    )
 public class JsonGetKw extends NATTKeyword {
 
     protected String toVar;
@@ -129,17 +135,17 @@ public class JsonGetKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // to_var (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("to_var", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("to_var", NATTKeyword.ParamValType.STRING,
                 true);
         toVar = (String) val.getValue();
 
         // from_var (string) [je vyzadovany]
-        val = this.getParameterValue("from_var", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("from_var", NATTKeyword.ParamValType.STRING,
                 true);
         fromVar = (String) val.getValue();
 
         // paramName (string) [je vyzadovany]
-        val = this.getParameterValue("param_name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("param_name", NATTKeyword.ParamValType.STRING,
                 true);
         paramName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

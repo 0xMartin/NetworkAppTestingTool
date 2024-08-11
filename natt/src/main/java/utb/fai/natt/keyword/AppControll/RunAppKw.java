@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.AppControll;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -14,7 +15,12 @@ import utb.fai.natt.module.ExternalProgramRunner;
 /**
  * Umoznuje spustit externi testovanou aplikaci
  */
-@NATTAnnotation.Keyword(name = "run_app")
+@NATTAnnotation.Keyword(
+    name = "run_app",
+    description = "Launches the application. At any given time, only one external application can run! It allows the definition of arguments to be passed to the application upon its launch.",
+    parameters = {"command", "name"},
+    types = {ParamValType.STRING, ParamValType.STRING}
+    )
 public class RunAppKw extends NATTKeyword {
 
     protected String command;
@@ -40,12 +46,12 @@ public class RunAppKw extends NATTKeyword {
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (string) [je vyzadovany]
         ParameterValue val = this.getParameterValue(new String[] { "command", NATTKeyword.DEFAULT_PARAMETER_NAME },
-                NATTKeyword.ParameterValueType.STRING,
+                NATTKeyword.ParamValType.STRING,
                 true);
         command = (String) val.getValue();
 
         // (string) [neni vyzadovany]
-        val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 false);
         moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,18 +1,23 @@
 package utb.fai.natt.keyword.General;
 
-import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
+import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
+import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.spi.NATTLogger;
-
 /**
  * Umoznuje definovat cekani
  */
-@NATTAnnotation.Keyword(name = "wait")
+@NATTAnnotation.Keyword(
+    name = "wait", 
+    description = "Pauses the test execution for a defined duration.", 
+    parameters = { "time_out" }, 
+    types = { ParamValType.LONG }
+    )
 public class WaitKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(WaitKw.class);
@@ -27,10 +32,10 @@ public class WaitKw extends NATTKeyword {
             throw new InternalErrorException("Wait time must be higher than 0 ms!");
         }
         // limitace na max 20 minut cekání
-        if(this.waitTimeMs > 20 * 60 * 1000) {
+        if (this.waitTimeMs > 20 * 60 * 1000) {
             throw new InternalErrorException("Max value of wait time is 20 min!");
         }
-        
+
         try {
             logger.info("Waiting: " + waitTimeMs + " ms");
             Thread.sleep(waitTimeMs);
@@ -46,7 +51,8 @@ public class WaitKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (long) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(NATTKeyword.DEFAULT_PARAMETER_NAME, NATTKeyword.ParameterValueType.LONG,
+        ParameterValue val = this.getParameterValue(new String[] { "time_out", NATTKeyword.DEFAULT_PARAMETER_NAME },
+                NATTKeyword.ParamValType.LONG,
                 true);
         waitTimeMs = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

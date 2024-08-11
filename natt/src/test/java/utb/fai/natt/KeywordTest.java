@@ -17,7 +17,7 @@ import java.util.List;
 
 public class KeywordTest {
 
-    @NATTAnnotation.Keyword(name = "ConcreteKeyword")
+    @NATTAnnotation.Keyword(name = "ConcreteKeyword", description = "A test keyword")
     private class ConcreteKeyword extends NATTKeyword {
 
         @Override
@@ -43,16 +43,16 @@ public class KeywordTest {
     @Test
     public void testPutAndGetParameter() throws InvalidSyntaxInConfigurationException {
         NATTKeyword keyword = new ConcreteKeyword();
-        keyword.putParameter("param1", new NATTKeyword.ParameterValue(10, NATTKeyword.ParameterValueType.LONG));
-        keyword.putParameter("param2", new NATTKeyword.ParameterValue("test", NATTKeyword.ParameterValueType.STRING));
+        keyword.putParameter("param1", new NATTKeyword.ParameterValue(10, NATTKeyword.ParamValType.LONG));
+        keyword.putParameter("param2", new NATTKeyword.ParameterValue("test", NATTKeyword.ParamValType.STRING));
 
-        assertEquals(10, keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getValue());
-        assertEquals(NATTKeyword.ParameterValueType.LONG,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getType());
-        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true)
+        assertEquals(10, keyword.getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getValue());
+        assertEquals(NATTKeyword.ParamValType.LONG,
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getType());
+        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.STRING,
-                keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true).getType());
+        assertEquals(NATTKeyword.ParamValType.STRING,
+                keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true).getType());
     }
 
     @Test
@@ -65,13 +65,13 @@ public class KeywordTest {
         NATTTestBuilder.buildKeyword(keyword, data);
 
         assertEquals((Long) 10L, (Long) keyword
-                .getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getValue());
-        assertEquals(NATTKeyword.ParameterValueType.LONG,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getType());
-        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true)
+                .getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getValue());
+        assertEquals(NATTKeyword.ParamValType.LONG,
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getType());
+        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.STRING,
-                keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true).getType());
+        assertEquals(NATTKeyword.ParamValType.STRING,
+                keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true).getType());
     }
 
     @Test
@@ -85,17 +85,17 @@ public class KeywordTest {
         NATTTestBuilder.buildKeyword(keyword, data);
 
         assertEquals((Long) 10L, (Long) keyword
-                .getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getValue());
-        assertEquals(NATTKeyword.ParameterValueType.LONG,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getType());
-        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true)
+                .getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getValue());
+        assertEquals(NATTKeyword.ParamValType.LONG,
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getType());
+        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.STRING,
-                keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true).getType());
-        assertEquals(true, keyword.getParameterValue("param3", NATTKeyword.ParameterValueType.BOOLEAN, true)
+        assertEquals(NATTKeyword.ParamValType.STRING,
+                keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true).getType());
+        assertEquals(true, keyword.getParameterValue("param3", NATTKeyword.ParamValType.BOOLEAN, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.BOOLEAN,
-                keyword.getParameterValue("param3", NATTKeyword.ParameterValueType.BOOLEAN, true)
+        assertEquals(NATTKeyword.ParamValType.BOOLEAN,
+                keyword.getParameterValue("param3", NATTKeyword.ParamValType.BOOLEAN, true)
                         .getType());
     }
 
@@ -111,21 +111,21 @@ public class KeywordTest {
         NATTTestBuilder.buildKeyword(keyword, data);
 
         assertEquals((Long) 10L, (Long) keyword
-                .getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getValue());
-        assertEquals(NATTKeyword.ParameterValueType.LONG,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LONG, true).getType());
-        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true)
+                .getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getValue());
+        assertEquals(NATTKeyword.ParamValType.LONG,
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LONG, true).getType());
+        assertEquals("test", keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.STRING,
-                keyword.getParameterValue("param2", NATTKeyword.ParameterValueType.STRING, true).getType());
-        assertEquals(3.14, keyword.getParameterValue("param3", NATTKeyword.ParameterValueType.DOUBLE, true)
+        assertEquals(NATTKeyword.ParamValType.STRING,
+                keyword.getParameterValue("param2", NATTKeyword.ParamValType.STRING, true).getType());
+        assertEquals(3.14, keyword.getParameterValue("param3", NATTKeyword.ParamValType.DOUBLE, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.DOUBLE,
-                keyword.getParameterValue("param3", NATTKeyword.ParameterValueType.DOUBLE, true).getType());
-        assertEquals(true, keyword.getParameterValue("param4", NATTKeyword.ParameterValueType.BOOLEAN, true)
+        assertEquals(NATTKeyword.ParamValType.DOUBLE,
+                keyword.getParameterValue("param3", NATTKeyword.ParamValType.DOUBLE, true).getType());
+        assertEquals(true, keyword.getParameterValue("param4", NATTKeyword.ParamValType.BOOLEAN, true)
                 .getValue());
-        assertEquals(NATTKeyword.ParameterValueType.BOOLEAN,
-                keyword.getParameterValue("param4", NATTKeyword.ParameterValueType.BOOLEAN, true)
+        assertEquals(NATTKeyword.ParamValType.BOOLEAN,
+                keyword.getParameterValue("param4", NATTKeyword.ParamValType.BOOLEAN, true)
                         .getType());
     }
 
@@ -139,9 +139,9 @@ public class KeywordTest {
         NATTTestBuilder.buildKeyword(keyword, data);
 
         assertEquals(list,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LIST, true).getValue());
-        assertEquals(NATTKeyword.ParameterValueType.LIST,
-                keyword.getParameterValue("param1", NATTKeyword.ParameterValueType.LIST, true).getType());
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LIST, true).getValue());
+        assertEquals(NATTKeyword.ParamValType.LIST,
+                keyword.getParameterValue("param1", NATTKeyword.ParamValType.LIST, true).getType());
     }
 
 }

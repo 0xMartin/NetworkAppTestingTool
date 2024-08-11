@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.util.List;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.INATTMessage;
 import utb.fai.natt.spi.INATTMessage.SearchType;
@@ -19,7 +20,12 @@ import utb.fai.natt.core.VariableProcessor;
  * kriterii pokusi najit zpravu v bufferu a jeji obsah ulozi do definovane
  * promenne.
  */
-@NATTAnnotation.Keyword(name = "store_to_var")
+@NATTAnnotation.Keyword(
+    name = "store_to_var", 
+    description = "Retrieves and stores the content of a specific message from the message buffer into the chosen variable. If multiple messages match the specified search conditions, the variable stores the first one found, i.e., the one received first.", 
+    parameters = { "var_name", "module_name", "text", "tag", "mode", "case_sensitive" }, 
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN }
+    )
 public class StoreToVarKw extends NATTKeyword {
 
     protected String varName;
@@ -94,32 +100,32 @@ public class StoreToVarKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // module_name (string) [je vyzadovany]
-        val = this.getParameterValue("module_name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("module_name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // text (string) [neni vyzadovany]
-        val = this.getParameterValue("text", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("text", NATTKeyword.ParamValType.STRING,
                 false);
         text = (String) val.getValue();
 
         // tag (string) [neni vyzadovany]
-        val = this.getParameterValue("tag", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("tag", NATTKeyword.ParamValType.STRING,
                 false);
         tag = (String) val.getValue();
 
         // mode (string) [neni vyzadovany]
-        val = this.getParameterValue("mode", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("mode", NATTKeyword.ParamValType.STRING,
                 false);
         mode = (String) val.getValue();
 
         // case_sensitive (string) [neni vyzadovany]
-        val = this.getParameterValue("case_sensitive", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("case_sensitive", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         caseSensitive = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

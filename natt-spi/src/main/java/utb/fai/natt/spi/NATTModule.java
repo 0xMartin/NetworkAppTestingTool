@@ -38,7 +38,8 @@ public abstract class NATTModule {
     // Reference to the context
     private INATTContext nattCtx;
 
-    // Contains the name of the object. Used to distinguish multiple identical modules.
+    // Contains the name of the object. Used to distinguish multiple identical
+    // modules.
     private String name;
 
     // True if the module is currently running
@@ -68,6 +69,15 @@ public abstract class NATTModule {
 
         // Add module to the list of active modules in the context
         this.addToListIfNameIsUnique(nattCtx.getModules());
+    }
+
+    /**
+     * Returns the NATT context
+     * 
+     * @return NATT Context
+     */
+    public INATTContext getContext() {
+        return this.nattCtx;
     }
 
     /**
@@ -163,7 +173,8 @@ public abstract class NATTModule {
     }
 
     /**
-     * Abstract method for running the module. Currently used for running the "app.std.in" module,
+     * Abstract method for running the module. Currently used for running the
+     * "app.std.in" module,
      * which has a reserved special method.
      * 
      * @throws InternalErrorException
@@ -171,9 +182,11 @@ public abstract class NATTModule {
     public abstract void runModule() throws InternalErrorException;
 
     /**
-     * Abstract method for terminating the module. Always called for all activated modules
+     * Abstract method for terminating the module. Always called for all activated
+     * modules
      * when the execution of a test part where this module was defined is complete.
-     * For example, if it was defined within a test case, it will also be terminated at its end.
+     * For example, if it was defined within a test case, it will also be terminated
+     * at its end.
      * 
      * @return True if the module was successfully terminated
      */
@@ -182,15 +195,18 @@ public abstract class NATTModule {
     /**
      * Sends a message from the tested application using this module
      * 
-     * @return True if the message was successfully sent to the server. It is not affected
-     *         by the potential failure of the message on the communicating counterpart.
+     * @return True if the message was successfully sent to the server. It is not
+     *         affected
+     *         by the potential failure of the message on the communicating
+     *         counterpart.
      *         It only indicates whether sending the message was successful or not.
      * @throws InternalErrorException
      */
     public abstract boolean sendMessage(String message) throws InternalErrorException;
 
     /**
-     * Adds this module to the provided list of modules if its name is unique within the list
+     * Adds this module to the provided list of modules if its name is unique within
+     * the list
      * 
      * @param modules Reference to the list of modules
      * 

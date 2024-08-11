@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.INATTMessage;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -16,7 +17,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umoznuje ziskat zpravu z bufferu zprav vybraneho modulu s konktretnim indexem
  */
-@NATTAnnotation.Keyword(name = "buffer_get")
+@NATTAnnotation.Keyword(
+    name = "buffer_get",
+    description = "Retrieves the content of a single message from the message buffer of a specific module. The message is accessed using an index, and its content is stored in the defined variable.",
+    parameters = {"var_name", "module_name", "index"},
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.LONG}
+    )
 public class BufferGetKw extends NATTKeyword {
 
     protected String varName;
@@ -62,17 +68,17 @@ public class BufferGetKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // module_name (string) [je vyzadovany]
-        val = this.getParameterValue("module_name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("module_name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // index (long) [je vyzadovany]
-        val = this.getParameterValue("index", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("index", NATTKeyword.ParamValType.LONG,
                 true);
         index = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

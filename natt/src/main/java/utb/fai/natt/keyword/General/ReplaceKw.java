@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -18,7 +19,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje nahradit specificky text v promenne. Je mozne v listu specifikovat
  * vice textu pro nahrazeni
  */
-@NATTAnnotation.Keyword(name = "replace")
+@NATTAnnotation.Keyword(
+    name = "replace", 
+    description = "Retrieves the content of a specific variable, replacing all desired words with their replacements. The result is stored in another variable.", 
+    parameters = { "to_var", "from_var", "str_from", "str_to" }, 
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST, ParamValType.LIST }
+    )
 public class ReplaceKw extends NATTKeyword {
 
     protected String toVar;
@@ -66,22 +72,22 @@ public class ReplaceKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // to_var (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("to_var", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("to_var", NATTKeyword.ParamValType.STRING,
                 true);
         toVar = (String) val.getValue();
 
         // from_var (string) [je vyzadovany]
-        val = this.getParameterValue("from_var", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("from_var", NATTKeyword.ParamValType.STRING,
                 true);
         fromVar = (String) val.getValue();
 
         // str_from (string) [je vyzadovany]
-        val = this.getParameterValue("str_from", NATTKeyword.ParameterValueType.LIST,
+        val = this.getParameterValue("str_from", NATTKeyword.ParamValType.LIST,
                 true);
         strFrom = (List<String>) val.getValue();
 
         // str_to (string) [je vyzadovany]
-        val = this.getParameterValue("str_to", NATTKeyword.ParameterValueType.LIST,
+        val = this.getParameterValue("str_to", NATTKeyword.ParamValType.LIST,
                 true);
         strTo = (List<String>) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.NATTKeyword.ParameterValue;
-import utb.fai.natt.spi.NATTKeyword.ParameterValueType;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueTestNamesException;
@@ -65,7 +65,7 @@ public class NATTTestBuilder {
         // zaznam .. klic:hodnota ... klicem je vzdy nazev samotne keyword a hodnota uz
         // jsou jeji parametry, ktere se vkladaji do metody NATTTestBuilder.buildKeyword())
         buildQueue.add(new BuildQueueEntry(null, "",
-                new NATTKeyword.ParameterValue(configurationData, NATTKeyword.ParameterValueType.KEYWORD)));
+                new NATTKeyword.ParameterValue(configurationData, NATTKeyword.ParamValType.KEYWORD)));
 
         // postupne sestaveni vsech ve fronte
         NATTKeyword root = null;
@@ -76,7 +76,7 @@ public class NATTTestBuilder {
             // ziska datovou hodnotu urcenou pro zpracovani
             NATTKeyword.ParameterValue value = entry.parameterValue;
 
-            if (value.getType() == NATTKeyword.ParameterValueType.KEYWORD) {
+            if (value.getType() == NATTKeyword.ParamValType.KEYWORD) {
                 // format dat <Map>: nazev_keywordy: {atributy ...}
                 Map<String, Object> data = (Map<String, Object>) value.getValue();
                 // zpracovani keyword
@@ -89,10 +89,10 @@ public class NATTTestBuilder {
                 if (entry.parentKeyword != null) {
                     keywordChild.setParent(entry.parentKeyword);
                     entry.parentKeyword.putParameter(entry.parameterName,
-                            new NATTKeyword.ParameterValue(keywordChild, NATTKeyword.ParameterValueType.KEYWORD));
+                            new NATTKeyword.ParameterValue(keywordChild, NATTKeyword.ParamValType.KEYWORD));
                 }
 
-            } else if (value.getType() == NATTKeyword.ParameterValueType.LIST) {
+            } else if (value.getType() == NATTKeyword.ParamValType.LIST) {
                 LinkedList<NATTKeyword> keywordList = new LinkedList<NATTKeyword>();
 
                 List<Object> elementsData = (List<Object>) value.getValue();
@@ -116,7 +116,7 @@ public class NATTTestBuilder {
                 // vlozeni listu keyword do rodice
                 if (entry.parentKeyword != null) {
                     entry.parentKeyword.putParameter(entry.parameterName,
-                            new NATTKeyword.ParameterValue(keywordList, NATTKeyword.ParameterValueType.LIST));
+                            new NATTKeyword.ParameterValue(keywordList, NATTKeyword.ParamValType.LIST));
                 }
             }
 
@@ -204,27 +204,27 @@ public class NATTTestBuilder {
                 // jednoduchy typ
                 if (paramValue instanceof Boolean) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            (Boolean) paramValue, ParameterValueType.BOOLEAN));
+                            (Boolean) paramValue, ParamValType.BOOLEAN));
 
                 } else if (paramValue instanceof Integer) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            ((Integer) paramValue).longValue(), ParameterValueType.LONG));
+                            ((Integer) paramValue).longValue(), ParamValType.LONG));
 
                 } else if (paramValue instanceof Long) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            (Long) paramValue, ParameterValueType.LONG));
+                            (Long) paramValue, ParamValType.LONG));
 
                 } else if (paramValue instanceof String) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            (String) paramValue, ParameterValueType.STRING));
+                            (String) paramValue, ParamValType.STRING));
 
                 } else if (paramValue instanceof Float) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            ((Float) paramValue).doubleValue(), ParameterValueType.DOUBLE));
+                            ((Float) paramValue).doubleValue(), ParamValType.DOUBLE));
 
                 } else if (paramValue instanceof Double) {
                     keyword.putParameter(paramName, new ParameterValue(
-                            (Double) paramValue, ParameterValueType.DOUBLE));
+                            (Double) paramValue, ParamValType.DOUBLE));
 
                     // komplexni typy, ktere vyzaduje dalsi zpracovani
                 } else if (paramValue instanceof List) {
@@ -233,16 +233,16 @@ public class NATTTestBuilder {
                         if (list.get(0) instanceof Map) {
                             // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
                             // tuto keywordu
-                            complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
+                            complexType.put(paramName, new ParameterValue(paramValue, ParamValType.LIST));
                         } else {
                             // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
                             // je mozne zapsat do list parametru teto keywordy
-                            keyword.putParameter(paramName, new ParameterValue(paramValue, ParameterValueType.LIST));
+                            keyword.putParameter(paramName, new ParameterValue(paramValue, ParamValType.LIST));
                         }
                     }
                 } else {
                     // keyword (potomek) ... bude sestaven mimo tuto keywordu samostane
-                    complexType.put(paramName, new ParameterValue(paramValue, ParameterValueType.KEYWORD));
+                    complexType.put(paramName, new ParameterValue(paramValue, ParamValType.KEYWORD));
                 }
             }
         } else {
@@ -250,27 +250,27 @@ public class NATTTestBuilder {
             // parametr)
             if (data instanceof Boolean) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Boolean) data, ParameterValueType.BOOLEAN));
+                        (Boolean) data, ParamValType.BOOLEAN));
 
             } else if (data instanceof Integer) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        ((Integer) data).longValue(), ParameterValueType.LONG));
+                        ((Integer) data).longValue(), ParamValType.LONG));
 
             } else if (data instanceof Long) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Long) data, ParameterValueType.LONG));
+                        (Long) data, ParamValType.LONG));
 
             } else if (data instanceof String) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (String) data, ParameterValueType.STRING));
+                        (String) data, ParamValType.STRING));
 
             } else if (data instanceof Float) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        ((Float) data).doubleValue(), ParameterValueType.DOUBLE));
+                        ((Float) data).doubleValue(), ParamValType.DOUBLE));
 
             } else if (data instanceof Double) {
                 keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME, new ParameterValue(
-                        (Double) data, ParameterValueType.DOUBLE));
+                        (Double) data, ParamValType.DOUBLE));
 
             } else if (data instanceof List) {
                 List<?> list = (List<?>) data;
@@ -279,12 +279,12 @@ public class NATTTestBuilder {
                         // list keyword (Map object) ... kazda keyworda bude sestavena samostatne mimo
                         // tuto keywordu
                         complexType.put(NATTKeyword.DEFAULT_PARAMETER_NAME,
-                                new ParameterValue(data, ParameterValueType.LIST));
+                                new ParameterValue(data, ParamValType.LIST));
                     } else {
                         // jedna se o list trivialnich typu (nejedna se o Map objecty) ... z toho duvodu
                         // je mozne zapsat do list parametru teto keywordy
                         keyword.putParameter(NATTKeyword.DEFAULT_PARAMETER_NAME,
-                                new ParameterValue(data, ParameterValueType.LIST));
+                                new ParameterValue(data, ParamValType.LIST));
                     }
                 }
             }
@@ -357,11 +357,11 @@ public class NATTTestBuilder {
 
             // ziska vsechny parametry keywordy
             for (Map.Entry<String, NATTKeyword.ParameterValue> entry : keyword.getParameters().entrySet()) {
-                if (entry.getValue().getType() == ParameterValueType.KEYWORD) {
+                if (entry.getValue().getType() == ParamValType.KEYWORD) {
                     // obsahem parametru je dalsi keyword
                     initQueue.add((NATTKeyword) entry.getValue().getValue());
 
-                } else if (entry.getValue().getType() == ParameterValueType.LIST) {
+                } else if (entry.getValue().getType() == ParamValType.LIST) {
                     // obsahem parametru je list ... z listu vlozi do fronty vsechny ty objekty,
                     // ktere jsou typu keyword
                     List<?> list = (List<?>) entry.getValue().getValue();

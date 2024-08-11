@@ -20,11 +20,11 @@ public class JsonGetKwTest {
         public void setUp() throws InvalidSyntaxInConfigurationException {
                 jsonGetKw = new JsonGetKw();
                 jsonGetKw.getParameters().put("to_var",
-                                new NATTKeyword.ParameterValue("newJsonVar", NATTKeyword.ParameterValueType.STRING));
+                                new NATTKeyword.ParameterValue("newJsonVar", NATTKeyword.ParamValType.STRING));
                 jsonGetKw.getParameters().put("from_var",
-                                new NATTKeyword.ParameterValue("jsonVar", NATTKeyword.ParameterValueType.STRING));
+                                new NATTKeyword.ParameterValue("jsonVar", NATTKeyword.ParamValType.STRING));
                 jsonGetKw.getParameters().put("param_name",
-                                new NATTKeyword.ParameterValue("target_key", NATTKeyword.ParameterValueType.STRING));
+                                new NATTKeyword.ParameterValue("target_key", NATTKeyword.ParamValType.STRING));
                 jsonGetKw.keywordInit(NATTContext.instance());
                 NATTContext.instance().clearVariables();
         }
@@ -90,7 +90,7 @@ public class JsonGetKwTest {
                 NATTContext.instance().storeValueToVariable("jsonVar",
                                 "[{\"name\": \"Object Name\", \"value\": \"1234\"}, {\"name\": \"Object Name\", \"value\": \"0\"}]");
                 jsonGetKw.getParameters().put("param_name",
-                                new NATTKeyword.ParameterValue("1", NATTKeyword.ParameterValueType.STRING));
+                                new NATTKeyword.ParameterValue("1", NATTKeyword.ParamValType.STRING));
                 jsonGetKw.keywordInit(NATTContext.instance());
                 boolean result = jsonGetKw.execute(NATTContext.instance());
                 assertTrue(result);

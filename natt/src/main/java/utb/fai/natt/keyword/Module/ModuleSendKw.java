@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -16,7 +17,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje odeslat libovolnou textovou zpravu testovane aplikace skrz libovolny
  * modul
  */
-@NATTAnnotation.Keyword(name = "module_send")
+@NATTAnnotation.Keyword(
+    name = "module_send",
+    description = "Sends a message using a specific module.",
+    parameters = { "name", "message", "delay" },
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG }
+    )
 public class ModuleSendKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(ModuleSendKw.class);
@@ -74,17 +80,17 @@ public class ModuleSendKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // message (string) [je vyzadovany]
-        val = this.getParameterValue("message", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("message", NATTKeyword.ParamValType.STRING,
                 true);
         message = (String) val.getValue();
 
         // delay (long) [je vyzadovany]
-        val = this.getParameterValue("delay", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("delay", NATTKeyword.ParamValType.LONG,
                 false);
         delay = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

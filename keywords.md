@@ -165,7 +165,7 @@ Pauses the test execution for a defined duration.
 
 | **Parameter** | **Type** | **Description**               |
 | ------------- | -------- | ----------------------------- |
-| `default`     | integer  | Time to wait in milliseconds. |
+| `default`     | long     | Time to wait in milliseconds. |
   
 ```yaml
 wait: 1000
@@ -175,10 +175,10 @@ wait: 1000
 
 It waits until a message is received from a certain communication module. Messages can be filtered using the keyword `create_filter_action`. The content of the message that triggered the action is automatically saved in the `(module-name)-action-msg` variable for possible testing.
 
-| **Parameter** | **Type**                  | **Description**                                                                                            |
-| ------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `module_name` | string                    | The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2. |
-| `time_out`    | integer \| *not required* | Maximum waiting time in milliseconds. *(default: 10 000 ms)*                                               |
+| **Parameter** | **Type**               | **Description**                                                                                            |
+| ------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `module_name` | string                 | The module that should trigger the action. You can specify multiple modules this way: module-1 & module-2. |
+| `time_out`    | long \| *not required* | Maximum waiting time in milliseconds. *(default: 10 000 ms)*                                               |
 
 
 ```yaml
@@ -326,7 +326,7 @@ Clears the content of the message buffer. It's possible to clear the buffer cont
 
 | **Parameter** | **Type** | **Description**                                      |
 | ------------- | -------- | ---------------------------------------------------- |
-| `default`     | string   | Specific module name, or symbol `*` for all modules. |
+| `module_name` | string   | Specific module name, or symbol `*` for all modules. |
 
 ```yaml
 clear_buffer: "module-1"
@@ -495,8 +495,8 @@ Verifies if the sequence of received messages from two modules falls within a sp
 | -------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `module1_name` | string                    | First module involved in the assertion.                                                                                                                                                  |
 | `module2_name` | string                    | Second module involved in the assertion.                                                                                                                                                 |
-| `start`        | integer                   | Start index for the range check.                                                                                                                                                         |
-| `count`        | integer                   | Number of values to check within the range.                                                                                                                                              |
+| `start`        | long                      | Start index for the range check.                                                                                                                                                         |
+| `count`        | long                      | Number of values to check within the range.                                                                                                                                              |
 | `rule`         | string                    | Message content comparison rule. Format is: `(message separator)\|(X);(X);...` Where `(X)` is `#` `(equals)`, `?` `(arbitrary)`, number `0-100 diff tolerance`. **Example:** ",\|#;?;15" |
 | `result`       | boolean \| *not required* | It determines the expected outcome of the assertion. *(default: true)*                                                                                                                   |
 
@@ -571,11 +571,11 @@ This set includes keywords that enable working with communication modules.
 
 Creates a module that launches a new virtual Telnet client.
 
-| **Parameter** | **Type**                  | **Description**                                              |
-| ------------- | ------------------------- | ------------------------------------------------------------ |
-| `name`        | string                    | Unique name for the module.                                  |
-| `host`        | string \| *not required*  | Hostname or IP address to connect to. *(default: localhost)* |
-| `port`        | integer \| *not required* | Port number on the host to connect to. *(default: 23)*       |
+| **Parameter** | **Type**                 | **Description**                                              |
+| ------------- | ------------------------ | ------------------------------------------------------------ |
+| `name`        | string                   | Unique name for the module.                                  |
+| `host`        | string \| *not required* | Hostname or IP address to connect to. *(default: localhost)* |
+| `port`        | long \| *not required*   | Port number on the host to connect to. *(default: 23)*       |
   
 ```yaml
 create_telnet_client:
@@ -588,10 +588,10 @@ create_telnet_client:
 
 Creates a module that launches a virtual Telnet server.
 
-| **Parameter** | **Type**                  | **Description**                           |
-| ------------- | ------------------------- | ----------------------------------------- |
-| `name`        | string                    | Unique name for the module.               |
-| `port`        | integer \| *not required* | Port number to listen on. *(default: 23)* |
+| **Parameter** | **Type**               | **Description**                           |
+| ------------- | ---------------------- | ----------------------------------------- |
+| `name`        | string                 | Unique name for the module.               |
+| `port`        | long \| *not required* | Port number to listen on. *(default: 23)* |
   
 ```yaml
 create_telnet_server:
@@ -607,7 +607,7 @@ Creates a module that launches a web crawler.
 | ------------- | -------- | ------------------------------------------ |
 | `name`        | string   | Unique name for the module.                |
 | `start_url`   | string   | URL to start crawling from.                |
-| `max_depth`   | integer  | Maximum depth to crawl.                    |
+| `max_depth`   | long     | Maximum depth to crawl.                    |
 | `analyzer`    | string   | Analyzer to use for parsing the web pages. |
   
 ```yaml
@@ -625,7 +625,7 @@ Creates a module that launches a virtual email server.
 | **Parameter** | **Type** | **Description**                                    |
 | ------------- | -------- | -------------------------------------------------- |
 | `name`        | string   | Unique name for the module.                        |
-| `port`        | integer  | Port number on which the email server will listen. |
+| `port`        | long     | Port number on which the email server will listen. |
 
 ```yaml
 create_email_server:
@@ -674,7 +674,7 @@ Creates a module that launches a virtual MQTT client.
 | **Parameter** | **Type**                 | **Description**                                                         |
 | ------------- | ------------------------ | ----------------------------------------------------------------------- |
 | `name`        | string                   | Unique name for the module.                                             |
-| `topics`      | array \| *not required*  | List of topics to subscribe to. *(default: empty)*                      |
+| `topics`      | list \| *not required*  | List of topics to subscribe to. *(default: empty)*                      |
 | `broker_url`  | string \| *not required* | URL of the MQTT broker to connect to. *(default: tcp://localhost:1883)* |
   
 ```yaml
@@ -688,10 +688,10 @@ create_mqtt_client:
 
 Creates a module that launches an MQTT broker.
 
-| **Parameter** | **Type**                  | **Description**                                    |
-| ------------- | ------------------------- | -------------------------------------------------- |
-| `name`        | string                    | Unique name for the module.                        |
-| `port`        | integer \| *not required* | Port number for the MQTT broker. *(default: 1883)* |
+| **Parameter** | **Type**               | **Description**                                    |
+| ------------- | ---------------------- | -------------------------------------------------- |
+| `name`        | string                 | Unique name for the module.                        |
+| `port`        | long \| *not required* | Port number for the MQTT broker. *(default: 1883)* |
 
 ```yaml
 create_mqtt_broker:
@@ -705,7 +705,7 @@ Terminates a running module that is no longer needed.
 
 | **Parameter** | **Type** | **Description**                  |
 | ------------- | -------- | -------------------------------- |
-| `default`     | string   | Name of the module to terminate. |
+| `module_name` | string   | Name of the module to terminate. |
 
 ```yaml
 termite_module: "module-1"
@@ -755,9 +755,8 @@ Removes all action filters for a specific module.
 
 | **Parameter** | **Type** | **Description** |
 | ------------- | -------- | --------------- |
-| `default`     | string   | Name of module. |
+| `module_name` | string   | Name of module. |
 
 ```yaml
-clear_filter_actions:
-    name: "module-1"
+clear_filter_actions: "module-1"
 ```

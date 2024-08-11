@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Assert;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTAssert;
@@ -16,7 +17,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje definovat trzeni ze ciselna hodnota definovane promnenne splnuje
  * podminku rovnosti se zadanym cislem
  */
-@NATTAnnotation.Keyword(name = "assert_equals")
+@NATTAnnotation.Keyword(
+    name = "assert_equals",
+    description = "Checks if a variable is equal to the specified value. It's possible to set a certain tolerance range.",
+    parameters = {"var_name", "value", "tolerance", "result"},
+    types = {ParamValType.STRING, ParamValType.DOUBLE, ParamValType.DOUBLE, ParamValType.BOOLEAN}
+    )
 public class AssertEqualsKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertEqualsKw.class);
@@ -69,22 +75,22 @@ public class AssertEqualsKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // value (double) [je vyzadovany]
-        val = this.getParameterValue("value", NATTKeyword.ParameterValueType.DOUBLE,
+        val = this.getParameterValue("value", NATTKeyword.ParamValType.DOUBLE,
                 true);
         value = (Double) val.getValue();
 
         // tolerance (double) [neni vyzadovany]
-        val = this.getParameterValue("tolerance", NATTKeyword.ParameterValueType.DOUBLE,
+        val = this.getParameterValue("tolerance", NATTKeyword.ParamValType.DOUBLE,
                 false);
         tolerance = (Double) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

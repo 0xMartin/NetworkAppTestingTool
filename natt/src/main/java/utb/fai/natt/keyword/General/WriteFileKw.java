@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.io.IOException;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +16,12 @@ import utb.fai.natt.io.LocalHostIO;
 /**
  * Umoznuje ulozit obsah do souboru
  */
-@NATTAnnotation.Keyword(name = "write_file")
+@NATTAnnotation.Keyword(
+    name = "write_file",
+    description = "Writes the defined content into a file on the local device.",
+    parameters = {"file_path", "content"},
+    types = {ParamValType.STRING, ParamValType.STRING}
+    )
 public class WriteFileKw extends NATTKeyword {
 
     protected String filePath;
@@ -48,12 +54,12 @@ public class WriteFileKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // file_path (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("file_path", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("file_path", NATTKeyword.ParamValType.STRING,
                 true);
         filePath = (String) val.getValue();
 
         // content (string) [je vyzadovany]
-        val = this.getParameterValue("content", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("content", NATTKeyword.ParamValType.STRING,
                 true);
         content = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

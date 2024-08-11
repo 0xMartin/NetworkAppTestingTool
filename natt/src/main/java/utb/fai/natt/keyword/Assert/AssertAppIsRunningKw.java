@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Assert;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +16,12 @@ import utb.fai.natt.module.ExternalProgramRunner;
 /**
  * Umoznuje definovat trzeni ze je externi testovana aplikace spustena
  */
-@NATTAnnotation.Keyword(name = "assert_app_is_running")
+@NATTAnnotation.Keyword(
+    name = "assert_app_is_running",
+    description = "Verifies if an external application is currently running.",
+    parameters = {"result", "name"},
+    types = {ParamValType.BOOLEAN, ParamValType.STRING}
+    )
 public class AssertAppIsRunningKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertAppIsRunningKw.class);
@@ -63,12 +69,12 @@ public class AssertAppIsRunningKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (boolean) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(new String[]{"result", NATTKeyword.DEFAULT_PARAMETER_NAME}, NATTKeyword.ParameterValueType.BOOLEAN,
+        ParameterValue val = this.getParameterValue(new String[]{"result", NATTKeyword.DEFAULT_PARAMETER_NAME}, NATTKeyword.ParamValType.BOOLEAN,
                 true);
         result = (Boolean) val.getValue();
 
         // (string) [neni vyzadovany]
-        val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 false);
         moduleName = (String) val.getValue();
 

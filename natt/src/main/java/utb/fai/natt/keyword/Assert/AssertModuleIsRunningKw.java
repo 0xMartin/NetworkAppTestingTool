@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Assert;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -15,7 +16,12 @@ import utb.fai.natt.core.VariableProcessor;
 /**
  * Umoznuje definovat trzeni ze konktretni modul je aktivni
  */
-@NATTAnnotation.Keyword(name = "assert_module_is_running")
+@NATTAnnotation.Keyword(
+    name = "assert_module_is_running",
+    description = "Verifies if a specific module is currently running.",
+    parameters = {"module_name", "result"},
+    types = {ParamValType.STRING, ParamValType.BOOLEAN}
+    )
 public class AssertModuleIsRunningKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertAppIsRunningKw.class);
@@ -62,12 +68,12 @@ public class AssertModuleIsRunningKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // module_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("module_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("module_name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

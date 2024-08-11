@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.Main;
 import java.util.List;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -16,9 +17,15 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
 /**
  * Umoznuje definovat testovaci pripad
  */
-@NATTAnnotation.Keyword(name = "test_case")
+@NATTAnnotation.Keyword(
+    name = "test_case",
+    description = "Allows the definition of individual test cases.",
+    parameters = { "name", "description", "steps" },
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LIST }
+    )
 public class TestCaseKw extends NATTKeyword {
 
+    // zpracovane parametry
     protected String description;
     protected List<NATTKeyword> steps;
 
@@ -52,15 +59,15 @@ public class TestCaseKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING, true);
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING, true);
         this.setName((String) val.getValue());
 
         // description (string) [je vyzadovany]
-        val = this.getParameterValue("description", NATTKeyword.ParameterValueType.STRING, true);
+        val = this.getParameterValue("description", NATTKeyword.ParamValType.STRING, true);
         description = (String) val.getValue();
 
         // steps (list<NATTKeyword>) [je vyzadovany]
-        val = this.getParameterValue("steps", NATTKeyword.ParameterValueType.LIST, true);
+        val = this.getParameterValue("steps", NATTKeyword.ParamValType.LIST, true);
         steps = (List<NATTKeyword>) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
 

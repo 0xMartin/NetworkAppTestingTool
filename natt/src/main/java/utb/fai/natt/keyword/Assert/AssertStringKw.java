@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Assert;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTAssert;
@@ -16,7 +17,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje definovat trzeni ze retezes splnuje definovanou podminku shody se
  * zadanym ocekavanym textem
  */
-@NATTAnnotation.Keyword(name = "assert_string")
+@NATTAnnotation.Keyword(
+    name = "assert_string",
+    description = "Verifies if a variable contains the expected string.",
+    parameters = {"var_name", "expected", "mode", "case_sensitive", "result"},
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN, ParamValType.BOOLEAN}
+    )
 public class AssertStringKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertEqualsKw.class);
@@ -73,27 +79,27 @@ public class AssertStringKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // expected (string) [je vyzadovany]
-        val = this.getParameterValue("expected", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("expected", NATTKeyword.ParamValType.STRING,
                 true);
         expectedText = (String) val.getValue();
 
         // mode (string) [neni vyzadovany]
-        val = this.getParameterValue("mode", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("mode", NATTKeyword.ParamValType.STRING,
                 false);
         mode = (String) val.getValue();
 
         // case_sensitive (string) [neni vyzadovany]
-        val = this.getParameterValue("case_sensitive", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("case_sensitive", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         caseSensitive = (Boolean) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

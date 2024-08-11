@@ -1,7 +1,6 @@
 package utb.fai.natt.spi;
 
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public interface IMessageBuffer {

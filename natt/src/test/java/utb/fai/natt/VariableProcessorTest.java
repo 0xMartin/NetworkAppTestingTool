@@ -60,7 +60,7 @@ public class VariableProcessorTest {
     @Test
     public void testProcessVariablesInKeywordParameter_StringParameter() {
         NATTKeyword.ParameterValue param = new NATTKeyword.ParameterValue("$name",
-                NATTKeyword.ParameterValueType.STRING);
+                NATTKeyword.ParamValType.STRING);
         NATTContext.instance().storeValueToVariable("name", "John");
         VariableProcessor.processVariablesInKeywordParameter(param);
         assertEquals("John", param.getValue());
@@ -69,7 +69,7 @@ public class VariableProcessorTest {
     @Test
     public void testProcessVariablesInKeywordParameter_ListParameter() {
         List<String> list = Arrays.asList("$name", "$age");
-        NATTKeyword.ParameterValue param = new NATTKeyword.ParameterValue(list, NATTKeyword.ParameterValueType.LIST);
+        NATTKeyword.ParameterValue param = new NATTKeyword.ParameterValue(list, NATTKeyword.ParamValType.LIST);
         NATTContext.instance().storeValueToVariable("name", "John");
         NATTContext.instance().storeValueToVariable("age", "30");
         VariableProcessor.processVariablesInKeywordParameter(param);
@@ -79,7 +79,7 @@ public class VariableProcessorTest {
     @Test
     public void testProcessVariablesInKeywordParameter_EmptyListParameter() {
         List<String> list = new ArrayList<>();
-        NATTKeyword.ParameterValue param = new NATTKeyword.ParameterValue(list, NATTKeyword.ParameterValueType.LIST);
+        NATTKeyword.ParameterValue param = new NATTKeyword.ParameterValue(list, NATTKeyword.ParamValType.LIST);
         VariableProcessor.processVariablesInKeywordParameter(param);
         assertTrue(((List<?>) param.getValue()).isEmpty());
     }

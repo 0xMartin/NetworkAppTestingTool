@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -16,7 +17,12 @@ import utb.fai.natt.module.MQTTClientTester;
 /**
  * Umoznuje definovat modul testovaciho MQTT klienta
  */
-@NATTAnnotation.Keyword(name = "create_mqtt_client")
+@NATTAnnotation.Keyword(
+    name = "create_mqtt_client",
+    description = "Creates a module that launches a virtual MQTT client.",
+    parameters = { "name", "topics", "broker_url" },
+    types = { ParamValType.STRING, ParamValType.LIST, ParamValType.STRING }
+    )
 public class CreateMQTTClientKw extends NATTKeyword {
 
     protected String moduleName;
@@ -55,17 +61,17 @@ public class CreateMQTTClientKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // topics (list<string) [neni vyzadovany]
-        val = this.getParameterValue("topics", NATTKeyword.ParameterValueType.LIST,
+        val = this.getParameterValue("topics", NATTKeyword.ParamValType.LIST,
                 false);
         topics = (List<String>) val.getValue();
 
         // broker_url (list<string) [neni vyzadovany]
-        val = this.getParameterValue("broker_url", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("broker_url", NATTKeyword.ParamValType.STRING,
                 false);
         brokerURL = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

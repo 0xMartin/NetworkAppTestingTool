@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +16,12 @@ import utb.fai.natt.module.WebCrawler.WordFrequencyAnalyzer;
 /**
  * Umoznuje definovat modul pro webcrawler
  */
-@NATTAnnotation.Keyword(name = "create_web_crawler")
+@NATTAnnotation.Keyword(
+    name = "create_web_crawler",
+    description = "Creates a module that launches a web crawler.",
+    parameters = { "name", "start_url", "max_depth", "analyzer" },
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG, ParamValType.STRING }
+    )
 public class CreateWebCrawlerKw extends NATTKeyword {
 
     protected String moduleName;
@@ -70,22 +76,22 @@ public class CreateWebCrawlerKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // start_url (string) [je vyzadovany]
-        val = this.getParameterValue("start_url", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("start_url", NATTKeyword.ParamValType.STRING,
                 true);
         startURL = (String) val.getValue();
 
         // max_depth (long) [je vyzadovany]
-        val = this.getParameterValue("max_depth", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("max_depth", NATTKeyword.ParamValType.LONG,
                 true);
         maxDepth = (Long) val.getValue();
 
         // analyzer (string) [je vyzadovany]
-        val = this.getParameterValue("analyzer", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("analyzer", NATTKeyword.ParamValType.STRING,
                 true);
         analyzer = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

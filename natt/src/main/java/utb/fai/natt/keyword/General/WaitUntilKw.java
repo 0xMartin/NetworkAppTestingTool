@@ -6,6 +6,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.IMessageListener;
 import utb.fai.natt.spi.INATTContext;
@@ -22,7 +23,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje definovat akci cekani na udalos v podobe prijeti zpravy danym
  * module.
  */
-@NATTAnnotation.Keyword(name = "wait_until")
+@NATTAnnotation.Keyword(
+    name = "wait_until",
+    description = "It waits until a message is received from a certain communication module. Messages can be filtered using the keyword create_filter_action. The content of the message that triggered the action is automatically saved in the (module-name)-action-msg variable for possible testing.",
+    parameters = {"module_name", "time_out"},
+    types = {ParamValType.STRING, ParamValType.LONG}
+    )
 public class WaitUntilKw extends NATTKeyword {
 
     /**
@@ -108,12 +114,12 @@ public class WaitUntilKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("module_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("module_name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // time_out (long) [neni vyzadovany]
-        val = this.getParameterValue("time_out", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("time_out", NATTKeyword.ParamValType.LONG,
                 false);
         timeOut = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

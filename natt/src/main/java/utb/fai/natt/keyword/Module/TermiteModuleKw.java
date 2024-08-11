@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
@@ -11,7 +12,12 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
-@NATTAnnotation.Keyword(name = "termite_module")
+@NATTAnnotation.Keyword(
+    name = "termite_module",
+    description = "Terminates a running module that is no longer needed.",
+    parameters = { "module_name" },
+    types = { ParamValType.STRING }
+    )
 public class TermiteModuleKw extends NATTKeyword {
 
     protected String moduleName;
@@ -38,9 +44,8 @@ public class TermiteModuleKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue(
-                NATTKeyword.DEFAULT_PARAMETER_NAME, NATTKeyword.ParameterValueType.STRING,
-                true);
+        ParameterValue val = this.getParameterValue(new String[] { "module_name", NATTKeyword.DEFAULT_PARAMETER_NAME}, 
+            NATTKeyword.ParamValType.STRING, true);
         moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
     }

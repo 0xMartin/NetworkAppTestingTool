@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -13,7 +14,12 @@ import utb.fai.natt.module.RESTTester;
 /**
  * Umoznuje definovat modul pro testovani REST API
  */
-@NATTAnnotation.Keyword(name = "create_rest_tester")
+@NATTAnnotation.Keyword(
+    name = "create_rest_tester",
+    description = "Creates a module that launches an HTTP client for testing REST APIs.",
+    parameters = { "name", "url", "request_type", "content_type" },
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.STRING }
+    )
 public class CreateRESTTesterKw extends NATTKeyword {
 
     protected String moduleName;
@@ -49,22 +55,22 @@ public class CreateRESTTesterKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // url (string) [je vyzadovany]
-        val = this.getParameterValue("url", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("url", NATTKeyword.ParamValType.STRING,
                 true);
         url = (String) val.getValue();
 
         // request_type (String) [je vyzadovany]
-        val = this.getParameterValue("request_type", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("request_type", NATTKeyword.ParamValType.STRING,
                 true);
         requestType = (String) val.getValue();
 
         // content_type (String) [neni vyzadovany]
-        val = this.getParameterValue("content_type", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("content_type", NATTKeyword.ParamValType.STRING,
                 false);
         contentType = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -21,7 +22,12 @@ import utb.fai.natt.core.VariableProcessor;
  * Umoznuje definovat trzeni ze json objekt v promenne je stejny jako ten
  * ocekavany
  */
-@NATTAnnotation.Keyword(name = "assert_json")
+@NATTAnnotation.Keyword(
+    name = "assert_json",
+    description = "Allows verification if the JSON object in a variable is identical to the expected JSON object.",
+    parameters = {"var_name", "expected", "exact_mode", "result"},
+    types = {ParamValType.STRING, ParamValType.STRING, ParamValType.STRING, ParamValType.BOOLEAN}
+    )
 public class AssertJsonKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(AssertJsonKw.class);
@@ -133,22 +139,22 @@ public class AssertJsonKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // expected (double) [je vyzadovany]
-        val = this.getParameterValue("expected", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("expected", NATTKeyword.ParamValType.STRING,
                 true);
         expected = (String) val.getValue();
 
         // exact_mode (boolean) [neni vyzadovany]
-        val = this.getParameterValue("exact_mode", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("exact_mode", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         exactMode = (Boolean) val.getValue();
 
         // result (boolean) [neni vyzadovany]
-        val = this.getParameterValue("result", NATTKeyword.ParameterValueType.BOOLEAN,
+        val = this.getParameterValue("result", NATTKeyword.ParamValType.BOOLEAN,
                 false);
         result = (Boolean) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

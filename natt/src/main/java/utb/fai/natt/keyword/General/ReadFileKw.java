@@ -3,6 +3,7 @@ package utb.fai.natt.keyword.General;
 import java.io.IOException;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -16,7 +17,12 @@ import utb.fai.natt.io.LocalHostIO;
 /**
  * Umoznuje precist obsah textoveho souboru a jeho obsah vlozit do promenne
  */
-@NATTAnnotation.Keyword(name = "read_file")
+@NATTAnnotation.Keyword(
+    name = "read_file", 
+    description = "Reads the content from the specified file on the local device and stores its value into the defined variable.", 
+    parameters = { "var_name", "file_path" }, 
+    types = { ParamValType.STRING, ParamValType.STRING }
+    )
 public class ReadFileKw extends NATTKeyword {
 
     protected String varName;
@@ -54,12 +60,12 @@ public class ReadFileKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // var_name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("var_name", NATTKeyword.ParamValType.STRING,
                 true);
         varName = (String) val.getValue();
 
         // file_path (string) [je vyzadovany]
-        val = this.getParameterValue("file_path", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("file_path", NATTKeyword.ParamValType.STRING,
                 true);
         filePath = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

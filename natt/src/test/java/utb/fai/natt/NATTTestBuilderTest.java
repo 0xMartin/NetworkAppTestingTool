@@ -85,7 +85,7 @@ public class NATTTestBuilderTest {
         NATTTestBuilder.initTestScructure(rootKeyword);
 
         // parametr test_suites
-        NATTKeyword.ParameterValue val = rootKeyword.getParameterValue("test_suites", NATTKeyword.ParameterValueType.LIST, true);
+        NATTKeyword.ParameterValue val = rootKeyword.getParameterValue("test_suites", NATTKeyword.ParamValType.LIST, true);
         assertNotNull(val.getValue());
 
         // overeni velikosti listu test_suites
@@ -97,7 +97,7 @@ public class NATTTestBuilderTest {
         assertEquals(test_suites.get(0).getParameters().get("name").getValue(), "Example suite");
 
         // ziskani listu test_cases z prvni test_suite
-        val = test_suites.get(0).getParameterValue("test_cases", NATTKeyword.ParameterValueType.LIST, true);
+        val = test_suites.get(0).getParameterValue("test_cases", NATTKeyword.ParamValType.LIST, true);
         assertNotNull(val.getValue());
 
         // overeni velikosti listu test_cases

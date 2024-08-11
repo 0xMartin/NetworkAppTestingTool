@@ -59,10 +59,10 @@ public class VariableProcessor {
      * @param param Hodnota parametru keywordy (ParameterValue)
      */
     public static void processVariablesInKeywordParameter(NATTKeyword.ParameterValue param) {
-        if (param.getType() == NATTKeyword.ParameterValueType.STRING) {
+        if (param.getType() == NATTKeyword.ParamValType.STRING) {
             // jedna se o typ string
             param.setValue((String) VariableProcessor.processVariables((String) param.getValue()));
-        } else if (param.getType() == NATTKeyword.ParameterValueType.LIST) {
+        } else if (param.getType() == NATTKeyword.ParamValType.LIST) {
             // jedna se o typ list<string>
             List<?> list = (List<?>) param.getValue();
             if (!list.isEmpty()) {

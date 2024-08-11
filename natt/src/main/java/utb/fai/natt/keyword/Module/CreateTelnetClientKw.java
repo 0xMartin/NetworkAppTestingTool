@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -13,7 +14,12 @@ import utb.fai.natt.module.TelnetClient;
 /**
  * Umoznuje definovat modul pro telnet klienta
  */
-@NATTAnnotation.Keyword(name = "create_telnet_client")
+@NATTAnnotation.Keyword(
+    name = "create_telnet_client",
+    description = "Creates a module that launches a new virtual Telnet client.",
+    parameters = { "name", "host", "port" },
+    types = { ParamValType.STRING, ParamValType.STRING, ParamValType.LONG }
+    )
 public class CreateTelnetClientKw extends NATTKeyword {
 
     protected String moduleName;
@@ -50,17 +56,17 @@ public class CreateTelnetClientKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // host (string) [neni vyzadovany]
-        val = this.getParameterValue("host", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("host", NATTKeyword.ParamValType.STRING,
                 false);
         host = (String) val.getValue();
 
         // port (long) [je vyzadovany]
-        val = this.getParameterValue("port", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("port", NATTKeyword.ParamValType.LONG,
                 false);
         port = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

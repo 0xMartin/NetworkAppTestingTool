@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.Module;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -13,7 +14,12 @@ import utb.fai.natt.module.SMTPEmailServer;
 /**
  * Umoznuje definovat modul pro spusteni lokalniho email serveru
  */
-@NATTAnnotation.Keyword(name = "create_email_server")
+@NATTAnnotation.Keyword(
+    name = "create_email_server",
+    description = "Creates a module that launches a virtual email server.",
+    parameters = { "name", "port" },
+    types = { ParamValType.STRING, ParamValType.LONG }
+    )
 public class CreateEmailServerKw extends NATTKeyword {
 
     protected String moduleName;
@@ -45,12 +51,12 @@ public class CreateEmailServerKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // name (string) [je vyzadovany]
-        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        ParameterValue val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 true);
         moduleName = (String) val.getValue();
 
         // port (long) [je vyzadovany]
-        val = this.getParameterValue("port", NATTKeyword.ParameterValueType.LONG,
+        val = this.getParameterValue("port", NATTKeyword.ParamValType.LONG,
                 true);
         port = (Long) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////

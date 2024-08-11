@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -17,9 +18,15 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
  * Umoznuje definovat root struktur celeho testovani. Tato strukturma musi byt
  * vzdy jako hlavni a musi byt na zacatku konfigurace
  */
-@NATTAnnotation.Keyword(name = "test_root")
+@NATTAnnotation.Keyword(
+    name = "test_root",
+    description = "Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.",
+    parameters = { "max_points", "initial_steps", "test_suites" },
+    types = { ParamValType.DOUBLE, ParamValType.LIST, ParamValType.LIST }
+    )
 public class TestRootKw extends NATTKeyword {
 
+    // zpracovane parametry
     protected Double maxPoints;
     protected List<NATTKeyword> initialSteps;
     protected List<NATTKeyword> testSuites;
@@ -92,7 +99,7 @@ public class TestRootKw extends NATTKeyword {
         /// PARAMETRY
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // max_points (double) [neni vyzadovany]
-        ParameterValue val = this.getParameterValue("max_points", NATTKeyword.ParameterValueType.DOUBLE, false);
+        ParameterValue val = this.getParameterValue("max_points", NATTKeyword.ParamValType.DOUBLE, false);
         maxPoints = (Double) val.getValue();
         if (maxPoints != null) {
             NATTContext.instance().setMaxScore(maxPoints);
@@ -101,11 +108,11 @@ public class TestRootKw extends NATTKeyword {
         }
 
         // initial_steps (list<NATTKeyword>) [neni vyzadovany]
-        val = this.getParameterValue("initial_steps", NATTKeyword.ParameterValueType.LIST, false);
+        val = this.getParameterValue("initial_steps", NATTKeyword.ParamValType.LIST, false);
         initialSteps = (List<NATTKeyword>) val.getValue();
 
         // test_suites (list<NATTKeyword>) [je vyzadovany]
-        val = this.getParameterValue("test_suites", NATTKeyword.ParameterValueType.LIST, true);
+        val = this.getParameterValue("test_suites", NATTKeyword.ParamValType.LIST, true);
         testSuites = (List<NATTKeyword>) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
 

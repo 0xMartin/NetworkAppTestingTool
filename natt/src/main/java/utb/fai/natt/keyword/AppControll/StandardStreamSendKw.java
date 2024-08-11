@@ -1,6 +1,7 @@
 package utb.fai.natt.keyword.AppControll;
 
 import utb.fai.natt.spi.NATTKeyword;
+import utb.fai.natt.spi.NATTKeyword.ParamValType;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
@@ -15,7 +16,12 @@ import utb.fai.natt.module.ExternalProgramRunner;
  * Umoznuje odeslat textovou zpravu na standartni stream spustene externi
  * testovane aplikace
  */
-@NATTAnnotation.Keyword(name = "standard_stream_send")
+@NATTAnnotation.Keyword(
+    name = "standard_stream_send",
+    description = "Sends a message to the running application via standard streaming.",
+    parameters = {"message", "name"},
+    types = {ParamValType.STRING, ParamValType.STRING}
+)
 public class StandardStreamSendKw extends NATTKeyword {
 
     protected String message;
@@ -48,12 +54,12 @@ public class StandardStreamSendKw extends NATTKeyword {
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
         // (string) [je vyzadovany]
         ParameterValue val = this.getParameterValue(new String[] { "message", NATTKeyword.DEFAULT_PARAMETER_NAME },
-                NATTKeyword.ParameterValueType.STRING,
+                NATTKeyword.ParamValType.STRING,
                 true);
         message = (String) val.getValue();
 
         // (string) [neni vyzadovany]
-        val = this.getParameterValue("name", NATTKeyword.ParameterValueType.STRING,
+        val = this.getParameterValue("name", NATTKeyword.ParamValType.STRING,
                 false);
         moduleName = (String) val.getValue();
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
