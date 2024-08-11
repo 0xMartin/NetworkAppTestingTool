@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import utb.fai.natt.core.NATTContext;
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Trida pro generovani reportu o provedenem testovani.

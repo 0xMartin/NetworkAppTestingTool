@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.yaml.snakeyaml.Yaml;
 
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Trida pro IO operace ze soubory na localhostu

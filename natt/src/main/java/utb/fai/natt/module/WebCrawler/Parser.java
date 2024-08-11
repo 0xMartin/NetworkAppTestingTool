@@ -15,7 +15,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Parer pro webove stranky. Hleda na strance nove odkazy a predava dokument

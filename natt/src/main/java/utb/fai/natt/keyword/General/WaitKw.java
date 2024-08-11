@@ -7,7 +7,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Umoznuje definovat cekani

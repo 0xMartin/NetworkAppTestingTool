@@ -13,6 +13,18 @@ import java.util.concurrent.ConcurrentHashMap;
 public interface INATTContext {
 
     /**
+     * Gets a reference to the list of all registered keywords.
+     */
+    HashMap<String, Class<?>> getKeywordSet();
+
+    /**
+     * Registers a new keyword to the context.
+     * 
+     * @param keyword The keyword to register
+     */
+    boolean registerKeyword(NATTKeyword keyword);
+
+    /**
      * Gets a reference to the list of active modules.
      * 
      * @return List of active modules
@@ -73,31 +85,4 @@ public interface INATTContext {
      */
     void restoreVariablesState();
 
-    /**
-     * Gets the final score or rating of the tested application.
-     * 
-     * @return Final score
-     */
-    double getFinalScore();
-
-    /**
-     * Sets the final score or rating of the tested application.
-     * 
-     * @param resultPoints The final score
-     */
-    void setFinalScore(double resultPoints);
-
-    /**
-     * Gets the maximum achievable score or rating for testing.
-     * 
-     * @return Maximum score
-     */
-    double getMaxScore();
-
-    /**
-     * Sets the maximum achievable score or rating for testing.
-     * 
-     * @param maxScore Maximum score
-     */
-    void setMaxScore(double maxScore);
 }

@@ -1,4 +1,4 @@
-package utb.fai.natt.core;
+package utb.fai.natt.spi;
 
 import java.io.BufferedWriter;
 import java.io.File;

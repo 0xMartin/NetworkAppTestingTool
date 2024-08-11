@@ -1,6 +1,7 @@
 package utb.fai.natt.core;
 
 import utb.fai.natt.spi.INATTPlugin;
+import utb.fai.natt.spi.NATTLogger;
 
 import java.util.*;
 import java.io.File;

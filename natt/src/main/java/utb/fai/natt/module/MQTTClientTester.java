@@ -12,7 +12,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Tento modul obsahuje implementaci mqtt klienta. Umoznuje prijimat a odesilat

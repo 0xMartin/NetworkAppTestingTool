@@ -16,7 +16,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
-import utb.fai.natt.core.NATTLogger;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Tento modul obashuje implementaci multi-vlaknoveho webcrawleru. Ve vice

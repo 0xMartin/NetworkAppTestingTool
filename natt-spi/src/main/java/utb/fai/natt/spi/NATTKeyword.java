@@ -85,13 +85,13 @@ public abstract class NATTKeyword {
     }
 
     /**
-     * Name of the keyword. It must always be unique. It will be used when constructing
-     * test sets while selecting a keyword from a list.
+     * Name of the keyword (TYPE NAME). It must always be unique. It will be used when constructing
+     * test configuration. Examples: "test_suite", "run_app".
      */
     private String keywordName;
 
     /**
-     * Name of the object.
+     * Name of the object/keyword. 
      */
     private String name;
 
@@ -226,12 +226,14 @@ public abstract class NATTKeyword {
      * @throws InvalidSyntaxInConfigurationException if the parameter is missing or has an invalid type.
      */
     public ParameterValue getParameterValue(String[] names, ParameterValueType type, boolean required)
-            throws InvalidSyntaxInConfigurationException {
+        throws InvalidSyntaxInConfigurationException {
 
         // Retrieve the parameter value based on names, using the first found value.
         ParameterValue val = null;
+        String paramName = "";
         for (String name : names) {
             val = this.parameters.get(name.toLowerCase());
+            paramName = name.toLowerCase();
             if (val != null) {
                 break;
             }
@@ -242,7 +244,7 @@ public abstract class NATTKeyword {
             if (!required)
                 return new ParameterValue(null, ParameterValueType.NULL);
             throw new InvalidSyntaxInConfigurationException(
-                    String.format("Missing parameter '%s' for keyword '%s'!", name, this.getKeywordName()));
+                    String.format("Missing parameter '%s' for keyword '%s'!", paramName, this.getKeywordName()));
         }
 
         // Check the correct type of the parameter.
@@ -261,7 +263,7 @@ public abstract class NATTKeyword {
                 if (!required)
                     return new ParameterValue(null, ParameterValueType.NULL);
                 throw new InvalidSyntaxInConfigurationException(
-                        String.format("Invalid type of parameter '%s' for keyword '%s'!", name, this.getKeywordName()));
+                        String.format("Invalid type of parameter '%s' for keyword '%s'!", paramName, this.getKeywordName()));
             }
         }
 

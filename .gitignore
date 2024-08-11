@@ -11,3 +11,9 @@ natt-spi/bin/
 natt-vscode-extension/.vscode/
 natt-vscode-extension/node_modules/
 
+examples/project-example/build/
+examples/project-example/bin/
+
+examples/plugin-example/build/
+examples/plugin-example/bin/
+

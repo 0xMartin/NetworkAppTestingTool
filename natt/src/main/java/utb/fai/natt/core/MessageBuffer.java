@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import utb.fai.natt.spi.IMessageBuffer;
 import utb.fai.natt.spi.INATTMessage;
+import utb.fai.natt.spi.NATTLogger;
 
 /**
  * Trida obsahuje implementaci bufferu zprav, ktery je vyuzivan vsemi moduly

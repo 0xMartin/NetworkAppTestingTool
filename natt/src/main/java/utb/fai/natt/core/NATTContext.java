@@ -3,6 +3,7 @@ package utb.fai.natt.core;
 import com.aventstack.extentreports.ExtentReports;
 
 import utb.fai.natt.spi.INATTContext;
+import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.keyword.AppControll.*;
 import utb.fai.natt.keyword.Assert.*;
@@ -10,6 +11,7 @@ import utb.fai.natt.keyword.General.*;
 import utb.fai.natt.keyword.Main.*;
 import utb.fai.natt.keyword.Module.*;
 import utb.fai.natt.reportGenerator.TestCaseResult;
+import utb.fai.natt.spi.NATTLogger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -58,10 +60,39 @@ public class NATTContext implements INATTContext {
     /**********************************************************************************************/
 
     /**
+     * Ziska sadu vsech keyword, ktere jsou dostupne pro tento nastroj
+     * 
+     * @return Sada keyword
+     */
+    @Override
+    public HashMap<String, Class<?>> getKeywordSet() {
+        return keywordSet;
+    }
+
+    /**
+     * Registruje novou keyword
+     * 
+     * @param keyword Nova keyword
+     */
+    @Override
+    public boolean registerKeyword(NATTKeyword keyword) {
+        if (keyword == null) {
+            return false;
+        }
+
+        this.keywordSet.put(keyword.getKeywordName(), keyword.getClass());
+
+        return true;
+    }
+
+    /**********************************************************************************************/
+
+    /**
      * Navrati referenci list aktivnich modulu
      * 
      * @return List aktivnich modulu
      */
+    @Override
     public LinkedList<NATTModule> getModules() {
         return modules;
     }
@@ -72,6 +103,7 @@ public class NATTContext implements INATTContext {
      * @param name Nazev hledaneho modulu
      * @return Reference na modul
      */
+    @Override
     public NATTModule getModule(String name) {
         Optional<NATTModule> moduleOptional = this.modules.stream().filter(m -> m.getName().equals(name)).findFirst();
         if (moduleOptional.isPresent()) {
@@ -89,6 +121,7 @@ public class NATTContext implements INATTContext {
      * 
      * @return MessageBuffer
      */
+    @Override
     public MessageBuffer getMessageBuffer() {
         return messageBuffer;
     }
@@ -100,6 +133,7 @@ public class NATTContext implements INATTContext {
      * 
      * @return Mapa promennych
      */
+    @Override
     public ConcurrentHashMap<String, String> getVariables() {
         return variables;
     }
@@ -107,6 +141,7 @@ public class NATTContext implements INATTContext {
     /**
      * Odstrani vsechny promenne
      */
+    @Override
     public void clearVariables() {
         if (this.variables != null) {
             this.variables.clear();
@@ -119,6 +154,7 @@ public class NATTContext implements INATTContext {
      * @param name Jmeno promenne
      * @return Hodnota promenne
      */
+    @Override
     public String getVariable(String name) {
         return this.variables.get(name);
     }
@@ -134,6 +170,7 @@ public class NATTContext implements INATTContext {
      * @return V pripade uspesneho vytvoreni promenne navrati jeji nazev v opacnem
      *         pripade navrati null
      */
+    @Override
     public String storeValueToVariable(String name, String value) {
         if (name == null) {
             return null;
@@ -155,6 +192,7 @@ public class NATTContext implements INATTContext {
      * Ulozi aktualni stav promennych do historie pro pro nasledne obnoveni tohoto
      * stavu
      */
+    @Override
     public void saveVariablesState() {
         ConcurrentHashMap<String, String> snapshot = new ConcurrentHashMap<>(variables);
         variableHistory.push(snapshot);
@@ -164,6 +202,7 @@ public class NATTContext implements INATTContext {
     /**
      * Obnoveni promennych na hodnotu ulozenou v historii
      */
+    @Override
     public void restoreVariablesState() {
         if (!variableHistory.isEmpty()) {
             variables = variableHistory.pop();
@@ -211,17 +250,6 @@ public class NATTContext implements INATTContext {
         if (res != null) {
             this.testCaseResults.add(res);
         }
-    }
-
-    /**********************************************************************************************/
-
-    /**
-     * Ziska sadu vsech keyword, ktere jsou dostupne pro tento nastroj
-     * 
-     * @return Sada keyword
-     */
-    public HashMap<String, Class<?>> getKeywordSet() {
-        return keywordSet;
     }
 
     /**
