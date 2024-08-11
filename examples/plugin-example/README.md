@@ -4,6 +4,8 @@
 
 This guide will walk you through the process of creating a custom plugin for the NATT black-box testing tool. Follow the steps below to set up your plugin, configure it, and define custom keywords.
 
+**NATT-SPI documentation available [here](../../natt-spi)**
+
 ## 1. Initialize the Project
 
 First, initialize your Java project using Gradle. Open your terminal and run:

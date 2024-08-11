@@ -55,9 +55,11 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **VS Code Extension [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
-* **Configuration editor: [NATT Configuration Editor](./natt-config-editor)**
+* Configuration editor: [NATT Configuration Editor](./natt-config-editor)
 
-* **How to create custom plugin for NATT? [plugin-example.md](./examples/plugin-example)**
+* How to create custom plugin for NATT?: [plugin-example.md](./examples/plugin-example)
+* 
+* NATT-SPI documentation: [natt-spi](./natt-spi)
 
 * Simple example project: [project-example](./examples/project-example)
 
