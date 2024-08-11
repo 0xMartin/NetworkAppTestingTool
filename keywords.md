@@ -10,7 +10,7 @@ The variable `(module-name)-action-msg` contains the content of the message that
 
 ## Keyword base info
 
-When keyword have only one parameter, it is not necessary to specify the parameter name. In documentation parameters without name are named as `default`.
+When keyword have only one parameter, it is not necessary to specify the parameter name.
 
 Each keyword can be ignored by adding the parameter `ignore: true`
 
