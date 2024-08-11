@@ -57,6 +57,16 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showInformationMessage('test-config.yaml already exists, skipping copy.');
             }
 
+            const sourceGitLabYamlPath = path.join(context.extensionPath, 'resources', '.gitlab-ci.yml');
+            const destGitLabYamlPath = path.join(projectPath, '.gitlab-ci.yml');
+
+            // Check if the gitlab-ci file already exists
+            if (!fs.existsSync(destGitLabYamlPath)) {
+                fs.copyFileSync(sourceGitLabYamlPath, destGitLabYamlPath);
+                vscode.window.showInformationMessage('.gitlab-ci.yml copied successfully!');
+            } else {
+                vscode.window.showInformationMessage('.gitlab-ci.yml already exists, skipping copy.');
+            }
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
             const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.5.1/NATT.jar');
