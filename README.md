@@ -53,12 +53,12 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **Configuration - keyword documentation: [keywords.md](./keywords.md)**
 
-* **VS Code Extension [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
+* **VS Code Extension: [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
+* **How to create custom plugin for NATT? [plugin-example.md](./examples/plugin-example)**
+  
 * Configuration editor: [NATT Configuration Editor](./natt-config-editor)
-
-* How to create custom plugin for NATT?: [plugin-example.md](./examples/plugin-example)
-* 
+  
 * NATT-SPI documentation: [natt-spi](./natt-spi)
 
 * Simple example project: [project-example](./examples/project-example)
