@@ -170,7 +170,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
-            const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/latest/NATT.jar');
+            const jarUrl = config.get<string>('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.1/NATT.jar');
             const destJarPath = path.join(projectPath, 'NATT.jar');
 
             // Function to download the file

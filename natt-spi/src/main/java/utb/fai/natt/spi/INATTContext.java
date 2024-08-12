@@ -30,6 +30,13 @@ public interface INATTContext {
     LinkedList<NATTModule> getModules();
 
     /**
+     * Remove a module from the context.
+     * @param name The name of the module to remove
+     * @return true if the module was removed, false otherwise
+     */
+    public boolean removeModule(String name);
+
+    /**
      * Safely retrieves a reference to a specific module by name.
      * 
      * @param name The name of the module to find

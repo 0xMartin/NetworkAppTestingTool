@@ -88,6 +88,7 @@ public class RunAppLaterKw extends NATTKeyword {
                 .getModule(this.moduleName == null ? "default" : this.moduleName);
         if (runner != null) {
             runner.terminateModule();
+            NATTContext.instance().removeModule(this.moduleName == null ? "default" : this.moduleName);
         }
     }
 

@@ -98,6 +98,23 @@ public class NATTContext implements INATTContext {
     }
 
     /**
+     * Odstrani modul z kontextu
+     * @param name Nazev modulu
+     * @return true pokud byl modul odstranen
+     */
+    @Override
+    public boolean removeModule(String name) {
+        Optional<NATTModule> moduleOptional = this.modules.stream().filter(m -> m.getName().equals(name)).findFirst();
+        if (moduleOptional.isPresent()) {
+            NATTModule module = moduleOptional.get();
+            this.modules.remove(module);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Bezpecne ziskani reference na dany modul.
      * 
      * @param name Nazev hledaneho modulu

@@ -10,7 +10,7 @@ import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
-
+import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 import utb.fai.natt.module.MQTTClientTester;
 
@@ -53,6 +53,7 @@ public class CreateMQTTClientKw extends NATTKeyword {
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.module != null) {
             this.module.terminateModule();
+            NATTContext.instance().removeModule(this.moduleName);
         }
     }
 

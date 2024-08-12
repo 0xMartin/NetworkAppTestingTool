@@ -173,7 +173,7 @@ To further streamline the process of implementing and managing your test configu
 * **Snippets:** Predefined snippets are available to quickly insert common configuration patterns and structures.
 * **Integrated Commands:** Easily initialize your test environment with commands directly accessible within the VS Code command palette.
 
-<img src="./doc/vscode_extension_2.png">
+<img src="./natt-vscode-extension/doc/vs_code_extension_2.png">
 
 ## Configuration editor
 

@@ -37,6 +37,7 @@ public class TermiteModuleKw extends NATTKeyword {
             return true;
         }
 
+        NATTContext.instance().removeModule(this.moduleName);
         return module.terminateModule();
     }
 

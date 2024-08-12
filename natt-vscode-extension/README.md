@@ -44,6 +44,7 @@ The extension provides several commands to facilitate testing:
 - **🛑 NATT Stop:** Stops the currently running test process.
 - **📝 NATT Show Report:** Opens and displays the test report.
 - **✅ NATT Validate:** Validates the configuration file for syntax errors.
+- **🔄 NATT Reload:** Reloads the keywords list (snippets, descriptions, etc.).
 
 ## 📸 Screenshots
 
