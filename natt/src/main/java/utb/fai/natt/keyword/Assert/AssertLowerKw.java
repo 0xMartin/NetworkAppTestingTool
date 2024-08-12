@@ -47,7 +47,7 @@ public class AssertLowerKw extends NATTKeyword {
             this.result = true;
         }
 
-        String varValue = NATTContext.instance().getVariable(varName);
+        String varValue = ctx.getVariable(varName);
         if (varValue == null) {
             logger.warning(String.format("Assertion failed. Variable '%s' not found!", varName));
             return false;

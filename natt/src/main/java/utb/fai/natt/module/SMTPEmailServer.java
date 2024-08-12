@@ -13,6 +13,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.PortChecker;
 
@@ -24,6 +25,7 @@ import utb.fai.natt.core.PortChecker;
  * tak jak prichazeji od odeslitele. Tag je vzdy nastaven na hodnotu "subject"
  * emailu a obsah zpravy odpovida obsahu samotneho emailu.
  */
+@NATTAnnotation.Module("smtp-email-server")
 public class SMTPEmailServer extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(SMTPEmailServer.class);
@@ -99,12 +101,11 @@ public class SMTPEmailServer extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        NATTContext.instance().getModules().remove(this);
         this.isRunning = false;
         super.setRunning(false);
         smtpServer.stop();
         logger.info(super.getNameForLogger() + String.format("SMTP email server [%s] terminated", this.getName()));
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

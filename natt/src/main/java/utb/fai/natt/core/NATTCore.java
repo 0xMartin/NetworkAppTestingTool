@@ -260,11 +260,13 @@ public class NATTCore {
      * Ukonci vsechny aktualne spustene moduly
      */
     public static void termiteAllModules() {
-        LinkedList<NATTModule> modules = NATTContext.instance().getModules();
+        LinkedList<NATTModule> modules = NATTContext.instance().getActiveModules();
         modules.stream().forEach((m) -> {
             m.terminateModule();
         });
-        NATTContext.instance().getModules().clear();
+        if(!NATTContext.instance().getActiveModules().isEmpty()) {
+            NATTContext.instance().getActiveModules().clear();
+        }
     }
 
     /**

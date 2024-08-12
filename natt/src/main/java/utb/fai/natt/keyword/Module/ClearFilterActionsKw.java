@@ -9,7 +9,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
 /**
@@ -32,7 +31,7 @@ public class ClearFilterActionsKw extends NATTKeyword {
         // zpracovani promennych v retezci
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
-        NATTModule module = NATTContext.instance().getModule(moduleName);
+        NATTModule module = ctx.getActiveModule(moduleName);
 
         if (module == null) {
             return false;

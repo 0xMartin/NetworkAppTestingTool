@@ -12,7 +12,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
 /**
@@ -50,7 +49,7 @@ public class ReplaceKw extends NATTKeyword {
         }
 
         // nahrazeni textu
-        String value = NATTContext.instance().getVariable(this.fromVar);
+        String value = ctx.getVariable(this.fromVar);
         if (value == null) {
             return false;
         }
@@ -59,7 +58,7 @@ public class ReplaceKw extends NATTKeyword {
         }
 
         // zapis do promenne
-        this.toVar = NATTContext.instance().storeValueToVariable(this.toVar, value);
+        this.toVar = ctx.storeValueToVariable(this.toVar, value);
         if (this.toVar != null) {
             status = true;
         }
@@ -97,7 +96,7 @@ public class ReplaceKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.toVar != null) {
-            NATTContext.instance().getVariables().remove(this.toVar);
+            ctx.getVariables().remove(this.toVar);
         }
     }
 

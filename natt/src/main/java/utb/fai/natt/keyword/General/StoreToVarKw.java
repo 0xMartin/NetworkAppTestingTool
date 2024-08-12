@@ -77,10 +77,10 @@ public class StoreToVarKw extends NATTKeyword {
         }
 
         // vyhleda v bufferu zpravy ty ktere spnuji danou podminku
-        List<INATTMessage> messages = NATTContext.instance().getMessageBuffer().searchMessages(
+        List<INATTMessage> messages = ctx.getMessageBuffer().searchMessages(
                 this.moduleName, this.tag, this.text, searchType, this.caseSensitive);
         if (messages.isEmpty()) {
-            this.varName = NATTContext.instance().storeValueToVariable(this.varName, "");
+            this.varName = ctx.storeValueToVariable(this.varName, "");
             if (this.varName != null) {
                 status = true;
             }
@@ -89,7 +89,7 @@ public class StoreToVarKw extends NATTKeyword {
 
         // prni zpravu ulozi do promenne
         String value = messages.get(0).getMessage();
-        this.varName = NATTContext.instance().storeValueToVariable(this.varName, value);
+        this.varName = ctx.storeValueToVariable(this.varName, value);
         if (this.varName != null) {
             status = true;
         }
@@ -135,7 +135,7 @@ public class StoreToVarKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.varName != null) {
-            NATTContext.instance().getVariables().remove(this.varName);
+            ctx.getVariables().remove(this.varName);
         }
     }
 

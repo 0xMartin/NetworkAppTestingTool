@@ -9,7 +9,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.VariableProcessor;
 
@@ -45,7 +44,7 @@ public class ModuleSendKw extends NATTKeyword {
 
         if (delay == null) {
             // okamzite odeslani zpravy
-            NATTModule module = NATTContext.instance().getModule(moduleName);
+            NATTModule module = ctx.getActiveModule(moduleName);
             if (module == null) {
                 return false;
             }
@@ -56,7 +55,7 @@ public class ModuleSendKw extends NATTKeyword {
         } else {
             // odeslani se zpozdenim
             Thread thread = new Thread(() -> {
-                NATTModule module = NATTContext.instance().getModule(moduleName);
+                NATTModule module = ctx.getActiveModule(moduleName);
                 if (module == null) {
                     return;
                 }

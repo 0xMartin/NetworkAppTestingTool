@@ -8,7 +8,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 import utb.fai.natt.module.ExternalProgramRunner;
 
@@ -39,8 +38,7 @@ public class StandardStreamSendKw extends NATTKeyword {
         this.message = VariableProcessor.processVariables(this.message);
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
-        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(moduleName == null ? "default": moduleName);
+        ExternalProgramRunner runner = (ExternalProgramRunner) ctx.getActiveModule(moduleName == null ? "default": moduleName);
         if (runner == null) {
             return false;
         }

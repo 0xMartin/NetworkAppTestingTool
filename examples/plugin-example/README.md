@@ -74,11 +74,6 @@ Now, it's time to create the **main class** for your plugin. This class must imp
 Create a new Java file in your project and add the following code:
 
 ```java
-package natt.plugin;
-
-import utb.fai.natt.spi.INATTContext;
-import utb.fai.natt.spi.INATTPlugin;
-
 public class PluginMain implements INATTPlugin {
 
     public static final String NAME = "My Plugin";
@@ -92,7 +87,9 @@ public class PluginMain implements INATTPlugin {
     @Override
     public void initialize(INATTContext ctx) {
         // Register all your keywords here
-        ctx.registerKeyword(new MyKeyword1());     
+        ctx.registerKeyword("my_keyword_1", MyKeyword1.class);     
+        // Register all your modules here
+        ctx.registerModule("my_module_1", MyModule1.class);
     }
     
 }
@@ -103,16 +100,6 @@ public class PluginMain implements INATTPlugin {
 After defining the main plugin class, you can create custom keywords according to your needs. Below is an example of how to define a custom keyword:
 
 ```java
-package natt.plugin;
-
-import utb.fai.natt.spi.INATTContext;
-import utb.fai.natt.spi.NATTKeyword;
-import utb.fai.natt.spi.NATTKeyword.ParamValType;
-import utb.fai.natt.spi.NATTAnnotation;
-import utb.fai.natt.spi.exception.InternalErrorException;
-import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
-import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
-
 @NATTAnnotation.Keyword(
     name = "my_keyword_1",
     description = "This is my first keyword.",
@@ -123,6 +110,7 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 public class MyKeyword1 extends NATTKeyword {
 
     protected String moduleName;
+
     private MyModule1 module;
 
     @Override
@@ -139,8 +127,17 @@ public class MyKeyword1 extends NATTKeyword {
 
     @Override
     public boolean execute(INATTContext ctx) throws InternalErrorException, NonUniqueModuleNamesException {
-        // create module
-        this.module = new MyModule1(moduleName, ctx);
+        // create instance of my module
+        Class<?>[] types = { String.class, INATTContext.class };
+        Object[] args = { this.moduleName, ctx };
+        this.module = (MyModule1) ctx.createInstanceOfModule("my_module_1", types, args);
+        if(this.module == null) {
+            return false;
+        }
+
+        // run module
+        this.module.runModule();
+
         return true;
     }
 
@@ -151,6 +148,7 @@ public class MyKeyword1 extends NATTKeyword {
             this.module.terminateModule();
         }
     }
+
 }
 ```
 

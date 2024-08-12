@@ -16,7 +16,9 @@ public class PluginMain implements INATTPlugin {
     @Override
     public void initialize(INATTContext ctx) {
         // Register all your keywords here
-        ctx.registerKeyword(new MyKeyword1());     
+        ctx.registerKeyword("my_keyword_1", MyKeyword1.class);     
+        // Register all your modules here
+        ctx.registerModule("my_module_1", MyModule1.class);
     }
     
 }

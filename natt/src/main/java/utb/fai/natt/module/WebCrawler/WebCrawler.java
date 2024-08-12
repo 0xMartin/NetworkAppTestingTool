@@ -15,6 +15,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 
 /**
@@ -22,6 +23,7 @@ import utb.fai.natt.spi.NATTLogger;
  * vlaknech prochazi webove stranky a analyzuje je. Vystup je zavysli na
  * pouzitem analyzatoru.
  */
+@NATTAnnotation.Module("web-crawler")
 public class WebCrawler extends NATTModule {
 
 	protected NATTLogger logger = new NATTLogger(WebCrawler.class);
@@ -71,8 +73,7 @@ public class WebCrawler extends NATTModule {
 	@Override
 	public boolean terminateModule() {
 		// odstraneni tohoto modulu z aktivnich modulu
-		NATTContext.instance().getModules().remove(this);
-		return true;
+		return NATTContext.instance().removeActiveModule(this.getName());
 	}
 
 	@Override

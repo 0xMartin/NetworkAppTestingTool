@@ -8,7 +8,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 import utb.fai.natt.module.ExternalProgramRunner;
 
@@ -27,6 +26,8 @@ public class RunAppKw extends NATTKeyword {
     protected String command;
     protected String moduleName;
 
+    private ExternalProgramRunner runner;
+
     @Override
     public boolean execute(INATTContext ctx)
             throws InternalErrorException, NonUniqueModuleNamesException {
@@ -34,7 +35,7 @@ public class RunAppKw extends NATTKeyword {
         this.command = VariableProcessor.processVariables(this.command);
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
-        ExternalProgramRunner runner = new ExternalProgramRunner(
+        this.runner = new ExternalProgramRunner(
                 this.moduleName == null ? "default" : this.moduleName, this.command);
         runner.runModule();
 
@@ -60,11 +61,8 @@ public class RunAppKw extends NATTKeyword {
 
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
-        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(this.moduleName == null ? "default" : this.moduleName);
-        if (runner != null) {
-            runner.terminateModule();
-            NATTContext.instance().removeModule(this.moduleName == null ? "default" : this.moduleName);
+        if (this.runner != null) {
+            this.runner.terminateModule();
         }
     }
 

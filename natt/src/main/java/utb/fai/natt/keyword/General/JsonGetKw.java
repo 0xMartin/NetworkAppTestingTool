@@ -49,7 +49,7 @@ public class JsonGetKw extends NATTKeyword {
         // ziska path k promenne
         String[] paramPath = this.paramName.split(":");
         if (paramPath.length < 1) {
-            this.toVar = NATTContext.instance().storeValueToVariable(this.toVar, "");
+            this.toVar = ctx.storeValueToVariable(this.toVar, "");
             if (this.toVar != null) {
                 status = true;
             }
@@ -57,9 +57,9 @@ public class JsonGetKw extends NATTKeyword {
         }
 
         // ziska zdrojovy text
-        String jsonText = NATTContext.instance().getVariable(this.fromVar);
+        String jsonText = ctx.getVariable(this.fromVar);
         if (jsonText == null) {
-            this.toVar = NATTContext.instance().storeValueToVariable(this.toVar, "");
+            this.toVar = ctx.storeValueToVariable(this.toVar, "");
             if (this.toVar != null) {
                 status = true;
             }
@@ -117,13 +117,13 @@ public class JsonGetKw extends NATTKeyword {
             }
 
             // uplny vysledek ulozi do promenne
-            this.toVar = NATTContext.instance().storeValueToVariable(this.toVar, jsonBuffer);
+            this.toVar = ctx.storeValueToVariable(this.toVar, jsonBuffer);
             if (this.toVar != null) {
                 status = true;
             }
             return this.toVar != null;
         } catch (Exception e) {
-            this.toVar = NATTContext.instance().storeValueToVariable(this.toVar, "");
+            this.toVar = ctx.storeValueToVariable(this.toVar, "");
             if (this.toVar != null) {
                 status = true;
             }
@@ -155,7 +155,7 @@ public class JsonGetKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.toVar != null) {
-            NATTContext.instance().getVariables().remove(this.toVar);
+            ctx.getVariables().remove(this.toVar);
         }
     }
 

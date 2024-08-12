@@ -40,6 +40,9 @@ public abstract class NATTModule {
     // Reference to the context
     private INATTContext nattCtx;
 
+    // Contains the name of the module type.
+    private String typeName;
+
     // Contains the name of the object. Used to distinguish multiple identical
     // modules.
     private String name;
@@ -66,11 +69,18 @@ public abstract class NATTModule {
         this.name = name;
         this.isRunning = false;
 
+        // jmeno typu modulu
+        Class<?> clazz = this.getClass();
+        if (clazz.isAnnotationPresent(NATTAnnotation.Module.class)) {
+            NATTAnnotation.Module annotation = clazz.getAnnotation(NATTAnnotation.Module.class);
+            this.typeName = annotation.value();
+        }
+
         // Create message buffer for this module
         nattCtx.getMessageBuffer().createMessageBufferForModule(this.name);
 
         // Add module to the list of active modules in the context
-        this.addToListIfNameIsUnique(nattCtx.getModules());
+        this.addToListIfNameIsUnique(nattCtx.getActiveModules());
     }
 
     /**
@@ -80,6 +90,14 @@ public abstract class NATTModule {
      */
     public INATTContext getContext() {
         return this.nattCtx;
+    }
+
+    /**
+     * Returns the name of the module type.
+     * @return
+     */
+    public String getTypeName() {
+        return this.typeName;
     }
 
     /**

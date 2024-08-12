@@ -14,6 +14,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.PortChecker;
 
@@ -28,6 +29,7 @@ import utb.fai.natt.core.PortChecker;
  * "client-#" kde # odpovide cislu klient. Prvni pripojeni klient ma 1, druhy ma
  * 2 a tak dale
  */
+@NATTAnnotation.Module("telnet-server")
 public class TelnetServer extends NATTModule {
 
     private NATTLogger logger = new NATTLogger(TelnetServer.class);
@@ -92,7 +94,6 @@ public class TelnetServer extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
         try {
             serverSocket.close();
@@ -102,8 +103,7 @@ public class TelnetServer extends NATTModule {
         }
 
         logger.info(super.getNameForLogger() + String.format("Telnet server [%s] terminated", this.getName()));
-
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

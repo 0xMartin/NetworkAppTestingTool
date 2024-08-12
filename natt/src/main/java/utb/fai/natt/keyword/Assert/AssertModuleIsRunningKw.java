@@ -9,7 +9,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.VariableProcessor;
 
@@ -44,7 +43,7 @@ public class AssertModuleIsRunningKw extends NATTKeyword {
         }
 
 
-        NATTModule module = NATTContext.instance().getModule(this.moduleName);
+        NATTModule module = ctx.getActiveModule(this.moduleName);
         if (module == null) {
             logger.warning(String.format("Assertion failed. Module '%s' not found!", this.moduleName));
             this.finalStatus = false;

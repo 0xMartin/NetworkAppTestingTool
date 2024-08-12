@@ -10,7 +10,6 @@ import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
-
 import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
@@ -41,7 +40,7 @@ public class BufferGetKw extends NATTKeyword {
         this.varName = VariableProcessor.processVariables(this.varName);
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
-        CopyOnWriteArrayList<INATTMessage> messages = NATTContext.instance().getMessageBuffer().getMessages(moduleName);
+        CopyOnWriteArrayList<INATTMessage> messages = ctx.getMessageBuffer().getMessages(moduleName);
         // pokud je index zaporny zacina od konce pole (zpravy prijate jako posledni)
         // ... posledni index pole = -1, predposledni = -2
         if (index < 0) {
@@ -50,10 +49,10 @@ public class BufferGetKw extends NATTKeyword {
 
         if (index < 0 || index >= messages.size()) {
             // hodnota neexistuje ... vlozi prazdnou hodnotu
-            this.varName = NATTContext.instance().storeValueToVariable(varName, "");
+            this.varName = ctx.storeValueToVariable(varName, "");
         } else {
             // hodnota existuje ... vlozi hodnotu na danem indexu
-            this.varName = NATTContext.instance().storeValueToVariable(varName,
+            this.varName = ctx.storeValueToVariable(varName,
                     messages.get(index.intValue()).getMessage());
         }
 
@@ -88,7 +87,7 @@ public class BufferGetKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.varName != null) {
-            NATTContext.instance().getVariables().remove(this.varName);
+            ctx.getVariables().remove(this.varName);
         }
     }
 

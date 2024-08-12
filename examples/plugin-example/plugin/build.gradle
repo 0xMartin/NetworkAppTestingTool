@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     // NATT SPI
-    implementation name: 'natt-spi-1.0.0'
+    implementation name: 'natt-spi-1.1.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

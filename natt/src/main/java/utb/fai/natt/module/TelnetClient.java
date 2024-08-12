@@ -11,6 +11,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 
 /**
@@ -20,6 +21,7 @@ import utb.fai.natt.spi.NATTLogger;
  * Prijate zpravy jsou do message bufferu ukladany v textove podobne neupravene
  * tak jak prichazeji od komunikujici protistrany. Tag je vzdy prazdny ""
  */
+@NATTAnnotation.Module("telnet-client")
 public class TelnetClient extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(TelnetClient.class);
@@ -87,7 +89,6 @@ public class TelnetClient extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
 
         try {
@@ -105,7 +106,7 @@ public class TelnetClient extends NATTModule {
 
         logger.info(super.getNameForLogger() + String.format("Telnet client [%s] terminated", this.getName()));
 
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

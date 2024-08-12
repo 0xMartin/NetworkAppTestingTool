@@ -48,7 +48,7 @@ public class ReadFileKw extends NATTKeyword {
             return false;
         }
 
-        this.varName = NATTContext.instance().storeValueToVariable(varName, fileText);
+        this.varName = ctx.storeValueToVariable(varName, fileText);
         if (this.varName != null) {
             status = true;
         }
@@ -75,7 +75,7 @@ public class ReadFileKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.varName != null) {
-            NATTContext.instance().getVariables().remove(this.varName);
+            ctx.getVariables().remove(this.varName);
         }
     }
 

@@ -70,7 +70,7 @@ public class WaitUntilKw extends NATTKeyword {
         final Map<String, CountDownLatch> latchMap = new HashMap<>();
         for (String mName : moduleNames) {
             mName = mName.trim();
-            NATTModule module = NATTContext.instance().getModule(mName);
+            NATTModule module = ctx.getActiveModule(mName);
             if (module == null) {
                 return false;
             }

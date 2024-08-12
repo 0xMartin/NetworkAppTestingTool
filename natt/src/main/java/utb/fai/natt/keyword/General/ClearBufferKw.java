@@ -8,7 +8,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
 /**
@@ -36,10 +35,10 @@ public class ClearBufferKw extends NATTKeyword {
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
         if (moduleName.equals("*")) {
-            NATTContext.instance().getMessageBuffer().clearAll();
+            ctx.getMessageBuffer().clearAll();
             return true;
         } else {
-            return NATTContext.instance().getMessageBuffer().clearOneMessageBuffer(moduleName);
+            return ctx.getMessageBuffer().clearOneMessageBuffer(moduleName);
         }
     }
 

@@ -11,7 +11,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.VariableProcessor;
 
@@ -77,9 +76,9 @@ public class AssertRangeKw extends NATTKeyword {
         }
 
         // ziskani hodnot
-        CopyOnWriteArrayList<INATTMessage> messages1 = NATTContext.instance().getMessageBuffer()
+        CopyOnWriteArrayList<INATTMessage> messages1 = ctx.getMessageBuffer()
                 .getMessages(module1Name);
-        CopyOnWriteArrayList<INATTMessage> messages2 = NATTContext.instance().getMessageBuffer()
+        CopyOnWriteArrayList<INATTMessage> messages2 = ctx.getMessageBuffer()
                 .getMessages(module2Name);
 
         // oba buffery jsou prazde => shoda => pokud je ocekavano true navrati true,

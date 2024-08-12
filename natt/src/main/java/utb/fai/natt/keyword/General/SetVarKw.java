@@ -37,7 +37,7 @@ public class SetVarKw extends NATTKeyword {
         this.varName = VariableProcessor.processVariables(this.varName);
         this.value = VariableProcessor.processVariables(this.value);
 
-        this.varName = NATTContext.instance().storeValueToVariable(varName, this.value);
+        this.varName = ctx.storeValueToVariable(varName, this.value);
         if (this.varName != null) {
             status = true;
         }
@@ -64,7 +64,7 @@ public class SetVarKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.varName != null) {
-            NATTContext.instance().getVariables().remove(this.varName);
+            ctx.getVariables().remove(this.varName);
         }
     }
 

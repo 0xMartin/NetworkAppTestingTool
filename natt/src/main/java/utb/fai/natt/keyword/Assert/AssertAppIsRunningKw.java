@@ -8,7 +8,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.VariableProcessor;
 import utb.fai.natt.module.ExternalProgramRunner;
@@ -44,8 +43,8 @@ public class AssertAppIsRunningKw extends NATTKeyword {
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
         // zjisteni stavu behu aplikace
-        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(this.moduleName == null ? "default" : this.moduleName);
+        ExternalProgramRunner runner = (ExternalProgramRunner) ctx.getActiveModule(
+                this.moduleName == null ? "default" : this.moduleName);
         if (runner == null) {
             logger.warning("Assertion failed. External program runner not found!");
             return false;

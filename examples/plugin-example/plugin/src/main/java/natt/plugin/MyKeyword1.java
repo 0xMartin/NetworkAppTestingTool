@@ -50,8 +50,17 @@ public class MyKeyword1 extends NATTKeyword {
 
     @Override
     public boolean execute(INATTContext ctx) throws InternalErrorException, NonUniqueModuleNamesException {
-        // create module
-        this.module = new MyModule1(moduleName, ctx);
+        // create instance of my module
+        Class<?>[] types = { String.class, INATTContext.class };
+        Object[] args = { this.moduleName, ctx };
+        this.module = (MyModule1) ctx.createInstanceOfModule("my_module_1", types, args);
+        if(this.module == null) {
+            return false;
+        }
+
+        // run module
+        this.module.runModule();
+
         return true;
     }
 

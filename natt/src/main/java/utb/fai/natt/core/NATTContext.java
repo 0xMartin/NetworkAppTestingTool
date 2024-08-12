@@ -5,16 +5,28 @@ import com.aventstack.extentreports.ExtentReports;
 import utb.fai.natt.spi.INATTContext;
 import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.NATTModule;
+import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.keyword.AppControll.*;
 import utb.fai.natt.keyword.Assert.*;
 import utb.fai.natt.keyword.General.*;
 import utb.fai.natt.keyword.Main.*;
 import utb.fai.natt.keyword.Module.*;
+import utb.fai.natt.module.ExternalProgramRunner;
+import utb.fai.natt.module.MQTTBroker;
+import utb.fai.natt.module.MQTTClientTester;
+import utb.fai.natt.module.RESTTester;
+import utb.fai.natt.module.SMTPEmailServer;
+import utb.fai.natt.module.SOAPTester;
+import utb.fai.natt.module.TelnetClient;
+import utb.fai.natt.module.TelnetServer;
+import utb.fai.natt.module.WebCrawler.WebCrawler;
 import utb.fai.natt.reportGenerator.TestCaseResult;
-import utb.fai.natt.spi.NATTLogger;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.lang.reflect.Constructor;
+
 
 /**
  * Kontext testovani. Jedna se o singleton tridu. Obsahuje vsechny dulezite
@@ -57,7 +69,11 @@ public class NATTContext implements INATTContext {
     // obsahuje vsechny registrovane nazvy keyword a k nim jejich prislusne tridy
     private final HashMap<String, Class<?>> keywordSet;
 
+    // obsahuje vsechny registrovane nazvy modulu a k nim jejich prislusne tridy
+    private final HashMap<String, Class<?>> moduleSet;
+
     /**********************************************************************************************/
+    // NATT keyword
 
     /**
      * Ziska sadu vsech keyword, ktere jsou dostupne pro tento nastroj
@@ -72,20 +88,65 @@ public class NATTContext implements INATTContext {
     /**
      * Registruje novou keyword
      * 
-     * @param keyword Nova keyword
+     * @param name    Nazev pod ktery bude keyword dostupna
+     * @param keyword Trida keyword
      */
     @Override
-    public boolean registerKeyword(NATTKeyword keyword) {
+    public boolean registerKeyword(String name, Class<? extends NATTKeyword> keyword) {
         if (keyword == null) {
             return false;
         }
-
-        this.keywordSet.put(keyword.getKeywordName(), keyword.getClass());
-
-        return true;
+        return this.keywordSet.put(name, keyword) != null;
     }
 
     /**********************************************************************************************/
+    // Registrace NATT modulu
+
+    /**
+     * Ziska sadu vsech modulu, ktere jsou dostupne pro tento nastroj. Primarne
+     * urceno pro vytvareni instanci modulu z pluginu. Lokakalni moduly je mozne
+     * instanciovat i na primo.
+     * 
+     * @param moduleName Nazev typu modulu, po kterym je modul registrovany
+     * @param types      Typy argumentu, ktere budou predany konstruktoru NATT
+     *                   modulu
+     * @param args       Argumenty, ktere budou predany konstruktoru NATT modulu
+     * @return Instance modulu
+     */
+    @Override
+    public NATTModule createInstanceOfModule(String moduleName, Class<?>[] types, Object[] args) {
+        Class<?> moduleClass = this.moduleSet.get(moduleName);
+        if (moduleClass == null) {
+            return null;
+        }
+        try {
+            // Ensure the constructor types and arguments are valid
+            Constructor<?> constructor = moduleClass.getDeclaredConstructor(types);
+            return (NATTModule) constructor.newInstance(args);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Registruje novy modul
+     * 
+     * @param name   Nazev modulu, pod kterym bude modul registrovan
+     * @param module Instance noveho modulu
+     * @return
+     */
+    @Override
+    public boolean registerModule(String name, Class<? extends NATTModule> module) {
+        if (module == null) {
+            return false;
+        }
+        return this.moduleSet.put(name, module) != null;
+    }
+
+    /**********************************************************************************************/
+    // Aktivni NATT moduly
 
     /**
      * Navrati referenci list aktivnich modulu
@@ -93,17 +154,18 @@ public class NATTContext implements INATTContext {
      * @return List aktivnich modulu
      */
     @Override
-    public LinkedList<NATTModule> getModules() {
+    public LinkedList<NATTModule> getActiveModules() {
         return modules;
     }
 
     /**
-     * Odstrani modul z kontextu
+     * Odstrani aktivni modul z kontextu
+     * 
      * @param name Nazev modulu
      * @return true pokud byl modul odstranen
      */
     @Override
-    public boolean removeModule(String name) {
+    public boolean removeActiveModule(String name) {
         Optional<NATTModule> moduleOptional = this.modules.stream().filter(m -> m.getName().equals(name)).findFirst();
         if (moduleOptional.isPresent()) {
             NATTModule module = moduleOptional.get();
@@ -121,7 +183,7 @@ public class NATTContext implements INATTContext {
      * @return Reference na modul
      */
     @Override
-    public NATTModule getModule(String name) {
+    public NATTModule getActiveModule(String name) {
         Optional<NATTModule> moduleOptional = this.modules.stream().filter(m -> m.getName().equals(name)).findFirst();
         if (moduleOptional.isPresent()) {
             NATTModule module = moduleOptional.get();
@@ -132,6 +194,7 @@ public class NATTContext implements INATTContext {
     }
 
     /**********************************************************************************************/
+    // Message buffer
 
     /**
      * Navrati tridu obsahujici buffery zprav pro vsechny moduly
@@ -144,6 +207,7 @@ public class NATTContext implements INATTContext {
     }
 
     /**********************************************************************************************/
+    // Promenne
 
     /**
      * Navrati vsechny vytvorene promenne
@@ -230,6 +294,7 @@ public class NATTContext implements INATTContext {
     }
 
     /**********************************************************************************************/
+    // Custom keywordy
 
     /**
      * Navrati referenci na list obsahujici vsechny registrovane custom keywordy
@@ -248,6 +313,7 @@ public class NATTContext implements INATTContext {
     }
 
     /**********************************************************************************************/
+    // Vysledky testovani
 
     /**
      * Ziska vysledky vsech probhlich testovacich pripadu
@@ -387,6 +453,19 @@ public class NATTContext implements INATTContext {
         this.keywordSet.put("create_telnet_server", CreateTelnetServerKw.class);
         this.keywordSet.put("create_web_crawler", CreateWebCrawlerKw.class);
         // keyword list /////////////////////////////////////////////////////
+
+        // module list /////////////////////////////////////////////////////
+        this.moduleSet = new HashMap<String, Class<?>>();
+        this.moduleSet.put("web-crawler", WebCrawler.class);
+        this.moduleSet.put("external-program-runner", ExternalProgramRunner.class);
+        this.moduleSet.put("mqtt-broker", MQTTBroker.class);
+        this.moduleSet.put("mqtt-client", MQTTClientTester.class);
+        this.moduleSet.put("rest-tester", RESTTester.class);
+        this.moduleSet.put("smtp-email-server", SMTPEmailServer.class);
+        this.moduleSet.put("soap-tester", SOAPTester.class);
+        this.moduleSet.put("telnet-client", TelnetClient.class);
+        this.moduleSet.put("telnet-server", TelnetServer.class);
+        // module list /////////////////////////////////////////////////////
     }
 
     public static NATTContext instance() {

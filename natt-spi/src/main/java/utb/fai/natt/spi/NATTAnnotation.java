@@ -13,16 +13,29 @@ import utb.fai.natt.spi.NATTKeyword.ParamValType;
 public class NATTAnnotation {
 
     /**
-     * Annotation for simple and clear definition of keyword parameters.
+     * Annotation for full definition of NATT keyword description.
      */
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     public static @interface Keyword {
         public String name();
+
         public String description();
+
         public String[] parameters() default {};
+
         public ParamValType[] types() default {};
+
         public String kwGroup();
+    }
+
+    /**
+     * Annotation for simple and clear definition of NATT module.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public static @interface Module {
+        public String value();
     }
 
 }

@@ -41,8 +41,8 @@ public class CountAndStoreKw extends NATTKeyword {
         this.varName = VariableProcessor.processVariables(this.varName);
         this.moduleName = VariableProcessor.processVariables(this.moduleName);
 
-        CopyOnWriteArrayList<INATTMessage> messages = NATTContext.instance().getMessageBuffer().getMessages(moduleName);
-        this.varName = NATTContext.instance().storeValueToVariable(varName, String.valueOf(messages.size()));
+        CopyOnWriteArrayList<INATTMessage> messages = ctx.getMessageBuffer().getMessages(moduleName);
+        this.varName = ctx.storeValueToVariable(varName, String.valueOf(messages.size()));
         if (this.varName != null) {
             status = true;
         }
@@ -69,7 +69,7 @@ public class CountAndStoreKw extends NATTKeyword {
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
         if (this.varName != null) {
-            NATTContext.instance().getVariables().remove(this.varName);
+            ctx.getVariables().remove(this.varName);
         }
     }
 

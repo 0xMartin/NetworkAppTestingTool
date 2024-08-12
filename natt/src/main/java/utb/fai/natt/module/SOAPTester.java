@@ -5,6 +5,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  * Prijate zpravy jsou do message bufferu ukladany v textove podobne prevedene
  * do json formatu. Tag je vzdy prazdny ""
  */
+@NATTAnnotation.Module("soap-tester")
 public class SOAPTester extends NATTModule {
 
     /**
@@ -73,9 +75,7 @@ public class SOAPTester extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
-
         try {
             this.httpClient.close();
         } catch (IOException e) {
@@ -84,8 +84,7 @@ public class SOAPTester extends NATTModule {
         }
 
         logger.info(super.getNameForLogger() + String.format("SOAP tester [%s] terminated", this.getName()));
-
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

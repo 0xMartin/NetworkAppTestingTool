@@ -5,6 +5,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.PortChecker;
 
@@ -16,6 +17,7 @@ import io.moquette.broker.config.MemoryConfig;
 /**
  * Modul umoznuje spustit MQTT broker
  */
+@NATTAnnotation.Module("mqtt-broker")
 public class MQTTBroker extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(MQTTBroker.class);
@@ -54,11 +56,10 @@ public class MQTTBroker extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
         this.server.stopServer();
         logger.info(String.format(super.getNameForLogger() + "MQTT broker [%s] terminated", this.getName()));
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

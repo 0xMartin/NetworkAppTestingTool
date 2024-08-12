@@ -5,6 +5,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ import org.apache.http.util.EntityUtils;
  * je do message buferu vlozen chybovy status kod. Tag je nastaven ne adresu
  * endpointu, ze ktereho zprava prisla jako odpoved na pozadavek.
  */
+@NATTAnnotation.Module("rest-tester")
 public class RESTTester extends NATTModule {
 
     /**
@@ -101,7 +103,6 @@ public class RESTTester extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
 
         try {
@@ -113,7 +114,7 @@ public class RESTTester extends NATTModule {
 
         logger.info(super.getNameForLogger() + String.format("REST tester [%s] terminated", this.getName()));
 
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

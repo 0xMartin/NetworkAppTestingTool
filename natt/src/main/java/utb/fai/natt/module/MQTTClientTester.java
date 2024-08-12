@@ -11,6 +11,7 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
 import utb.fai.natt.core.NATTContext;
+import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.NATTLogger;
 
 /**
@@ -21,6 +22,7 @@ import utb.fai.natt.spi.NATTLogger;
  * tak jak prichazeji od komunikujici protistrany. Tag je vzdy nastaven na
  * hodnotu topicu, ze ktereho zprava prisla
  */
+@NATTAnnotation.Module("mqtt-client")
 public class MQTTClientTester extends NATTModule {
 
     protected NATTLogger logger = new NATTLogger(MQTTClientTester.class);
@@ -78,7 +80,6 @@ public class MQTTClientTester extends NATTModule {
     @Override
     public boolean terminateModule() {
         // odstraneni tohoto modulu z aktivnich modulu
-        NATTContext.instance().getModules().remove(this);
         super.setRunning(false);
 
         if (this.mqttClient.isConnected()) {
@@ -98,7 +99,7 @@ public class MQTTClientTester extends NATTModule {
 
         logger.info(super.getNameForLogger() + String.format("MQTT client [%s] terminated", this.getName()));
 
-        return true;
+        return NATTContext.instance().removeActiveModule(this.getName());
     }
 
     @Override

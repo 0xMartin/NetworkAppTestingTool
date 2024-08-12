@@ -9,7 +9,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.core.VariableProcessor;
 
 /**
@@ -31,6 +30,8 @@ public class CreateFilterActionKw extends NATTKeyword {
     protected String mode;
     protected Boolean caseSensitive;
 
+    private NATTModule module;
+
     @Override
     public boolean execute(INATTContext ctx)
             throws InternalErrorException, NonUniqueModuleNamesException {
@@ -40,16 +41,16 @@ public class CreateFilterActionKw extends NATTKeyword {
         this.tag = VariableProcessor.processVariables(this.tag);
         this.mode = VariableProcessor.processVariables(this.mode);
 
-        NATTModule module = NATTContext.instance().getModule(moduleName);
+        this.module = ctx.getActiveModule(moduleName);
 
-        if (module == null) {
+        if (this.module == null) {
             return false;
         }
-        if (!module.isRunning()) {
+        if (!this.module.isRunning()) {
             return false;
         }
 
-        module.getActionFilterList().add(new NATTModule.MessageFilter(
+        this.module.getActionFilterList().add(new NATTModule.MessageFilter(
                 this.text, this.tag, this.mode, this.caseSensitive));
 
         return true;
@@ -88,10 +89,8 @@ public class CreateFilterActionKw extends NATTKeyword {
 
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
-        NATTModule module = NATTContext.instance().getModule(moduleName);
-
-        if (module != null) {
-            module.getActionFilterList().clear();
+        if (this.module != null) {
+            this.module.getActionFilterList().clear();
         }
     }
 

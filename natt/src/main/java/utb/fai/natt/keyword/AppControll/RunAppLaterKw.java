@@ -9,7 +9,6 @@ import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.InvalidSyntaxInConfigurationException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
 
-import utb.fai.natt.core.NATTContext;
 import utb.fai.natt.spi.NATTLogger;
 import utb.fai.natt.core.VariableProcessor;
 import utb.fai.natt.module.ExternalProgramRunner;
@@ -28,6 +27,8 @@ public class RunAppLaterKw extends NATTKeyword {
     protected Long delay;
     protected String moduleName;
 
+    private ExternalProgramRunner runner;
+
     @Override
     public boolean execute(INATTContext ctx)
             throws InternalErrorException, NonUniqueModuleNamesException {
@@ -39,7 +40,7 @@ public class RunAppLaterKw extends NATTKeyword {
             throw new InternalErrorException("Delay must be higher than 0 ms!");
         }
 
-        ExternalProgramRunner runner = new ExternalProgramRunner(
+        this.runner = new ExternalProgramRunner(
                 this.moduleName == null ? "default" : this.moduleName, this.command);
 
         Thread thread = new Thread(() -> {
@@ -81,11 +82,8 @@ public class RunAppLaterKw extends NATTKeyword {
 
     @Override
     public void deleteAction(INATTContext ctx) throws InternalErrorException {
-        ExternalProgramRunner runner = (ExternalProgramRunner) NATTContext.instance()
-                .getModule(this.moduleName == null ? "default" : this.moduleName);
-        if (runner != null) {
-            runner.terminateModule();
-            NATTContext.instance().removeModule(this.moduleName == null ? "default" : this.moduleName);
+        if (this.runner != null) {
+            this.runner.terminateModule();
         }
     }
 
