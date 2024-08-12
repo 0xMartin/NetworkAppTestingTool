@@ -1,6 +1,5 @@
 package utb.fai.natt.core;
 
-import utb.fai.natt.NetworkAppTestingTool;
 import utb.fai.natt.spi.INATTPlugin;
 import utb.fai.natt.spi.NATTKeyword;
 import utb.fai.natt.spi.NATTKeyword.KeywordDocumentation;
