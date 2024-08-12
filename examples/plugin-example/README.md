@@ -43,7 +43,7 @@ In the dependencies section, add a reference to the latest version of the NATT-S
 ```gradle
 dependencies {
     // NATT SPI
-    implementation name: 'natt-spi-1.0.0'
+    implementation name: 'natt-spi-1.1.0'
 }
 ```
 
