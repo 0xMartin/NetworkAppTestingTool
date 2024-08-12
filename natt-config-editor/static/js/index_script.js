@@ -291,13 +291,13 @@ function loadKeywordInfoList() {
             item.classList.add('active');
             lastActive = item;
         
-            displayKeywordDetails(keyword);
+            displayKeywordDetails(keyword, keywordDescription);
         };
         keywordList.appendChild(item);
     });
 }
 
-function displayKeywordDetails(keyword) {
+function displayKeywordDetails(keyword, keywordDescription) {
     // Clear the existing content in the keywordDescription element
     keywordDescription.innerHTML = '';
 
@@ -308,69 +308,36 @@ function displayKeywordDetails(keyword) {
     // Create and append the title element (keyword name)
     const keywordTitle = document.createElement('div');
     keywordTitle.className = 'keyword-title';
-    keywordTitle.textContent = keyword.caption;  // Using "caption" as the keyword name
+    keywordTitle.textContent = keyword.caption; 
     keywordItem.appendChild(keywordTitle);
 
     // Create and append the group element
     const keywordGroup = document.createElement('span');
     keywordGroup.className = 'keyword-group';
-    keywordGroup.textContent = keyword.meta.split(' - ')[0]; // Extract group from meta
+    keywordGroup.textContent = keyword.meta; 
     keywordTitle.appendChild(keywordGroup);
 
     // Create and append the description element
     const keywordDesc = document.createElement('div');
     keywordDesc.className = 'keyword-description';
-    keywordDesc.textContent = keyword.meta.split(' - ')[1]; // Extract description from meta
+    keywordDesc.textContent = keyword.description;
     keywordItem.appendChild(keywordDesc);
 
     // Create and append the parameters element
     const keywordParameters = document.createElement('div');
     keywordParameters.className = 'keyword-parameters';
-    const parameters = keyword.snippet.split('\n').slice(1); // Skip the first line (keyword name)
+    const parameters = keyword.params.split(","); 
     keywordParameters.innerHTML = parameters.map(param => {
         const paramParts = param.trim().split(':');
         return `<div class="parameter-pill">
                     <span class="parameter-pill-name">${paramParts[0].trim()}</span>
-                    <span class="parameter-pill-type">${determineDataType(paramParts[1].trim())}</span>
+                    <span class="parameter-pill-type">${paramParts[1].trim()}</span>
                 </div>`;
     }).join('<br>');
     keywordItem.appendChild(keywordParameters);
 
     // Append the constructed keyword item to the description panel
     keywordDescription.appendChild(keywordItem);
-}
-
-function determineDataType(value) {
-    // Trim the value to ensure no extra spaces
-    value = value.trim();
-
-    // Check for BOOLEAN
-    if (value === "true" || value === "false") {
-        return "BOOLEAN";
-    }
-
-    // Check for LONG (integer)
-    if (!isNaN(value) && Number.isInteger(Number(value))) {
-        return "LONG";
-    }
-
-    // Check for DOUBLE (floating point)
-    if (!isNaN(value) && !Number.isInteger(Number(value)) && value.includes('.')) {
-        return "DOUBLE";
-    }
-
-    // Check for STRING (enclosed in quotes)
-    if (value.startsWith('"') && value.endsWith('"')) {
-        return "STRING";
-    }
-
-    // Check for LIST (starts and ends with square brackets)
-    if (value.startsWith('[') && value.endsWith(']')) {
-        return "LIST";
-    }
-
-    // If none of the above, return undefined
-    return "UNKNOWN";
 }
 
 function gotoHelp() {

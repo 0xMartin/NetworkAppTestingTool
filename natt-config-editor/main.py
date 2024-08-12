@@ -176,20 +176,7 @@ def get_snippets():
         # Create the keyword snippets
         keyword_snippets = []
         for keyword in keyword_list:
-            snippet = {
-                "caption": keyword["name"],
-                "snippet": f'{keyword["name"]}:\n' + '\n'.join([
-                    f'    {param}: ' + {
-                        "STRING": '"example"',
-                        "LONG": "100",
-                        "DOUBLE": "10.5",
-                        "BOOLEAN": "true",
-                        "LIST": "[]"
-                    }.get(keyword["types"][i], "example value")
-                    for i, param in enumerate(keyword["parameters"])
-                ]),
-                "meta": f'{keyword["kwGroup"]} - {keyword["description"]}'
-            }
+            snippet = generate_snippet(keyword=keyword)
             keyword_snippets.append(snippet)
 
         # Return the generated snippets as JSON
@@ -198,6 +185,34 @@ def get_snippets():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+def get_example_value(param_type):
+    return {
+        "STRING": '"example"',
+        "LONG": "100",
+        "DOUBLE": "10.5",
+        "BOOLEAN": "true",
+        "LIST": "[]"
+    }.get(param_type, "example value")
+
+def generate_snippet(keyword):
+    has_single_parameter = len(keyword["parameters"]) == 1
+    snippet = {
+        "caption": keyword["name"],
+        "snippet": (
+            f'{keyword["name"]}: ' + (
+                get_example_value(keyword["types"][0])
+                if has_single_parameter
+                else '\n' + '\n'.join([
+                    f'    {param}: {get_example_value(keyword["types"][i])}'
+                    for i, param in enumerate(keyword["parameters"])
+                ])
+            )
+        ),
+        "meta": keyword["kwGroup"],
+        "description": keyword["description"],
+        "params": ",".join(f"{param}:{type_}" for param, type_ in zip(keyword["parameters"], keyword["types"]))
+    }
+    return snippet
 
 def showPage():
     webbrowser.open_new("http://127.0.0.1:5000")

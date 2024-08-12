@@ -39,7 +39,7 @@ function registerKeywordSnippets(context: vscode.ExtensionContext, viewProvider:
 
     // Path to NATT.jar
     const jarPath = path.join(workspaceFolder, 'NATT.jar');
-    
+
     // Directory containing NATT.jar
     const jarDirectory = path.dirname(jarPath);
 
@@ -66,34 +66,36 @@ function registerKeywordSnippets(context: vscode.ExtensionContext, viewProvider:
             return;
         }
 
-        const keywordSnippets = keywordList.map(keyword => ({
-            caption: keyword.name,
-            snippet: `${keyword.name}:\n${keyword.parameters.map((param, index) => {
-                const type = keyword.types[index];
-                let exampleValue;
-                switch (type) {
-                    case 'STRING':
-                        exampleValue = `"example"`;
-                        break;
-                    case 'LONG':
-                        exampleValue = `100`;
-                        break;
-                    case 'DOUBLE':
-                        exampleValue = `10.5`;
-                        break;
-                    case 'BOOLEAN':
-                        exampleValue = `true`;
-                        break;
-                    case 'LIST':
-                        exampleValue = `[]`;
-                        break;
-                    default:
-                        exampleValue = `example value`;
-                }
-                return `    ${param}: ${exampleValue}`;
-            }).join('\n')}`,
-            meta: `${keyword.kwGroup} - ${keyword.description}`
-        }));
+        const keywordSnippets = keywordList.map(keyword => {
+            const hasSingleParameter = keyword.parameters.length === 1;
+            return {
+                caption: keyword.name,
+                snippet: hasSingleParameter
+                    ? `${keyword.name}: ${getExampleValue(keyword.types[0])}`
+                    : `${keyword.name}:\n${keyword.parameters.map((param, index) => {
+                        const type = keyword.types[index];
+                        return `    ${param}: ${getExampleValue(type)}`;
+                    }).join('\n')}`,
+                meta: `${keyword.kwGroup} - ${keyword.description}`
+            };
+        });
+        
+        function getExampleValue(type: string): string {
+            switch (type) {
+                case 'STRING':
+                    return `"example"`;
+                case 'LONG':
+                    return `100`;
+                case 'DOUBLE':
+                    return `10.5`;
+                case 'BOOLEAN':
+                    return `true`;
+                case 'LIST':
+                    return `[]`;
+                default:
+                    return `example value`;
+            }
+        }
 
         // Update the view with the keyword list
         viewProvider.showKeywords(keywordList);
@@ -211,7 +213,7 @@ export function activate(context: vscode.ExtensionContext) {
 
                 // reload keywords
                 registerKeywordSnippets(context, homeWebviewProvider);
-                
+
                 vscode.window.showInformationMessage('NATT.jar downloaded successfully. Setup complete!');
             } catch (error) {
                 vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error}`);
