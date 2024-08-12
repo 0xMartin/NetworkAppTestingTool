@@ -10,6 +10,7 @@ NATT was created as part of a thesis at TBU FAI. It is a black box testing tool 
 - **🔍 Separation:** Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
 - **🔌 Independence:** Operates independently of external network resources, allowing it to create virtual servers and clients for testing purposes.
 - **🛠️ Flexibility:** Users can easily define new test sets using specific keywords in the configuration.
+- **📦 Plugin Support:** The tool supports the creation of custom plugins, allowing users to define their own keywords, communication modules or more for enhanced functionality. Tutorial is available [here](https://github.com/0xMartin/NetworkAppTestingTool/tree/main/examples/plugin-example).
 
 ### 🔍 What Does the Tool Allow You to Test?
 

@@ -168,7 +168,7 @@ function activate(context) {
             }
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
-            const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.1/NATT.jar');
+            const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.2/NATT.jar');
             const destJarPath = path.join(projectPath, 'NATT.jar');
             // Function to download the file
             const downloadFile = async (url, dest) => {
@@ -204,6 +204,8 @@ function activate(context) {
                     await downloadFile(jarUrl, destJarPath);
                     progress.report({ message: "Download complete!" });
                 });
+                // reload keywords
+                registerKeywordSnippets(context, homeWebviewProvider);
                 vscode.window.showInformationMessage('NATT.jar downloaded successfully. Setup complete!');
             }
             catch (error) {

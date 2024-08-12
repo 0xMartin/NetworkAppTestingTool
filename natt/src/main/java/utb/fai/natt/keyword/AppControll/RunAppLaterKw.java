@@ -17,13 +17,9 @@ import utb.fai.natt.module.ExternalProgramRunner;
 /**
  * Umoznuje spustit externi testovanou aplikaci
  */
-@NATTAnnotation.Keyword(
-    name = "run_app_later",
-    description = "Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.",
-    parameters = {"command", "delay", "name"},
-    types = {ParamValType.STRING, ParamValType.LONG, ParamValType.STRING},
-    kwGroup = "NATT AppControll"
-    )
+@NATTAnnotation.Keyword(name = "run_app_later", description = "Launches the application with a time delay. This operation is asynchronous. Again, only one external application can run at a time.", parameters = {
+        "command", "delay",
+        "name" }, types = { ParamValType.STRING, ParamValType.LONG, ParamValType.STRING }, kwGroup = "NATT AppControll")
 public class RunAppLaterKw extends NATTKeyword {
 
     private NATTLogger logger = new NATTLogger(RunAppLaterKw.class);
@@ -43,14 +39,15 @@ public class RunAppLaterKw extends NATTKeyword {
             throw new InternalErrorException("Delay must be higher than 0 ms!");
         }
 
+        ExternalProgramRunner runner = new ExternalProgramRunner(
+                this.moduleName == null ? "default" : this.moduleName, this.command);
+
         Thread thread = new Thread(() -> {
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
             }
             try {
-                ExternalProgramRunner runner = new ExternalProgramRunner(
-                        this.moduleName == null ? "default" : this.moduleName, this.command);
                 runner.runModule();
             } catch (Exception e) {
                 logger.warning("Failed to run application later: " + e.getMessage());
