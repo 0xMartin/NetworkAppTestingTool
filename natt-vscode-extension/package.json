@@ -90,7 +90,7 @@
     "properties": {
       "yourExtension.nattJarUrl": {
         "type": "string",
-        "default": "https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.4/NATT.jar",
+        "default": "https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.5/NATT.jar",
         "description": "URL for the NATT JAR file"
       }
     }

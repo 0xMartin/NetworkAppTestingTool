@@ -79,7 +79,6 @@ public class NATTCore {
         this.localHostIO = new LocalHostIO("test-config.yaml");
         this.networkIO = new NetworkIO("");
         this.pluginLoader = new PluginLoader(NATTContext.instance());
-        this.pluginLoader.loadPlugins();
 
         /************************************************************************************************************************* */
 
@@ -108,6 +107,22 @@ public class NATTCore {
         }
 
         /************************************************************************************************************************* */
+        // help
+
+        if (cmd.hasOption("h")) {
+            HelpFormatter formatter = new HelpFormatter();
+            String header = "NATT version: " + NATTCore.VERSION + "\n\n";
+            String footer = "\nFor more information, visit project repository: https://github.com/0xMartin/NetworkAppTestingTool";
+            formatter.printHelp("java -jar NATT.jar", header, options, footer);
+            System.exit(0);
+        }
+
+        /************************************************************************************************************************* */
+        // load all NATT plugins
+
+        this.pluginLoader.loadPlugins();
+
+        /************************************************************************************************************************* */
 
         // title vystupniho reportu
         this.testReportName = cmd.getOptionValue("t");
@@ -133,13 +148,6 @@ public class NATTCore {
             this.validateOnly = true;
         } else {
             this.validateOnly = false;
-        }
-
-        // napoveda k pouziti
-        if (cmd.hasOption("h")) {
-            HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp("java -jar NATT.jar", options);
-            System.exit(0);
         }
 
         // zobrazi vsechny nactene pluginy
@@ -222,6 +230,7 @@ public class NATTCore {
 
     /**
      * Vrati verzi NATT
+     * 
      * @return Verze NATT
      */
     public static String getVersion() {
@@ -264,7 +273,7 @@ public class NATTCore {
         modules.stream().forEach((m) -> {
             m.terminateModule();
         });
-        if(!NATTContext.instance().getActiveModules().isEmpty()) {
+        if (!NATTContext.instance().getActiveModules().isEmpty()) {
             NATTContext.instance().getActiveModules().clear();
         }
     }
