@@ -43,7 +43,7 @@ In the dependencies section, add a reference to the latest version of the NATT-S
 ```gradle
 dependencies {
     // NATT SPI
-    implementation name: 'natt-spi-1.0.0'
+    implementation name: 'natt-spi-1.1.0'
 }
 ```
 
@@ -152,7 +152,56 @@ public class MyKeyword1 extends NATTKeyword {
 }
 ```
 
-## 6. Compile and Build
+## 6. Define Custom Modules
+
+The principle is the same as for the keyword definition. It is also necessary to register it in the NATT context. When creating module instance using the `ctx.createInstanceOfModule` method, the module remains active in the context until it is terminated.
+
+```java
+package natt.plugin;
+
+import utb.fai.natt.spi.INATTContext;
+import utb.fai.natt.spi.NATTLogger;
+import utb.fai.natt.spi.NATTModule;
+import utb.fai.natt.spi.NATTAnnotation;
+import utb.fai.natt.spi.exception.InternalErrorException;
+import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
+
+/**
+ * This is your module. Modules are used to send and receive messages. Modules
+ * are used by keywords. After creating an instance of a module, its reference
+ * is automatically inserted into the NATTContext and you can access it from
+ * several different keywords using this method "ctx.getModule(name)".
+ */
+@NATTAnnotation.Module("my_module_1")
+public class MyModule1 extends NATTModule {
+
+    private NATTLogger logger = new NATTLogger(MyModule1.class);
+
+    public MyModule1(String name, INATTContext ctx) throws NonUniqueModuleNamesException, InternalErrorException {
+        super(name, ctx);
+    }
+
+    @Override
+    public void runModule() throws InternalErrorException {
+        logger.info(super.getNameForLogger() + " Is running now!");
+    }
+
+    @Override
+    public boolean sendMessage(String message) throws InternalErrorException {
+        logger.info(super.getNameForLogger() + " sending message: " + message);
+        return true;
+    }
+
+    @Override
+    public boolean terminateModule() {
+        logger.info(super.getNameForLogger() + " is terminating...");
+        return true;
+    }
+
+}
+```
+
+## 7. Compile and Build
 
 Once you've completed the steps above, compile your project using Gradle:
 
