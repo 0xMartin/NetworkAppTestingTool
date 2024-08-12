@@ -115,7 +115,7 @@ These two diagrams illustrate how testing is conducted using the **NATT**. On th
 Basic GitLab CI/CD pipeline configuration with automatic test execution. The repository must contain the NATT.jar file as well as the configuration with the test suites.
 
 ```yaml
-image: gradle:alpine
+image: gradle:jdk17
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"
