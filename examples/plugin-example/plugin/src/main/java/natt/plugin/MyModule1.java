@@ -36,6 +36,7 @@ public class MyModule1 extends NATTModule {
     @Override
     public boolean terminateModule() {
         logger.info(super.getNameForLogger() + " is terminating...");
+        this.getContext().removeActiveModule(super.getName());
         return true;
     }
 
