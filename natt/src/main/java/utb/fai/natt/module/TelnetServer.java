@@ -93,17 +93,16 @@ public class TelnetServer extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        // odstraneni tohoto modulu z aktivnich modulu
         super.setRunning(false);
+
         try {
             serverSocket.close();
+            logger.info(super.getNameForLogger() + String.format("Telnet server [%s] terminated", this.getName()));
         } catch (IOException e) {
             logger.warning(super.getNameForLogger() + "Failed to terminate Telnet server: " + e.getMessage());
-            return false;
         }
 
-        logger.info(super.getNameForLogger() + String.format("Telnet server [%s] terminated", this.getName()));
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override

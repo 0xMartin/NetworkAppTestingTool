@@ -55,11 +55,10 @@ public class MQTTBroker extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        // odstraneni tohoto modulu z aktivnich modulu
         super.setRunning(false);
         this.server.stopServer();
         logger.info(String.format(super.getNameForLogger() + "MQTT broker [%s] terminated", this.getName()));
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override

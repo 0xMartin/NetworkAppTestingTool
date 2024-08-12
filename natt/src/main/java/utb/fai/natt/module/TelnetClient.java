@@ -88,7 +88,6 @@ public class TelnetClient extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        // odstraneni tohoto modulu z aktivnich modulu
         super.setRunning(false);
 
         try {
@@ -98,15 +97,14 @@ public class TelnetClient extends NATTModule {
                 reader.close();
             if (writer != null)
                 writer.close();
+            logger.info(super.getNameForLogger() + String.format("Telnet client [%s] terminated", this.getName()));
         } catch (IOException e) {
-            logger.warning(
-                    super.getNameForLogger() + "Failed to termite telnet client. Error message: " + e.getMessage());
-            return false;
+            logger.warning(super.getNameForLogger() +
+                    "Failed to termite telnet client. Error message: " + e.getMessage());
         }
 
-        logger.info(super.getNameForLogger() + String.format("Telnet client [%s] terminated", this.getName()));
 
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override

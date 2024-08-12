@@ -79,12 +79,12 @@ public class MQTTClientTester extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        // odstraneni tohoto modulu z aktivnich modulu
         super.setRunning(false);
 
         if (this.mqttClient.isConnected()) {
             try {
                 this.mqttClient.disconnect();
+                logger.info(super.getNameForLogger() + "MQTT client disconnected from broker.");
             } catch (MqttException e) {
                 logger.warning(super.getNameForLogger() + "Failed to disconnect MQTT client: " + e.getMessage());
             }
@@ -92,14 +92,12 @@ public class MQTTClientTester extends NATTModule {
 
         try {
             this.mqttClient.close();
+            logger.info(super.getNameForLogger() + String.format("MQTT client [%s] terminated", this.getName()));
         } catch (MqttException e) {
             logger.warning(super.getNameForLogger() + "Failed to terminate MQTT client: " + e.getMessage());
-            return false;
         }
 
-        logger.info(super.getNameForLogger() + String.format("MQTT client [%s] terminated", this.getName()));
-
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override

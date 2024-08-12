@@ -105,7 +105,7 @@ public class SMTPEmailServer extends NATTModule {
         super.setRunning(false);
         smtpServer.stop();
         logger.info(super.getNameForLogger() + String.format("SMTP email server [%s] terminated", this.getName()));
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override

@@ -74,17 +74,16 @@ public class SOAPTester extends NATTModule {
 
     @Override
     public boolean terminateModule() {
-        // odstraneni tohoto modulu z aktivnich modulu
         super.setRunning(false);
+
         try {
             this.httpClient.close();
+            logger.info(super.getNameForLogger() + String.format("SOAP tester [%s] terminated", this.getName()));
         } catch (IOException e) {
             logger.warning(super.getNameForLogger() + "Failed to close client: " + e.getMessage());
-            return false;
         }
 
-        logger.info(super.getNameForLogger() + String.format("SOAP tester [%s] terminated", this.getName()));
-        return NATTContext.instance().removeActiveModule(this.getName());
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override
@@ -92,14 +91,14 @@ public class SOAPTester extends NATTModule {
         if (message == null || message.isEmpty()) {
             return false;
         }
-    
+
         // vytvoreni pozadavku
         HttpPost httpPost = new HttpPost(url);
-    
+
         // nastavi SOAP XML jako obsahu pozadavku
         StringEntity entity = new StringEntity(message, ContentType.create("text/xml", "UTF-8"));
         httpPost.setEntity(entity);
-    
+
         // odeslani pozadavku na SOAP sluzbu
         logger.info(super.getNameForLogger() + "Sending a request on URL: " + this.url);
         try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
@@ -115,7 +114,7 @@ public class SOAPTester extends NATTModule {
                     super.notifyMessageListeners("", RESTTester.ERROR_CODE_PREFIX + String.valueOf(statusCode));
                     return true;
                 }
-    
+
                 try (BufferedReader rd = new BufferedReader(new InputStreamReader(responseEntity.getContent()))) {
                     StringBuilder result = new StringBuilder();
                     String line;
@@ -127,7 +126,7 @@ public class SOAPTester extends NATTModule {
                     super.notifyMessageListeners("", jsonResponse);
                 }
             }
-            
+
         } catch (IOException e) {
             logger.warning(super.getNameForLogger() + "Failed to send request: " + e.getMessage());
             return false;
@@ -135,7 +134,7 @@ public class SOAPTester extends NATTModule {
             logger.warning(super.getNameForLogger() + "Failed process response: " + e.getMessage());
             return false;
         }
-    
+
         return true;
     }
 

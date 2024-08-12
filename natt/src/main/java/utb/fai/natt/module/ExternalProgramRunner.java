@@ -102,17 +102,17 @@ public class ExternalProgramRunner extends NATTModule {
             try {
                 outputStream.close();
             } catch (IOException e) {
+                logger.warning(super.getNameForLogger() + "Failed to close output stream!");
             }
 
             try {
                 ProcessManager.removePID(ProcessManager.DEFAULT_FILE, String.valueOf(this.currentPID));
             } catch (Exception ex) {
+                logger.warning(super.getNameForLogger() + "Failed to remove PID from file!");
             }
-
-            return true;
         }
 
-        return false;
+        return this.getContext().removeActiveModule(this.getName());
     }
 
     @Override
