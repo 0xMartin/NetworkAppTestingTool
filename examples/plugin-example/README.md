@@ -117,7 +117,7 @@ import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
     name = "my_keyword_1",
     description = "This is my first keyword.",
     parameters = { "name" },
-    types = { ParamValType.STRING, ParamValType.LONG },
+    types = { ParamValType.STRING },
     kwGroup = PluginMain.NAME
     )
 public class MyKeyword1 extends NATTKeyword {
