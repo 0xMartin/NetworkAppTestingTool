@@ -16,7 +16,11 @@
 
 # 💡 Description of testing tool
 
-This **Black Box Testing** Tool is designed for automating the testing of **network application** or **console applications**. It tests how applications **interact with their environment** and does not test the internal behavior of the application. It offers several key features:
+This **Black Box Testing** Tool is designed for automating the testing of **network application** or **console applications**. It tests how applications **interact with their environment** and does not test the internal behavior of the application. 
+
+> **Video tutorial on YouTube: [How to use NATT?](https://youtu.be/QWM2mg2x6cA)**
+
+**It offers several key features:**
 
 - **🌐 Universality**: The tool supports testing various types of software applications regardless of their implementation details.
 - **🔍 Separation**: Emphasizes the separation of the evaluation application and its internal logic from the tested tasks.
@@ -55,15 +59,18 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 * **VS Code Extension: [NATT Editor for VS Code](https://marketplace.visualstudio.com/items?itemName=0xM4R71N.natt-configuration-editor)**
 
-* **How to create custom plugin for NATT? [plugin-example.md](./examples/plugin-example)**
+* **Custom configuration editor: [NATT Configuration Editor](./natt-config-editor)**
   
-* Configuration editor: [NATT Configuration Editor](./natt-config-editor)
+* **How to create custom plugin for NATT? [plugin-example.md](./examples/plugin-example)**
+
+* Video tutorial on YouTube: [NATT Tutorial](https://youtu.be/QWM2mg2x6cA)
   
 * NATT-SPI documentation: [natt-spi](./natt-spi)
 
 * Simple example project: [project-example](./examples/project-example)
 
 * Test suite configuration for all task types: [configuration-examples](./examples/configuration-examples)
+
 
 ## System Requirements
 
