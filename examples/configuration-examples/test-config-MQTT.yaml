@@ -31,7 +31,7 @@ test_root:
             test_cases: 
                 - test_case:
                     name: "Test automaticky odesílaných zpráv"
-                    description: "V tomto testovacím případě bude testováno, zda v definovaných 10-ti sekundových intervalech přichází automaticky zpráva z naměřenou úrovní vlhkosti půdy."
+                    description: "V tomto testovacím případě bude testováno, zda v definovaných 10-ti sekundových intervalech přichází automaticky zpráva z naměřenou urovní vlhkosti půdy."
                     steps: 
                         # spusti testovaneho klienta
                         - run_app_later: 
@@ -84,7 +84,7 @@ test_root:
             test_cases: 
                 - test_case:
                     name: "Test získaní stavu zavlažování"
-                    description: "Bude ověřováno, zda testovaný klient reaguje na zprávy pro získaní aktuálního stavu zavlažování."
+                    description: "Bude ověřováno, zda testovaný klient reaguje na zpravy pro získaní aktuálního stavu zavlažování."
                     steps: 
                         # spusti testovaneho klienta
                         - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
@@ -105,7 +105,7 @@ test_root:
                             result: true
                 - test_case:
                     name: "Test řízení zavlažování"
-                    description: "Bude ověřováno, zda testovaný klient správně reaguje na zprávy pro řízení zavlažování."
+                    description: "Bude ověřováno, zda testovaný klient reaguje na zprávy pro řízení zavlažování."
                     steps: 
                         # spusti testovaneho klienta
                         - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
@@ -142,7 +142,7 @@ test_root:
                             result: true
                 - test_case:
                     name: "Test automatického zastavení zavlažování"
-                    description: "Bude testováno, zda testovaný klient automaticky zastaví zavlažování po 30 sekundách od poslední přijaté zprávy, pro zahájení zavlažování."
+                    description: "Bude testováno, zda testovaný klient automaticky zastaví zavlažování po 30 sekundách od poslední přijaté zprávy pro zahájení zavlažování."
                     steps: 
                         # spusti testovaneho klienta
                         - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.1 0.1"
@@ -203,7 +203,7 @@ test_root:
                             case_sensitive: false
                 - test_case:
                     name: "Test odeslání chybové hlášky zalažování"
-                    description: "Bude testováno, zda dojde k automatickému odeslání chybové hlašky při poruše zavlažování. Parametry pro simulaci v testované aplikaci jsou nastaveny tak, aby k chybě došlo co nejdříve."
+                    description: "Bude testováno, zda dojde k automatickému odeslání chybové hlašky při poruše zalažování. Parametry pro simulaci v testované aplikaci jsou nastaveny tak, aby k chybě došlo co nejdříve."
                     steps: 
                         # spusti se aplikace pro testovani
                         - run_app: "java -jar app/build/libs/app-all.jar 2493434934 0.95 0.95"

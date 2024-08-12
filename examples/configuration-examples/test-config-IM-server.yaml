@@ -225,7 +225,7 @@ test_root:
                             mode: "contains"
                 - test_case:
                     name: "Test změny na neunikátní jméno"
-                    description: "Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude neunikátní v rámci IM serveru a tak se předpokládá, že mu nebude změněno, jelikož už jiný uživatel toto jméno má nastaveno."
+                    description: "Testuje funkčnost příkazu pro změnu jména uživatele. Jméno bude neunikátní v rámci IM serveru a tak se předpokládá, že mu nebude změněno, jelikož už jiný uživatel toto jméno má."
                     steps: 
                         # odesle prikaz pro zmenu jmena
                         - module_send:

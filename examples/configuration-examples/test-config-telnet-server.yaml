@@ -177,7 +177,7 @@ test_root:
                             var_name: "var-3"
                             value: 2
         - test_suite:
-            name: "Testování omezení počtu připojení k serveru"
+            name: "Testování omezení počtu připojení k server"
             delay: 500
             initial_steps:
                 # vytvori 6 virtualni telnet klienty (max kapacita serveru je nastavena na 5)
@@ -214,7 +214,7 @@ test_root:
             test_cases: 
                 - test_case:
                     name: "Testování omezení počtu klientů 1"
-                    description: "Server byl spušten s paramatrem, který určuje, že k serveru se může připojit pouze 5 klientů. K tomuto serveru se následně pokouší připojit 6 klientů. U posledního klienta 'client-6' se očekává, že nebude zpět přijímat zprávy od serveru, protože se nemůže připojit."
+                    description: "Server byl spušten s paramater, který určuje, že k serveru se může připojit pouze 5 klientů. K tomuto serveru bylo následně připojeno 6 klientu. U posledního klienta 'client-6' se očekavá, že nebude zpět přijímat zprávy od serveru, protože se nemuže připojit."
                     steps: 
                         # odeslani testovacich zprav na server
                         - module_send:

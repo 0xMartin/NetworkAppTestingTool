@@ -5,12 +5,12 @@ test_root:
         - run_app: "java -jar build/libs/RESTAPIServer-0.0.1-SNAPSHOT.jar"
         # ceka nez se server spusti (vypis textu: Started RestapiServerApplication in)
         - create_filter_action:
-            name: "app-std-out"
+            name: "default"
             text: "Started RestapiServerApplication in"
             mode: "contains"
             case_sensitive: false
         - wait_until:
-            module_name: "app-std-out"
+            module_name: "default"
             time_out: 30000
         # cisteni databaze na zacatku
         - create_rest_tester:
@@ -38,7 +38,7 @@ test_root:
             test_cases: 
                 - test_case:
                     name: "Test vytvoření uživatele"
-                    description: "V tomto testovacím případě bude odeslan požadavek na vytvoření jednoho uživatele. Naslědně v dalším požadavku bude ověřeno, zda tento uživatel byl opravu vytvořen."
+                    description: "V tomto testovacím případě bude odeslan požadavek na vytvoření jednoho uživatele. Naslědně v další požadavku bude ověřeno, zda tento uživatel byl opravu vytvořen."
                     steps: 
                         # odesle request na vytvoreni uzivatele
                         - module_send:
@@ -138,7 +138,7 @@ test_root:
                             exact_mode: false
                 - test_case:
                     name: "Test aktualizace uživatele s neplatnými údaji 1"
-                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji. Předpokládá se, že tato úprava nebude umožněna."
+                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji."
                     steps: 
                         # odesle pozadavek na ziskani vsech uzivatelu
                         - module_send:
@@ -166,7 +166,7 @@ test_root:
                             case_sensitive: false
                 - test_case:
                     name: "Test aktualizace uživatele s neplatnými údaji 2"
-                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji. Předpokládá se, že tato úprava nebude umožněna."
+                    description: "V tomto testovacím případě bude odeslán požadavek na úpravu jednoho uživatele s neplatnými údaji."
                     steps: 
                         # odesle pozadavek na ziskani vsech uzivatelu
                         - module_send:

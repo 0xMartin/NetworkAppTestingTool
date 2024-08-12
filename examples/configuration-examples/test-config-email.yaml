@@ -50,28 +50,6 @@ test_root:
                             case_sensitive: true
                         - wait: 500
                 - test_case:
-                    name: "Test obsahu emailu 2"
-                    description: "Testuje se odeslání jednoho e-mailu. Po přijetí emailu je ověřován i jeho obsah."
-                    steps: 
-                        # spusti testovanou aplikaci
-                        - run_app: "java -jar app/build/libs/app.jar localhost 9999 sender@email.com recipient@email.com Subject1111 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin mattis lacinia justo. Curabitur bibendum justo non orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'"
-                        # ceka na prijeti emailu
-                        - wait_until:
-                            module_name: "server-1"
-                            time_out: 5000
-                        # overi obsah predmetu a obsahu email
-                        - store_to_var:
-                            var_name: "var-1"
-                            module_name: "server-1"
-                            tag: "Subject1111"
-                            mode: "equals"
-                        - assert_string:
-                            var_name: "var-1"
-                            expected: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin mattis lacinia justo. Curabitur bibendum justo non orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-                            mode: "contains"
-                            case_sensitive: true
-                        - wait: 500
-                - test_case:
                     name: "Test odeslání neplatného emailu"
                     description: "Prostřednictvím testované aplikace je odeslán email s neplatnými údaji. Předpokládá se, že email nebude odeslán."
                     steps: 

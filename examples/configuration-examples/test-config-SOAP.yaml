@@ -5,12 +5,12 @@ test_root:
         - run_app: "java -jar build/libs/book-web-service-0.1.0.jar"
         # pocka na spusteni spring aplikace (cekana na string: Started SOAPBookServiceApplication in)
         - create_filter_action:
-            name: "app-std-out"
+            name: "default"
             text: "Started SOAPBookServiceApplication in"
             mode: "contains"
             case_sensitive: true
         - wait_until:
-            module_name: "app-std-out"
+            module_name: "default"
             time_out: 40000
         # vytvori tester pro SOAP
         - create_soap_tester:

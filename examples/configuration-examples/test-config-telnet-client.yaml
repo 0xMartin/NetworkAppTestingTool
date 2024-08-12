@@ -72,7 +72,7 @@ test_root:
                             value: 5
                 - test_case:
                     name: "Test odeslání zprávy 3"
-                    description: "Bude odesláno několik zpráv. Budou testovano, zda seznam doručených zpráv neobsahuje zprávy, které nebyli odesílány."
+                    description: "Bude odeslano několik zpráv. Budou testovano, zda seznam doručenych zprav neobsahuje zprávy, které nebyli odesílány."
                     steps:
                         # testovane aplikaci pres std in zada zpravy pro odeslani
                         - standard_stream_send: "This is test message 1"
@@ -110,7 +110,7 @@ test_root:
                         # overeni prijateho obsahu
                         - buffer_get:
                             var_name: "var-1"
-                            module_name: "app-std-out"
+                            module_name: "default"
                             index: 0
                         - assert_string:
                             var_name: "var-1"
@@ -133,11 +133,11 @@ test_root:
                         # overeni obsahu
                         - buffer_get:
                             var_name: "var-1"
-                            module_name: "app-std-out"
+                            module_name: "default"
                             index: 0
                         - buffer_get:
                             var_name: "var-2"
-                            module_name: "app-std-out"
+                            module_name: "default"
                             index: 1
                         - assert_string:
                             var_name: "var-1"
