@@ -4,6 +4,7 @@
 natt/build/
 natt/bin/
 natt/natt-logs
+natt/pid-list.txt
 
 natt-spi/build/
 natt-spi/bin/
@@ -11,8 +12,12 @@ natt-spi/bin/
 natt-vscode-extension/.vscode/
 natt-vscode-extension/node_modules/
 
+natt-config-editor/natt-logs
+
 examples/project-example/build/
 examples/project-example/bin/
+examples/project-example/pid-list.txt
+examples/project-example/natt-logs
 
 examples/plugin-example/build/
 examples/plugin-example/bin/
