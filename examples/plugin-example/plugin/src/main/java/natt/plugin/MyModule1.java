@@ -6,7 +6,6 @@ import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.NATTAnnotation;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
-
 /**
  * This is your module. Modules are used to send and receive messages. Modules
  * are used by keywords. After creating an instance of a module, its reference
