@@ -18,13 +18,9 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
  * Umoznuje definovat root struktur celeho testovani. Tato strukturma musi byt
  * vzdy jako hlavni a musi byt na zacatku konfigurace
  */
-@NATTAnnotation.Keyword(
-    name = "test_root",
-    description = "Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.",
-    parameters = { "max_points", "initial_steps", "test_suites" },
-    types = { ParamValType.DOUBLE, ParamValType.LIST, ParamValType.LIST },
-    kwGroup = "NATT Main"
-    )
+@NATTAnnotation.Keyword(name = "test_root", description = "Marks the root element of the test configuration. It must be located at the beginning of the testing configuration. Tests start executing from this point.", parameters = {
+        "max_points", "initial_steps",
+        "test_suites" }, types = { ParamValType.DOUBLE, ParamValType.LIST, ParamValType.LIST }, kwGroup = "NATT Main")
 public class TestRootKw extends NATTKeyword {
 
     // zpracovane parametry
@@ -65,7 +61,7 @@ public class TestRootKw extends NATTKeyword {
             if (!keyword.execute(ctx)) {
                 passed = false;
             }
-            
+
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
@@ -118,10 +114,14 @@ public class TestRootKw extends NATTKeyword {
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // pro logovani vysledu inicializacnich akci
-        this.result = new TestCaseResult("Test root initialization", null, "",
-                NATTContext.instance().getReportExtent());
-        this.result.includeInFinalScore(false);
-        NATTContext.instance().bindTestCaseResult(this.result);
+        if (initialSteps != null) {
+            if (!initialSteps.isEmpty()) {
+                this.result = new TestCaseResult("Test root initialization", null, "",
+                        NATTContext.instance().getReportExtent());
+                this.result.includeInFinalScore(false);
+                NATTContext.instance().bindTestCaseResult(this.result);
+            }
+        }
     }
 
     @Override

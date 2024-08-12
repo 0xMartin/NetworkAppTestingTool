@@ -17,13 +17,9 @@ import utb.fai.natt.reportGenerator.TestCaseResult;
 /**
  * Umoznuje definovat testovaci sadu
  */
-@NATTAnnotation.Keyword(
-    name = "test_suite", 
-    description = "Used to define a testing suite.", 
-    parameters = { "name", "delay", "initial_steps", "test_cases" }, 
-    types = { ParamValType.STRING, ParamValType.LONG, ParamValType.LIST, ParamValType.LIST },
-    kwGroup = "NATT Main"
-    )
+@NATTAnnotation.Keyword(name = "test_suite", description = "Used to define a testing suite.", parameters = { "name",
+        "delay", "initial_steps", "test_cases" }, types = { ParamValType.STRING, ParamValType.LONG, ParamValType.LIST,
+                ParamValType.LIST }, kwGroup = "NATT Main")
 public class TestSuiteKw extends NATTKeyword {
 
     protected NATTLogger logger = new NATTLogger(TestSuiteKw.class);
@@ -121,10 +117,15 @@ public class TestSuiteKw extends NATTKeyword {
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // pro logovani vysledu inicializacnich akci
-        this.result = new TestCaseResult("Test suite '" + this.getName() + "' initialization", this.getName(), "",
-                NATTContext.instance().getReportExtent());
-        this.result.includeInFinalScore(false);
-        NATTContext.instance().bindTestCaseResult(this.result);
+        if (initialSteps != null) {
+            if (!initialSteps.isEmpty()) {
+                this.result = new TestCaseResult("Test suite '" + this.getName() + "' initialization", this.getName(),
+                        "",
+                        NATTContext.instance().getReportExtent());
+                this.result.includeInFinalScore(false);
+                NATTContext.instance().bindTestCaseResult(this.result);
+            }
+        }
     }
 
     @Override
