@@ -609,6 +609,10 @@ Creates a module that launches a web crawler.
 | `start_url`   | string   | URL to start crawling from.                |
 | `max_depth`   | long     | Maximum depth to crawl.                    |
 | `analyzer`    | string   | Analyzer to use for parsing the web pages. |
+
+| **Analyzer** | **Input param**   | **Output format** |
+| ------------ | ----------------- | ----------------- |
+| `word-freq`  | Output word count | `word;count`      |
   
 ```yaml
 create_web_crawler:
