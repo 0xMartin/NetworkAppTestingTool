@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  8 AUG 2024 14:16
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.8.4)  13 AUG 2024 14:18
  restricted system commands enabled.
 **poster.tex
 (./poster.tex
@@ -1536,14 +1536,14 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  40933 strings out of 477805
- 305241,1648299 words of node,token memory allocated
- 66635 words of node memory still in use:
-   364 hlist, 40 vlist, 38 rule, 542 disc, 70 local_par, 10 math, 1465 glue, 861
- kern, 190 penalty, 5032 glyph, 942 attribute, 83 glue_spec, 942 attribute_list,
+ 305225,1648299 words of node,token memory allocated
+ 66549 words of node memory still in use:
+   364 hlist, 40 vlist, 38 rule, 539 disc, 70 local_par, 10 math, 1469 glue, 866
+ kern, 190 penalty, 5018 glyph, 940 attribute, 83 glue_spec, 940 attribute_list,
  4 write, 152 pdf_literal, 270 pdf_colorstack, 6 pdf_setmatrix, 6 pdf_save, 6 pd
 f_restore nodes
-   avail lists: 1:1,2:435,3:1111,4:957,5:2729,6:218,7:20145,8:17,9:1452,10:25,11
-:1646
+   avail lists: 1:1,2:435,3:1111,4:957,5:2744,6:218,7:20115,8:17,9:1452,10:23,11
+:1637
  59705 multiletter control sequences out of 65536+600000
  96 fonts using 16259903 bytes
  128i,20n,115p,726b,1073s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1552,7 +1552,7 @@ share/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/sha
 re/texlive/texmf-dist/fonts/truetype/typoland/lato/Lato-Light.ttf></usr/share/te
 xlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Regular.otf></usr/shar
 e/texlive/texmf-dist/fonts/opentype/impallari/raleway/Raleway-Bold.otf>
-Output written on poster.pdf (1 page, 466688 bytes).
+Output written on poster.pdf (1 page, 466579 bytes).
 
 PDF statistics: 71 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
