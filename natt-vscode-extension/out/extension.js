@@ -148,6 +148,15 @@ function activate(context) {
             const projectPath = workspaceFolders[0].uri.fsPath;
             vscode.window.showInformationMessage('NATT initialization started!');
             /****************************************************************************************************************************** */
+            const pluginsFolderPath = path.join(projectPath, 'plugins');
+            if (!fs.existsSync(pluginsFolderPath)) {
+                fs.mkdirSync(pluginsFolderPath, { recursive: true });
+                console.log('The plugins folder has been created.');
+            }
+            else {
+                console.log('The plugins folder already exists.');
+            }
+            /****************************************************************************************************************************** */
             const sourceYamlPath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
             const destYamlPath = path.join(projectPath, 'test-config.yaml');
             // Check if the YAML file already exists
@@ -228,7 +237,7 @@ function activate(context) {
                 });
                 // reload keywords
                 registerKeywordSnippets(context, homeWebviewProvider);
-                vscode.window.showInformationMessage('NATT.jar downloaded successfully. Setup complete!');
+                vscode.window.showInformationMessage('Setup complete!');
             }
             catch (error) {
                 vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error}`);
