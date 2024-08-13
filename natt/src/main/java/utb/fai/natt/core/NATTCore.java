@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 /**
  * Hlavni trida testovaciho nastroju. Zajistuje pospupne zpracovani vsech testu
@@ -405,13 +406,30 @@ public class NATTCore {
             throw new InternalErrorException("Failed to generate report!");
         }
 
-        // urci finalni status testovani a podle jeho vysledku navrati prislusny status
-        // kod
+        // shrnuti vysledku testovani (vypise vsechny pripadne testovaci pripady ktere selhaly)
+        LinkedList<String> list = new LinkedList<>();
+        NATTContext.instance().getTestCaseResults().stream().forEach(tc -> {
+            if (!tc.isPassed()) {
+                list.add(tc.getTestCaseName());
+            }
+        });
+        if(list.isEmpty()) {
+            logger.info("All test cases passed.");
+        } else {
+            String listStr = list.stream()
+                    .map(s -> "\"" + s + "\"")
+                    .collect(Collectors.joining(", "));
+            logger.warning("Failed test cases: " + listStr);
+        }
+
+        // vypise finalni skore testovani (pokud je vyzadovano)
         boolean passed = NATTContext.instance().getTestCaseResults().stream().allMatch(tc -> tc.isPassed());
         if (NATTContext.instance().getMaxScore() > 0) {
             logger.info(String.format("Final score: %f", NATTContext.instance().getFinalScore()));
         }
-        logger.info(String.format("Report generating done. Leaving status: %s", passed ? "PASSED" : "FAILED"));
+
+        // finalni status celeho testovani
+        logger.info(String.format("Testing done. Leaving status: %s", passed ? "PASSED" : "FAILED"));
 
         // navrati finalni status kod
         System.exit(passed ? StatusCode.TEST_PASSED : StatusCode.TEST_FAILED);
