@@ -31,7 +31,7 @@ The tested applications can be written in any language.
 
 ## 🌟 Features of the NATT Configuration Editor
 
-- **📝 Intuitive Configuration Editor:** Easily create and modify test configurations with syntax highlighting and autocomplete.
+- **📝 Intuitive Configuration Editor:** Easily create and modify test configurations with code autocomplete.
 - **🧪 Execute Tests:** Directly execute and manage tests from within the extension, streamlining your workflow and providing immediate feedback.
 - **📊 Test Report Viewer:** View detailed test reports within VS Code, allowing you to analyze results without leaving your development environment.
 - **💡 Code Snippets:** Quickly insert common test configuration snippets to speed up the writing process.
@@ -65,4 +65,6 @@ The VS Code editor showing the configuration file on the left and the test resul
 4. **Configure Your Tests:** Implements your test suites in configuration files `test-config.yaml`.
 5. **Run Tests:** Execute your tests directly from the terminal or using the provided commands.
 6. **View Reports:** Access detailed test reports within the editor to review and analyze the results.
+
+> It is recommended to set the **Tab Display Size** on **4**
 
