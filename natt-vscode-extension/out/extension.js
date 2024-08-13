@@ -147,6 +147,7 @@ function activate(context) {
         if (workspaceFolders && workspaceFolders.length > 0) {
             const projectPath = workspaceFolders[0].uri.fsPath;
             vscode.window.showInformationMessage('NATT initialization started!');
+            /****************************************************************************************************************************** */
             const sourceYamlPath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
             const destYamlPath = path.join(projectPath, 'test-config.yaml');
             // Check if the YAML file already exists
@@ -157,6 +158,7 @@ function activate(context) {
             else {
                 vscode.window.showInformationMessage('test-config.yaml already exists, skipping copy.');
             }
+            /****************************************************************************************************************************** */
             const sourceGitLabYamlPath = path.join(context.extensionPath, 'resources', '.gitlab-ci.yml');
             const destGitLabYamlPath = path.join(projectPath, '.gitlab-ci.yml');
             // Check if the gitlab-ci file already exists
@@ -167,6 +169,24 @@ function activate(context) {
             else {
                 vscode.window.showInformationMessage('.gitlab-ci.yml already exists, skipping copy.');
             }
+            /****************************************************************************************************************************** */
+            const sourceGithubYamlPath = path.join(context.extensionPath, 'resources', 'github-ci.yml');
+            const destGithubFolder = path.join(projectPath, '.github', 'workflows');
+            const destGithubYamlPath = path.join(destGithubFolder, 'github-ci.yml');
+            // Check if the .github/workflows folder exists, if not, create it
+            if (!fs.existsSync(destGithubFolder)) {
+                fs.mkdirSync(destGithubFolder, { recursive: true });
+                vscode.window.showInformationMessage('.github/workflows folder created successfully!');
+            }
+            // Check if the github-ci.yml file already exists
+            if (!fs.existsSync(destGithubYamlPath)) {
+                fs.copyFileSync(sourceGithubYamlPath, destGithubYamlPath);
+                vscode.window.showInformationMessage('github-ci.yml copied successfully!');
+            }
+            else {
+                vscode.window.showInformationMessage('github-ci.yml already exists, skipping copy.');
+            }
+            /****************************************************************************************************************************** */
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
             const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.6/NATT.jar');
@@ -194,6 +214,7 @@ function activate(context) {
                     https.get(url, handleResponse).on('error', reject);
                 });
             };
+            /****************************************************************************************************************************** */
             try {
                 // Use vscode.window.withProgress to show a loading bar during the download
                 await vscode.window.withProgress({
