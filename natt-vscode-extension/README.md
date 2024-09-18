@@ -40,6 +40,15 @@ The extension provides several commands to facilitate testing:
 - **✅ NATT Validate:** Validates the configuration file for syntax errors.
 - **🔄 NATT Reload:** Reloads the keywords list (snippets, descriptions, etc.).
 
+## 📝 NATT Config Files
+
+The following configuration files are used to manage NATT tests:
+
+- **natt-args.txt:** This file contains the arguments passed to NATT.jar when running the tests. It is only used when invoking the **command NATT run through the VS Code extension**.
+- **test-config.yaml:** In this file, you should implement your test configuration (test scenario). It defines how the tests will be executed.
+
+Additionally, a script is automatically generated for both GitHub and GitLab CI/CD pipelines to run the tests as part of your automated testing process.
+
 ## 🚀 Installation
 
 1. **Install the Extension:** Search for "NATT Configuration Editor" in the Visual Studio Code extensions marketplace and install it.

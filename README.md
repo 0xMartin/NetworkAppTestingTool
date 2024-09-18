@@ -105,6 +105,8 @@ Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 >**You can also use the script that will build the NATT SPI and NATT testing tool: `./full_build.sh`**
 
+>**For successful build you need have installed UTF-8 charset in your system. Testing requires UTF-8 special characters.**
+
 ---
 
 ## 🧪 Testing diagrams 

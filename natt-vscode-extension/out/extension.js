@@ -40,10 +40,57 @@ const reportwebviewprovider_1 = __importDefault(require("./reportwebviewprovider
 let testTerminal;
 const pipeline = (0, util_1.promisify)(stream.pipeline);
 let currentCompletionProvider;
+/**
+ * Check if NATT.jar file exists in project
+ * @param projectPath Path to root directory of the project
+ * @returns True if file exists
+ */
 function checkNattJarExists(projectPath) {
     const jarPath = path.join(projectPath, 'NATT.jar');
     return fs.existsSync(jarPath);
 }
+/**
+ * Function to download the file with progress
+ * @param url URL of file that you need download
+ * @param dest Destination of file
+ * @returns Promise
+ */
+const downloadFileWithProgress = async (url, dest) => {
+    return new Promise((resolve, reject) => {
+        https.get(url, (response) => {
+            if (response.statusCode === 200) {
+                const progressOptions = {
+                    location: vscode.ProgressLocation.Notification, // Zobrazení jako notifikace
+                    title: "Downloading NATT.jar",
+                    cancellable: false,
+                };
+                vscode.window.withProgress(progressOptions, (progress) => {
+                    return new Promise((progressResolve) => {
+                        const fileStream = fs.createWriteStream(dest);
+                        pipeline(response, fileStream)
+                            .then(() => {
+                            progressResolve();
+                            resolve();
+                        })
+                            .catch(reject);
+                    });
+                });
+            }
+            else if (response.statusCode === 302 || response.statusCode === 301) {
+                const redirectUrl = response.headers.location;
+                if (redirectUrl) {
+                    downloadFileWithProgress(redirectUrl, dest).then(resolve).catch(reject);
+                }
+                else {
+                    reject(new Error('Redirect location not found'));
+                }
+            }
+            else {
+                reject(new Error(`Failed to get '${url}' (${response.statusCode})`));
+            }
+        }).on('error', reject);
+    });
+};
 /**
  * Register keyword snippets for the current version of NATT.jar. First call java -jar NATT.jar -kd. Then from the output read and parse the keywords snippets.
  * @param context VS Code context
@@ -157,39 +204,50 @@ function activate(context) {
                 console.log('The plugins folder already exists.');
             }
             /****************************************************************************************************************************** */
-            const sourceYamlPath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
-            const destYamlPath = path.join(projectPath, 'test-config.yaml');
+            var sourcePath = path.join(context.extensionPath, 'resources', 'test-config.yaml');
+            var destPath = path.join(projectPath, 'test-config.yaml');
             // Check if the YAML file already exists
-            if (!fs.existsSync(destYamlPath)) {
-                fs.copyFileSync(sourceYamlPath, destYamlPath);
+            if (!fs.existsSync(destPath)) {
+                fs.copyFileSync(sourcePath, destPath);
                 vscode.window.showInformationMessage('test-config.yaml copied successfully!');
             }
             else {
                 vscode.window.showInformationMessage('test-config.yaml already exists, skipping copy.');
             }
             /****************************************************************************************************************************** */
-            const sourceGitLabYamlPath = path.join(context.extensionPath, 'resources', '.gitlab-ci.yml');
-            const destGitLabYamlPath = path.join(projectPath, '.gitlab-ci.yml');
+            sourcePath = path.join(context.extensionPath, 'resources', 'natt-args.txt');
+            destPath = path.join(projectPath, 'natt-args.txt');
+            // Check if the TXT file already exists
+            if (!fs.existsSync(destPath)) {
+                fs.copyFileSync(sourcePath, destPath);
+                vscode.window.showInformationMessage('natt-args.txt copied successfully!');
+            }
+            else {
+                vscode.window.showInformationMessage('natt-args.txt already exists, skipping copy.');
+            }
+            /****************************************************************************************************************************** */
+            sourcePath = path.join(context.extensionPath, 'resources', '.gitlab-ci.yml');
+            destPath = path.join(projectPath, '.gitlab-ci.yml');
             // Check if the gitlab-ci file already exists
-            if (!fs.existsSync(destGitLabYamlPath)) {
-                fs.copyFileSync(sourceGitLabYamlPath, destGitLabYamlPath);
+            if (!fs.existsSync(destPath)) {
+                fs.copyFileSync(sourcePath, destPath);
                 vscode.window.showInformationMessage('.gitlab-ci.yml copied successfully!');
             }
             else {
                 vscode.window.showInformationMessage('.gitlab-ci.yml already exists, skipping copy.');
             }
             /****************************************************************************************************************************** */
-            const sourceGithubYamlPath = path.join(context.extensionPath, 'resources', 'github-ci.yml');
+            sourcePath = path.join(context.extensionPath, 'resources', 'github-ci.yml');
             const destGithubFolder = path.join(projectPath, '.github', 'workflows');
-            const destGithubYamlPath = path.join(destGithubFolder, 'github-ci.yml');
+            destPath = path.join(destGithubFolder, 'github-ci.yml');
             // Check if the .github/workflows folder exists, if not, create it
             if (!fs.existsSync(destGithubFolder)) {
                 fs.mkdirSync(destGithubFolder, { recursive: true });
                 vscode.window.showInformationMessage('.github/workflows folder created successfully!');
             }
             // Check if the github-ci.yml file already exists
-            if (!fs.existsSync(destGithubYamlPath)) {
-                fs.copyFileSync(sourceGithubYamlPath, destGithubYamlPath);
+            if (!fs.existsSync(destPath)) {
+                fs.copyFileSync(sourcePath, destPath);
                 vscode.window.showInformationMessage('github-ci.yml copied successfully!');
             }
             else {
@@ -200,48 +258,13 @@ function activate(context) {
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
             const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.7/NATT.jar');
             const destJarPath = path.join(projectPath, 'NATT.jar');
-            // Function to download the file
-            const downloadFile = async (url, dest) => {
-                return new Promise((resolve, reject) => {
-                    const handleResponse = (response) => {
-                        if (response.statusCode === 200) {
-                            pipeline(response, fs.createWriteStream(dest)).then(resolve).catch(reject);
-                        }
-                        else if (response.statusCode === 302 || response.statusCode === 301) {
-                            const redirectUrl = response.headers.location;
-                            if (redirectUrl) {
-                                downloadFile(redirectUrl, dest).then(resolve).catch(reject);
-                            }
-                            else {
-                                reject(new Error('Redirect location not found'));
-                            }
-                        }
-                        else {
-                            reject(new Error(`Failed to get '${url}' (${response.statusCode})`));
-                        }
-                    };
-                    https.get(url, handleResponse).on('error', reject);
-                });
-            };
-            /****************************************************************************************************************************** */
-            try {
-                // Use vscode.window.withProgress to show a loading bar during the download
-                await vscode.window.withProgress({
-                    location: vscode.ProgressLocation.Notification,
-                    title: "Downloading NATT.jar",
-                    cancellable: false
-                }, async (progress, token) => {
-                    progress.report({ message: "Starting download..." });
-                    await downloadFile(jarUrl, destJarPath);
-                    progress.report({ message: "Download complete!" });
-                });
-                // reload keywords
-                registerKeywordSnippets(context, homeWebviewProvider);
-                vscode.window.showInformationMessage('Setup complete!');
-            }
-            catch (error) {
-                vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error}`);
-            }
+            downloadFileWithProgress(jarUrl, destJarPath)
+                .then(() => {
+                vscode.window.showInformationMessage('NATT.jar downloaded successfully!');
+            })
+                .catch((error) => {
+                vscode.window.showErrorMessage(`Failed to download NATT.jar: ${error.message}`);
+            });
         }
         else {
             vscode.window.showErrorMessage('No workspace folder is open.');
@@ -252,13 +275,28 @@ function activate(context) {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (workspaceFolders && workspaceFolders.length > 0) {
             const projectPath = workspaceFolders[0].uri.fsPath;
+            const nattArgsPath = path.join(projectPath, 'natt-args.txt');
             if (checkNattJarExists(projectPath)) {
-                testTerminal = vscode.window.createTerminal({
-                    name: 'NATT Test',
-                    cwd: projectPath,
+                // check if natt-args.txt file exists
+                fs.access(nattArgsPath, fs.constants.F_OK, (err) => {
+                    let command;
+                    if (err) {
+                        // file not exists => use default args
+                        command = 'java -jar NATT.jar -c test-config.yaml';
+                    }
+                    else {
+                        // read content of file and use it as args
+                        const fileContent = fs.readFileSync(nattArgsPath, 'utf8').trim();
+                        command = `java -jar NATT.jar ${fileContent}`;
+                    }
+                    // run testing using NATT.jar
+                    testTerminal = vscode.window.createTerminal({
+                        name: 'NATT Test',
+                        cwd: projectPath,
+                    });
+                    testTerminal.sendText(command);
+                    testTerminal.show();
                 });
-                testTerminal.sendText('java -jar NATT.jar -c test-config.yaml');
-                testTerminal.show();
             }
             else {
                 vscode.window.showErrorMessage('NATT structure has not been initialized. Please run the initialization command first.');
