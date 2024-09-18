@@ -285,5 +285,7 @@ This module **does not support** sending messages using the 'module_send' keywor
 
 ## Web crawler
 
-This module **does not support** sending messages using the 'module_send' keyword. During the creation of this module, the process of analyzing web pages is automatically started. After the completion of this process, the output of the analysis is written into the message buffer.
+This module **does not support** sending messages using the 'module_send' keyword. During the creation of this module, the process of analyzing web pages is automatically started. 
+
+After the completion of this process, the output of the analysis is written into the message buffer. The analyzer must be defined when creating the web crawler module. A list of analyzers and how to use them is available in the **keyword documentation**.
 
