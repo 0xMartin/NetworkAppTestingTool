@@ -1,0 +1,40 @@
+test_root:
+    max_points: 10.0
+    initial_steps:
+        # Create virtual telnet server on port 9999
+        - create_telnet_server:
+              name: "module-1"
+              port: 9999
+        # Run tested application (Telnet Echo client). This client connect to the virtual server.
+        - run_app: "java -jar app/build/libs/app.jar localhost 9999"
+        - wait: 1000
+    test_suites:
+        - test_suite:
+            name: "Suite name 1"
+            delay: 500
+            initial_steps: []
+            test_cases:
+                - test_case:
+                    name: "Case name 1"
+                    description: "Description 1 here"
+                    steps:
+                        - standard_stream_send: "Message to send"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "module-1-last-msg"
+                            expected: "This is next message"
+                            mode: "equals"
+                            case_sensitive: true
+                            result: true
+                - test_case:
+                    name: "Case name 2"
+                    description: "Description 2 here"
+                    steps:
+                        - standard_stream_send: "This is next message"
+                        - wait: 1000
+                        - assert_string:
+                            var_name: "module-1-last-msg"
+                            expected: "This is next message"
+                            mode: "equals"
+                            case_sensitive: true
+                            result: true

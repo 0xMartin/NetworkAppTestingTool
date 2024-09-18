@@ -1,0 +1,47 @@
+[23:19:52][PluginLoader][WARNING] Plugins directory not found.
+[23:19:52][NATTCore][INFO] NATT CORE initialization done
+Version: 1.7.0 
+Configuration path: test-config.yaml
+Configuration loading mode: FROM HOST
+[23:19:52][NATTCore][INFO] Working directory path: /home/martin/Projects/NetworkAppTestingTool
+[23:19:52][NATTCore][INFO] Start loading of the configuration file ...
+[23:19:52][LocalHostIO][INFO] Yaml data has been loaded from file (test-config.yaml)
+[23:19:52][NATTCore][INFO] Configuration loading done
+[23:19:52][NATTCore][INFO] Start building test structure according to the configuration ...
+[23:19:52][NATTCore][INFO] Test structure ...
+[23:19:52][NATTCore][INFO] Test structure building done
+[23:19:52][NATTCore][INFO] Start test executing ...
+[23:19:52][TestReportGenerator][INFO] Extenet reports generated. Final report will be saved to file: test_report.html
+[23:19:52][NATTCore][INFO] Starts execution on the root keyword  ...
+[23:19:52][MessageBuffer][INFO] Message buffer created for module with name: module-1
+[23:19:52][TelnetServer][INFO] (module-1) Server socket is listening on port 9999
+[23:19:52][MessageBuffer][INFO] Message buffer created for module with name: default
+[23:19:52][ExternalProgramRunner][INFO] (default) Run external app with command: java -jar app/build/libs/app.jar localhost 9999
+[23:19:52][ProcessManager][INFO] New PID (142812) added to file
+[23:19:52][WaitKw][INFO] Waiting: 1000 ms
+[23:19:52][ProcessManager][INFO] PID (142812) removed from file
+[23:19:52][ExternalProgramRunner][WARNING] (default) External application ends with error: 1
+[23:19:52][ExternalProgramRunner][WARNING] (default) Error message from external application: Error: Unable to access jarfile app/build/libs/app.jar
+
+[23:19:53][TestSuiteKw][INFO] Test case 'Case name 1' starts executing now
+[23:19:53][ExternalProgramRunner][WARNING] (default) Failed to send data. External app is not running now!
+[23:19:53][WaitKw][INFO] Waiting: 1000 ms
+[23:19:54][AssertEqualsKw][WARNING] Assertion failed. Variable 'module-1-last-msg' not found!
+[23:19:54][TestSuiteKw][WARNING] Test suite 'Suite name 1' - Test case 'Case name 1' failed
+[23:19:54][MessageBuffer][INFO] Message buffer cleared
+[23:19:55][TestSuiteKw][INFO] Test case 'Case name 2' starts executing now
+[23:19:55][ExternalProgramRunner][WARNING] (default) Failed to send data. External app is not running now!
+[23:19:55][WaitKw][INFO] Waiting: 1000 ms
+[23:19:56][AssertEqualsKw][WARNING] Assertion failed. Variable 'module-1-last-msg' not found!
+[23:19:56][TestSuiteKw][WARNING] Test suite 'Suite name 1' - Test case 'Case name 2' failed
+[23:19:56][MessageBuffer][INFO] Message buffer cleared
+[23:19:56][MessageBuffer][INFO] Message buffer cleared
+[23:19:56][MessageBuffer][INFO] Message buffer cleared
+[23:19:56][TelnetServer][INFO] (module-1) Telnet server [module-1] terminated
+[23:19:56][TelnetServer][INFO] (module-1) Server socket closed
+[23:19:56][NATTCore][INFO] Test executing finished
+[23:19:56][NATTCore][INFO] Start generating test report
+[23:19:57][TestReportGenerator][INFO] Report saved to file
+[23:19:57][NATTCore][WARNING] Failed test cases: "Case name 1", "Case name 2"
+[23:19:57][NATTCore][INFO] Final score: 0.000000
+[23:19:57][NATTCore][INFO] Testing done. Leaving status: FAILED

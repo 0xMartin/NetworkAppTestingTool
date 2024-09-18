@@ -22,15 +22,13 @@ public class NetworkAppTestingTool {
             // inicializace nastroje
             NATTCore core = new NATTCore(args);
 
+            // standardni proces testovani aplikaci ...
             // nacte soubor s konfiguraci testu
             core.loadConfigFile();
-
             // sestavi strukturu testovani podle nactene konfigurace
             core.buildTestsFromYaml();
-
             // vykonani vsech testu
             core.executeAllTests();
-
             // vygenerovani reportu (v pripade uspeni vsech testovacich pripadu)
             core.generateReport();
 

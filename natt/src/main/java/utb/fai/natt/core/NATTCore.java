@@ -22,11 +22,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import java.awt.*;
 
 /**
  * Hlavni trida testovaciho nastroju. Zajistuje pospupne zpracovani vsech testu
@@ -48,6 +55,7 @@ public class NATTCore {
     protected LocalHostIO localHostIO;
     protected NetworkIO networkIO;
     protected ServerHostUtility serverHostUtility;
+    protected NATTGUI nattgui;
 
     // root keyworda, kterou se zacne vykonavani celeho testovani
     protected NATTKeyword rootKeyword;
@@ -83,6 +91,7 @@ public class NATTCore {
         this.networkIO = new NetworkIO("");
         this.pluginLoader = new PluginLoader(NATTContext.instance());
         this.serverHostUtility = new ServerHostUtility();
+        this.nattgui = null;
 
         /************************************************************************************************************************* */
 
@@ -102,21 +111,61 @@ public class NATTCore {
                 "List of all registered keywords and their documentation in json format");
         options.addOption("k", "keywords", false, "List of all registered keywords");
         options.addOption("gui", "gui", false, "The output of the testing tool will be displayed in the GUI");
-        options.addOption("ht", "host", false,
+        options.addOption("ht", "host", true,
                 "Host server for interactive testing. Specify --show-servers to display the option of hosting");
         options.addOption("ss", "show-servers", false,
                 "Show all available servers that can be host and used for interactive testing.");
 
-        CommandLine cmd;
+        // inicializace NATT core
         try {
-            cmd = parser.parse(options, args);
+            CommandLine cmd = parser.parse(options, args);
+
+            // zobrazeni GUI vystupu
+            if (cmd.hasOption("gui")) {
+                System.out.println("NATT GUI opening now");
+                SwingUtilities.invokeLater(() -> {
+                    this.nattgui = new NATTGUI();
+                });
+            }
+
+            // inicializace jadra
+            this.initNATTCore(cmd, options);
+
         } catch (org.apache.commons.cli.ParseException e) {
             e.printStackTrace();
             throw new InternalErrorException("Failed to parse command line arguments.");
         }
 
+        // overeni zda je nastavena cesta ke konfiguraci
+        if (configPath == null) {
+            throw new InternalErrorException("It is necessary to specify the path to the configuration file!");
+        }
+
+        // ukonceni predchozich procesu, ktere se nepodarilo spravne ukoncit
+        try {
+            ProcessManager.killProcessesAndCleanUp(ProcessManager.DEFAULT_FILE);
+        } catch (Exception ex) {
+        }
+
+        // instanciace nastroje byla uspasna + vypise info
+        logger.info(String.format(
+                "NATT CORE initialization done\nVersion: %s \nConfiguration path: %s\nConfiguration loading mode: %s",
+                NATTCore.VERSION, configPath, loadConfigFromLocalHost ? "FROM HOST" : "FROM URL"));
+        String currentDirectory = System.getProperty("user.dir");
+        logger.info("Working directory path: " + currentDirectory);
+    }
+
+    /**
+     * Zpracovani vstupnich argumentu NATT nastroje
+     * 
+     * @param cmd Reference to the command line arguments
+     */
+    private void initNATTCore(CommandLine cmd, Options options) {
+        String buffer = null;
+
         /************************************************************************************************************************* */
         // help
+        /************************************************************************************************************************* */
 
         if (cmd.hasOption("h")) {
             HelpFormatter formatter = new HelpFormatter();
@@ -125,19 +174,50 @@ public class NATTCore {
             formatter.printHelp("java -jar NATT.jar", header, options, footer);
             System.exit(0);
         }
+        ;
+
+        /************************************************************************************************************************* */
+        // host server utility
+        /************************************************************************************************************************* */
+
+        // host server utility moznosti
+        if (cmd.hasOption("ss")) {
+            for (String opt : this.serverHostUtility.getHostOptions()) {
+                System.out.println(opt);
+            }
+            System.exit(0);
+        }
+
+        // host server utility hostovani
+        buffer = cmd.getOptionValue("ht");
+        if (buffer != null) {
+            this.logger.info("Entering to the server host mode ...");
+            if (!this.serverHostUtility.hostServer(buffer)) {
+                System.exit(0);
+            }
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+        }
 
         /************************************************************************************************************************* */
         // load all NATT plugins
+        /************************************************************************************************************************* */
 
         this.pluginLoader.loadPlugins();
 
+        /************************************************************************************************************************* */
+        // standardni nacitani argumentu
         /************************************************************************************************************************* */
 
         // title vystupniho reportu
         this.testReportName = cmd.getOptionValue("t");
 
         // c parametr
-        String buffer = cmd.getOptionValue("c");
+        buffer = cmd.getOptionValue("c");
         if (buffer != null) {
             this.configPath = buffer;
             this.localHostIO.setFileName(this.configPath);
@@ -215,26 +295,6 @@ public class NATTCore {
 
             System.exit(0);
         }
-
-        /************************************************************************************************************************* */
-
-        // overeni zda je nastavena cesta ke konfiguraci
-        if (configPath == null) {
-            throw new InternalErrorException("It is necessary to specify the path to the configuration file!");
-        }
-
-        // ukonceni predchozich procesu, ktere se nepodarilo spravne ukoncit
-        try {
-            ProcessManager.killProcessesAndCleanUp(ProcessManager.DEFAULT_FILE);
-        } catch (Exception ex) {
-        }
-
-        // info
-        logger.info(String.format(
-                "NATT CORE initialization done\nVersion: %s \nConfiguration path: %s\nConfiguration loading mode: %s",
-                NATTCore.VERSION, configPath, loadConfigFromLocalHost ? "FROM HOST" : "FROM URL"));
-        String currentDirectory = System.getProperty("user.dir");
-        logger.info("Working directory path: " + currentDirectory);
     }
 
     /**
