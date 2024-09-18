@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
@@ -46,6 +47,7 @@ public class NATTCore {
     protected PluginLoader pluginLoader;
     protected LocalHostIO localHostIO;
     protected NetworkIO networkIO;
+    protected ServerHostUtility serverHostUtility;
 
     // root keyworda, kterou se zacne vykonavani celeho testovani
     protected NATTKeyword rootKeyword;
@@ -80,6 +82,7 @@ public class NATTCore {
         this.localHostIO = new LocalHostIO("test-config.yaml");
         this.networkIO = new NetworkIO("");
         this.pluginLoader = new PluginLoader(NATTContext.instance());
+        this.serverHostUtility = new ServerHostUtility();
 
         /************************************************************************************************************************* */
 
@@ -98,11 +101,16 @@ public class NATTCore {
         options.addOption("kd", "keywordDoc", false,
                 "List of all registered keywords and their documentation in json format");
         options.addOption("k", "keywords", false, "List of all registered keywords");
+        options.addOption("gui", "gui", false, "The output of the testing tool will be displayed in the GUI");
+        options.addOption("ht", "host", false,
+                "Host server for interactive testing. Specify --show-servers to display the option of hosting");
+        options.addOption("ss", "show-servers", false,
+                "Show all available servers that can be host and used for interactive testing.");
 
         CommandLine cmd;
         try {
             cmd = parser.parse(options, args);
-        } catch (ParseException e) {
+        } catch (org.apache.commons.cli.ParseException e) {
             e.printStackTrace();
             throw new InternalErrorException("Failed to parse command line arguments.");
         }
@@ -406,14 +414,15 @@ public class NATTCore {
             throw new InternalErrorException("Failed to generate report!");
         }
 
-        // shrnuti vysledku testovani (vypise vsechny pripadne testovaci pripady ktere selhaly)
+        // shrnuti vysledku testovani (vypise vsechny pripadne testovaci pripady ktere
+        // selhaly)
         LinkedList<String> list = new LinkedList<>();
         NATTContext.instance().getTestCaseResults().stream().forEach(tc -> {
             if (!tc.isPassed()) {
                 list.add(tc.getTestCaseName());
             }
         });
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             logger.info("All test cases passed.");
         } else {
             String listStr = list.stream()
