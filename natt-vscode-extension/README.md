@@ -44,7 +44,7 @@ The extension provides several commands to facilitate testing:
 
 The following configuration files are used to manage NATT tests:
 
-- **natt-args.txt:** This file contains the arguments passed to NATT.jar when running the tests. It is only used when invoking the **command NATT run through the VS Code extension**.
+- **natt-args.txt:** This file contains the arguments passed to NATT.jar when running the tests. It is only used when invoking the **command ```NATT run``` through the VS Code extension**.
 - **test-config.yaml:** In this file, you should implement your test configuration (test scenario). It defines how the tests will be executed.
 
 Additionally, a script is automatically generated for both GitHub and GitLab CI/CD pipelines to run the tests as part of your automated testing process.
