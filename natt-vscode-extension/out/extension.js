@@ -256,7 +256,7 @@ function activate(context) {
             /****************************************************************************************************************************** */
             // Define the URL and destination path for the JAR file
             const config = vscode.workspace.getConfiguration('natt-configuration-editor');
-            const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.6.7/NATT.jar');
+            const jarUrl = config.get('nattJarUrl', 'https://github.com/0xMartin/NetworkAppTestingTool/releases/download/1.7.0/NATT.jar');
             const destJarPath = path.join(projectPath, 'NATT.jar');
             downloadFileWithProgress(jarUrl, destJarPath)
                 .then(() => {
