@@ -1,1 +1,0 @@
-[22:25:16][PluginLoader][WARNING] Plugins directory not found.

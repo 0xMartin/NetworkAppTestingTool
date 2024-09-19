@@ -1,8 +1,0 @@
-[22:30:13][PluginLoader][WARNING] Plugins directory not found.
-[22:30:13][ProcessManager][WARNING] Failed to read PIDs: pid-list.txt (No such file or directory)
-[22:30:13][NATTCore][INFO] NATT CORE initialization done
-Version: 1.7.0 
-Configuration path: aa
-Configuration loading mode: FROM HOST
-[22:30:13][NATTCore][INFO] Working directory path: /home/martin/Projects/NetworkAppTestingTool
-[22:30:13][NATTCore][INFO] Start loading of the configuration file ...
