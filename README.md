@@ -194,7 +194,7 @@ Allow to host server for interactive testing. Use --show-servers to list all ava
 
 ### NATT GUI
 
-The GUI mode of the NATT tool provides a user-friendly interface for showing logs and displaying the test results. To show the GUI use the **--gui* argument.
+The GUI mode of the NATT tool provides a user-friendly interface for showing logs and displaying the test results. To show the GUI use the **--gui** argument.
 
 <img src="./doc/natt-gui.png" alt="NATT GUI" >
 
