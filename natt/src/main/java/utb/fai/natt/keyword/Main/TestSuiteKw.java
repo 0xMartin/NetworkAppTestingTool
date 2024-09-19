@@ -60,6 +60,7 @@ public class TestSuiteKw extends NATTKeyword {
         for (NATTKeyword keyword : this.testCases) {
             if (keyword.isIgnored()) {
                 this.result.logInfo("Test case '" + keyword.getName() + "' is ignored");
+                logger.warning("Test case '" + keyword.getName() + "' is ignored");
                 continue;
             }
             this.logger.info("Test case '" + keyword.getName() + "' starts executing now");
@@ -67,7 +68,7 @@ public class TestSuiteKw extends NATTKeyword {
             // vykona akce
             if (!pass) {
                 suitePassed = false;
-                logger.warning(String.format("Test suite '%s' - Test case '%s' failed",
+                logger.error(String.format("Test suite '%s' - Test case '%s' failed",
                         this.getName(), keyword.getName()));
             } else {
                 logger.info(String.format("Test suite '%s' - Test case '%s' passed",

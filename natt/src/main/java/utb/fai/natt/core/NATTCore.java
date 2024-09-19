@@ -22,18 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import java.awt.*;
 
 /**
  * Hlavni trida testovaciho nastroju. Zajistuje pospupne zpracovani vsech testu
@@ -70,7 +62,10 @@ public class NATTCore {
     private boolean validateOnly;
 
     /**
-     * Inicializace jadra black box testovaciho nastroje
+     * Vytvoreni instance a inicializace jadra black box testovaciho nastroje NATT.
+     * TENTO
+     * KONSTRUKTOR MUZE ZA URCITYCH KONFIGURACI ARGUMENTU BLOkOVAT VLAKNO NEBO I
+     * UKONCOVAT CELOU APLIKACI.
      * 
      * @param args Mezi vyzadovane argumenty patri -a --application
      *             <path_to_tested_app>. Pomoci tohoto argumentu je nastavena cesta
@@ -123,9 +118,7 @@ public class NATTCore {
             // zobrazeni GUI vystupu
             if (cmd.hasOption("gui")) {
                 System.out.println("NATT GUI opening now");
-                SwingUtilities.invokeLater(() -> {
-                    this.nattgui = new NATTGUI();
-                });
+                this.nattgui = new NATTGUI();
             }
 
             // inicializace jadra
@@ -195,12 +188,20 @@ public class NATTCore {
             if (!this.serverHostUtility.hostServer(buffer)) {
                 System.exit(0);
             }
-            while (true) {
+            // NATT GUI status
+            if (this.nattgui != null) {
+                this.nattgui.setStatus("Server hosting mode");
+            }
+            // ceka na zavreni gui
+            if (this.nattgui != null) {
                 try {
-                    Thread.sleep(1000);
+                    this.nattgui.getGUIClosedLatch().await();
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
+            // ukonceni cele aplikace
+            System.exit(0);
         }
 
         /************************************************************************************************************************* */
@@ -357,6 +358,11 @@ public class NATTCore {
     public void loadConfigFile() throws InvalidSyntaxInConfigurationException, IOException {
         logger.info("Start loading of the configuration file ...");
 
+        // NATT GUI status
+        if (this.nattgui != null) {
+            this.nattgui.setStatus("Loading configuration file ...");
+        }
+
         if (loadConfigFromLocalHost) {
             Object configObj = localHostIO.loadFromYaml();
             if (configObj instanceof Map) {
@@ -386,6 +392,11 @@ public class NATTCore {
     public void buildTestsFromYaml()
             throws InvalidSyntaxInConfigurationException, InternalErrorException {
         logger.info("Start building test structure according to the configuration ...");
+
+        // NATT GUI status
+        if (this.nattgui != null) {
+            this.nattgui.setStatus("Building test structure ...");
+        }
 
         if (this.configurationData == null) {
             throw new InternalErrorException("Configuration not loaded!");
@@ -421,6 +432,11 @@ public class NATTCore {
             throws InternalErrorException, InvalidSyntaxInConfigurationException,
             NonUniqueModuleNamesException, NonUniqueTestNamesException {
         logger.info("Start test executing ...");
+
+        // NATT GUI status
+        if (this.nattgui != null) {
+            this.nattgui.setStatus("Test executing ...");
+        }
 
         if (this.rootKeyword == null) {
             throw new InternalErrorException("The test_root element is not initialized!");
@@ -459,7 +475,8 @@ public class NATTCore {
      * Vygeneruje report o provedenych testech. Jako prvni vygeneruj a ulozi
      * vystupni soubory obsahujici podrobny popis vysledku a prubehu testovani.
      * Nakonec tato metoda ukonci aplikaci s pozadovanym status kodem. Pokud vsechny
-     * testy uspesne problehly bude navracen status kod 0.
+     * testy uspesne problehly bude navracen status kod 0. TATO METODA UKONCUJE
+     * CELOU APLIKACI.
      * 
      * @throws InternalErrorException
      */
@@ -498,7 +515,33 @@ public class NATTCore {
         }
 
         // finalni status celeho testovani
-        logger.info(String.format("Testing done. Leaving status: %s", passed ? "PASSED" : "FAILED"));
+        if (passed) {
+            logger.info("Testing done. Leaving status: PASSED");
+        } else {
+            logger.error("Testing done. Leaving status: FAILED");
+        }
+
+        // NATT GUI status
+        if (this.nattgui != null) {
+            this.nattgui.setStatus(
+                    passed ? "Testing done. Leaving status: passed" : "Testing done. Leaving status: failded");
+        }
+
+        // ceka na zavreni gui
+        if (this.nattgui != null) {
+            try {
+                logger.info(String.format("Waiting for GUI to close ..."));
+                this.nattgui.getGUIClosedLatch().await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // ukonci zapis do log souboru
+        NATTLogger.LogFileWriter.getInstance().close();
+
+        // ukonci vsechny komunikacni moduly
+        NATTCore.termiteAllModules();
 
         // navrati finalni status kod
         System.exit(passed ? StatusCode.TEST_PASSED : StatusCode.TEST_FAILED);

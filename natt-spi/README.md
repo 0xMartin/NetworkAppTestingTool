@@ -2,6 +2,8 @@
 
 **[Go Back](../README.md)**
 
+**NATT SPI version: 1.1.1**
+
 This repository contains the source code for the **NATT-SPI library**, which is utilized by the **NATT testing tool**. This library is essential for **implementing custom plugins within the NATT**.
 
 The source code includes the necessary interfaces and classes to extend and customize the functionality of NATT, allowing developers **to create their own modules and integrate them seamlessly**.
@@ -37,7 +39,7 @@ In the dependencies section, add a reference to the latest version of the NATT-S
 ```gradle
 dependencies {
     // NATT SPI
-    implementation name: 'natt-spi-1.1.0'
+    implementation name: 'natt-spi-1.1.1'
 }
 ```
 

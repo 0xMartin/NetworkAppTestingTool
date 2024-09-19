@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.*;
 
 /**
  * NATTLogger is a utility class for logging messages to Sytem.out and file.
@@ -31,6 +33,7 @@ public class NATTLogger {
      */
     public void info(String message) {
         log("INFO", message);
+        notifyListeners("INFO", message);
     }
 
     /**
@@ -40,6 +43,7 @@ public class NATTLogger {
      */
     public void warning(String message) {
         log("WARNING", message);
+        notifyListeners("WARNING", message);
     }
 
     /**
@@ -49,6 +53,7 @@ public class NATTLogger {
      */
     public void error(String message) {
         log("ERROR", message);
+        notifyListeners("ERROR", message);
     }
 
     /**
@@ -144,4 +149,62 @@ public class NATTLogger {
             }
         }
     }
+
+    /**
+     * Helper function to notify all listeners registered with the
+     * LogCallbackHandler.
+     * 
+     * @param level   Level of the log message.
+     * @param message Content of the log message.
+     */
+    private void notifyListeners(String level, String message) {
+        LocalDateTime currentTime = LocalDateTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedTime = currentTime.format(timeFormatter);
+        LogCallbackHandler.getInstance().notifyListeners(formattedTime, level, className, message);
+    }
+
+    /**
+     * Interface for log callback.
+     */
+    public interface LogCallback {
+        void onComplete(String time, String level, String className, String result);
+    }
+
+    /**
+     * Singleton class for log callback.
+     */
+    public static class LogCallbackHandler {
+
+        private static LogCallbackHandler instance;
+        private List<LogCallback> listeners;
+
+        private LogCallbackHandler() {
+            listeners = new ArrayList<LogCallback>();
+        }
+
+        /**
+         * Returns the singleton instance of LogCallbackHandler.
+         * 
+         * @return The singleton instance of LogCallbackHandler.
+         */
+        public static synchronized LogCallbackHandler getInstance() {
+            if (instance == null) {
+                instance = new LogCallbackHandler();
+            }
+            return instance;
+        }
+
+        public void registerCallback(LogCallback listener) {
+            listeners.add(listener);
+        }
+
+        protected void notifyListeners(String time, String level, String className, String message) {
+            for (LogCallback listener : listeners) {
+                listener.onComplete(time, level, className, message);
+            }
+        }
+
+    }
+
 }

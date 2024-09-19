@@ -163,6 +163,41 @@ For help, specify the -h or --help argument.
 java -jar NATT.jar -c <path-to-test-config>
 ```
 
+## ⚙️ Arguments
+
+``` -c,--config ```
+Specifies the path to the test configuration file to be loaded from the local host. *Example: --config path/to/config.json*
+
+```-gui,--gui```
+Runs the tool in GUI mode, displaying the output and logs in an interactive interface.
+
+```-h,--help```
+Description: Displays a help message with details on usage and available commands.
+
+```-ht,--host```
+Allow to host server for interactive testing. Use --show-servers to list all available options. *Example: --host mqtt-broker*
+
+```-k,--keywords``` Lists all registered testing keywords for use in your configuration files.
+
+```-kd,--keywordDoc``` Lists all registered keywords along with their documentation in JSON format.
+
+```-nc,--net-config``` Provides the path to a network configuration file that will be loaded from a URL. *Example: --net-config https://example.com/config.json*
+
+```-p,--plugins``` Displays a list of all loaded plugins that can be used during testing.
+
+```-ss,--show-servers``` Shows a list of all available servers that can be used (host) for interactive testing.
+
+```-t,--title``` Specifies a title or header for the resulting test report.
+*Example: --title "Network Test Results"*
+
+```-v,--validate``` Validates the test suite configuration without executing it.
+
+### NATT GUI
+
+The GUI mode of the NATT tool provides a user-friendly interface for showing logs and displaying the test results. To show the GUI use the **--gui* argument.
+
+<img src="./doc/natt-gui.png" alt="NATT GUI" >
+
 ---
 
 # 🔧 Configuring of the Testing Tool

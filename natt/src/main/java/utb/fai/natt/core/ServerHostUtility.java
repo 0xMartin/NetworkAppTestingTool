@@ -3,7 +3,10 @@ package utb.fai.natt.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import utb.fai.natt.module.MQTTBroker;
 import utb.fai.natt.module.SMTPEmailServer;
+import utb.fai.natt.module.TelnetServer;
+import utb.fai.natt.spi.IMessageListener;
 import utb.fai.natt.spi.NATTModule;
 import utb.fai.natt.spi.exception.InternalErrorException;
 import utb.fai.natt.spi.exception.NonUniqueModuleNamesException;
@@ -32,17 +35,44 @@ public class ServerHostUtility {
         try {
             switch (option) {
                 case "email-server":
-                    this.module = new SMTPEmailServer("server", 9999);
+                    this.module = new SMTPEmailServer("email-server", 9999);
                     break;
                 case "mqtt-broker":
+                    this.module = new MQTTBroker("mqtt-broker", 9999);
                     break;
                 case "telnet-server":
+                    this.module = new TelnetServer("telnet-server", 9999);
                     break;
                 case "telnet-server-echo":
+                    this.module = new TelnetServer("telnet-server-echo", 9999);
+                    this.module.addMessageListener(new IMessageListener() {
+                        @Override
+                        public void onMessageReceived(String sender, String tag, String message) {
+                            if (sender.equals("telnet-server-echo")) {
+                                try {
+                                    // odesle zpravu klientovi ktery ji na server poslal (tag obsahuje id klienta
+                                    // pripojeneho k serveru)
+                                    ((TelnetServer) module).sendSingleMessage(message, tag);
+                                } catch (InternalErrorException e) {
+                                }
+                            }
+                        }
+                    });
                     break;
                 case "telnet-server-broadcast":
-                    break;
-                case "http-server":
+                    this.module = new TelnetServer("telnet-server-broadcast", 9999);
+                    this.module.addMessageListener(new IMessageListener() {
+                        @Override
+                        public void onMessageReceived(String sender, String tag, String message) {
+                            if (sender.equals("telnet-server-broadcast")) {
+                                try {
+                                    // odesle prijatou zpravu vsem klientu pripojenym k serveru
+                                    module.sendMessage(message);
+                                } catch (InternalErrorException e) {
+                                }
+                            }
+                        }
+                    });
                     break;
                 default:
                     System.out.println("Unknown server option.");
@@ -70,7 +100,6 @@ public class ServerHostUtility {
         opts.add("telnet-server");
         opts.add("telnet-server-echo");
         opts.add("telnet-server-broadcast");
-        opts.add("http-server");
         return opts;
     }
 

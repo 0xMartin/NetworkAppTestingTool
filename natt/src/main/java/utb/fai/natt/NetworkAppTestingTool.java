@@ -32,9 +32,6 @@ public class NetworkAppTestingTool {
             // vygenerovani reportu (v pripade uspeni vsech testovacich pripadu)
             core.generateReport();
 
-            // ukonci zapis do log souboru
-            NATTLogger.LogFileWriter.getInstance().close();
-
         } catch (InternalErrorException e) {
             e.printStackTrace();
             NATTCore.termiteAllModules();

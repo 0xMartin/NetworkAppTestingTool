@@ -121,6 +121,23 @@ public class TelnetServer extends NATTModule {
         return true;
     }
 
+    public boolean sendSingleMessage(String message, String clientId) throws InternalErrorException {
+        try {
+            // odesle zpravu konkretnemu klientovi
+            for (ClientHandler client : clients) {
+                if (client.getClientId().equals(clientId)) {
+                    client.sendMessage(message);
+                    logger.info(super.getNameForLogger() + "Message send: " + message);
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            logger.warning(super.getNameForLogger() + "Failed to send message to clients: " + e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
     /**
      * Handler pro zpracovani prichozi a odchozi komunikace od klientu
      */
@@ -181,6 +198,10 @@ public class TelnetServer extends NATTModule {
             if (writer != null) {
                 writer.println(message);
             }
+        }
+
+        public String getClientId() {
+            return id;
         }
 
     }
