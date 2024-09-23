@@ -127,12 +127,12 @@ public class TelnetServer extends NATTModule {
             for (ClientHandler client : clients) {
                 if (client.getClientId().equals(clientId)) {
                     client.sendMessage(message);
-                    logger.info(super.getNameForLogger() + "Message send: " + message);
+                    logger.info(super.getNameForLogger() + "Sending a message to the client [" + clientId + "]: " + message);
                     return true;
                 }
             }
         } catch (IOException e) {
-            logger.warning(super.getNameForLogger() + "Failed to send message to clients: " + e.getMessage());
+            logger.warning(super.getNameForLogger() + "Failed to send message to client [" + clientId + "]: " + e.getMessage());
             return false;
         }
         return false;
@@ -157,7 +157,7 @@ public class TelnetServer extends NATTModule {
                 reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 writer = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
-                logger.warning(getNameForLogger() + "Failed to create telnet client handler: " + e.getMessage());
+                logger.warning(getNameForLogger() + "Failed to create telnet client [" + this.id + "] handler: " + e.getMessage());
             }
         }
 
@@ -173,7 +173,7 @@ public class TelnetServer extends NATTModule {
                     this.serverInstance.notifyMessageListeners(this.id, inputLine);
                 }
             } catch (IOException e) {
-                logger.info(getNameForLogger() + "Client disconnected");
+                logger.info(getNameForLogger() + "Client [" + this.id + "] disconnected");
             } finally {
                 close();
             }
